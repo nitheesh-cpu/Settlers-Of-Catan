@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.GameController">
+   <children>
+      <Pane prefHeight="792.0" prefWidth="256.0" />
+      <Pane>
+         <children>
+            <Pane prefHeight="800.0" prefWidth="750.0">
+               <children>
+                  <Circle fill="DODGERBLUE" layoutX="375.0" layoutY="400.0" radius="368.0" stroke="BLACK" strokeType="INSIDE">
+                     <effect>
+                        <Shadow height="255.0" radius="127.0" width="255.0">
+                           <color>
+                              <Color red="0.6296296119689941" green="0.8518518805503845" blue="1.0" />
+                           </color>
+                        </Shadow>
+                     </effect>
+                  </Circle>
+                  <Polygon fill="DODGERBLUE" layoutX="526.0" layoutY="363.0" stroke="BLACK" strokeType="INSIDE">
+            </Polygon>
+                  <Polygon fx:id="tile02" fill="WHITE" layoutX="280.0" layoutY="241.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile03" fill="WHITE" layoutX="375.0" layoutY="188.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile14" fill="WHITE" layoutX="470.0" layoutY="241.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile12" fill="WHITE" layoutX="280.0" layoutY="347.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile13" fill="WHITE" layoutX="375.0" layoutY="294.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile24" fill="WHITE" layoutX="470.0" layoutY="347.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile22" fill="WHITE" layoutX="280.0" layoutY="453.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile23" fill="WHITE" layoutX="375.0" layoutY="400.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile33" fill="WHITE" layoutX="470.0" layoutY="453.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile31" fill="WHITE" layoutX="280.0" layoutY="559.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile32" fill="WHITE" layoutX="375.0" layoutY="506.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile42" fill="WHITE" layoutX="470.0" layoutY="559.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile41" fill="WHITE" layoutX="375.0" layoutY="612.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile25" fill="WHITE" layoutX="565.0" layoutY="294.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile34" fill="WHITE" layoutX="565.0" layoutY="400.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile43" fill="WHITE" layoutX="565.0" layoutY="506.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile01" fill="WHITE" layoutX="185.0" layoutY="294.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile11" fill="WHITE" layoutX="185.0" layoutY="400.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile21" fill="WHITE" layoutX="185.0" layoutY="506.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water12" fill="#7bd5ff" layoutX="470.0" layoutY="665.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water13" fill="#7bd5ff" layoutX="375.0" layoutY="718.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water11" fill="#7bd5ff" layoutX="565.0" layoutY="612.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water7" fill="#7bd5ff" layoutX="660.0" layoutY="241.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water8" fill="#7bd5ff" layoutX="660.0" layoutY="347.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water9" fill="#7bd5ff" layoutX="660.0" layoutY="453.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water10" fill="#7bd5ff" layoutX="660.0" layoutY="559.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water4" fill="#7bd5ff" layoutX="375.0" layoutY="82.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water5" fill="#7bd5ff" layoutX="470.0" layoutY="135.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water6" fill="#7bd5ff" layoutX="565.0" layoutY="188.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water2" fill="#7bd5ff" layoutX="185.0" layoutY="188.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water3" fill="#7bd5ff" layoutX="280.0" layoutY="135.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water1" fill="#7bd5ff" layoutX="90.0" layoutY="241.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water18" fill="#7bd5ff" layoutX="90.0" layoutY="347.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water17" fill="#7bd5ff" layoutX="90.0" layoutY="453.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water16" fill="#7bd5ff" layoutX="90.0" layoutY="559.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water15" fill="#7bd5ff" layoutX="185.0" layoutY="612.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water14" fill="#7bd5ff" layoutX="280.0" layoutY="665.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+               </children>
+            </Pane>
+            <Pane prefHeight="800.0" prefWidth="750.0">
+               <children>
+                  <Circle fx:id="dice33" fill="#b99263" layoutX="470.0" layoutY="453.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice43" fill="#b99263" layoutX="565.0" layoutY="506.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice34" fill="#b99263" layoutX="565.0" layoutY="400.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice25" fill="#b99263" layoutX="565.0" layoutY="294.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice24" fill="#b99263" layoutX="470.0" layoutY="347.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice14" fill="#b99263" layoutX="470.0" layoutY="242.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice13" fill="#b99263" layoutX="375.0" layoutY="294.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice03" fill="#b99263" layoutX="375.0" layoutY="188.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice02" fill="#b99263" layoutX="280.0" layoutY="241.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice01" fill="#b99263" layoutX="185.0" layoutY="294.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice12" fill="#b99263" layoutX="280.0" layoutY="347.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice23" fill="#b99263" layoutX="375.0" layoutY="400.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice11" fill="#b99263" layoutX="185.0" layoutY="400.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice22" fill="#b99263" layoutX="280.0" layoutY="453.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice32" fill="#b99263" layoutX="375.0" layoutY="506.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice42" fill="#b99263" layoutX="470.0" layoutY="559.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice41" fill="#b99263" layoutX="375.0" layoutY="612.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice31" fill="#b99263" layoutX="280.0" layoutY="559.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice21" fill="#b99263" layoutX="185.0" layoutY="506.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane prefHeight="792.0" prefWidth="234.0" />
+   </children>
+</HBox>
