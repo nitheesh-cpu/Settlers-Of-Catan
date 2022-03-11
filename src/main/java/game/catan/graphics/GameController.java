@@ -1,5 +1,6 @@
-package game.catan;
+package game.catan.graphics;
 
+import game.catan.simulation.engine.Initialize;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -9,7 +10,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static game.catan.simulation.engine.Initialize.*;
 
 public class GameController {
     @FXML
@@ -183,62 +187,27 @@ public class GameController {
 
     @FXML
     public void initialize() throws FileNotFoundException {
+        Initialize.init();
         Polygon[] waters = {water1,water2,water3,water4,water5,water6,water7,water8,water9,water10,water11,water12,water13,water14,water15,water16,water17,water18};
         Polygon[][] tiles = {{tile01,tile02,tile03},{tile11,tile12,tile13,tile14},{tile21,tile22,tile23,tile24,tile25}, {tile31,tile32,tile33,tile34},{tile41,tile42,tile43}};
         Circle[][] circles = {{dice01,dice02,dice03},{dice11,dice12,dice13,dice14},{dice21,dice22,dice23,dice24,dice25}, {dice31,dice32,dice33,dice34},{dice41,dice42,dice43}};
-        Image brick = new Image("game/catan/Tile/BrickTile.png");
-        Image desert = new Image("game/catan/Tile/DesertTileEXP.png");
-        Image grass = new Image("game/catan/Tile/GrassTileExp.png");
-        Image plains = new Image("game/catan/Tile/PlanesTileExp.png");
-        Image stone = new Image("game/catan/Tile/StoneTileExp.png");
-        Image wheat = new Image("game/catan/Tile/WheatTileEx.png");
-        Image water = new Image("game/catan/Tile/waterTileExp.png");
-        ImagePattern brickPattern = new ImagePattern(brick, 63, 57, 130, 116, false);
-        ImagePattern desertPattern = new ImagePattern(desert, 69, 62, 137, 125, false);
-        ImagePattern grassPattern = new ImagePattern(grass, 64, 59, 130, 118, false);
-        ImagePattern plainsPattern = new ImagePattern(plains, 67, 57, 135, 116, false);
-        ImagePattern stonePattern = new ImagePattern(stone, 71, 57, 145, 116, false);
-        ImagePattern wheatPattern = new ImagePattern(wheat, 67, 57, 135, 116, false);
-        ImagePattern waterPattern = new ImagePattern(water, 67, 56, 135, 112, false);
-        ImagePattern[] tilePatterns = {brickPattern,desertPattern,grassPattern,plainsPattern,stonePattern,wheatPattern};
-
-        Image two = new Image("game/catan/DiceMarkings/2.png");
-        Image three = new Image("game/catan/DiceMarkings/3.png");
-        Image four = new Image("game/catan/DiceMarkings/4.png");
-        Image five = new Image("game/catan/DiceMarkings/5.png");
-        Image six = new Image("game/catan/DiceMarkings/6.png");
-        Image eight = new Image("game/catan/DiceMarkings/8.png");
-        Image nine = new Image("game/catan/DiceMarkings/9.png");
-        Image ten = new Image("game/catan/DiceMarkings/10.png");
-        Image eleven = new Image("game/catan/DiceMarkings/11.png");
-        Image twelve = new Image("game/catan/DiceMarkings/12.png");
-        ImagePattern twoPattern = new ImagePattern(two,31,35,60,60,false);
-        ImagePattern threePattern = new ImagePattern(three,31,35,60,60,false);
-        ImagePattern fourPattern = new ImagePattern(four,31,35,60,60,false);
-        ImagePattern fivePattern = new ImagePattern(five,31,35,60,60,false);
-        ImagePattern sixPattern = new ImagePattern(six,31,35,60,60,false);
-        ImagePattern eightPattern = new ImagePattern(eight,31,35,60,60,false);
-        ImagePattern ninePattern = new ImagePattern(nine,31,35,60,60,false);
-        ImagePattern tenPattern = new ImagePattern(ten,31,35,60,60,false);
-        ImagePattern elevenPattern = new ImagePattern(eleven,31,35,60,60,false);
-        ImagePattern twelvePattern = new ImagePattern(twelve,31,35,60,60,false);
-        ImagePattern[] dicePatterns = {twoPattern,threePattern,fourPattern,fivePattern,sixPattern,eightPattern,ninePattern,tenPattern,elevenPattern,twelvePattern};
-
-
+        int[] tileRandomizer = {0,0,0,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5};
+        List<Integer> tilesList = Arrays.stream(tileRandomizer).boxed().collect(Collectors.toList());
+        Collections.shuffle(tilesList);
+        int[] diceNumbers = {5,2,6,3,8,10,9,12,11,4,8,10,9,4,5,6,3,11};
         for(Polygon[] x : tiles){
             for(Polygon tile: x){
-                int num = (int) (Math.random()*6);
-                tile.setFill(tilePatterns[num]);
+                tile.setFill(tilePatterns[tilesList.remove(0)]);
             }
         }
         for(Polygon tile: waters){
             tile.setFill(waterPattern);
         }
-        for(Circle[] x: circles){
-            for(Circle circle: x){
-                int num = (int) (Math.random()*10);
-                circle.setFill(dicePatterns[num]);
-            }
-        }
+//        for(Circle[] x: circles){
+//            for(Circle circle: x){
+//                int num = (int) (Math.random()*10);
+//                circle.setFill(dicePatterns[num]);
+//            }
+//        }
     }
 }

@@ -64,7 +64,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>game.catan/game.catan.HelloApplication</mainClass>
+                            <mainClass>game.catan/game.catan.graphics.HelloApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>

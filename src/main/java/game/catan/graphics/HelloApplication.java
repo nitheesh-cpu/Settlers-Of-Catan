@@ -1,4 +1,4 @@
-package game.catan;
+package game.catan.graphics;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
