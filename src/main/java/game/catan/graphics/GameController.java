@@ -1,6 +1,7 @@
 package game.catan.graphics;
 
 import game.catan.simulation.engine.Initialize;
+import game.catan.simulation.structures.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -209,5 +210,80 @@ public class GameController {
 //                circle.setFill(dicePatterns[num]);
 //            }
 //        }
+    }
+
+    public void initializeTileNumbers(){
+        int corner = 0;
+        int lastCorner = corner+5 % 6;
+        int depth = 0;
+        int xCoords[] = new int[]{0, 0, 0, 2, 4, 2};
+        int yCoords[] = new int[]{0, 2, 4, 4, 2, 0};
+        int x = xCoords[corner];
+        int y = yCoords[corner];
+        int w = 1;
+        Tile tiles[][] = null;
+        while(depth<4){
+            if(corner == 0 || depth > 0){
+                if(lastCorner == 0)
+                    w++;
+                for(int q = 0; q < 2/w; q++){
+                    tiles[++y][x].initialize();
+                }
+                if(lastCorner == 0){
+                    tiles[++y][++x].initialize();
+                }
+            }
+            if(corner == 1 || depth > 0){
+                if(lastCorner == 1)
+                    w++;
+                for(int q = 0; q < 2/w; q++){
+                    tiles[++y][x].initialize();
+                }
+                if(lastCorner == 1){
+                    tiles[y][++x].initialize();
+                }
+            }
+            if(corner == 2 || depth > 0){
+                if(lastCorner == 2)
+                    w++;
+                for(int q = 0; q < 2/w; q++){
+                    tiles[y][++x].initialize();
+                }
+                if(lastCorner == 2){
+                    tiles[--y][++x].initialize();
+                }
+            }
+            if(corner == 3 || depth > 0){
+                if(lastCorner == 3)
+                    w++;
+                for(int q = 0; q < 2/w; q++){
+                    tiles[--y][++x].initialize();
+                }
+                if(lastCorner == 3){
+                    tiles[--y][x].initialize();
+                }
+            }
+            if(corner == 4 || depth > 0){
+                if(lastCorner == 4)
+                    w++;
+                for(int q = 0; q < 2/w; q++){
+                    tiles[--y][--x].initialize();
+                }
+                if(lastCorner == 4){
+                    tiles[y][--x].initialize();
+                }
+            }
+            if(corner == 5 || depth > 0){
+                if(lastCorner == 5)
+                    w++;
+                for(int q = 0; q < 2/w; q++){
+                    tiles[y][--x].initialize();
+                }
+                if(lastCorner == 5){
+                    tiles[++y][x].initialize();
+                }
+            }
+            depth++;
+        }
     }
 }
