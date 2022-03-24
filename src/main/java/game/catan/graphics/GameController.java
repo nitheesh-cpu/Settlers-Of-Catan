@@ -1,5 +1,6 @@
 package game.catan.graphics;
 
+import game.catan.simulation.engine.GameState;
 import game.catan.simulation.engine.Initialize;
 import game.catan.simulation.structures.Tile;
 import javafx.fxml.FXML;
@@ -185,20 +186,34 @@ public class GameController {
     @FXML
     private Polygon water9;
 
-
     @FXML
     public void initialize() throws FileNotFoundException {
         Initialize.init();
         Polygon[] waters = {water1,water2,water3,water4,water5,water6,water7,water8,water9,water10,water11,water12,water13,water14,water15,water16,water17,water18};
-        Polygon[][] tiles = {{tile01,tile02,tile03},{tile11,tile12,tile13,tile14},{tile21,tile22,tile23,tile24,tile25}, {tile31,tile32,tile33,tile34},{tile41,tile42,tile43}};
+        Polygon[][] tilePolygons = {{tile01,tile02,tile03},{tile11,tile12,tile13,tile14},{tile21,tile22,tile23,tile24,tile25}, {tile31,tile32,tile33,tile34},{tile41,tile42,tile43}};
         Circle[][] circles = {{dice01,dice02,dice03},{dice11,dice12,dice13,dice14},{dice21,dice22,dice23,dice24,dice25}, {dice31,dice32,dice33,dice34},{dice41,dice42,dice43}};
         int[] tileRandomizer = {0,0,0,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5};
+        String[] resourceNames = {"Brick","Ore","Wheat","Sheep","Lumber","Desert"};
         List<Integer> tilesList = Arrays.stream(tileRandomizer).boxed().collect(Collectors.toList());
         Collections.shuffle(tilesList);
-        int[] diceNumbers = {5,2,6,3,8,10,9,12,11,4,8,10,9,4,5,6,3,11};
-        for(Polygon[] x : tiles){
-            for(Polygon tile: x){
-                tile.setFill(tilePatterns[tilesList.remove(0)]);
+        Tile[][] tileObjs = {{null,null,null},{null,null,null,null},{null,null,null,null,null}, {null,null,null,null},{null,null,null}};
+        ArrayList<Tile> tiles = new ArrayList<>();
+        GameState gameState = new GameState();
+        for(int r = 0; r < tilePolygons.length ; r++){
+            for(int c = 0; c < tilePolygons[r].length; c++){
+                tileObjs[r][c] = (new Tile(resourceNames[tilesList.get(0)]));
+                tilePolygons[r][c].setFill(tilePatterns[tilesList.remove(0)]);
+            }
+        }
+        gameState.setTiles(tileObjs);
+        gameState.initializeTileNumbers();
+        for(int r = 0; r < circles.length ; r++){
+            for(int c = 0; c < circles[r].length; c++){
+                if ((tileObjs[r][c].getTileNumber() > -1)) {
+                    circles[r][c].setFill(tileObjs[r][c].getNumberPattern());
+                } else {
+                    circles[r][c].setVisible(false);
+                }
             }
         }
         for(Polygon tile: waters){
@@ -212,78 +227,5 @@ public class GameController {
 //        }
     }
 
-    public void initializeTileNumbers(){
-        int corner = 0;
-        int lastCorner = corner+5 % 6;
-        int depth = 0;
-        int xCoords[] = new int[]{0, 0, 0, 2, 4, 2};
-        int yCoords[] = new int[]{0, 2, 4, 4, 2, 0};
-        int x = xCoords[corner];
-        int y = yCoords[corner];
-        int w = 1;
-        Tile tiles[][] = null;
-        while(depth<4){
-            if(corner == 0 || depth > 0){
-                if(lastCorner == 0)
-                    w++;
-                for(int q = 0; q < 2/w; q++){
-                    tiles[++y][x].initialize();
-                }
-                if(lastCorner == 0){
-                    tiles[++y][++x].initialize();
-                }
-            }
-            if(corner == 1 || depth > 0){
-                if(lastCorner == 1)
-                    w++;
-                for(int q = 0; q < 2/w; q++){
-                    tiles[++y][x].initialize();
-                }
-                if(lastCorner == 1){
-                    tiles[y][++x].initialize();
-                }
-            }
-            if(corner == 2 || depth > 0){
-                if(lastCorner == 2)
-                    w++;
-                for(int q = 0; q < 2/w; q++){
-                    tiles[y][++x].initialize();
-                }
-                if(lastCorner == 2){
-                    tiles[--y][++x].initialize();
-                }
-            }
-            if(corner == 3 || depth > 0){
-                if(lastCorner == 3)
-                    w++;
-                for(int q = 0; q < 2/w; q++){
-                    tiles[--y][++x].initialize();
-                }
-                if(lastCorner == 3){
-                    tiles[--y][x].initialize();
-                }
-            }
-            if(corner == 4 || depth > 0){
-                if(lastCorner == 4)
-                    w++;
-                for(int q = 0; q < 2/w; q++){
-                    tiles[--y][--x].initialize();
-                }
-                if(lastCorner == 4){
-                    tiles[y][--x].initialize();
-                }
-            }
-            if(corner == 5 || depth > 0){
-                if(lastCorner == 5)
-                    w++;
-                for(int q = 0; q < 2/w; q++){
-                    tiles[y][--x].initialize();
-                }
-                if(lastCorner == 5){
-                    tiles[++y][x].initialize();
-                }
-            }
-            depth++;
-        }
-    }
+
 }
