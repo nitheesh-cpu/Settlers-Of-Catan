@@ -87,46 +87,46 @@
                   <Circle fx:id="dice41" fill="#b99263" layoutX="375.0" layoutY="612.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fx:id="dice31" fill="#b99263" layoutX="280.0" layoutY="559.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                   <Circle fx:id="dice21" fill="#b99263" layoutX="185.0" layoutY="506.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <ImageView fx:id="port1" fitHeight="72.0" fitWidth="76.0" layoutX="351.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor1" fitHeight="72.0" fitWidth="76.0" layoutX="351.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="port9" fitHeight="81.0" fitWidth="73.0" layoutX="158.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor9" fitHeight="81.0" fitWidth="73.0" layoutX="158.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image></ImageView>
-                  <ImageView fx:id="port8" fitHeight="81.0" fitWidth="73.0" layoutX="64.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor8" fitHeight="81.0" fitWidth="73.0" layoutX="64.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="port7" fitHeight="81.0" fitWidth="73.0" layoutX="64.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor7" fitHeight="81.0" fitWidth="73.0" layoutX="64.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="port6" fitHeight="81.0" fitWidth="73.0" layoutX="253.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor6" fitHeight="81.0" fitWidth="73.0" layoutX="253.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="port5" fitHeight="81.0" fitWidth="73.0" layoutX="443.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor5" fitHeight="81.0" fitWidth="73.0" layoutX="443.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="port4" fitHeight="81.0" fitWidth="73.0" layoutX="634.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor4" fitHeight="81.0" fitWidth="73.0" layoutX="634.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="port3" fitHeight="81.0" fitWidth="73.0" layoutX="634.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor3" fitHeight="81.0" fitWidth="73.0" layoutX="634.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="port2" fitHeight="81.0" fitWidth="73.0" layoutX="538.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor2" fitHeight="81.0" fitWidth="73.0" layoutX="538.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>

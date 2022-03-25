@@ -187,36 +187,38 @@ public class GameController {
     private Polygon water9;
 
     @FXML
-    private ImageView port1;
+    private ImageView harbor1;
 
     @FXML
-    private ImageView port2;
+    private ImageView harbor2;
 
     @FXML
-    private ImageView port3;
+    private ImageView harbor3;
 
     @FXML
-    private ImageView port4;
+    private ImageView harbor4;
 
     @FXML
-    private ImageView port5;
+    private ImageView harbor5;
 
     @FXML
-    private ImageView port6;
+    private ImageView harbor6;
 
     @FXML
-    private ImageView port7;
+    private ImageView harbor7;
 
     @FXML
-    private ImageView port8;
+    private ImageView harbor8;
 
     @FXML
-    private ImageView port9;
+    private ImageView harbor9;
 
 
     @FXML
     public void initialize() throws FileNotFoundException {
-        Initialize.init();
+        Initialize.init(); //Initialize images
+
+        //Initialize tiles
         Polygon[] waters = {water1,water2,water3,water4,water5,water6,water7,water8,water9,water10,water11,water12,water13,water14,water15,water16,water17,water18};
         Polygon[][] tilePolygons = {{tile01,tile02,tile03},{tile11,tile12,tile13,tile14},{tile21,tile22,tile23,tile24,tile25}, {tile31,tile32,tile33,tile34},{tile41,tile42,tile43}};
         Circle[][] circles = {{dice01,dice02,dice03},{dice11,dice12,dice13,dice14},{dice21,dice22,dice23,dice24,dice25}, {dice31,dice32,dice33,dice34},{dice41,dice42,dice43}};
@@ -227,33 +229,31 @@ public class GameController {
         Tile[][] tileObjs = {{null,null,null},{null,null,null,null},{null,null,null,null,null}, {null,null,null,null},{null,null,null}};
         ArrayList<Tile> tiles = new ArrayList<>();
         GameState gameState = new GameState();
-        for(int r = 0; r < tilePolygons.length ; r++){
+        for(int r = 0; r < tilePolygons.length ; r++)
             for(int c = 0; c < tilePolygons[r].length; c++){
                 tileObjs[r][c] = (new Tile(resourceNames[tilesList.get(0)]));
                 tilePolygons[r][c].setFill(tilePatterns[tilesList.remove(0)]);
             }
-        }
         gameState.setTiles(tileObjs);
         gameState.initializeTileNumbers();
-        for(int r = 0; r < circles.length ; r++){
+        for(int r = 0; r < circles.length ; r++)
             for(int c = 0; c < circles[r].length; c++){
-                if ((tileObjs[r][c].getTileNumber() > -1)) {
+                if ((tileObjs[r][c].getTileNumber() > -1))
                     circles[r][c].setFill(tileObjs[r][c].getNumberPattern());
-                } else {
+                else
                     circles[r][c].setVisible(false);
-                }
             }
-        }
-        for(Polygon tile: waters){
+        for(Polygon tile: waters)
             tile.setFill(waterPattern);
-        }
-        String[] ports = {"brick","sheep","stone","wheat","wood","misc","misc","misc","misc"};
-        List<String> portsList = Arrays.stream(ports).collect(Collectors.toList());
-        Collections.shuffle(portsList);
-        System.out.println(portsList);
-        ImageView[] portImages = {port1,port2,port3,port4,port5,port6,port7,port8,port9};
-        for(ImageView port: portImages){
-            port.setImage(Initialize.portImages.get(portsList.remove(0)));
+
+        //Initialize harbors
+        String[] harbors = {"brick","sheep","stone","wheat","wood","misc","misc","misc","misc"};
+        List<String> harborsList = Arrays.stream(harbors).collect(Collectors.toList());
+        Collections.shuffle(harborsList);
+        System.out.println(harborsList);
+        ImageView[] harborImages = {harbor1,harbor2,harbor3,harbor4,harbor5,harbor6,harbor7,harbor8,harbor9};
+        for(ImageView harbor: harborImages){
+            harbor.setImage(Initialize.harborImages.get(harborsList.remove(0)));
         }
         //create HarborTile objects
         //point HarborTile objects to their corresponding tiles

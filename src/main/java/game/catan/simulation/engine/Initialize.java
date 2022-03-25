@@ -11,7 +11,7 @@ public class Initialize {
     public static ImagePattern[] tilePatterns;
     public static ImagePattern waterPattern;
     public static ImagePattern[] dicePatterns;
-    public static Map<String, Image> portImages;
+    public static Map<String, Image> harborImages;
 
     public static void init(){
         //hexagon tile patterns
@@ -56,7 +56,7 @@ public class Initialize {
 
 
         //port images
-        portImages = Map.ofEntries(
+        harborImages = Map.ofEntries(
         Map.entry("brick", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Bricks.png")))),
         Map.entry("sheep", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Sheep.png")))),
         Map.entry("stone", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Stone.png")))),
