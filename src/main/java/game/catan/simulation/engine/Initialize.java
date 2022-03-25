@@ -3,10 +3,15 @@ package game.catan.simulation.engine;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public class Initialize {
     public static ImagePattern[] tilePatterns;
     public static ImagePattern waterPattern;
     public static ImagePattern[] dicePatterns;
+    public static Map<String, Image> portImages;
 
     public static void init(){
         //hexagon tile patterns
@@ -50,5 +55,14 @@ public class Initialize {
         dicePatterns = new ImagePattern[]{twoPattern, threePattern, fourPattern, fivePattern, sixPattern, eightPattern, ninePattern, tenPattern, elevenPattern, twelvePattern};
 
 
+        //port images
+        portImages = Map.ofEntries(
+        Map.entry("brick", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Bricks.png")))),
+        Map.entry("sheep", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Sheep.png")))),
+        Map.entry("stone", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Stone.png")))),
+        Map.entry("wheat", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Wheat.png")))),
+        Map.entry("wood", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Wood.png")))),
+        Map.entry("misc", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Misc.png"))))
+        );
     }
 }

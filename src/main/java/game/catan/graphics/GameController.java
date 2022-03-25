@@ -187,6 +187,34 @@ public class GameController {
     private Polygon water9;
 
     @FXML
+    private ImageView port1;
+
+    @FXML
+    private ImageView port2;
+
+    @FXML
+    private ImageView port3;
+
+    @FXML
+    private ImageView port4;
+
+    @FXML
+    private ImageView port5;
+
+    @FXML
+    private ImageView port6;
+
+    @FXML
+    private ImageView port7;
+
+    @FXML
+    private ImageView port8;
+
+    @FXML
+    private ImageView port9;
+
+
+    @FXML
     public void initialize() throws FileNotFoundException {
         Initialize.init();
         Polygon[] waters = {water1,water2,water3,water4,water5,water6,water7,water8,water9,water10,water11,water12,water13,water14,water15,water16,water17,water18};
@@ -219,12 +247,16 @@ public class GameController {
         for(Polygon tile: waters){
             tile.setFill(waterPattern);
         }
-//        for(Circle[] x: circles){
-//            for(Circle circle: x){
-//                int num = (int) (Math.random()*10);
-//                circle.setFill(dicePatterns[num]);
-//            }
-//        }
+        String[] ports = {"brick","sheep","stone","wheat","wood","misc","misc","misc","misc"};
+        List<String> portsList = Arrays.stream(ports).collect(Collectors.toList());
+        Collections.shuffle(portsList);
+        System.out.println(portsList);
+        ImageView[] portImages = {port1,port2,port3,port4,port5,port6,port7,port8,port9};
+        for(ImageView port: portImages){
+            port.setImage(Initialize.portImages.get(portsList.remove(0)));
+        }
+        //create HarborTile objects
+        //point HarborTile objects to their corresponding tiles
     }
 
 
