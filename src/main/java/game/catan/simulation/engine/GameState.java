@@ -30,52 +30,43 @@ public class GameState {
         int yCoords2[] = new int[]{1, 2, 3, 3, 2, 1};
         int x2 = xCoords2[corner];
         int y2 = yCoords2[corner];
-        int w = 1;
-//        tiles[y][x].initialize();
 
-        while (w == 1) {
+        while (true) {
             if (corner == 0 || depth > 0) {
-                for (int q = 0; q < 2 / w; q++) {
+                for (int q = 0; q < 2; q++) {
                     tiles[y++][x].initialize();
                     depth++;
-                }
-                if (lastCorner == 0) break;
+                }if (lastCorner == 0) break;
             }
             if (corner == 1 || depth > 0) {
                 for (int q = 0; q < 2 ; q++) {
-//                    System.out.println("x");
                     tiles[y++][x].initialize();
                     depth++;
-                }
-                if (lastCorner == 1) break;
+                }if (lastCorner == 1) break;
             }
             if (corner == 2 || depth > 0) {
-                for (int q = 0; q < 2 / w; q++) {
+                for (int q = 0; q < 2; q++) {
                     tiles[y][x++].initialize();
                     depth++;
-                }
-                if (lastCorner == 2) break;
+                }if (lastCorner == 2) break;
             }
             if (corner == 3 || depth > 0) {
-                for (int q = 0; q < 2 / w; q++) {
+                for (int q = 0; q < 2; q++) {
                     tiles[y--][x++].initialize();
                     depth++;
-                }
-                if (lastCorner == 3) break;
+                }if (lastCorner == 3) break;
             }
             if (corner == 4 || depth > 0) {
-                for (int q = 0; q < 2 / w; q++) {
+                for (int q = 0; q < 2; q++) {
                     tiles[y--][x--].initialize();
                     depth++;
-                }
-                if (lastCorner == 4) break;
+                }if (lastCorner == 4) break;
             }
             if (corner == 5 || depth > 0) {
-                for (int q = 0; q < 2 / w; q++) {
+                for (int q = 0; q < 2; q++) {
                     tiles[y][x--].initialize();
                     depth++;
-                }
-                if (lastCorner == 5) break;
+                }if (lastCorner == 5) break;
             }
         }
         depth = 0;
