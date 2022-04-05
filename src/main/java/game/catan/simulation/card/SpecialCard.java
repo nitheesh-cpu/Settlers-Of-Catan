@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class SpecialCard extends Card{
 
-    private Player owner;
+//    private Player owner;
     private int victoryPoints;
 
     public SpecialCard(ImageIcon i, String str)

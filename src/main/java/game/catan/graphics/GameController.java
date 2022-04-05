@@ -16,7 +16,8 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static game.catan.simulation.engine.Initialize.*;
+import static game.catan.simulation.engine.Initialize.tilePatterns;
+import static game.catan.simulation.engine.Initialize.waterPattern;
 
 public class GameController {
     @FXML
@@ -265,7 +266,7 @@ public class GameController {
             harbor.setImage(Initialize.harborImages.get(harborsList.remove(0)));
         }
 
-        Image img = new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png")));
+        Image img = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png")));
         ImageView view = new ImageView(img);
         view.setFitHeight(80);
         view.setPreserveRatio(true);
