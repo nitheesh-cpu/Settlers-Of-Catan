@@ -3,18 +3,21 @@ package game.catan.simulation.engine;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import game.catan.simulation.structures.Tile;
 
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Stack;
 
 public class GameState {
     public static Stack<Integer> TileNumbers;
     public Tile[][] tiles;
+    public HashMap<String, Tile> tileMap;
 
     public GameState() {
         TileNumbers = new Stack<>();
         int[] tileNumbers = {5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11};
         for (int i : tileNumbers)
             TileNumbers.push(i);
+        tileMap = new HashMap<>();
     }
 
     public void initializeTileNumbers() {
@@ -107,5 +110,14 @@ public class GameState {
 
     public void setTiles(Tile[][] x) {
         tiles = x;
+        for(int i = 0; i < 5; i++) {
+            for(int j = 0; j < 5; j++) {
+                try{
+                    String key = i + "," + j;
+                    tileMap.put(key, tiles[i][j]);
+                }catch (ArrayIndexOutOfBoundsException ignored){
+                }
+            }
+        }
     }
 }
