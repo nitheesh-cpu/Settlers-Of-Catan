@@ -4,6 +4,7 @@ import game.catan.simulation.engine.GameState;
 import game.catan.simulation.engine.Initialize;
 import game.catan.simulation.structures.Tile;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -213,20 +214,28 @@ public class GameController {
     @FXML
     private ImageView harbor9;
 
+    @FXML
+    private Button build;
+
+    private Polygon[] waters;
+    private Polygon[][] tilePolygons;
+    private Circle[][] circles;
+    private Tile[][] tileObjs;
+    private ImageView[] harborImages;
 
     @FXML
     public void initialize() throws FileNotFoundException {
         Initialize.init(); //Initialize images
 
         //Initialize tiles
-        Polygon[] waters = {water1,water2,water3,water4,water5,water6,water7,water8,water9,water10,water11,water12,water13,water14,water15,water16,water17,water18};
-        Polygon[][] tilePolygons = {{tile01,tile02,tile03},{tile11,tile12,tile13,tile14},{tile21,tile22,tile23,tile24,tile25}, {tile31,tile32,tile33,tile34},{tile41,tile42,tile43}};
-        Circle[][] circles = {{dice01,dice02,dice03},{dice11,dice12,dice13,dice14},{dice21,dice22,dice23,dice24,dice25}, {dice31,dice32,dice33,dice34},{dice41,dice42,dice43}};
+        waters = new Polygon[]{water1, water2, water3, water4, water5, water6, water7, water8, water9, water10, water11, water12, water13, water14, water15, water16, water17, water18};
+        tilePolygons = new Polygon[][]{{tile01, tile02, tile03}, {tile11, tile12, tile13, tile14}, {tile21, tile22, tile23, tile24, tile25}, {tile31, tile32, tile33, tile34}, {tile41, tile42, tile43}};
+        circles = new Circle[][]{{dice01, dice02, dice03}, {dice11, dice12, dice13, dice14}, {dice21, dice22, dice23, dice24, dice25}, {dice31, dice32, dice33, dice34}, {dice41, dice42, dice43}};
         int[] tileRandomizer = {0,0,0,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5};
         String[] resourceNames = {"Brick","Ore","Wheat","Sheep","Lumber","Desert"};
         List<Integer> tilesList = Arrays.stream(tileRandomizer).boxed().collect(Collectors.toList());
         Collections.shuffle(tilesList);
-        Tile[][] tileObjs = {{null,null,null},{null,null,null,null},{null,null,null,null,null}, {null,null,null,null},{null,null,null}};
+        tileObjs = new Tile[][]{{null, null, null}, {null, null, null, null}, {null, null, null, null, null}, {null, null, null, null}, {null, null, null}};
         ArrayList<Tile> tiles = new ArrayList<>();
         GameState gameState = new GameState();
         for(int r = 0; r < tilePolygons.length ; r++)
@@ -251,10 +260,16 @@ public class GameController {
         List<String> harborsList = Arrays.stream(harbors).collect(Collectors.toList());
         Collections.shuffle(harborsList);
         System.out.println(harborsList);
-        ImageView[] harborImages = {harbor1,harbor2,harbor3,harbor4,harbor5,harbor6,harbor7,harbor8,harbor9};
+        harborImages = new ImageView[]{harbor1, harbor2, harbor3, harbor4, harbor5, harbor6, harbor7, harbor8, harbor9};
         for(ImageView harbor: harborImages){
             harbor.setImage(Initialize.harborImages.get(harborsList.remove(0)));
         }
+
+        Image img = new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png")));
+        ImageView view = new ImageView(img);
+        view.setFitHeight(80);
+        view.setPreserveRatio(true);
+        build.setGraphic(view);
         //create HarborTile objects
         //point HarborTile objects to their corresponding tiles
     }

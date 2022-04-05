@@ -6,11 +6,14 @@ import javafx.scene.paint.ImagePattern;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Tile {
     private String resource;
+    HashMap<String, Integer> structures;
+    HashMap<String, Integer> roads;
     private int tileNumber;
     private ImagePattern numberPattern;
     public static List<Integer> numbers;
@@ -50,3 +53,6 @@ public class Tile {
     //create static Stack which holds tile numbers
     //create initialize() method which gives tile a tile number from the stack
 }
+
+
+// reduce y value by 6 when upgrading settlement to city
