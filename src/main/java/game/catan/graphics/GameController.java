@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
@@ -220,6 +221,9 @@ public class GameController {
     @FXML
     private ImageView endTurn;
 
+    @FXML
+    private ImageView help;
+
     private Polygon[] waters;
     private Polygon[][] tilePolygons;
     private Circle[][] circles;
@@ -274,6 +278,22 @@ public class GameController {
         view.setPreserveRatio(true);
         //create HarborTile objects
         //point HarborTile objects to their corresponding tiles
+    }
+
+
+    @FXML
+    void buildClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void endTurnClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void helpClicked(MouseEvent event) {
+
     }
 
 
