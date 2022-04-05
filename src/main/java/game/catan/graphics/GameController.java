@@ -215,7 +215,10 @@ public class GameController {
     private ImageView harbor9;
 
     @FXML
-    private Button build;
+    private ImageView build;
+
+    @FXML
+    private ImageView endTurn;
 
     private Polygon[] waters;
     private Polygon[][] tilePolygons;
@@ -269,7 +272,6 @@ public class GameController {
         ImageView view = new ImageView(img);
         view.setFitHeight(80);
         view.setPreserveRatio(true);
-        build.setGraphic(view);
         //create HarborTile objects
         //point HarborTile objects to their corresponding tiles
     }
