@@ -15,13 +15,13 @@ public class Initialize {
 
     public static void init(){
         //hexagon tile patterns
-        Image brick = new Image("game/catan/Tile/BrickTile.png");
-        Image desert = new Image("game/catan/Tile/DesertTileEXP.png");
-        Image lumber = new Image("game/catan/Tile/GrassTileExp.png");
-        Image sheep = new Image("game/catan/Tile/PlanesTileExp.png");
-        Image ore = new Image("game/catan/Tile/StoneTileExp.png");
-        Image wheat = new Image("game/catan/Tile/WheatTileEx.png");
-        Image water = new Image("game/catan/Tile/waterTileExp.png");
+        Image brick = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/BrickTile.png"));
+        Image desert = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/DesertTileEXP.png"));
+        Image lumber = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/GrassTileExp.png"));
+        Image sheep = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/PlanesTileExp.png"));
+        Image ore = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/StoneTileExp.png"));
+        Image wheat = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/WheatTileEx.png"));
+        Image water = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/waterTileExp.png"));
         ImagePattern brickPattern = new ImagePattern(brick, 63, 57, 130, 116, false);
         ImagePattern desertPattern = new ImagePattern(desert, 69, 62, 137, 125, false);
         ImagePattern lumberPattern = new ImagePattern(lumber, 64, 59, 130, 118, false);

@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
@@ -225,6 +226,9 @@ public class GameController {
     @FXML
     private ImageView help;
 
+    @FXML
+    private Pane roadPane;
+
     private Polygon[] waters;
     public Polygon[][] tilePolygons;
     private Circle[][] circles;
@@ -249,6 +253,7 @@ public class GameController {
         for(int r = 0; r < tilePolygons.length ; r++)
             for(int c = 0; c < tilePolygons[r].length; c++){
                 tileObjs[r][c] = (new Tile(resourceNames[tilesList.get(0)]));
+                tileObjs[r][c].setPolygon(tilePolygons[r][c]);
                 tilePolygons[r][c].setFill(tilePatterns[tilesList.remove(0)]);
             }
         gameState.setTiles(tileObjs);
@@ -277,6 +282,8 @@ public class GameController {
         ImageView view = new ImageView(img);
         view.setFitHeight(80);
         view.setPreserveRatio(true);
+
+        gameState.createRoads(tileObjs, roadPane);
         //create HarborTile objects
         //point HarborTile objects to their corresponding tiles
 

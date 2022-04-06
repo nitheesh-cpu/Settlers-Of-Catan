@@ -1,7 +1,9 @@
 package game.catan.simulation.engine;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import game.catan.simulation.structures.Road;
 import game.catan.simulation.structures.Tile;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -121,11 +123,36 @@ public class GameState {
         }
     }
 
-    public void createRoads(Tile[][] tiles) {
+    public void createRoads(Tile[][] tiles, Pane roadPane) {
+        int[][] roadOffset = new int[][]{{-78, 23}, {-78, -30}, {-30, -56}, {17, -30}, {17, 22}, {-30, 50}};
+        //Road Locations Relative to Tile
+        //1-topleft -> clockwise -> 6-bottomleft
+//        Road 1 = -78,-30
+//        Road 2 = -30,-56
+//        Road 3 = +17,-30
+//        Road 4 = +17,+22
+//        Road 5 = -30,+50
+//        Road 6 = -78,+23
+//
+//        Width = 61
+//        Height = 7
         for(int r = 0; r < tiles.length; r++) {
             for(int c = 0; c < tiles[0].length; c++) {
                 //create 3 Location objects for each tile
+                Road[] w = tiles[r][c].getRoads();
+                for(int i = 0; i < 3; i++) {
 
+                    int x = (int) tiles[r][c].getPolygon().getLayoutX();
+                    int y = (int) tiles[r][c].getPolygon().getLayoutY();
+                    Location loc = new Location(x+roadOffset[i][0], y+roadOffset[i][1]);
+                    Rectangle rect = new Rectangle();
+                    rect.setX(loc.getX());
+                    rect.setY(loc.getY());
+                    rect.setWidth(61);
+                    rect.setHeight(7);
+                    roadPane.getChildren().add(rect);
+                    w[i] = new Road(loc,rect);
+                }
             }
         }
     }
