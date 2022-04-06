@@ -225,7 +225,7 @@ public class GameController {
     private ImageView help;
 
     private Polygon[] waters;
-    private Polygon[][] tilePolygons;
+    public Polygon[][] tilePolygons;
     private Circle[][] circles;
     private Tile[][] tileObjs;
     private ImageView[] harborImages;
@@ -278,6 +278,20 @@ public class GameController {
         view.setPreserveRatio(true);
         //create HarborTile objects
         //point HarborTile objects to their corresponding tiles
+
+
+        //Road Locations Relative to Tile
+        //1-topleft -> clockwise -> 6-bottomleft
+//        Road 1 = -78,-30
+//        Road 2 = -30,-56
+//        Road 3 = +17,-30
+//        Road 4 = +17,+22
+//        Road 5 = -30,+50
+//        Road 6 = -78,+23
+//
+//        Width = 61
+//        Height = 7
+
     }
 
 

@@ -120,4 +120,13 @@ public class GameState {
             }
         }
     }
+
+    public void createRoads(Tile[][] tiles) {
+        for(int r = 0; r < tiles.length; r++) {
+            for(int c = 0; c < tiles[0].length; c++) {
+                //create 3 Location objects for each tile
+
+            }
+        }
+    }
 }

@@ -12,14 +12,15 @@ import java.util.stream.Collectors;
 
 public class Tile {
     private String resource;
+    private Tile[] roads;
     HashMap<String, Integer> structures;
-    HashMap<String, Integer> roads;
     private int tileNumber;
     private ImagePattern numberPattern;
     public static List<Integer> numbers;
 
 
     public Tile(String r){
+        roads = new Tile[6];
         resource = r;
         tileNumber = -1;
         int[] tileNumbers = {5,2,6,3,8,10,9,12,11,4,8,10,9,4,5,6,3,11};
@@ -48,6 +49,14 @@ public class Tile {
 
     public ImagePattern getNumberPattern() {
         return numberPattern;
+    }
+
+    public Tile[] getRoads() {
+        return roads;
+    }
+
+    public void setRoads(Tile[] roads) {
+        this.roads = roads;
     }
 
     //create static Stack which holds tile numbers
