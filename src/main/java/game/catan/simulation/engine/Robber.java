@@ -10,7 +10,7 @@ public class Robber {
 
     public Robber(Location location){
         this.location = location;
-        image = new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/")));
+//        image = new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/")));
     }
 
     public Location getLocation() {

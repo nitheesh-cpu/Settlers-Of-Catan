@@ -157,8 +157,17 @@
       </Pane>
       <Pane prefHeight="792.0" prefWidth="234.0">
          <children>
-            <Button fx:id="build" layoutX="40.0" layoutY="705.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="92.0" text="Button" />
-            <Button fx:id="endTurn" layoutX="142.0" layoutY="705.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="92.0" text="Button" />
-         </children></Pane>
+            <ImageView fx:id="build" layoutX="40.0" layoutY="705.0" fitHeight="83.52" fitWidth="90" >
+                <image>
+                    <Image url="@../ButtonResources/Build.png" />
+                </image>
+            </ImageView>
+            <ImageView fx:id="endTurn" layoutX="142.0" layoutY="705.0" fitHeight="83.52" fitWidth="90">
+                <image>
+                    <Image url="@../ButtonResources/EndTurn.png" />
+                </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </HBox>
