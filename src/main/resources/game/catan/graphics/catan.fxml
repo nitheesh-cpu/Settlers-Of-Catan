@@ -10,22 +10,23 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
    <children>
       <Pane prefHeight="792.0" prefWidth="256.0" />
       <Pane>
          <children>
+            <Circle centerX="375.0" centerY="400.0" fill="DODGERBLUE" radius="368.0" stroke="BLACK" strokeType="INSIDE">
+               <effect>
+                  <Shadow height="255.0" radius="127.0" width="255.0">
+                     <color>
+                        <Color red="0.6296296119689941" green="0.8518518805503845" blue="1.0" />
+                     </color>
+                  </Shadow>
+               </effect>
+            </Circle>
+            <Pane fx:id="roadPane" prefHeight="200.0" prefWidth="200.0" />
             <Pane prefHeight="800.0" prefWidth="750.0">
                <children>
-                  <Circle fill="DODGERBLUE" layoutX="375.0" layoutY="400.0" radius="368.0" stroke="BLACK" strokeType="INSIDE">
-                     <effect>
-                        <Shadow height="255.0" radius="127.0" width="255.0">
-                           <color>
-                              <Color red="0.6296296119689941" green="0.8518518805503845" blue="1.0" />
-                           </color>
-                        </Shadow>
-                     </effect>
-                  </Circle>
                   <Polygon fill="DODGERBLUE" layoutX="526.0" layoutY="363.0" stroke="BLACK" strokeType="INSIDE">
             </Polygon>
                   <Polygon fx:id="tile02" fill="WHITE" layoutX="280.0" layoutY="241.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
@@ -135,7 +136,6 @@
                   
                </children>
             </Pane>
-            <Pane fx:id="roadPane" prefHeight="200.0" prefWidth="200.0" />
             <Pane prefHeight="800.0" prefWidth="750.0">
                <children>
                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="403.0" layoutY="118.0" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />

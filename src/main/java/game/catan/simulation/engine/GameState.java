@@ -3,6 +3,7 @@ package game.catan.simulation.engine;
 import game.catan.simulation.structures.Road;
 import game.catan.simulation.structures.Tile;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.HashMap;
@@ -124,36 +125,77 @@ public class GameState {
     }
 
     public void createRoads(Tile[][] tiles, Pane roadPane) {
-        int[][] roadOffset = new int[][]{{-78, 23}, {-78, -30}, {-30, -56}, {17, -30}, {17, 22}, {-30, 50}};
-        //Road Locations Relative to Tile
-        //1-topleft -> clockwise -> 6-bottomleft
+//        Road Locations Relative to Tile
+//        1-topleft -> clockwise -> 6-bottomleft
 //        Road 1 = -78,-30
 //        Road 2 = -30,-56
 //        Road 3 = +17,-30
 //        Road 4 = +17,+22
 //        Road 5 = -30,+50
 //        Road 6 = -78,+23
-//
 //        Width = 61
 //        Height = 7
         for(int r = 0; r < tiles.length; r++) {
-            for(int c = 0; c < tiles[0].length; c++) {
-                //create 3 Location objects for each tile
-                Road[] w = tiles[r][c].getRoads();
-                for(int i = 0; i < 3; i++) {
-
-                    int x = (int) tiles[r][c].getPolygon().getLayoutX();
-                    int y = (int) tiles[r][c].getPolygon().getLayoutY();
-                    Location loc = new Location(x+roadOffset[i][0], y+roadOffset[i][1]);
-                    Rectangle rect = new Rectangle();
-                    rect.setX(loc.getX());
-                    rect.setY(loc.getY());
-                    rect.setWidth(61);
-                    rect.setHeight(7);
-                    roadPane.getChildren().add(rect);
-                    w[i] = new Road(loc,rect);
+            for(int c = 0; c < tiles[r].length; c++) {
+                for(int i = 0; c==tiles[r].length-1 ? (r>1 ? i<5 : i<4) : i<3; i++) {
+                    createSingularRoad(r,c,i,roadPane);
                 }
             }
         }
+        for(int r = 0; r < tiles.length; r++) {
+            for(int c = 0; c < tiles[r].length; c++) {
+                Road[] w = tiles[r][c].getRoads();
+                for(int i = 3; i<6; i++) {
+                    if(w[i] != null) {
+                        switch (i) {
+                            case 3:
+                                try {
+                                    w[3] = tiles[r][c + 1].getRoads()[0];
+                                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                                break;
+                            case 4:
+                                try {
+                                    if (r < 2) w[4] = tiles[r + 1][c + 1].getRoads()[1];
+                                    else w[4] = tiles[r + 1][c].getRoads()[1];
+                                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                                break;
+                            case 5:
+                                try {
+                                    if (r < 2) w[4] = tiles[r + 1][c].getRoads()[2];
+                                    else w[4] = tiles[r + 1][c - 1].getRoads()[2];
+                                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                                break;
+                        }
+                    }
+                }
+                tiles[r][c].setRoads(w);
+            }
+        }
+        createSingularRoad(2,0,5,roadPane);
+        createSingularRoad(3,0,5,roadPane);
+        createSingularRoad(4,0,4,roadPane);
+        createSingularRoad(4,0,5,roadPane);
+        createSingularRoad(4,1,4,roadPane);
+        createSingularRoad(4,1,5,roadPane);
+        createSingularRoad(4,2,5,roadPane);
     }
+
+    public void createSingularRoad(int r, int c, int i, Pane roadPane) {
+        int[][] roadOffset = new int[][]{{-78, 23,59}, {-78, -30,-59}, {-30, -56,0}, {17, -30,59}, {17, 22,-59}, {-30, 50,0}};
+        Road[] w = tiles[r][c].getRoads();
+        int x = (int) tiles[r][c].getPolygon().getLayoutX();
+        int y = (int) tiles[r][c].getPolygon().getLayoutY();
+        Location loc = new Location(x+roadOffset[i][0], y+roadOffset[i][1]);
+        Rectangle rect = new Rectangle();
+        rect.setX(loc.getX());
+        rect.setY(loc.getY());
+        rect.setRotate(roadOffset[i][2]);
+        rect.setWidth(61);
+        rect.setHeight(7);
+        rect.setFill(Color.RED);
+        roadPane.getChildren().add(rect);
+        rect.setVisible(false);
+        w[i] = new Road(loc,rect);
+    }
+
 }
