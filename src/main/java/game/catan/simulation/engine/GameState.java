@@ -2,6 +2,12 @@ package game.catan.simulation.engine;
 
 import game.catan.simulation.structures.Road;
 import game.catan.simulation.structures.Tile;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.Glow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -193,8 +199,12 @@ public class GameState {
         rect.setWidth(61);
         rect.setHeight(7);
         rect.setFill(Color.RED);
+        rect.setOnMouseEntered(event -> rect.setFill(Color.GREEN));
+        rect.setOnMouseExited(event ->
+            rect.setFill(Color.RED)
+        );
         roadPane.getChildren().add(rect);
-        rect.setVisible(false);
+//        rect.setVisible(false);
         w[i] = new Road(loc,rect);
     }
 

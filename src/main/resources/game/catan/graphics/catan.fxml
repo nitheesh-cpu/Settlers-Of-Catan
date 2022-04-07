@@ -15,7 +15,7 @@
       <Pane prefHeight="792.0" prefWidth="256.0" />
       <Pane>
          <children>
-            <Circle centerX="375.0" centerY="400.0" fill="DODGERBLUE" radius="368.0" stroke="BLACK" strokeType="INSIDE">
+            <Circle centerX="375.0" centerY="400.0" fill="DODGERBLUE" mouseTransparent="true" radius="368.0" stroke="BLACK" strokeType="INSIDE">
                <effect>
                   <Shadow height="255.0" radius="127.0" width="255.0">
                      <color>
@@ -24,111 +24,111 @@
                   </Shadow>
                </effect>
             </Circle>
-            <Pane fx:id="roadPane" prefHeight="200.0" prefWidth="200.0" />
-            <Pane prefHeight="800.0" prefWidth="750.0">
+            <Pane fx:id="roadPane" prefHeight="800.0" prefWidth="750.0" />
+            <Pane mouseTransparent="true" prefHeight="800.0" prefWidth="750.0">
                <children>
-                  <Polygon fill="DODGERBLUE" layoutX="526.0" layoutY="363.0" stroke="BLACK" strokeType="INSIDE">
+                  <Polygon fill="DODGERBLUE" layoutX="526.0" layoutY="363.0" mouseTransparent="true" stroke="BLACK" strokeType="INSIDE">
             </Polygon>
-                  <Polygon fx:id="tile02" fill="WHITE" layoutX="280.0" layoutY="241.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile03" fill="WHITE" layoutX="375.0" layoutY="188.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile14" fill="WHITE" layoutX="470.0" layoutY="241.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile12" fill="WHITE" layoutX="280.0" layoutY="347.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile13" fill="WHITE" layoutX="375.0" layoutY="294.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile24" fill="WHITE" layoutX="470.0" layoutY="347.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile22" fill="WHITE" layoutX="280.0" layoutY="453.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile23" fill="WHITE" layoutX="375.0" layoutY="400.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile33" fill="WHITE" layoutX="470.0" layoutY="453.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile31" fill="WHITE" layoutX="280.0" layoutY="559.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile32" fill="WHITE" layoutX="375.0" layoutY="506.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile42" fill="WHITE" layoutX="470.0" layoutY="559.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile41" fill="WHITE" layoutX="375.0" layoutY="612.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile25" fill="WHITE" layoutX="565.0" layoutY="294.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile34" fill="WHITE" layoutX="565.0" layoutY="400.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile43" fill="WHITE" layoutX="565.0" layoutY="506.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile01" fill="WHITE" layoutX="185.0" layoutY="294.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile11" fill="WHITE" layoutX="185.0" layoutY="400.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="tile21" fill="WHITE" layoutX="185.0" layoutY="506.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water12" fill="#7bd5ff" layoutX="470.0" layoutY="665.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water13" fill="#7bd5ff" layoutX="375.0" layoutY="718.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water11" fill="#7bd5ff" layoutX="565.0" layoutY="612.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water7" fill="#7bd5ff" layoutX="660.0" layoutY="241.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water8" fill="#7bd5ff" layoutX="660.0" layoutY="347.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water9" fill="#7bd5ff" layoutX="660.0" layoutY="453.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water10" fill="#7bd5ff" layoutX="660.0" layoutY="559.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water4" fill="#7bd5ff" layoutX="375.0" layoutY="82.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water5" fill="#7bd5ff" layoutX="470.0" layoutY="135.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water6" fill="#7bd5ff" layoutX="565.0" layoutY="188.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water2" fill="#7bd5ff" layoutX="185.0" layoutY="188.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water3" fill="#7bd5ff" layoutX="280.0" layoutY="135.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water1" fill="#7bd5ff" layoutX="90.0" layoutY="241.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water18" fill="#7bd5ff" layoutX="90.0" layoutY="347.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water17" fill="#7bd5ff" layoutX="90.0" layoutY="453.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water16" fill="#7bd5ff" layoutX="90.0" layoutY="559.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water15" fill="#7bd5ff" layoutX="185.0" layoutY="612.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Polygon fx:id="water14" fill="#7bd5ff" layoutX="280.0" layoutY="665.0" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile02" fill="WHITE" layoutX="280.0" layoutY="241.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile03" fill="WHITE" layoutX="375.0" layoutY="188.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile14" fill="WHITE" layoutX="470.0" layoutY="241.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile12" fill="WHITE" layoutX="280.0" layoutY="347.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile13" fill="WHITE" layoutX="375.0" layoutY="294.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile24" fill="WHITE" layoutX="470.0" layoutY="347.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile22" fill="WHITE" layoutX="280.0" layoutY="453.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile23" fill="WHITE" layoutX="375.0" layoutY="400.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile33" fill="WHITE" layoutX="470.0" layoutY="453.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile31" fill="WHITE" layoutX="280.0" layoutY="559.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile32" fill="WHITE" layoutX="375.0" layoutY="506.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile42" fill="WHITE" layoutX="470.0" layoutY="559.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile41" fill="WHITE" layoutX="375.0" layoutY="612.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile25" fill="WHITE" layoutX="565.0" layoutY="294.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile34" fill="WHITE" layoutX="565.0" layoutY="400.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile43" fill="WHITE" layoutX="565.0" layoutY="506.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile01" fill="WHITE" layoutX="185.0" layoutY="294.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile11" fill="WHITE" layoutX="185.0" layoutY="400.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="tile21" fill="WHITE" layoutX="185.0" layoutY="506.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water12" fill="#7bd5ff" layoutX="470.0" layoutY="665.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water13" fill="#7bd5ff" layoutX="375.0" layoutY="718.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water11" fill="#7bd5ff" layoutX="565.0" layoutY="612.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water7" fill="#7bd5ff" layoutX="660.0" layoutY="241.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water8" fill="#7bd5ff" layoutX="660.0" layoutY="347.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water9" fill="#7bd5ff" layoutX="660.0" layoutY="453.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water10" fill="#7bd5ff" layoutX="660.0" layoutY="559.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water4" fill="#7bd5ff" layoutX="375.0" layoutY="82.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water5" fill="#7bd5ff" layoutX="470.0" layoutY="135.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water6" fill="#7bd5ff" layoutX="565.0" layoutY="188.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water2" fill="#7bd5ff" layoutX="185.0" layoutY="188.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water3" fill="#7bd5ff" layoutX="280.0" layoutY="135.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water1" fill="#7bd5ff" layoutX="90.0" layoutY="241.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water18" fill="#7bd5ff" layoutX="90.0" layoutY="347.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water17" fill="#7bd5ff" layoutX="90.0" layoutY="453.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water16" fill="#7bd5ff" layoutX="90.0" layoutY="559.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water15" fill="#7bd5ff" layoutX="185.0" layoutY="612.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="water14" fill="#7bd5ff" layoutX="280.0" layoutY="665.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
                </children>
             </Pane>
-            <Pane prefHeight="800.0" prefWidth="750.0">
+            <Pane mouseTransparent="true" prefHeight="800.0" prefWidth="750.0">
                <children>
-                  <Circle fx:id="dice33" fill="#b99263" layoutX="470.0" layoutY="453.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice43" fill="#b99263" layoutX="565.0" layoutY="506.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice34" fill="#b99263" layoutX="565.0" layoutY="400.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice25" fill="#b99263" layoutX="565.0" layoutY="294.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice24" fill="#b99263" layoutX="470.0" layoutY="347.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice14" fill="#b99263" layoutX="470.0" layoutY="242.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice13" fill="#b99263" layoutX="375.0" layoutY="294.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice03" fill="#b99263" layoutX="375.0" layoutY="188.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice02" fill="#b99263" layoutX="280.0" layoutY="241.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice01" fill="#b99263" layoutX="185.0" layoutY="294.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice12" fill="#b99263" layoutX="280.0" layoutY="347.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice23" fill="#b99263" layoutX="375.0" layoutY="400.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice11" fill="#b99263" layoutX="185.0" layoutY="400.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice22" fill="#b99263" layoutX="280.0" layoutY="453.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice32" fill="#b99263" layoutX="375.0" layoutY="506.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice42" fill="#b99263" layoutX="470.0" layoutY="559.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice41" fill="#b99263" layoutX="375.0" layoutY="612.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice31" fill="#b99263" layoutX="280.0" layoutY="559.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fx:id="dice21" fill="#b99263" layoutX="185.0" layoutY="506.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                  <ImageView fx:id="harbor1" fitHeight="72.0" fitWidth="76.0" layoutX="351.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                  <Circle fx:id="dice33" fill="#b99263" layoutX="470.0" layoutY="453.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice43" fill="#b99263" layoutX="565.0" layoutY="506.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice34" fill="#b99263" layoutX="565.0" layoutY="400.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice25" fill="#b99263" layoutX="565.0" layoutY="294.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice24" fill="#b99263" layoutX="470.0" layoutY="347.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice14" fill="#b99263" layoutX="470.0" layoutY="242.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice13" fill="#b99263" layoutX="375.0" layoutY="294.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice03" fill="#b99263" layoutX="375.0" layoutY="188.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice02" fill="#b99263" layoutX="280.0" layoutY="241.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice01" fill="#b99263" layoutX="185.0" layoutY="294.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice12" fill="#b99263" layoutX="280.0" layoutY="347.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice23" fill="#b99263" layoutX="375.0" layoutY="400.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice11" fill="#b99263" layoutX="185.0" layoutY="400.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice22" fill="#b99263" layoutX="280.0" layoutY="453.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice32" fill="#b99263" layoutX="375.0" layoutY="506.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice42" fill="#b99263" layoutX="470.0" layoutY="559.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice41" fill="#b99263" layoutX="375.0" layoutY="612.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice31" fill="#b99263" layoutX="280.0" layoutY="559.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="dice21" fill="#b99263" layoutX="185.0" layoutY="506.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fx:id="harbor1" fitHeight="72.0" fitWidth="76.0" layoutX="351.0" layoutY="46.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="harbor9" fitHeight="81.0" fitWidth="73.0" layoutX="158.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor9" fitHeight="81.0" fitWidth="73.0" layoutX="158.0" layoutY="148.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image></ImageView>
-                  <ImageView fx:id="harbor8" fitHeight="81.0" fitWidth="73.0" layoutX="64.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor8" fitHeight="81.0" fitWidth="73.0" layoutX="64.0" layoutY="307.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="harbor7" fitHeight="81.0" fitWidth="73.0" layoutX="64.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor7" fitHeight="81.0" fitWidth="73.0" layoutX="64.0" layoutY="519.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="harbor6" fitHeight="81.0" fitWidth="73.0" layoutX="253.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor6" fitHeight="81.0" fitWidth="73.0" layoutX="253.0" layoutY="625.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="harbor5" fitHeight="81.0" fitWidth="73.0" layoutX="443.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor5" fitHeight="81.0" fitWidth="73.0" layoutX="443.0" layoutY="625.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="harbor4" fitHeight="81.0" fitWidth="73.0" layoutX="634.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor4" fitHeight="81.0" fitWidth="73.0" layoutX="634.0" layoutY="519.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="harbor3" fitHeight="81.0" fitWidth="73.0" layoutX="634.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor3" fitHeight="81.0" fitWidth="73.0" layoutX="634.0" layoutY="307.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="harbor2" fitHeight="81.0" fitWidth="73.0" layoutX="538.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="harbor2" fitHeight="81.0" fitWidth="73.0" layoutX="538.0" layoutY="148.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Ports/Misc.png" />
                      </image>
@@ -136,26 +136,26 @@
                   
                </children>
             </Pane>
-            <Pane prefHeight="800.0" prefWidth="750.0">
+            <Pane mouseTransparent="true" prefHeight="800.0" prefWidth="750.0">
                <children>
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="403.0" layoutY="118.0" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="340.0" layoutY="118.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="530.0" layoutY="225.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="500.0" layoutY="172.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="244.0" layoutY="172.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="213.0" layoutY="226.0" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="146.0" layoutY="331.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="598.0" layoutY="331.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="625.0" layoutY="385.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="118.0" layoutY="384.0" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="146.0" layoutY="543.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="118.0" layoutY="490.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="308.0" layoutY="596.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="246.0" layoutY="596.0" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="499.0" layoutY="596.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="438.0" layoutY="600.0" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="598.0" layoutY="543.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="626.0" layoutY="494.0" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="403.0" layoutY="118.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="340.0" layoutY="118.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="530.0" layoutY="225.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="500.0" layoutY="172.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="244.0" layoutY="172.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="213.0" layoutY="226.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="146.0" layoutY="331.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="598.0" layoutY="331.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="625.0" layoutY="385.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="118.0" layoutY="384.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="146.0" layoutY="543.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="118.0" layoutY="490.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="308.0" layoutY="596.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="246.0" layoutY="596.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="499.0" layoutY="596.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="438.0" layoutY="600.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="598.0" layoutY="543.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="626.0" layoutY="494.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
                </children></Pane>
          </children>
       </Pane>
