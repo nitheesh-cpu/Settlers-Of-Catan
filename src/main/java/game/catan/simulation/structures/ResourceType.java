@@ -2,7 +2,7 @@ package game.catan.simulation.structures;
 
 public enum ResourceType {
     WOOD,
-    SHEEP,
+    WOOL,
     WHEAT,
     BRICK,
     ORE,
