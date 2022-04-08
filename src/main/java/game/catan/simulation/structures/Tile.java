@@ -15,7 +15,7 @@ public class Tile {
     private String resource;
     private Road[] roads;
     private Polygon polygon;
-    HashMap<String, Integer> structures;
+    private Structure[] structures;
     private int tileNumber;
     private ImagePattern numberPattern;
     public static List<Integer> numbers;
@@ -68,6 +68,15 @@ public class Tile {
 
     public void setPolygon(Polygon polygon) {
         this.polygon = polygon;
+    }
+
+
+    public Structure[] getStructures() {
+        return structures;
+    }
+
+    public void setStructures(Structure[] structures) {
+        this.structures = structures;
     }
 
 
