@@ -1,12 +1,15 @@
 package game.catan.simulation.engine;
 
 import game.catan.simulation.structures.Road;
+import game.catan.simulation.structures.Structure;
 import game.catan.simulation.structures.Tile;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -204,8 +207,45 @@ public class GameState {
             rect.setFill(Color.RED)
         );
         roadPane.getChildren().add(rect);
-//        rect.setVisible(false);
+        rect.setVisible(false);
         w[i] = new Road(loc,rect);
+    }
+
+    public void createSettlements(Tile[][] tiles, Pane settlementPane) {
+//        Settlement 1 = -75,-18
+//        Settlement 2 = -48,-70
+//        Settlement 3 = +17,-70
+//        Settlement 4 = +44,-18
+//        Settlement 5 = +17,+36
+//        Settlement 6 = -48,+36
+//
+//        Width = 32
+//        Height = 31
+        for(int r = 0; r < tiles.length; r++) {
+            for(int c = 0; c < tiles[r].length; c++) {
+                for(int i = 0; i<2; i++) {
+                    createSingularSettlement(r,c,i,settlementPane);
+                }
+            }
+        }
+    }
+
+    public void createSingularSettlement(int r, int c, int i, Pane settlementPane) {
+        int[][] roadOffset = new int[][]{{-75, -18}, {-48, -70}, {17, -70}, {44, -18}, {17, 36}, {-48, 36}};
+        Structure[] w = tiles[r][c].getStructures();
+        int x = (int) tiles[r][c].getPolygon().getLayoutX();
+        int y = (int) tiles[r][c].getPolygon().getLayoutY();
+
+        Location loc = new Location(x+roadOffset[i][0], y+roadOffset[i][1]);
+        ImageView settl = new ImageView(new Image("game/catan/PlayerResources/player1Settlement.png"));
+        settl.setX(loc.getX());
+        settl.setY(loc.getY());
+        settl.setFitWidth(32);
+        settl.setFitHeight(31);
+        settlementPane.getChildren().add(settl);
+//        settl.setVisible(false);
+        //make Structure class
+//        w[i] = new Structure(loc,settl);
     }
 
 }
