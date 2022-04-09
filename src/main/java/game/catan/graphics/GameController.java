@@ -288,21 +288,11 @@ public class GameController {
 
         gameState.createRoads(tileObjs, roadPane);
         gameState.createSettlements(tileObjs, settlementPane);
-        //create HarborTile objects
-        //point HarborTile objects to their corresponding tiles
 
-
-        //Road Locations Relative to Tile
-        //1-topleft -> clockwise -> 6-bottomleft
-//        Road 1 = -78,-30
-//        Road 2 = -30,-56
-//        Road 3 = +17,-30
-//        Road 4 = +17,+22
-//        Road 5 = -30,+50
-//        Road 6 = -78,+23
-//
-//        Width = 61
-//        Height = 7
+        for(int i = 0; i < 6; i++){
+            gameState.tiles[0][0].getRoads()[i].getRectangle().setVisible(true);
+            gameState.tiles[0][0].getStructures()[i].getImage().setVisible(true);
+        }
 
     }
 

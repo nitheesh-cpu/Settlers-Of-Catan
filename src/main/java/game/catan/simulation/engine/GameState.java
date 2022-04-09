@@ -51,37 +51,43 @@ public class GameState {
                 for (int q = 0; q < 2; q++) {
                     tiles[y++][x].initialize();
                     depth++;
-                }if (lastCorner == 0) break;
+                }
+                if (lastCorner == 0) break;
             }
             if (corner == 1 || depth > 0) {
-                for (int q = 0; q < 2 ; q++) {
+                for (int q = 0; q < 2; q++) {
                     tiles[y++][x].initialize();
                     depth++;
-                }if (lastCorner == 1) break;
+                }
+                if (lastCorner == 1) break;
             }
             if (corner == 2 || depth > 0) {
                 for (int q = 0; q < 2; q++) {
                     tiles[y][x++].initialize();
                     depth++;
-                }if (lastCorner == 2) break;
+                }
+                if (lastCorner == 2) break;
             }
             if (corner == 3 || depth > 0) {
                 for (int q = 0; q < 2; q++) {
                     tiles[y--][x++].initialize();
                     depth++;
-                }if (lastCorner == 3) break;
+                }
+                if (lastCorner == 3) break;
             }
             if (corner == 4 || depth > 0) {
                 for (int q = 0; q < 2; q++) {
                     tiles[y--][x--].initialize();
                     depth++;
-                }if (lastCorner == 4) break;
+                }
+                if (lastCorner == 4) break;
             }
             if (corner == 5 || depth > 0) {
                 for (int q = 0; q < 2; q++) {
                     tiles[y][x--].initialize();
                     depth++;
-                }if (lastCorner == 5) break;
+                }
+                if (lastCorner == 5) break;
             }
         }
         depth = 0;
@@ -122,12 +128,12 @@ public class GameState {
 
     public void setTiles(Tile[][] x) {
         tiles = x;
-        for(int i = 0; i < 5; i++) {
-            for(int j = 0; j < 5; j++) {
-                try{
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                try {
                     String key = i + "," + j;
                     tileMap.put(key, tiles[i][j]);
-                }catch (ArrayIndexOutOfBoundsException ignored){
+                } catch (ArrayIndexOutOfBoundsException ignored) {
                 }
             }
         }
@@ -144,35 +150,38 @@ public class GameState {
 //        Road 6 = -78,+23
 //        Width = 61
 //        Height = 7
-        for(int r = 0; r < tiles.length; r++) {
-            for(int c = 0; c < tiles[r].length; c++) {
-                for(int i = 0; c==tiles[r].length-1 ? (r>1 ? i<5 : i<4) : i<3; i++) {
-                    createSingularRoad(r,c,i,roadPane);
+        for (int r = 0; r < tiles.length; r++) {
+            for (int c = 0; c < tiles[r].length; c++) {
+                for (int i = 0; c == tiles[r].length - 1 ? (r > 1 ? i < 5 : i < 4) : i < 3; i++) {
+                    createSingularRoad(r, c, i, roadPane);
                 }
             }
         }
-        for(int r = 0; r < tiles.length; r++) {
-            for(int c = 0; c < tiles[r].length; c++) {
+        for (int r = 0; r < tiles.length; r++) {
+            for (int c = 0; c < tiles[r].length; c++) {
                 Road[] w = tiles[r][c].getRoads();
-                for(int i = 3; i<6; i++) {
-                    if(w[i] != null) {
+                for (int i = 3; i < 6; i++) {
+                    if (w[i] != null) {
                         switch (i) {
                             case 3:
                                 try {
                                     w[3] = tiles[r][c + 1].getRoads()[0];
-                                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                                } catch (ArrayIndexOutOfBoundsException ignored) {
+                                }
                                 break;
                             case 4:
                                 try {
                                     if (r < 2) w[4] = tiles[r + 1][c + 1].getRoads()[1];
                                     else w[4] = tiles[r + 1][c].getRoads()[1];
-                                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                                } catch (ArrayIndexOutOfBoundsException ignored) {
+                                }
                                 break;
                             case 5:
                                 try {
                                     if (r < 2) w[4] = tiles[r + 1][c].getRoads()[2];
                                     else w[4] = tiles[r + 1][c - 1].getRoads()[2];
-                                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                                } catch (ArrayIndexOutOfBoundsException ignored) {
+                                }
                                 break;
                         }
                     }
@@ -180,21 +189,21 @@ public class GameState {
                 tiles[r][c].setRoads(w);
             }
         }
-        createSingularRoad(2,0,5,roadPane);
-        createSingularRoad(3,0,5,roadPane);
-        createSingularRoad(4,0,4,roadPane);
-        createSingularRoad(4,0,5,roadPane);
-        createSingularRoad(4,1,4,roadPane);
-        createSingularRoad(4,1,5,roadPane);
-        createSingularRoad(4,2,5,roadPane);
+        createSingularRoad(2, 0, 5, roadPane);
+        createSingularRoad(3, 0, 5, roadPane);
+        createSingularRoad(4, 0, 4, roadPane);
+        createSingularRoad(4, 0, 5, roadPane);
+        createSingularRoad(4, 1, 4, roadPane);
+        createSingularRoad(4, 1, 5, roadPane);
+        createSingularRoad(4, 2, 5, roadPane);
     }
 
     public void createSingularRoad(int r, int c, int i, Pane roadPane) {
-        int[][] roadOffset = new int[][]{{-78, 23,59}, {-78, -30,-59}, {-30, -56,0}, {17, -30,59}, {17, 22,-59}, {-30, 50,0}};
+        int[][] roadOffset = new int[][]{{-78, 23, 59}, {-78, -30, -59}, {-30, -56, 0}, {17, -30, 59}, {17, 22, -59}, {-30, 50, 0}};
         Road[] w = tiles[r][c].getRoads();
         int x = (int) tiles[r][c].getPolygon().getLayoutX();
         int y = (int) tiles[r][c].getPolygon().getLayoutY();
-        Location loc = new Location(x+roadOffset[i][0], y+roadOffset[i][1]);
+        Location loc = new Location(x + roadOffset[i][0], y + roadOffset[i][1]);
         Rectangle rect = new Rectangle();
         rect.setX(loc.getX());
         rect.setY(loc.getY());
@@ -204,11 +213,11 @@ public class GameState {
         rect.setFill(Color.RED);
         rect.setOnMouseEntered(event -> rect.setFill(Color.GREEN));
         rect.setOnMouseExited(event ->
-            rect.setFill(Color.RED)
+                rect.setFill(Color.RED)
         );
         roadPane.getChildren().add(rect);
         rect.setVisible(false);
-        w[i] = new Road(loc,rect);
+        w[i] = new Road(loc, rect);
     }
 
     public void createSettlements(Tile[][] tiles, Pane settlementPane) {
@@ -221,21 +230,57 @@ public class GameState {
 //
 //        Width = 32
 //        Height = 31
-        for(int r = 0; r < tiles.length; r++) {
-            for(int c = 0; c < tiles[r].length; c++) {
-                for(int i = 0; (c==tiles[r].length-1 ? (r==2||r==3?i<4:i<3) : i<2); i++) {
-                    createSingularSettlement(r,c,i,settlementPane);
-                }
-                if (r == 4) {
-                    for(int i = 3; i<5; i++) {
-                        createSingularSettlement(r,c,i,settlementPane);
-                    }
+        for (int r = 0; r < tiles.length; r++) {
+            for (int c = 0; c < tiles[r].length; c++) {
+                for (int i = 0; (c == tiles[r].length - 1 ? (r == 2 || r == 3 ? i < 4 : i < 3) : i < 2); i++) {
+                    createSingularSettlement(r, c, i, settlementPane);
                 }
             }
         }
-        createSingularSettlement(2,0,5,settlementPane);
-        createSingularSettlement(3,0,5,settlementPane);
-        createSingularSettlement(4,0,5,settlementPane);
+        createSingularSettlement(2, 0, 5, settlementPane);
+        createSingularSettlement(3, 0, 5, settlementPane);
+        createSingularSettlement(4, 0, 5, settlementPane);
+        createSingularSettlement(4, 0, 3, settlementPane);
+        createSingularSettlement(4, 0, 4, settlementPane);
+        createSingularSettlement(4, 1, 3, settlementPane);
+        createSingularSettlement(4, 1, 4, settlementPane);
+        createSingularSettlement(4, 2, 3, settlementPane);
+        createSingularSettlement(4, 2, 4, settlementPane);
+        for (int r = 0; r < tiles.length; r++) {
+            for (int c = 0; c < tiles[r].length; c++) {
+                Structure[] w = tiles[r][c].getStructures();
+                for (int i = 2; i < 6; i++) {
+                    if (w[i] != null) {
+                        switch (i) {
+                            case 2:
+                                try {
+                                    w[2] = tiles[r][c + 1].getStructures()[0];
+                                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                                break;
+                            case 3:
+                                try {
+                                    if (r < 2) w[3] = tiles[r + 1][c + 1].getStructures()[1];
+                                    else w[3] = tiles[r + 1][c].getStructures()[1];
+                                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                                break;
+                            case 4:
+                                try {
+                                    if (r < 2) w[4] = tiles[r + 1][c + 1].getStructures()[0];
+                                    else  w[4] = tiles[r + 1][c].getStructures()[0];
+                                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                                break;
+                            case 5:
+                                try {
+                                    if (r < 2) w[5] = tiles[r + 1][c].getStructures()[1];
+                                    if(r==4) w[5] = tiles[r][c-1].getStructures()[3];
+                                } catch (ArrayIndexOutOfBoundsException ignored) {}
+                                break;
+                        }
+                    }
+                }
+                tiles[r][c].setStructures(w);
+            }
+        }
     }
 
     public void createSingularSettlement(int r, int c, int i, Pane settlementPane) {
@@ -244,16 +289,16 @@ public class GameState {
         int x = (int) tiles[r][c].getPolygon().getLayoutX();
         int y = (int) tiles[r][c].getPolygon().getLayoutY();
 
-        Location loc = new Location(x+roadOffset[i][0], y+roadOffset[i][1]);
+        Location loc = new Location(x + roadOffset[i][0], y + roadOffset[i][1]);
         ImageView settl = new ImageView(new Image("game/catan/PlayerResources/player1Settlement.png"));
         settl.setX(loc.getX());
         settl.setY(loc.getY());
         settl.setFitWidth(32);
         settl.setFitHeight(31);
         settlementPane.getChildren().add(settl);
-        settl.setVisible(false);
+//        settl.setVisible(false);
         //make Structure class
-        w[i] = new Structure(loc,settl);
+        w[i] = new Structure(loc, settl);
     }
 
 }
