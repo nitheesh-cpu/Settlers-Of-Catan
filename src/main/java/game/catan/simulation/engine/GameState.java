@@ -223,11 +223,19 @@ public class GameState {
 //        Height = 31
         for(int r = 0; r < tiles.length; r++) {
             for(int c = 0; c < tiles[r].length; c++) {
-                for(int i = 0; i<2; i++) {
+                for(int i = 0; (c==tiles[r].length-1 ? (r==2||r==3?i<4:i<3) : i<2); i++) {
                     createSingularSettlement(r,c,i,settlementPane);
+                }
+                if (r == 4) {
+                    for(int i = 3; i<5; i++) {
+                        createSingularSettlement(r,c,i,settlementPane);
+                    }
                 }
             }
         }
+        createSingularSettlement(2,0,5,settlementPane);
+        createSingularSettlement(3,0,5,settlementPane);
+        createSingularSettlement(4,0,5,settlementPane);
     }
 
     public void createSingularSettlement(int r, int c, int i, Pane settlementPane) {
@@ -243,9 +251,9 @@ public class GameState {
         settl.setFitWidth(32);
         settl.setFitHeight(31);
         settlementPane.getChildren().add(settl);
-//        settl.setVisible(false);
+        settl.setVisible(false);
         //make Structure class
-//        w[i] = new Structure(loc,settl);
+        w[i] = new Structure(loc,settl);
     }
 
 }

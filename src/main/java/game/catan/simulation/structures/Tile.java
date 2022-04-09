@@ -22,6 +22,7 @@ public class Tile {
 
 
     public Tile(String r){
+        structures = new Structure[6];
         roads = new Road[6];
         resource = r;
         tileNumber = -1;

@@ -21,7 +21,7 @@ public class Initialize {
         Image sheep = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/PlanesTileExp.png"));
         Image ore = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/StoneTileExp.png"));
         Image wheat = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/WheatTileEx.png"));
-        Image water = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/waterTileExp.png"));
+        Image water = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/WaterTileExp.png"));
         ImagePattern brickPattern = new ImagePattern(brick, 63, 57, 130, 116, false);
         ImagePattern desertPattern = new ImagePattern(desert, 69, 62, 137, 125, false);
         ImagePattern lumberPattern = new ImagePattern(lumber, 64, 59, 130, 118, false);

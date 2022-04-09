@@ -229,6 +229,9 @@ public class GameController {
     @FXML
     private Pane roadPane;
 
+    @FXML
+    private Pane settlementPane;
+
     private Polygon[] waters;
     public Polygon[][] tilePolygons;
     private Circle[][] circles;
@@ -284,6 +287,7 @@ public class GameController {
         view.setPreserveRatio(true);
 
         gameState.createRoads(tileObjs, roadPane);
+        gameState.createSettlements(tileObjs, settlementPane);
         //create HarborTile objects
         //point HarborTile objects to their corresponding tiles
 
