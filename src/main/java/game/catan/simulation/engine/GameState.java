@@ -3,14 +3,8 @@ package game.catan.simulation.engine;
 import game.catan.simulation.structures.Road;
 import game.catan.simulation.structures.Structure;
 import game.catan.simulation.structures.Tile;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -157,38 +151,6 @@ public class GameState {
                 }
             }
         }
-        for (int r = 0; r < tiles.length; r++) {
-            for (int c = 0; c < tiles[r].length; c++) {
-                Road[] w = tiles[r][c].getRoads();
-                for (int i = 3; i < 6; i++) {
-                    if (w[i] != null) {
-                        switch (i) {
-                            case 3:
-                                try {
-                                    w[3] = tiles[r][c + 1].getRoads()[0];
-                                } catch (ArrayIndexOutOfBoundsException ignored) {
-                                }
-                                break;
-                            case 4:
-                                try {
-                                    if (r < 2) w[4] = tiles[r + 1][c + 1].getRoads()[1];
-                                    else w[4] = tiles[r + 1][c].getRoads()[1];
-                                } catch (ArrayIndexOutOfBoundsException ignored) {
-                                }
-                                break;
-                            case 5:
-                                try {
-                                    if (r < 2) w[4] = tiles[r + 1][c].getRoads()[2];
-                                    else w[4] = tiles[r + 1][c - 1].getRoads()[2];
-                                } catch (ArrayIndexOutOfBoundsException ignored) {
-                                }
-                                break;
-                        }
-                    }
-                }
-                tiles[r][c].setRoads(w);
-            }
-        }
         createSingularRoad(2, 0, 5, roadPane);
         createSingularRoad(3, 0, 5, roadPane);
         createSingularRoad(4, 0, 4, roadPane);
@@ -196,6 +158,23 @@ public class GameState {
         createSingularRoad(4, 1, 4, roadPane);
         createSingularRoad(4, 1, 5, roadPane);
         createSingularRoad(4, 2, 5, roadPane);
+        for (int r = 0; r < tiles.length; r++) {
+            for (int c = 0; c < tiles[r].length; c++) {
+                Road[] w = tiles[r][c].getRoads();
+                if (w[3] == null) {
+                    w[3] = tiles[r][c + 1].getRoads()[0];
+                }
+                if (w[4] == null) {
+                    if (r < 2) w[4] = tiles[r + 1][c + 1].getRoads()[1];
+                    else w[4] = tiles[r + 1][c].getRoads()[1];
+                }
+                if (w[5] == null) {
+                    if (r < 2) w[5] = tiles[r + 1][c].getRoads()[2];
+                    else w[5] = tiles[r + 1][c - 1].getRoads()[2];
+                }
+                tiles[r][c].setRoads(w);
+            }
+        }
     }
 
     public void createSingularRoad(int r, int c, int i, Pane roadPane) {
@@ -249,38 +228,34 @@ public class GameState {
         for (int r = 0; r < tiles.length; r++) {
             for (int c = 0; c < tiles[r].length; c++) {
                 Structure[] w = tiles[r][c].getStructures();
-                for (int i = 2; i < 6; i++) {
-                    if (w[i] != null) {
-                        switch (i) {
-                            case 2:
-                                try {
-                                    w[2] = tiles[r][c + 1].getStructures()[0];
-                                } catch (ArrayIndexOutOfBoundsException ignored) {}
-                                break;
-                            case 3:
-                                try {
-                                    if (r < 2) w[3] = tiles[r + 1][c + 1].getStructures()[1];
-                                    else w[3] = tiles[r + 1][c].getStructures()[1];
-                                } catch (ArrayIndexOutOfBoundsException ignored) {}
-                                break;
-                            case 4:
-                                try {
-                                    if (r < 2) w[4] = tiles[r + 1][c + 1].getStructures()[0];
-                                    else  w[4] = tiles[r + 1][c].getStructures()[0];
-                                } catch (ArrayIndexOutOfBoundsException ignored) {}
-                                break;
-                            case 5:
-                                try {
-                                    if (r < 2) w[5] = tiles[r + 1][c].getStructures()[1];
-                                    if(r==4) w[5] = tiles[r][c-1].getStructures()[3];
-                                } catch (ArrayIndexOutOfBoundsException ignored) {}
-                                break;
-                        }
+                if (w[2] == null) {
+                    w[2] = tiles[r][c + 1].getStructures()[0];
+                }
+                if (w[3] == null) {
+                    if (r < 2) w[3] = tiles[r + 1][c + 1].getStructures()[1];
+                    else w[3] = tiles[r + 1][c].getStructures()[1];
+                }
+                try {
+                    if (w[4] == null) {
+                        if (r < 2) w[4] = tiles[r + 1][c + 1].getStructures()[0];
+                        else w[4] = tiles[r + 1][c].getStructures()[0];
                     }
+                } catch (ArrayIndexOutOfBoundsException ignored) {
+                }
+                if (w[5] == null) {
+                    if (r < 2) w[5] = tiles[r + 1][c].getStructures()[1];
+                    else if (r == 4) w[5] = tiles[r][c - 1].getStructures()[3];
+                    else w[5] = tiles[r + 1][c - 1].getStructures()[1];
                 }
                 tiles[r][c].setStructures(w);
             }
         }
+        Structure[] w = tiles[2][4].getStructures();
+        w[4] =  tiles[3][3].getStructures()[2];
+        tiles[2][4].setStructures(w);
+        w = tiles[3][3].getStructures();
+        w[4] =  tiles[4][2].getStructures()[2];
+        tiles[3][3].setStructures(w);
     }
 
     public void createSingularSettlement(int r, int c, int i, Pane settlementPane) {

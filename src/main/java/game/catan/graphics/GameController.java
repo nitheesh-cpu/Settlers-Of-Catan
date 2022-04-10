@@ -4,13 +4,10 @@ import game.catan.simulation.engine.GameState;
 import game.catan.simulation.engine.Initialize;
 import game.catan.simulation.structures.Tile;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 
@@ -246,38 +243,38 @@ public class GameController {
         waters = new Polygon[]{water1, water2, water3, water4, water5, water6, water7, water8, water9, water10, water11, water12, water13, water14, water15, water16, water17, water18};
         tilePolygons = new Polygon[][]{{tile01, tile02, tile03}, {tile11, tile12, tile13, tile14}, {tile21, tile22, tile23, tile24, tile25}, {tile31, tile32, tile33, tile34}, {tile41, tile42, tile43}};
         circles = new Circle[][]{{dice01, dice02, dice03}, {dice11, dice12, dice13, dice14}, {dice21, dice22, dice23, dice24, dice25}, {dice31, dice32, dice33, dice34}, {dice41, dice42, dice43}};
-        int[] tileRandomizer = {0,0,0,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5};
-        String[] resourceNames = {"Brick","Ore","Wheat","Sheep","Lumber","Desert"};
+        int[] tileRandomizer = {0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5};
+        String[] resourceNames = {"Brick", "Ore", "Wheat", "Sheep", "Lumber", "Desert"};
         List<Integer> tilesList = Arrays.stream(tileRandomizer).boxed().collect(Collectors.toList());
         Collections.shuffle(tilesList);
         tileObjs = new Tile[][]{{null, null, null}, {null, null, null, null}, {null, null, null, null, null}, {null, null, null, null}, {null, null, null}};
         ArrayList<Tile> tiles = new ArrayList<>();
         GameState gameState = new GameState();
-        for(int r = 0; r < tilePolygons.length ; r++)
-            for(int c = 0; c < tilePolygons[r].length; c++){
+        for (int r = 0; r < tilePolygons.length; r++)
+            for (int c = 0; c < tilePolygons[r].length; c++) {
                 tileObjs[r][c] = (new Tile(resourceNames[tilesList.get(0)]));
                 tileObjs[r][c].setPolygon(tilePolygons[r][c]);
                 tilePolygons[r][c].setFill(tilePatterns[tilesList.remove(0)]);
             }
         gameState.setTiles(tileObjs);
         gameState.initializeTileNumbers();
-        for(int r = 0; r < circles.length ; r++)
-            for(int c = 0; c < circles[r].length; c++){
+        for (int r = 0; r < circles.length; r++)
+            for (int c = 0; c < circles[r].length; c++) {
                 if ((tileObjs[r][c].getTileNumber() > -1))
                     circles[r][c].setFill(tileObjs[r][c].getNumberPattern());
                 else
                     circles[r][c].setVisible(false);
             }
-        for(Polygon tile: waters)
+        for (Polygon tile : waters)
             tile.setFill(waterPattern);
 
         //Initialize harbors
-        String[] harbors = {"brick","sheep","stone","wheat","wood","misc","misc","misc","misc"};
+        String[] harbors = {"brick", "sheep", "stone", "wheat", "wood", "misc", "misc", "misc", "misc"};
         List<String> harborsList = Arrays.stream(harbors).collect(Collectors.toList());
         Collections.shuffle(harborsList);
         System.out.println(harborsList);
         harborImages = new ImageView[]{harbor1, harbor2, harbor3, harbor4, harbor5, harbor6, harbor7, harbor8, harbor9};
-        for(ImageView harbor: harborImages){
+        for (ImageView harbor : harborImages) {
             harbor.setImage(Initialize.harborImages.get(harborsList.remove(0)));
         }
 
@@ -289,15 +286,8 @@ public class GameController {
         gameState.createRoads(tileObjs, roadPane);
         gameState.createSettlements(tileObjs, settlementPane);
 
-        for(int i = 0; i < 6; i++){
-            try {
-                gameState.tiles[0][1].getRoads()[i].getRectangle().setVisible(true);
-            }catch (Exception ignored){}
-            try {
-                gameState.tiles[0][1].getStructures()[i].getImage().setVisible(true);
-            }catch (Exception ignored){}
-        }
-
+        //structures[0] == top left then go clockwise
+        //roads[0] == top left then go clockwise
     }
 
 
