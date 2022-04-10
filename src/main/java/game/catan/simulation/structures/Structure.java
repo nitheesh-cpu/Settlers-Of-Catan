@@ -17,6 +17,38 @@ public class Structure {
         this.image = image;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
+    }
+
+    public StructureType getType() {
+        return type;
+    }
+
+    public void setType(StructureType type) {
+        this.type = type;
+    }
+
     public enum StructureType{
         SETTLEMENT,
         CITY;

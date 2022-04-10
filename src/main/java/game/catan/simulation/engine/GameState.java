@@ -296,7 +296,7 @@ public class GameState {
         settl.setFitWidth(32);
         settl.setFitHeight(31);
         settlementPane.getChildren().add(settl);
-//        settl.setVisible(false);
+        settl.setVisible(false);
         //make Structure class
         w[i] = new Structure(loc, settl);
     }

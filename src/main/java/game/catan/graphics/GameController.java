@@ -290,8 +290,12 @@ public class GameController {
         gameState.createSettlements(tileObjs, settlementPane);
 
         for(int i = 0; i < 6; i++){
-            gameState.tiles[0][0].getRoads()[i].getRectangle().setVisible(true);
-            gameState.tiles[0][0].getStructures()[i].getImage().setVisible(true);
+            try {
+                gameState.tiles[0][1].getRoads()[i].getRectangle().setVisible(true);
+            }catch (Exception ignored){}
+            try {
+                gameState.tiles[0][1].getStructures()[i].getImage().setVisible(true);
+            }catch (Exception ignored){}
         }
 
     }
