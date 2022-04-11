@@ -7,20 +7,19 @@ public class DevelopmentCard extends Card{
     private int victoryPoints;
 
 
-    public DevelopmentCard(ImageIcon i, String str)
+    public DevelopmentCard(ImageIcon i, DevelopmentCardType type)
     {
-        super(i,str);
+        super(i,type);
 
-        if(str.equals("DEVELOPMENT_CHAPEL")||str.equals("DEVELOPMENT_GREAT_HALL")||str.equals("DEVELOPMENT_LIBRARY")||
-        str.equals("DEVELOPMENT_MARKET")||str.equals("DEVELOPMENT_UNIVERSITY"))
-            victoryPoints=1;
-        else
-            victoryPoints=0;
+        switch (type) {
+            case CHAPEL, GREAT_HALL, LIBRARY, MARKET, UNIVERSITY -> victoryPoints = 1;
+            default -> victoryPoints = 0;
+        }
     }
 
-    public enum DevelopmentCardType {DEVELOPMENT_CHAPEL, DEVELOPMENT_GREAT_HALL, DEVELOPMENT_LIBRARY,
-    DEVELOPMENT_MARKET, DEVELOPMENT_UNIVERSITY, DEVELOPMENT_KNIGHT, DEVELOPMENT_ROAD_BUILDING, DEVELOPMENT_MONOPOLY,
-    DEVELOPMENT_YEAR_OF_PLENTY}
+    public enum DevelopmentCardType {CHAPEL, GREAT_HALL, LIBRARY,
+    MARKET, UNIVERSITY, KNIGHT, ROAD_BUILDING, MONOPOLY,
+    YEAR_OF_PLENTY}
 
    public int getVictoryPoints()
    {

@@ -32,11 +32,12 @@ public class Tile {
 
     public void initialize(){
         if(tileNumber != -1) return;
+
         if(resource == ResourceType.DESERT){
             numberPattern = null;
-            tileNumber = -1;
             return;
         }
+
         tileNumber = numbers.remove(0);
         int[] num = {0,0,0,1,2,3,4,0,5,6,7,8,9};
         numberPattern = Initialize.dicePatterns[num[tileNumber]];
@@ -62,7 +63,6 @@ public class Tile {
         this.roads = roads;
     }
 
-
     public Polygon getPolygon() {
         return polygon;
     }
@@ -70,7 +70,6 @@ public class Tile {
     public void setPolygon(Polygon polygon) {
         this.polygon = polygon;
     }
-
 
     public Structure[] getStructures() {
         return structures;

@@ -4,9 +4,9 @@ import javax.swing.*;
 
 public class Card {
     private ImageIcon image;
-    private String type;
+    private DevelopmentCard.DevelopmentCardType type;
 
-    public Card(ImageIcon i, String str)
+    public Card(ImageIcon i, DevelopmentCard.DevelopmentCardType str)
     {
         image=i;
         type=str;
@@ -16,7 +16,7 @@ public class Card {
         return image;
     }
 
-    public String getName()
+    public DevelopmentCard.DevelopmentCardType getName()
     {
         return type;
     }

@@ -259,6 +259,7 @@ public class GameController {
             }
         gameState.setTiles(tileObjs);
         gameState.initializeTileNumbers();
+        gameState.getBoard().print();
         for (int r = 0; r < circles.length; r++)
             for (int c = 0; c < circles[r].length; c++) {
                 if ((tileObjs[r][c].getTileNumber() > -1))
@@ -289,6 +290,8 @@ public class GameController {
 
         //structures[0] == top left then go clockwise
         //roads[0] == top left then go clockwise
+
+        gameState.start();
     }
 
 
