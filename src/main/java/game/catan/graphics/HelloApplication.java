@@ -10,8 +10,8 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catan.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1250, 800);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catan2.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1250, 966);
         stage.setTitle("Settlers of Catan");
         stage.setScene(scene);
         stage.show();
