@@ -17,6 +17,8 @@ public class GameState {
     public static Stack<Integer> TileNumbers;
     public Tile[][] tiles;
     public HashMap<String, Tile> tileMap;
+    private Board board;
+
 
     public GameState() {
         TileNumbers = new Stack<>();

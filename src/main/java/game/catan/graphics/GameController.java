@@ -2,6 +2,7 @@ package game.catan.graphics;
 
 import game.catan.simulation.engine.GameState;
 import game.catan.simulation.engine.Initialize;
+import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -244,7 +245,7 @@ public class GameController {
         tilePolygons = new Polygon[][]{{tile01, tile02, tile03}, {tile11, tile12, tile13, tile14}, {tile21, tile22, tile23, tile24, tile25}, {tile31, tile32, tile33, tile34}, {tile41, tile42, tile43}};
         circles = new Circle[][]{{dice01, dice02, dice03}, {dice11, dice12, dice13, dice14}, {dice21, dice22, dice23, dice24, dice25}, {dice31, dice32, dice33, dice34}, {dice41, dice42, dice43}};
         int[] tileRandomizer = {0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5};
-        String[] resourceNames = {"Brick", "Ore", "Wheat", "Sheep", "Lumber", "Desert"};
+        ResourceType[] resourceNames = {ResourceType.BRICK, ResourceType.ORE, ResourceType.WHEAT, ResourceType.WOOL, ResourceType.WOOD, ResourceType.DESERT};
         List<Integer> tilesList = Arrays.stream(tileRandomizer).boxed().collect(Collectors.toList());
         Collections.shuffle(tilesList);
         tileObjs = new Tile[][]{{null, null, null}, {null, null, null, null}, {null, null, null, null, null}, {null, null, null, null}, {null, null, null}};

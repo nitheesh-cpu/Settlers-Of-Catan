@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Tile {
-    private String resource;
+    private ResourceType resource;
     private Road[] roads;
     private Polygon polygon;
     private Structure[] structures;
@@ -21,7 +21,7 @@ public class Tile {
     public static List<Integer> numbers;
 
 
-    public Tile(String r){
+    public Tile(ResourceType r){
         structures = new Structure[6];
         roads = new Road[6];
         resource = r;
@@ -32,7 +32,7 @@ public class Tile {
 
     public void initialize(){
         if(tileNumber != -1) return;
-        if(resource.equals("Desert")){
+        if(resource == ResourceType.DESERT){
             numberPattern = null;
             tileNumber = -1;
             return;
@@ -42,7 +42,7 @@ public class Tile {
         numberPattern = Initialize.dicePatterns[num[tileNumber]];
     }
 
-    public String getResource() {
+    public ResourceType getResource() {
         return resource;
     }
 

@@ -4,7 +4,7 @@ public class HarborTile extends Tile {
     private int ratio;
 
 
-    public HarborTile(String r) {
+    public HarborTile(ResourceType r) {
         super(r);
     }
 }
