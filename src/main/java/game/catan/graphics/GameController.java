@@ -270,8 +270,8 @@ public class GameController {
             tile.setFill(waterPattern);
 
         //Initialize harbors
-        String[] harbors = {"brick", "sheep", "stone", "wheat", "wood", "misc", "misc", "misc", "misc"};
-        List<String> harborsList = Arrays.stream(harbors).collect(Collectors.toList());
+        ResourceType[] harbors = {ResourceType.BRICK, ResourceType.WOOL, ResourceType.ORE, ResourceType.WHEAT, ResourceType.WOOD, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC};
+        List<ResourceType> harborsList = Arrays.stream(harbors).collect(Collectors.toList());
         Collections.shuffle(harborsList);
         System.out.println(harborsList);
         harborImages = new ImageView[]{harbor1, harbor2, harbor3, harbor4, harbor5, harbor6, harbor7, harbor8, harbor9};

@@ -1,5 +1,6 @@
 package game.catan.simulation.engine;
 
+import game.catan.simulation.structures.ResourceType;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
@@ -11,7 +12,7 @@ public class Initialize {
     public static ImagePattern[] tilePatterns;
     public static ImagePattern waterPattern;
     public static ImagePattern[] dicePatterns;
-    public static Map<String, Image> harborImages;
+    public static Map<ResourceType, Image> harborImages;
 
     public static void init(){
         //hexagon tile patterns
@@ -57,12 +58,12 @@ public class Initialize {
 
         //port images
         harborImages = Map.ofEntries(
-        Map.entry("brick", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Bricks.png")))),
-        Map.entry("sheep", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Sheep.png")))),
-        Map.entry("stone", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Stone.png")))),
-        Map.entry("wheat", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Wheat.png")))),
-        Map.entry("wood", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Wood.png")))),
-        Map.entry("misc", new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Misc.png"))))
+        Map.entry(ResourceType.BRICK, new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Bricks.png")))),
+        Map.entry(ResourceType.WOOL, new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Sheep.png")))),
+        Map.entry(ResourceType.ORE, new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Stone.png")))),
+        Map.entry(ResourceType.WHEAT, new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Wheat.png")))),
+        Map.entry(ResourceType.WOOD, new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Wood.png")))),
+        Map.entry(ResourceType.MISC, new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Misc.png"))))
         );
     }
 }
