@@ -2,19 +2,21 @@ package game.catan.simulation.card;
 
 import javax.swing.*;
 
-public class DevelopmentCard extends Card{
+public class DevelopmentCard {
 
     private int victoryPoints;
+    private ImageIcon image;
+    private String type;
 
 
     public DevelopmentCard(ImageIcon i, DevelopmentCardType type)
     {
-        super(i,type);
-
         switch (type) {
             case CHAPEL, GREAT_HALL, LIBRARY, MARKET, UNIVERSITY -> victoryPoints = 1;
             default -> victoryPoints = 0;
         }
+        this.type = type.name();
+        image = i;
     }
 
     public enum DevelopmentCardType {CHAPEL, GREAT_HALL, LIBRARY,
@@ -26,8 +28,12 @@ public class DevelopmentCard extends Card{
        return victoryPoints;
    }
 
-   public void pickCard()
+   public ImageIcon getImage()
    {
-       //should randomly pick a card in the enum and send it back to the constructor
+       return image;
+   }
+   public String getType()
+   {
+       return type;
    }
 }
