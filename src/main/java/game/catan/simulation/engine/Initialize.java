@@ -14,6 +14,7 @@ public class Initialize {
     public static ImagePattern[] dicePatterns;
     public static Map<ResourceType, Image> harborImages;
 
+
     public static void init(){
         //hexagon tile patterns
         Image brick = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/BrickTile.png"));
