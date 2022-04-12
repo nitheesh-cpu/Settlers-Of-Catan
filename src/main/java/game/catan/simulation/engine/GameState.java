@@ -1,5 +1,6 @@
 package game.catan.simulation.engine;
 
+import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Road;
 import game.catan.simulation.structures.Structure;
 import game.catan.simulation.structures.Tile;
@@ -26,6 +27,15 @@ public class GameState {
         for (int i : tileNumbers)
             TileNumbers.push(i);
         tileMap = new HashMap<>();
+    }
+
+    public void start() {
+        // get game seed
+        this.board = new Board(tiles);
+
+        // Set robber location
+        board.initializeRobber();
+        board.createCards();
     }
 
     public void initializeTileNumbers() {
@@ -122,6 +132,10 @@ public class GameState {
         tiles[2][2].initialize();
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
     public void setTiles(Tile[][] x) {
         tiles = x;
         for (int i = 0; i < 5; i++) {
@@ -133,6 +147,8 @@ public class GameState {
                 }
             }
         }
+
+        this.board = new Board(tiles);
     }
 
     public void createRoads(Tile[][] tiles, Pane roadPane) {
@@ -277,5 +293,6 @@ public class GameState {
         //make Structure class
         w[i] = new Structure(loc, settl);
     }
+
 
 }

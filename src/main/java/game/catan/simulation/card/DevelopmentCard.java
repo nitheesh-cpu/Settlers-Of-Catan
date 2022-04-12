@@ -2,33 +2,51 @@ package game.catan.simulation.card;
 
 import javax.swing.*;
 
-public class DevelopmentCard extends Card{
+public class DevelopmentCard {
 
-    private int victoryPoints;
+    private ImageIcon image;
+    private DevelopmentCardType type;
+    private String name;
 
-
-    public DevelopmentCard(ImageIcon i, String str)
+    public DevelopmentCard(String name, DevelopmentCardType type)
     {
-        super(i,str);
+        this.name = name;
+        this.type = type;
 
-        if(str.equals("DEVELOPMENT_CHAPEL")||str.equals("DEVELOPMENT_GREAT_HALL")||str.equals("DEVELOPMENT_LIBRARY")||
-        str.equals("DEVELOPMENT_MARKET")||str.equals("DEVELOPMENT_UNIVERSITY"))
-            victoryPoints=1;
-        else
-            victoryPoints=0;
+        // TO DO: add images to dev cards
+        switch (type) {
+            case VICTORY_POINT -> {
+                switch (name) {
+                    case "Chapel" -> image = new ImageIcon("src/main/resources/game/catan/Cards/VictoryPointCards/CHAPEL.png");
+                    case "Great Hall" -> image = new ImageIcon("src/main/resources/game/catan/Cards/VictoryPointCards/GREAT_HALL.png");
+                    case "Library" -> image = new ImageIcon("src/main/resources/game/catan/Cards/VictoryPointCards/LIBRARY.png");
+                    case "Market" -> image = new ImageIcon("src/main/resources/game/catan/Cards/VictoryPointCards/MARKET.png");
+                    case "University" -> image = new ImageIcon("src/main/resources/game/catan/Cards/VictoryPointCards/UNIVERSITY.png");
+                }
+            }
+            case KNIGHT -> image = new ImageIcon("src/main/resources/game/catan/Cards/KnightCard/KNIGHT.png");
+            case PROGRESS -> {
+                switch (name) {
+                    case "Monopoly" -> image = new ImageIcon("src/main/resources/game/catan/Cards/ProgressCards/MONOPOLY.png");
+                    case "Road Building" -> image = new ImageIcon("src/main/resources/game/catan/Cards/ProgressCards/ROAD_BUILDING.png");
+                    case "Year of Plenty" -> image = new ImageIcon("src/main/resources/game/catan/Cards/ProgressCards/YEAR_OF_PLENTY.png");
+                }
+            }
+        }
     }
 
-    public enum DevelopmentCardType {DEVELOPMENT_CHAPEL, DEVELOPMENT_GREAT_HALL, DEVELOPMENT_LIBRARY,
-    DEVELOPMENT_MARKET, DEVELOPMENT_UNIVERSITY, DEVELOPMENT_KNIGHT, DEVELOPMENT_ROAD_BUILDING, DEVELOPMENT_MONOPOLY,
-    DEVELOPMENT_YEAR_OF_PLENTY}
-
-   public int getVictoryPoints()
+   public ImageIcon getImage()
    {
-       return victoryPoints;
+       return image;
    }
 
-   public void pickCard()
+   public String getName() {
+       return name;
+   }
+
+   public DevelopmentCardType getType()
    {
-       //should randomly pick a card in the enum and send it back to the constructor
+       return type;
    }
 }
+

@@ -2,21 +2,32 @@ package game.catan.simulation.card;
 
 import javax.swing.*;
 
-public class SpecialCard extends Card{
+public class SpecialCard {
 
-//    private Player owner;
     private int victoryPoints;
+    private ImageIcon image;
+    private String specialType;
 
-    public SpecialCard(ImageIcon i, String str)
+    public SpecialCard(SpecialCardType special)
     {
-        super(i,str);
-        victoryPoints = 2;
+        image = null;
+        specialType = special.name();
+
+        switch (special)
+        {
+            case LARGEST_ARMY, LONGEST_ROAD: victoryPoints = 2;
+        }
     }
 
     public enum SpecialCardType{LARGEST_ARMY, LONGEST_ROAD}
 
-    public void pickCard()
+    public String getType()
     {
-        //should randomly pick a card in the enum
+        return specialType;
     }
+    public ImageIcon getImage()
+    {
+        return image;
+    }
+
 }
