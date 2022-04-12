@@ -8,9 +8,9 @@ public class SpecialCard {
     private ImageIcon image;
     private String specialType;
 
-    public SpecialCard(ImageIcon i, SpecialCardType special)
+    public SpecialCard(SpecialCardType special)
     {
-        image = i;
+        image = null;
         specialType = special.name();
 
         switch (special)
