@@ -5,12 +5,19 @@ import game.catan.simulation.engine.Initialize;
 import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Tile;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -20,6 +27,24 @@ import static game.catan.simulation.engine.Initialize.tilePatterns;
 import static game.catan.simulation.engine.Initialize.waterPattern;
 
 public class GameController {
+    @FXML
+    private ScrollPane actionLogScrollPane;
+
+    @FXML
+    private TextFlow actionLogTextFlow;
+
+    @FXML
+    private Text actionLogTitle;
+
+    @FXML
+    private ImageView build;
+
+    @FXML
+    private ScrollPane cardsScrollPane;
+
+    @FXML
+    private Text cardsTitle;
+
     @FXML
     private Circle dice01;
 
@@ -76,6 +101,60 @@ public class GameController {
 
     @FXML
     private Circle dice43;
+
+    @FXML
+    private ImageView endTurn;
+
+    @FXML
+    private ImageView harbor1;
+
+    @FXML
+    private ImageView harbor2;
+
+    @FXML
+    private ImageView harbor3;
+
+    @FXML
+    private ImageView harbor4;
+
+    @FXML
+    private ImageView harbor5;
+
+    @FXML
+    private ImageView harbor6;
+
+    @FXML
+    private ImageView harbor7;
+
+    @FXML
+    private ImageView harbor8;
+
+    @FXML
+    private ImageView harbor9;
+
+    @FXML
+    private ImageView help;
+
+    @FXML
+    private Text inventoryTitle1;
+
+    @FXML
+    private Text inventoryTitle2;
+
+    @FXML
+    private Text inventoryTitle3;
+
+    @FXML
+    private Pane roadPane;
+
+    @FXML
+    private VBox root;
+
+    @FXML
+    private Pane settlementPane;
+
+    @FXML
+    private Text statsTitle;
 
     @FXML
     private Polygon tile01;
@@ -135,6 +214,9 @@ public class GameController {
     private Polygon tile43;
 
     @FXML
+    private Text turnTitle;
+
+    @FXML
     private Polygon water1;
 
     @FXML
@@ -189,46 +271,8 @@ public class GameController {
     private Polygon water9;
 
     @FXML
-    private ImageView harbor1;
+    private TextFlow cardsTextFlow;
 
-    @FXML
-    private ImageView harbor2;
-
-    @FXML
-    private ImageView harbor3;
-
-    @FXML
-    private ImageView harbor4;
-
-    @FXML
-    private ImageView harbor5;
-
-    @FXML
-    private ImageView harbor6;
-
-    @FXML
-    private ImageView harbor7;
-
-    @FXML
-    private ImageView harbor8;
-
-    @FXML
-    private ImageView harbor9;
-
-    @FXML
-    private ImageView build;
-
-    @FXML
-    private ImageView endTurn;
-
-    @FXML
-    private ImageView help;
-
-    @FXML
-    private Pane roadPane;
-
-    @FXML
-    private Pane settlementPane;
 
     private Polygon[] waters;
     public Polygon[][] tilePolygons;
@@ -286,6 +330,11 @@ public class GameController {
 
         gameState.createRoads(tileObjs, roadPane);
         gameState.createSettlements(tileObjs, settlementPane);
+        BackgroundFill background_fill = new BackgroundFill(Color.WHITE,
+                CornerRadii.EMPTY, Insets.EMPTY);
+        root.setBackground(new Background(background_fill));
+        actionLogTextFlow.setBackground(new Background(background_fill));
+        cardsTextFlow.setBackground(new Background(background_fill));
 
         //structures[0] == top left then go clockwise
         //roads[0] == top left then go clockwise
