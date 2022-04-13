@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
 <VBox fx:id="root" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
    <children>
       <AnchorPane onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="35.0" prefWidth="1250.0" style="-fx-background-color: #4a5d6f; -fx-background-radius: 18 18 0 0; -fx-border-radius: 18 18 0 0;">
@@ -38,7 +49,7 @@
       </AnchorPane>
       <HBox prefHeight="82.0" prefWidth="1250.0">
          <children>
-            <Pane prefHeight="82.0" prefWidth="1249.0">
+            <Pane prefHeight="82.0" prefWidth="1249.0" style="-fx-background-color: FFFFFF;">
                <children>
                   <Text fx:id="turnTitle" layoutX="458.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1's Turn">
                      <font>
@@ -50,22 +61,22 @@
          </children></HBox>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0">
          <children>
-            <Pane prefHeight="792.0" prefWidth="256.0" HBox.hgrow="ALWAYS">
+            <Pane prefHeight="792.0" prefWidth="256.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">
                <children>
-                  <ScrollPane fx:id="actionLogScrollPane" layoutX="28.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane fx:id="actionLogScrollPane" layoutX="28.0" layoutY="82.0" prefHeight="205.0" prefWidth="233.0" style="-fx-border-width: 3px; -fx-border-style: solid; -fx-background-color: FFFFFF;">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="199.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="199.0" style="-fx-background-color: FFFFFF;">
                            <children>
-                              <TextFlow fx:id="actionLogTextFlow" prefHeight="200.0" prefWidth="200.0" />
+                              <TextArea fx:id="actionLogText" prefHeight="200.0" prefWidth="210.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
                            </children>
                         </AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="cardsScrollPane" layoutX="28.0" layoutY="428.0" prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane fx:id="cardsScrollPane" layoutX="28.0" layoutY="428.0" prefHeight="266.0" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-width: 3px; -fx-background-color: FFFFFF;">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="199.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="245.0" prefWidth="199.0" style="-fx-background-color: FFFFFF;">
                            <children>
-                              <TextFlow fx:id="cardsTextFlow" prefHeight="200.0" prefWidth="200.0" />
+                              <TextFlow fx:id="cardsTextFlow" prefHeight="243.0" prefWidth="200.0" style="-fx-background-color: FFFFFF;" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -87,9 +98,9 @@
                   </Text>
                   <Arc fill="DODGERBLUE" layoutX="224.0" layoutY="34.0" length="180.0" radiusY="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
                </children></Pane>
-            <Pane HBox.hgrow="NEVER">
+            <Pane style="-fx-background-color: FFFFFF;" HBox.hgrow="NEVER">
                <children>
-                  <Circle centerX="375.0" centerY="400.0" fill="DODGERBLUE" mouseTransparent="true" radius="368.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle centerX="375.0" centerY="400.0" fill="DODGERBLUE" layoutX="-4.0" layoutY="-2.0" mouseTransparent="true" radius="344.0" stroke="BLACK" strokeType="INSIDE">
                      <effect>
                         <Shadow height="255.0" radius="127.0" width="255.0">
                            <color>
@@ -236,7 +247,7 @@
                   <Pane fx:id="settlementPane" prefHeight="800.0" prefWidth="750.0" />
                </children>
             </Pane>
-            <Pane prefHeight="792.0" prefWidth="234.0" HBox.hgrow="ALWAYS">
+            <Pane prefHeight="792.0" prefWidth="234.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">
                <children>
                   <ImageView fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -253,17 +264,17 @@
                         <Image url="@../PlayerResources/playerInventory.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="inventoryTitle1" layoutX="14.0" layoutY="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2 Inventory" wrappingWidth="200.0">
+                  <Text fx:id="inventoryTitle1" layoutX="91.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" wrappingWidth="200.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fx:id="inventoryTitle2" layoutX="14.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 3 Inventory" wrappingWidth="200.0">
+                  <Text fx:id="inventoryTitle2" layoutX="91.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 3" wrappingWidth="200.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fx:id="inventoryTitle3" layoutX="14.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 4 Inventory" wrappingWidth="200.0">
+                  <Text fx:id="inventoryTitle3" layoutX="91.0" layoutY="556.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 4" wrappingWidth="200.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -343,13 +354,28 @@
                         <Image url="@../ButtonResources/Trade.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="44.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/player2Icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="42.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/player3icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="44.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/player4icon.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children>
       </HBox>
       <HBox prefHeight="84.0" prefWidth="1250.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18;">
          <children>
-            <Pane prefHeight="100.0" prefWidth="1262.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18;">
+            <Pane prefHeight="100.0" prefWidth="1262.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18; -fx-background-color: FFFFFF;">
                <children>
                   <ImageView fx:id="build" fitHeight="83.52" fitWidth="90" layoutX="1038.0" layoutY="-23.0" onMouseClicked="#buildClicked">
                       <image>
@@ -421,6 +447,11 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
+                  <ImageView fitHeight="48.0" fitWidth="40.0" layoutX="200.0" layoutY="-76.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/player1Icon.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children></HBox>
