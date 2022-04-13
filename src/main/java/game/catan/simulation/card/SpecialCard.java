@@ -4,30 +4,29 @@ import javax.swing.*;
 
 public class SpecialCard {
 
-    private int victoryPoints;
     private ImageIcon image;
-    private String specialType;
+    private SpecialCardType type;
 
-    public SpecialCard(SpecialCardType special)
-    {
-        image = null;
-        specialType = special.name();
+    public SpecialCard(SpecialCardType type) {
 
-        switch (special)
-        {
-            case LARGEST_ARMY, LONGEST_ROAD: victoryPoints = 2;
+        this.type = type;
+        //TO DO: add images to special cards
+
+            switch (type) {
+                case LONGEST_ROAD -> image = new ImageIcon("src/main/resources/game/catan/Cards/SpecialCards/LONGEST_ROAD.png");
+                case LARGEST_ARMY -> image = new ImageIcon("src/main/resources/game/catan/Cards/SpecialCards/LARGEST_ARMY.png");
+            }
         }
-    }
 
-    public enum SpecialCardType{LARGEST_ARMY, LONGEST_ROAD}
 
-    public String getType()
-    {
-        return specialType;
-    }
     public ImageIcon getImage()
     {
         return image;
+    }
+
+    public SpecialCardType getType()
+    {
+        return type;
     }
 
 }
