@@ -60,5 +60,9 @@ public class Stockpile {
             case WOOL -> this.wool -= count;
         }
     }
+
+    public int getTotal() {
+        return this.bricks + this.wheat + this.wood + this.ore + this.wool;
+    }
 }
 

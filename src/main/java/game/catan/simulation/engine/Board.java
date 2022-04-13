@@ -18,6 +18,7 @@ public class Board {
     private Dice dice;
     private Stack<DevelopmentCard> developmentCards;
     private Stockpile stockpile;
+    private Player[] players;
 
     public Board(Tile[][] tiles) {
         // starts with 19 resource cards for each resource
@@ -26,12 +27,43 @@ public class Board {
         this.tiles = tiles;
     }
 
+    public Board(Tile[][] tiles, int numOfPlayers) {
+        this(tiles);
+        // will fix
+        this.players = new Player[numOfPlayers];
+    }
+
+    // discard half of every player's resource deck
+    public void discardHalf() {
+        // TODO: prompt user for which resources to discard
+
+        for (Player player: players) {
+            Stockpile playerResources = player.getResources();
+            int total = playerResources.getTotal();
+            if (total > 7) {
+                while (playerResources.getTotal() > total / 2) {
+                    // TODO: remove resource type that player selects
+                    // playerResources.remove();
+                    break;
+                }
+            }
+        }
+    }
+
+    public void moveRobber(Tile tile){
+        robberTile = tile;
+    }
+
+    public void stealFromPlayer(Player player){
+
+    }
+
     public void initializeRobber() {
         for (Tile[] tile : tiles) {
             for (Tile value : tile) {
                 if (value.getResource() == ResourceType.DESERT) {
                     robberTile = value;
-                    break;
+                    return;
                 }
             }
         }
