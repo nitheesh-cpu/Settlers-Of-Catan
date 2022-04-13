@@ -147,6 +147,8 @@ public class GameState {
                 }
             }
         }
+
+        this.board = new Board(tiles);
     }
 
     public void createRoads(Tile[][] tiles, Pane roadPane) {

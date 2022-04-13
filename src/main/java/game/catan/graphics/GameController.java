@@ -5,14 +5,22 @@ import game.catan.simulation.engine.Initialize;
 import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Tile;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -20,6 +28,24 @@ import static game.catan.simulation.engine.Initialize.tilePatterns;
 import static game.catan.simulation.engine.Initialize.waterPattern;
 
 public class GameController {
+    @FXML
+    private ScrollPane actionLogScrollPane;
+
+    @FXML
+    private TextFlow actionLogTextFlow;
+
+    @FXML
+    private Text actionLogTitle;
+
+    @FXML
+    private ImageView build;
+
+    @FXML
+    private ScrollPane cardsScrollPane;
+
+    @FXML
+    private Text cardsTitle;
+
     @FXML
     private Circle dice01;
 
@@ -76,6 +102,60 @@ public class GameController {
 
     @FXML
     private Circle dice43;
+
+    @FXML
+    private ImageView endTurn;
+
+    @FXML
+    private ImageView harbor1;
+
+    @FXML
+    private ImageView harbor2;
+
+    @FXML
+    private ImageView harbor3;
+
+    @FXML
+    private ImageView harbor4;
+
+    @FXML
+    private ImageView harbor5;
+
+    @FXML
+    private ImageView harbor6;
+
+    @FXML
+    private ImageView harbor7;
+
+    @FXML
+    private ImageView harbor8;
+
+    @FXML
+    private ImageView harbor9;
+
+    @FXML
+    private ImageView help;
+
+    @FXML
+    private Text inventoryTitle1;
+
+    @FXML
+    private Text inventoryTitle2;
+
+    @FXML
+    private Text inventoryTitle3;
+
+    @FXML
+    private Pane roadPane;
+
+    @FXML
+    private VBox root;
+
+    @FXML
+    private Pane settlementPane;
+
+    @FXML
+    private Text statsTitle;
 
     @FXML
     private Polygon tile01;
@@ -135,6 +215,9 @@ public class GameController {
     private Polygon tile43;
 
     @FXML
+    private Text turnTitle;
+
+    @FXML
     private Polygon water1;
 
     @FXML
@@ -189,46 +272,7 @@ public class GameController {
     private Polygon water9;
 
     @FXML
-    private ImageView harbor1;
-
-    @FXML
-    private ImageView harbor2;
-
-    @FXML
-    private ImageView harbor3;
-
-    @FXML
-    private ImageView harbor4;
-
-    @FXML
-    private ImageView harbor5;
-
-    @FXML
-    private ImageView harbor6;
-
-    @FXML
-    private ImageView harbor7;
-
-    @FXML
-    private ImageView harbor8;
-
-    @FXML
-    private ImageView harbor9;
-
-    @FXML
-    private ImageView build;
-
-    @FXML
-    private ImageView endTurn;
-
-    @FXML
-    private ImageView help;
-
-    @FXML
-    private Pane roadPane;
-
-    @FXML
-    private Pane settlementPane;
+    private TextFlow cardsTextFlow;
 
     private Polygon[] waters;
     public Polygon[][] tilePolygons;
@@ -237,7 +281,7 @@ public class GameController {
     private ImageView[] harborImages;
 
     @FXML
-    public void initialize() throws FileNotFoundException {
+    public void initialize() throws IOException {
         Initialize.init(); //Initialize images
 
         //Initialize tiles
@@ -260,6 +304,7 @@ public class GameController {
         gameState.setTiles(tileObjs);
         gameState.initializeTileNumbers();
         gameState.getBoard().print();
+
         for (int r = 0; r < circles.length; r++)
             for (int c = 0; c < circles[r].length; c++) {
                 if ((tileObjs[r][c].getTileNumber() > -1))
@@ -274,7 +319,6 @@ public class GameController {
         ResourceType[] harbors = {ResourceType.BRICK, ResourceType.WOOL, ResourceType.ORE, ResourceType.WHEAT, ResourceType.WOOD, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC};
         List<ResourceType> harborsList = Arrays.stream(harbors).collect(Collectors.toList());
         Collections.shuffle(harborsList);
-        System.out.println(harborsList);
         harborImages = new ImageView[]{harbor1, harbor2, harbor3, harbor4, harbor5, harbor6, harbor7, harbor8, harbor9};
         for (ImageView harbor : harborImages) {
             harbor.setImage(Initialize.harborImages.get(harborsList.remove(0)));
@@ -287,28 +331,68 @@ public class GameController {
 
         gameState.createRoads(tileObjs, roadPane);
         gameState.createSettlements(tileObjs, settlementPane);
+        BackgroundFill background_fill = new BackgroundFill(Color.WHITE,
+                CornerRadii.EMPTY, Insets.EMPTY);
 
+//        root.setBackground(new Background(background_fill));
+//        actionLogTextFlow.setBackground(new Background(background_fill));
+//        cardsTextFlow.setBackground(new Background(background_fill));
         //structures[0] == top left then go clockwise
         //roads[0] == top left then go clockwise
 
         gameState.start();
     }
 
+    private double xoffSet = 0;
+    private double yoffSet = 0;
+
+    @FXML
+    void mousePressed(MouseEvent event) {
+        xoffSet = event.getSceneX ();
+        yoffSet = event.getSceneY ();
+    }
+
+    @FXML
+    void mouseReleased(MouseEvent event) {
+        HelloApplication.stage.setOpacity (1.0f);
+    }
+
+    @FXML
+    void mouseDragged(MouseEvent event) {
+        HelloApplication.stage.setX(event.getScreenX ()- xoffSet);
+        HelloApplication.stage.setY (event.getScreenY ()- yoffSet);
+        HelloApplication.stage.setOpacity (0.8f);
+    }
+
+    @FXML
+    void onDragDone(MouseEvent event) {
+        HelloApplication.stage.setOpacity (1.0f);
+    }
+
 
     @FXML
     void buildClicked(MouseEvent event) {
-
+        System.out.println("Build Clicked");
     }
 
     @FXML
     void endTurnClicked(MouseEvent event) {
-
+        System.out.println("End Turn Clicked");
     }
 
     @FXML
     void helpClicked(MouseEvent event) {
-
+        System.out.println("Help Clicked");
     }
 
+    @FXML
+    void closeClicked(MouseEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    void minimizeClicked(MouseEvent event) {
+        HelloApplication.stage.setIconified(true);
+    }
 
 }

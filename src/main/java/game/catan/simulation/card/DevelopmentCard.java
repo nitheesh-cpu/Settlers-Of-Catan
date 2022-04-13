@@ -4,36 +4,49 @@ import javax.swing.*;
 
 public class DevelopmentCard {
 
-    private int victoryPoints;
     private ImageIcon image;
-    private String type;
+    private DevelopmentCardType type;
+    private String name;
 
-
-    public DevelopmentCard(ImageIcon i, DevelopmentCardType type)
+    public DevelopmentCard(String name, DevelopmentCardType type)
     {
+        this.name = name;
+        this.type = type;
+
+        // TO DO: add images to dev cards
         switch (type) {
-            case CHAPEL, GREAT_HALL, LIBRARY, MARKET, UNIVERSITY -> victoryPoints = 1;
-            default -> victoryPoints = 0;
+            case VICTORY_POINT -> {
+                switch (name) {
+                    case "Chapel" -> image = new ImageIcon("src/main/resources/game/catan/Cards/VictoryPointCards/CHAPEL.png");
+                    case "Great Hall" -> image = new ImageIcon("src/main/resources/game/catan/Cards/VictoryPointCards/GREAT_HALL.png");
+                    case "Library" -> image = new ImageIcon("src/main/resources/game/catan/Cards/VictoryPointCards/LIBRARY.png");
+                    case "Market" -> image = new ImageIcon("src/main/resources/game/catan/Cards/VictoryPointCards/MARKET.png");
+                    case "University" -> image = new ImageIcon("src/main/resources/game/catan/Cards/VictoryPointCards/UNIVERSITY.png");
+                }
+            }
+            case KNIGHT -> image = new ImageIcon("src/main/resources/game/catan/Cards/KnightCard/KNIGHT.png");
+            case PROGRESS -> {
+                switch (name) {
+                    case "Monopoly" -> image = new ImageIcon("src/main/resources/game/catan/Cards/ProgressCards/MONOPOLY.png");
+                    case "Road Building" -> image = new ImageIcon("src/main/resources/game/catan/Cards/ProgressCards/ROAD_BUILDING.png");
+                    case "Year of Plenty" -> image = new ImageIcon("src/main/resources/game/catan/Cards/ProgressCards/YEAR_OF_PLENTY.png");
+                }
+            }
         }
-        this.type = type.name();
-        image = i;
     }
-
-    public enum DevelopmentCardType {CHAPEL, GREAT_HALL, LIBRARY,
-    MARKET, UNIVERSITY, KNIGHT, ROAD_BUILDING, MONOPOLY,
-    YEAR_OF_PLENTY}
-
-   public int getVictoryPoints()
-   {
-       return victoryPoints;
-   }
 
    public ImageIcon getImage()
    {
        return image;
    }
-   public String getType()
+
+   public String getName() {
+       return name;
+   }
+
+   public DevelopmentCardType getType()
    {
        return type;
    }
 }
+

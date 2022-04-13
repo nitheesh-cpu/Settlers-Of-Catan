@@ -1,11 +1,13 @@
 package game.catan.simulation.engine;
 
 import game.catan.simulation.card.DevelopmentCard;
+import game.catan.simulation.card.DevelopmentCardType;
 import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Road;
 import game.catan.simulation.structures.Structure;
 import game.catan.simulation.structures.Tile;
 
+import java.util.Collections;
 import java.util.Stack;
 
 public class Board {
@@ -20,6 +22,7 @@ public class Board {
     public Board(Tile[][] tiles) {
         // starts with 19 resource cards for each resource
         stockpile = new Stockpile(19, 19, 19, 19, 19);
+        developmentCards = new Stack<>();
         this.tiles = tiles;
     }
 
@@ -36,10 +39,26 @@ public class Board {
 
     public void createCards() {
         int numOfKnight = 14;
-        int numOfProgress = 6;
+        int numOfProgress = 3; // 6 in total
         int numOfVictory = 5;
 
-        // TO DO: create development cards
+        String[] victoryCards = new String[]{"Chapel", "Great Hall", "Library", "Market", "University"};
+        String[] progressCards = new String[]{"Monopoly", "Road Building", "Year of Plenty"};
+
+        for (int i = 0; i < numOfKnight; i++) {
+            developmentCards.push(new DevelopmentCard("Knight", DevelopmentCardType.KNIGHT));
+        }
+
+        for (int i = 0; i < numOfProgress; i++) {
+            developmentCards.push(new DevelopmentCard(progressCards[i], DevelopmentCardType.PROGRESS));
+            developmentCards.push(new DevelopmentCard(progressCards[i], DevelopmentCardType.PROGRESS));
+        }
+
+        for (int i = 0; i < numOfVictory; i++) {
+            developmentCards.push(new DevelopmentCard(victoryCards[i], DevelopmentCardType.VICTORY_POINT));
+        }
+
+        Collections.shuffle(developmentCards);
     }
 
     public Tile[][] getTiles() {
@@ -47,9 +66,9 @@ public class Board {
     }
 
     public void print() {
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
-                System.out.print(tiles[i][j].getResource() + " " + tiles[i][j].getTileNumber() + "\n");
+        for (Tile[] tile : tiles) {
+            for (Tile value : tile) {
+                System.out.print(value.getResource() + " " + value.getTileNumber() + "\n");
             }
         }
     }
