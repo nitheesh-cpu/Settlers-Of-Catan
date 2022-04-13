@@ -1,6 +1,5 @@
 package game.catan.graphics;
 
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import game.catan.simulation.engine.GameState;
 import game.catan.simulation.engine.Initialize;
 import game.catan.simulation.structures.ResourceType;
@@ -25,7 +24,6 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static game.catan.graphics.HelloApplication.logger;
 import static game.catan.simulation.engine.Initialize.tilePatterns;
 import static game.catan.simulation.engine.Initialize.waterPattern;
 
@@ -276,12 +274,6 @@ public class GameController {
     @FXML
     private TextFlow cardsTextFlow;
 
-    @FXML
-    private FontAwesomeIconView minimizeIcon;
-
-    @FXML
-    private FontAwesomeIconView closeIcon;
-
     private Polygon[] waters;
     public Polygon[][] tilePolygons;
     private Circle[][] circles;
@@ -327,7 +319,6 @@ public class GameController {
         ResourceType[] harbors = {ResourceType.BRICK, ResourceType.WOOL, ResourceType.ORE, ResourceType.WHEAT, ResourceType.WOOD, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC};
         List<ResourceType> harborsList = Arrays.stream(harbors).collect(Collectors.toList());
         Collections.shuffle(harborsList);
-        logger.info("Created harbors: " + harborsList);
         harborImages = new ImageView[]{harbor1, harbor2, harbor3, harbor4, harbor5, harbor6, harbor7, harbor8, harbor9};
         for (ImageView harbor : harborImages) {
             harbor.setImage(Initialize.harborImages.get(harborsList.remove(0)));
@@ -381,17 +372,17 @@ public class GameController {
 
     @FXML
     void buildClicked(MouseEvent event) {
-        logger.info("Build Clicked");
+        System.out.println("Build Clicked");
     }
 
     @FXML
     void endTurnClicked(MouseEvent event) {
-        logger.info("End Turn Clicked");
+        System.out.println("End Turn Clicked");
     }
 
     @FXML
     void helpClicked(MouseEvent event) {
-        logger.info("Help Clicked");
+        System.out.println("Help Clicked");
     }
 
     @FXML
