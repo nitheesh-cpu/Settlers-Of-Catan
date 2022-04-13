@@ -1,5 +1,6 @@
 package game.catan.graphics;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import game.catan.simulation.engine.GameState;
 import game.catan.simulation.engine.Initialize;
 import game.catan.simulation.structures.ResourceType;
@@ -10,19 +11,21 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static game.catan.graphics.HelloApplication.logger;
 import static game.catan.simulation.engine.Initialize.tilePatterns;
 import static game.catan.simulation.engine.Initialize.waterPattern;
 
@@ -273,6 +276,11 @@ public class GameController {
     @FXML
     private TextFlow cardsTextFlow;
 
+    @FXML
+    private FontAwesomeIconView minimizeIcon;
+
+    @FXML
+    private FontAwesomeIconView closeIcon;
 
     private Polygon[] waters;
     public Polygon[][] tilePolygons;
@@ -281,7 +289,7 @@ public class GameController {
     private ImageView[] harborImages;
 
     @FXML
-    public void initialize() throws FileNotFoundException {
+    public void initialize() throws IOException {
         Initialize.init(); //Initialize images
 
         //Initialize tiles
@@ -319,7 +327,7 @@ public class GameController {
         ResourceType[] harbors = {ResourceType.BRICK, ResourceType.WOOL, ResourceType.ORE, ResourceType.WHEAT, ResourceType.WOOD, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC};
         List<ResourceType> harborsList = Arrays.stream(harbors).collect(Collectors.toList());
         Collections.shuffle(harborsList);
-        System.out.println(harborsList);
+        logger.info("Created harbors: " + harborsList);
         harborImages = new ImageView[]{harbor1, harbor2, harbor3, harbor4, harbor5, harbor6, harbor7, harbor8, harbor9};
         for (ImageView harbor : harborImages) {
             harbor.setImage(Initialize.harborImages.get(harborsList.remove(0)));
@@ -334,31 +342,66 @@ public class GameController {
         gameState.createSettlements(tileObjs, settlementPane);
         BackgroundFill background_fill = new BackgroundFill(Color.WHITE,
                 CornerRadii.EMPTY, Insets.EMPTY);
-        root.setBackground(new Background(background_fill));
-        actionLogTextFlow.setBackground(new Background(background_fill));
-        cardsTextFlow.setBackground(new Background(background_fill));
 
+//        root.setBackground(new Background(background_fill));
+//        actionLogTextFlow.setBackground(new Background(background_fill));
+//        cardsTextFlow.setBackground(new Background(background_fill));
         //structures[0] == top left then go clockwise
         //roads[0] == top left then go clockwise
 
         gameState.start();
     }
 
+    private double xoffSet = 0;
+    private double yoffSet = 0;
+
+    @FXML
+    void mousePressed(MouseEvent event) {
+        xoffSet = event.getSceneX ();
+        yoffSet = event.getSceneY ();
+    }
+
+    @FXML
+    void mouseReleased(MouseEvent event) {
+        HelloApplication.stage.setOpacity (1.0f);
+    }
+
+    @FXML
+    void mouseDragged(MouseEvent event) {
+        HelloApplication.stage.setX(event.getScreenX ()- xoffSet);
+        HelloApplication.stage.setY (event.getScreenY ()- yoffSet);
+        HelloApplication.stage.setOpacity (0.8f);
+    }
+
+    @FXML
+    void onDragDone(MouseEvent event) {
+        HelloApplication.stage.setOpacity (1.0f);
+    }
+
 
     @FXML
     void buildClicked(MouseEvent event) {
-
+        logger.info("Build Clicked");
     }
 
     @FXML
     void endTurnClicked(MouseEvent event) {
-
+        logger.info("End Turn Clicked");
     }
 
     @FXML
     void helpClicked(MouseEvent event) {
-
+        logger.info("Help Clicked");
     }
 
+    @FXML
+    void closeClicked(MouseEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    void minimizeClicked(MouseEvent event) {
+        HelloApplication.stage.setIconified(true);
+    }
 
 }
