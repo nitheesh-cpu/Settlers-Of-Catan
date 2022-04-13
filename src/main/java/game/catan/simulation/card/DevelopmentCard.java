@@ -7,11 +7,13 @@ public class DevelopmentCard {
     private ImageIcon image;
     private DevelopmentCardType type;
     private String name;
+    //private Player owner;
 
-    public DevelopmentCard(String name, DevelopmentCardType type)
+    public DevelopmentCard(String name, DevelopmentCardType type/*Player p*/)
     {
         this.name = name;
         this.type = type;
+        //owner = p;
 
         // TO DO: add images to dev cards
         switch (type) {
@@ -48,5 +50,9 @@ public class DevelopmentCard {
    {
        return type;
    }
+   /*public Player getOwner()
+   {
+       return owner;
+   }*/
 }
 
