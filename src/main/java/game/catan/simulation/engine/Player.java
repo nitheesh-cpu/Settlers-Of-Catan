@@ -40,6 +40,16 @@ public class Player {
         return null;
     }
 
+    public Color getColor() {
+        return color;
+        // How do I pass the enum thing onto here
+    }
+
+    public int getResource(Stockpile n) {
+
+        return n.getBricks() + n.getOre() + n.getWheat() + n.getWood() + n.
+    }
+
 
 
 
