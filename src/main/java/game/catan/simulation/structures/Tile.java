@@ -21,6 +21,8 @@ public class Tile {
     private ImagePattern numberPattern;
     public static List<Integer> numbers;
     private Location location;
+    private Edge[] edges;
+    private Vertex[] vertices;
 
 
     public Tile(ResourceType r, Location location){

@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 public class Road {
     private Location location;
     private Rectangle rectangle;
-//    private Player owner;
+    //private Player owner;
 
     public Road(Location loc, Rectangle rect) {
         location = loc;
@@ -21,8 +21,8 @@ public class Road {
         return rectangle;
     }
 
-//    public void setOwner(Player p){
-//        owner = p;
-//    }
-
+    /* public void setOwner(Player p){
+        owner = p;
+/   }
+    */
 }
