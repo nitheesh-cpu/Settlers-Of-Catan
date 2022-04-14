@@ -1,5 +1,6 @@
 package game.catan.simulation.engine;
 import game.catan.simulation.card.DevelopmentCard;
+import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Structure;
 import game.catan.simulation.structures.Tile;
 
@@ -9,7 +10,6 @@ import java.util.ArrayList;
 public class Player {
     private String name;
     private Color color;
-    //public static Stockpile resources;
     private ArrayList<DevelopmentCard> devCards;
     private ArrayList<Structure> structures;
     //private ArrayList<Road> roads;    -for some reason it shows an error with the type Road
@@ -39,11 +39,5 @@ public class Player {
     public Tile[] getAdjacentTiles() {
         return null;
     }
-
-
-
-
-
-
 
 }

@@ -7,6 +7,7 @@ import game.catan.simulation.structures.Road;
 import game.catan.simulation.structures.Structure;
 import game.catan.simulation.structures.Tile;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
@@ -31,6 +32,37 @@ public class Board {
         this(tiles);
         // will fix
         this.players = new Player[numOfPlayers];
+    }
+
+    public void produceResources(int roll) {
+        // TODO: need to test
+        ArrayList<Tile> tilesToProduce = new ArrayList<>();
+
+        for (Tile[] row: tiles) {
+            for (Tile tile: row) {
+                if (tile.getResource() != ResourceType.DESERT && !tile.equals(robberTile) && tile.getTileNumber() == roll) {
+                    tilesToProduce.add(tile);
+                }
+            }
+        }
+
+        for (Tile tile: tilesToProduce) {
+            ResourceType resource = tile.getResource();
+
+            for (Structure structure: tile.getStructures()) {
+                if (structure == null) continue;
+
+                Player structureOwner = structure.getOwner();
+
+                if (structure.getType() == Structure.StructureType.SETTLEMENT) {
+                    structureOwner.getResources().add(resource);
+                } else {
+                    structureOwner.getResources().add(resource, 2);
+                }
+            }
+        }
+
+
     }
 
     // discard half of every player's resource deck

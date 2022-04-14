@@ -370,7 +370,6 @@ public class GameController {
         HelloApplication.stage.setOpacity (1.0f);
     }
 
-
     @FXML
     void buildClicked(MouseEvent event) {
         System.out.println("Build Clicked");

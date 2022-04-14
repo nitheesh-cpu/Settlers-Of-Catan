@@ -22,6 +22,9 @@ public class Tile {
     public static List<Integer> numbers;
     private Location location;
 
+    public Tile() {
+
+    }
 
     public Tile(ResourceType r, Location location){
         structures = new Structure[6];

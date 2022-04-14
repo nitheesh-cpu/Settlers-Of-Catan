@@ -7,11 +7,16 @@ import javafx.scene.image.ImageView;
 public class Structure {
 
     private Location location;
-    private Player player;
+    private Player owner;
     private ImageView image;
     private StructureType type;
 
     public Structure(Location location, ImageView image) {
+        this(null, location, image);
+    }
+
+    public Structure(Player owner, Location location, ImageView image) {
+        this.owner = owner;
         this.type = StructureType.SETTLEMENT;
         this.location = location;
         this.image = image;
@@ -25,12 +30,12 @@ public class Structure {
         this.location = location;
     }
 
-    public Player getPlayer() {
-        return player;
+    public Player getOwner() {
+        return owner;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setOwner(Player owner) {
+        this.owner = owner;
     }
 
     public ImageView getImage() {

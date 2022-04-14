@@ -54,7 +54,7 @@ public class GameState {
             // TODO: prompt user for tile to move robber to
             // board.moveRobber();
         } else {
-
+            board.produceResources(roll);
         }
 
 
@@ -304,6 +304,7 @@ public class GameState {
     }
 
     public void createSingularSettlement(int r, int c, int i, Pane settlementPane) {
+        // TODO: Get player who placed settlement
         int[][] roadOffset = new int[][]{{-75, -18}, {-48, -70}, {17, -70}, {44, -18}, {17, 36}, {-48, 36}};
         Structure[] w = tiles[r][c].getStructures();
         int x = (int) tiles[r][c].getPolygon().getLayoutX();
