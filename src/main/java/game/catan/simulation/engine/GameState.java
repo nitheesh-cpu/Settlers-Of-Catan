@@ -30,12 +30,39 @@ public class GameState {
     }
 
     public void start() {
-        // get game seed
+        // TODO: prompt for number of players
+        // TODO: get game seed
+        // TODO: roll dice to get player order
+        // TODO: prompt user for location of roads and settlements
+
         this.board = new Board(tiles);
 
         // Set robber location
         board.initializeRobber();
         board.createCards();
+
+        // TODO: get resources from surrounding tiles of second settlement
+    }
+
+    public void startResourceProduction() {
+        // TODO: dice roll
+        // will fix
+        int roll = new Random().nextInt(7) + 1;
+
+        if (roll == 7) {
+            board.discardHalf();
+            // TODO: prompt user for tile to move robber to
+            // board.moveRobber();
+        } else {
+
+        }
+
+
+    }
+
+    public void rollDice() {
+        // TODO: make dice roll functional
+        System.out.println("Rolling dice...");
     }
 
     public void initializeTileNumbers() {
