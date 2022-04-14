@@ -60,5 +60,49 @@ public class Stockpile {
             case WOOL -> this.wool -= count;
         }
     }
+
+    public int getTotal() {
+        return this.bricks + this.wheat + this.wood + this.ore + this.wool;
+    }
+
+    public int getBricks() {
+        return bricks;
+    }
+
+    public int getWheat() {
+        return wheat;
+    }
+
+    public int getWood() {
+        return wood;
+    }
+
+    public int getOre() {
+        return ore;
+    }
+
+    public int getWool() {
+        return wool;
+    }
+
+    public void setBricks(int bricks) {
+        this.bricks = bricks;
+    }
+
+    public void setWheat(int wheat) {
+        this.wheat = wheat;
+    }
+
+    public void setWood(int wood) {
+        this.wood = wood;
+    }
+
+    public void setOre(int ore) {
+        this.ore = ore;
+    }
+
+    public void setWool(int wool) {
+        this.wool = wool;
+    }
 }
 

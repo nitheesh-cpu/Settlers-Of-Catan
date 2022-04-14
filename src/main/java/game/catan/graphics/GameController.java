@@ -2,6 +2,7 @@ package game.catan.graphics;
 
 import game.catan.simulation.engine.GameState;
 import game.catan.simulation.engine.Initialize;
+import game.catan.simulation.engine.Location;
 import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Tile;
 import javafx.fxml.FXML;
@@ -295,7 +296,7 @@ public class GameController {
         GameState gameState = new GameState();
         for (int r = 0; r < tilePolygons.length; r++)
             for (int c = 0; c < tilePolygons[r].length; c++) {
-                tileObjs[r][c] = (new Tile(resourceNames[tilesList.get(0)]));
+                tileObjs[r][c] = (new Tile(resourceNames[tilesList.get(0)], new Location(r, c)));
                 tileObjs[r][c].setPolygon(tilePolygons[r][c]);
                 tilePolygons[r][c].setFill(tilePatterns[tilesList.remove(0)]);
             }

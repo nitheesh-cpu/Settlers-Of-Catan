@@ -1,6 +1,7 @@
 package game.catan.simulation.engine;
 import game.catan.simulation.card.DevelopmentCard;
 import game.catan.simulation.structures.Structure;
+import game.catan.simulation.structures.Tile;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -23,7 +24,31 @@ public class Player {
     private Boolean[] ports;
     //private ArrayList<Tile> tiles;    -for some reason it shows an error with the type Tile
 
-    public Player() {}        //constructor
+    private Stockpile resources;
+
+    public Player() {
+        resources = new Stockpile();
+    }
+
+    public Stockpile getResources() {
+        return resources;
+    }
+
+
+    // TODO: will just return tiles variable
+    public Tile[] getAdjacentTiles() {
+        return null;
+    }
+
+    public Color getColor() {
+        return color;
+        // How do I pass the enum thing onto here
+    }
+
+    public int getResource(Stockpile n) {
+
+        return n.getBricks() + n.getOre() + n.getWheat() + n.getWood() + n.
+    }
 
 
 

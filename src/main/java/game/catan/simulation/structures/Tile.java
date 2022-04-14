@@ -2,6 +2,7 @@ package game.catan.simulation.structures;
 
 import game.catan.simulation.engine.GameState;
 import game.catan.simulation.engine.Initialize;
+import game.catan.simulation.engine.Location;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
@@ -19,15 +20,19 @@ public class Tile {
     private int tileNumber;
     private ImagePattern numberPattern;
     public static List<Integer> numbers;
+    private Location location;
+    private Edge[] edges;
+    private Vertex[] vertices;
 
 
-    public Tile(ResourceType r){
+    public Tile(ResourceType r, Location location){
         structures = new Structure[6];
         roads = new Road[6];
         resource = r;
         tileNumber = -1;
         int[] tileNumbers = {5,2,6,3,8,10,9,12,11,4,8,10,9,4,5,6,3,11};
         numbers = Arrays.stream(tileNumbers).boxed().collect(Collectors.toList());
+        this.location = location;
     }
 
     public void initialize(){
@@ -57,6 +62,10 @@ public class Tile {
 
     public Road[] getRoads() {
         return roads;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     public void setRoads(Road[] roads) {
