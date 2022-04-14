@@ -16,14 +16,21 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catan2.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1250, 992);
+        //large
+//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catan2.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load(), 1250, 962);
+//        stage.initStyle(StageStyle.TRANSPARENT);
+
+        //small
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catan3.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 758);
+
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
         this.stage = stage;
+        stage.setResizable(true);
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Settlers of Catan");
-        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
