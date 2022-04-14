@@ -8,13 +8,11 @@ import game.catan.simulation.structures.Tile;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
@@ -33,7 +31,7 @@ public class GameController {
     private ScrollPane actionLogScrollPane;
 
     @FXML
-    private TextFlow actionLogTextFlow;
+    private TextArea actionLogText;
 
     @FXML
     private Text actionLogTitle;
@@ -320,10 +318,15 @@ public class GameController {
         ResourceType[] harbors = {ResourceType.BRICK, ResourceType.WOOL, ResourceType.ORE, ResourceType.WHEAT, ResourceType.WOOD, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC};
         List<ResourceType> harborsList = Arrays.stream(harbors).collect(Collectors.toList());
         Collections.shuffle(harborsList);
+        actionLogText.appendText("Shuffled harbors: " + harborsList + "\n");
         harborImages = new ImageView[]{harbor1, harbor2, harbor3, harbor4, harbor5, harbor6, harbor7, harbor8, harbor9};
         for (ImageView harbor : harborImages) {
             harbor.setImage(Initialize.harborImages.get(harborsList.remove(0)));
         }
+        help.setPickOnBounds(true);
+        build.setPickOnBounds(true);
+        endTurn.setPickOnBounds(true);
+
 
         Image img = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png")));
         ImageView view = new ImageView(img);
@@ -335,9 +338,9 @@ public class GameController {
         BackgroundFill background_fill = new BackgroundFill(Color.WHITE,
                 CornerRadii.EMPTY, Insets.EMPTY);
 
-//        root.setBackground(new Background(background_fill));
-//        actionLogTextFlow.setBackground(new Background(background_fill));
-//        cardsTextFlow.setBackground(new Background(background_fill));
+        root.setBackground(new Background(background_fill));
+        actionLogText.setBackground(new Background(background_fill));
+        cardsTextFlow.setBackground(new Background(background_fill));
         //structures[0] == top left then go clockwise
         //roads[0] == top left then go clockwise
 
@@ -372,17 +375,17 @@ public class GameController {
 
     @FXML
     void buildClicked(MouseEvent event) {
-        System.out.println("Build Clicked");
+        actionLogText.appendText("Build clicked\n");
     }
 
     @FXML
     void endTurnClicked(MouseEvent event) {
-        System.out.println("End Turn Clicked");
+        actionLogText.appendText("End turn clicked\n");
     }
 
     @FXML
     void helpClicked(MouseEvent event) {
-        System.out.println("Help Clicked");
+        actionLogText.appendText("Help clicked\n");
     }
 
     @FXML
