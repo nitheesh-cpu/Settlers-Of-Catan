@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Player {
     private String name;
     private Color color;
-    //public static Stockpile resources;
+    public static Stockpile resources;
     private ArrayList<DevelopmentCard> devCards;
     private ArrayList<Structure> structures;
     //private ArrayList<Road> roads;    -for some reason it shows an error with the type Road
@@ -23,7 +23,10 @@ public class Player {
     private Boolean[] ports;
     //private ArrayList<Tile> tiles;    -for some reason it shows an error with the type Tile
 
-    public Player() {}        //constructor
+    public Player()
+    {
+        //constructor
+    }
 
 
 
