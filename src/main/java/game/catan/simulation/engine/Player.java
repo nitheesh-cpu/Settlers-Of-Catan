@@ -47,7 +47,7 @@ public class Player {
 
     public int getResource(Stockpile n) {
 
-        return n.getBricks() + n.getOre() + n.getWheat() + n.getWood() + n.
+        return n.getBricks() + n.getOre() + n.getWheat() + n.getWood() + n.getWool();
     }
 
 

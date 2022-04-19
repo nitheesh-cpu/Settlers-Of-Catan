@@ -22,8 +22,11 @@ public class HelloApplication extends Application {
 //        stage.initStyle(StageStyle.TRANSPARENT);
 
         //small
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catan3.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1200, 758);
+//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catan3.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load(), 1200, 758);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu2.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 970, 690);
 
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);

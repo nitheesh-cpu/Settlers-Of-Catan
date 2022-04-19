@@ -1,20 +1,47 @@
 package game.catan.graphics;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.text.Text;
 
-public class MenuController {
+import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MenuController implements Initializable {
 
     @FXML
-    private StackPane pane;
+    private Button four;
 
     @FXML
-    public void initialize() {
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("game/catan/background/menu_bg.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+    private Button helpButton;
 
+    @FXML
+    private Button large;
 
-        pane.setBackground(new Background(backgroundImage));
+    @FXML
+    private Button playButton;
+
+    @FXML
+    private Button small;
+
+    @FXML
+    private Button three;
+
+    @FXML
+    private Text text1;
+
+    public void threePressed(ActionEvent actionEvent) {
+        System.out.println("3");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        text1.setFill(javafx.scene.paint.Color.WHITE);
     }
 }
