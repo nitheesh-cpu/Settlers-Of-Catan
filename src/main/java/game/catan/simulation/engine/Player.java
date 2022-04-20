@@ -1,5 +1,6 @@
 package game.catan.simulation.engine;
 import game.catan.simulation.card.DevelopmentCard;
+import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Structure;
 import game.catan.simulation.structures.Tile;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class Player {
     private String name;
     private Color color;
-    //public static Stockpile resources;
+    private Stockpile resources;
     private ArrayList<DevelopmentCard> devCards;
     private ArrayList<Structure> structures;
     //private ArrayList<Road> roads;    -for some reason it shows an error with the type Road
@@ -24,7 +25,6 @@ public class Player {
     private Boolean[] ports;
     //private ArrayList<Tile> tiles;    -for some reason it shows an error with the type Tile
 
-    private Stockpile resources;
 
     public Player() {
         resources = new Stockpile();
@@ -45,10 +45,63 @@ public class Player {
         // How do I pass the enum thing onto here
     }
 
-    public int getResource(Stockpile n) {
+    public int getResource(ResourceType n) {
+        switch(n) {
+            case BRICK -> {
+                return resources.getBricks();
+            }
+            case ORE -> {
+                return resources.getOre();
+            }
+            case WOOD -> {
+                return resources.getWood();
+            }
+            case WHEAT -> {
+                return resources.getWheat();
+            }
+            case WOOL -> {
+                return resources.getWool();
 
-        return n.getBricks() + n.getOre() + n.getWheat() + n.getWood() + n.
+                //don't need to return MISC or desert cuz thats 0 by default
+            }
+
+
+        }
+        return -1;
+
+
     }
+
+    public int getNumKnights() {
+        return numKnights;
+    }
+
+    public int getNumSettlements() {
+        return numSettlements;
+    }
+
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    public int getNumRoads() {
+        return numRoads;
+    }
+
+    public int getNumCities() {
+        return numCities;
+    }
+
+    public boolean hasResources(ResourceType x) {
+        return true;
+    }
+
+
+
+
+
+
+
 
 
 
