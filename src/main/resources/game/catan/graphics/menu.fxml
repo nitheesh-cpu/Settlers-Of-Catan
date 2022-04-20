@@ -63,12 +63,12 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Text>
-            <Button fx:id="large" layoutX="442.0" layoutY="397.0" mnemonicParsing="false" onAction="#largePressed" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1; -fx-border-insets: -1;" text="L">
+            <Button fx:id="large" layoutX="493.0" layoutY="397.0" mnemonicParsing="false" onAction="#largePressed" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1; -fx-border-insets: -1;" text="L">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="small" layoutX="493.0" layoutY="397.0" mnemonicParsing="false" onAction="#smallPressed" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1; -fx-border-insets: -1;" text="S">
+            <Button fx:id="small" layoutX="442.0" layoutY="397.0" mnemonicParsing="false" onAction="#smallPressed" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1; -fx-border-insets: -1;" text="S">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

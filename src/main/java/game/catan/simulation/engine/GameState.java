@@ -34,6 +34,7 @@ public class GameState {
     public void start() {
         numPlayers = MenuController.players;
         // TODO: get game seed
+
         // TODO: roll dice to get player order
         // TODO: prompt user for location of roads and settlements
 
