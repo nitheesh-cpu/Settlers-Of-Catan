@@ -46,7 +46,7 @@ public class Player {
     }
 
     public int getResource(ResourceType n) {
-        switch(n) {
+        switch (n) {
             case BRICK -> {
                 return resources.getBricks();
             }
@@ -92,9 +92,30 @@ public class Player {
         return numCities;
     }
 
+    public boolean hasResources(ResourceType n) {
+        switch (n) {
+            case BRICK -> {
+                return resources.getBricks() == 0;
+            }
+            case ORE -> {
+                return resources.getOre() == 0;
+            }
+            case WOOD -> {
+                return resources.getWood() == 0;
+            }
+            case WOOL -> {
+                return resources.getWool() == 0;
+            }
+            case WHEAT -> {
+                return resources.getWheat() == 0;
+            }
+
+        }
+        return false;
+    }
 
 
-
+}
 
 
 
