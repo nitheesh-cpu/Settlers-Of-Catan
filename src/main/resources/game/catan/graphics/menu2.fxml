@@ -21,7 +21,7 @@
                </image>
             </ImageView>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="245.0" layoutY="269.0" opacity="0.31" stroke="WHITE" strokeType="INSIDE" width="971.0" />
-            <Button fx:id="playButton" layoutX="338.0" layoutY="456.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 15;" text="Play">
+            <Button fx:id="playButton" layoutX="338.0" layoutY="456.0" mnemonicParsing="false" onAction="#playPressed" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 15;" text="Play">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -32,17 +32,17 @@
                      </color>
                   </DropShadow>
                </effect></Button>
-            <Button fx:id="three" layoutX="443.0" layoutY="314.0" mnemonicParsing="false" onAction="#threePressed" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1;" text="3">
+            <Button fx:id="three" layoutX="443.0" layoutY="314.0" mnemonicParsing="false" onAction="#threePressed" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1; -fx-border-insets: -1;" text="3">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="four" layoutX="494.0" layoutY="314.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1;" text="4">
+            <Button fx:id="four" layoutX="494.0" layoutY="314.0" mnemonicParsing="false" onAction="#fourPressed" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1; -fx-border-insets: -1;" text="4">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="helpButton" layoutX="527.0" layoutY="456.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 15;" text="Help">
+            <Button fx:id="helpButton" layoutX="527.0" layoutY="456.0" mnemonicParsing="false" onAction="#helpPressed" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 15;" text="Help">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -63,12 +63,12 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Text>
-            <Button fx:id="large" layoutX="442.0" layoutY="397.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1;" text="L">
+            <Button fx:id="large" layoutX="442.0" layoutY="397.0" mnemonicParsing="false" onAction="#largePressed" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1; -fx-border-insets: -1;" text="L">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="small" layoutX="493.0" layoutY="397.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1;" text="S">
+            <Button fx:id="small" layoutX="493.0" layoutY="397.0" mnemonicParsing="false" onAction="#smallPressed" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1; -fx-border-insets: -1;" text="S">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

@@ -379,7 +379,7 @@ public class GameController {
 
     @FXML //for top menu minimize button
     void minimizeClicked(MouseEvent event) {
-        HelloApplication.stage.setIconified(true);
+        HelloApplication.gameStage.setIconified(true);
     }
 
     //top menu window movement
@@ -391,19 +391,19 @@ public class GameController {
 
     @FXML
     void mouseReleased(MouseEvent event) {
-        HelloApplication.stage.setOpacity (1.0f);
+        HelloApplication.gameStage.setOpacity (1.0f);
     }
 
     @FXML
     void mouseDragged(MouseEvent event) {
-        HelloApplication.stage.setX(event.getScreenX ()- xoffSet);
-        HelloApplication.stage.setY (event.getScreenY ()- yoffSet);
-        HelloApplication.stage.setOpacity (0.8f);
+        HelloApplication.gameStage.setX(event.getScreenX ()- xoffSet);
+        HelloApplication.gameStage.setY (event.getScreenY ()- yoffSet);
+        HelloApplication.gameStage.setOpacity (0.8f);
     }
 
     @FXML
     void onDragDone(MouseEvent event) {
-        HelloApplication.stage.setOpacity (1.0f);
+        HelloApplication.gameStage.setOpacity (1.0f);
     }
 
 }
