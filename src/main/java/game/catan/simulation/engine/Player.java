@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Player {
     private String name;
     private Color color;
-    private Stockpile resources;
+    //public static Stockpile resources;
     private ArrayList<DevelopmentCard> devCards;
     private ArrayList<Structure> structures;
     //private ArrayList<Road> roads;    -for some reason it shows an error with the type Road
@@ -25,6 +25,7 @@ public class Player {
     private Boolean[] ports;
     //private ArrayList<Tile> tiles;    -for some reason it shows an error with the type Tile
 
+    private Stockpile resources;
 
     public Player() {
         resources = new Stockpile();
@@ -68,25 +69,21 @@ public class Player {
 
         }
         return -1;
-
-
     }
 
-    public int getNumKnights() {
-        return numKnights;
+    //adding resources
+    public void addResources(ResourceType n, int count)
+    {
+        resources.add(n,count);
     }
 
-    public int getNumSettlements() {
-        return numSettlements;
+    //total resources
+    public int totalResources()
+    {
+        return resources.getBricks()+resources.getWool()+resources.getWheat()+resources.getWood();
     }
 
-    public int getVictoryPoints() {
-        return victoryPoints;
-    }
 
-    public int getNumRoads() {
-        return numRoads;
-    }
 
     public int getNumCities() {
         return numCities;
@@ -117,15 +114,3 @@ public class Player {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-}
