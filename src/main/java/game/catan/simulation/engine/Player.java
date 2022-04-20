@@ -92,9 +92,7 @@ public class Player {
         return numCities;
     }
 
-    public boolean hasResources(ResourceType x) {
-        return true;
-    }
+
 
 
 
