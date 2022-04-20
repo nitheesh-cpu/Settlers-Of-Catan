@@ -2,14 +2,23 @@ package game.catan.graphics;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,12 +45,67 @@ public class MenuController implements Initializable {
     @FXML
     private Text text1;
 
-    public void threePressed(ActionEvent actionEvent) {
-        System.out.println("3");
-    }
+    public static int size = -1;
+    public static int players = -1;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         text1.setFill(javafx.scene.paint.Color.WHITE);
+        small.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        large.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        three.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        four.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+    }
+
+    @FXML
+    void helpPressed(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void playPressed(ActionEvent event) throws IOException {
+        if(size == -1 || players == -1) {
+            Stage stage = (Stage) playButton.getScene().getWindow();
+            Alert.AlertType type = Alert.AlertType.ERROR;
+            Alert alert = new Alert (type, "");
+            alert.initModality (Modality.APPLICATION_MODAL);
+            alert.initOwner (stage);
+            alert.getDialogPane().setContentText("Please go back and select a size and number of players");
+            alert.getDialogPane().setHeaderText("Missing parameters!"); // you can set header text
+            alert.showAndWait();
+        }else if(size == 0) {
+            HelloApplication.showSmall();
+        }else if(size == 1) {
+            HelloApplication.showLarge();
+        }
+    }
+
+    @FXML
+    void smallPressed(ActionEvent event) {
+        size = 0;
+        small.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        large.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+    }
+
+    @FXML
+    void largePressed(ActionEvent event) {
+        size = 1;
+        large.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        small.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+    }
+
+    @FXML
+    void threePressed(ActionEvent event) {
+        players = 3;
+        four.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        three.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+    }
+
+    @FXML
+    void fourPressed(ActionEvent event) {
+        players = 4;
+        four.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        three.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
     }
 }
