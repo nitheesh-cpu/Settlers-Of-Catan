@@ -3,26 +3,16 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Arc?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
-
-<VBox fx:id="root" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<VBox fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
    <children>
       <AnchorPane onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="35.0" prefWidth="1250.0" style="-fx-background-color: #4a5d6f; -fx-background-radius: 18 18 0 0; -fx-border-radius: 18 18 0 0;">
          <children>
-            <Text fill="WHITE" layoutX="21.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Settlers Of Catan" wrappingWidth="166.103515625">
+            <Text fx:id="title" fill="WHITE" layoutX="21.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settlers Of Catan" wrappingWidth="166.103515625">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -49,7 +39,7 @@
       </AnchorPane>
       <HBox prefHeight="71.0" prefWidth="1250.0">
          <children>
-            <Pane prefHeight="63.0" prefWidth="1249.0" style="-fx-background-color: FFFFFF;">
+            <Pane prefHeight="63.0" prefWidth="1249.0">
                <children>
                   <Text fx:id="turnTitle" layoutX="458.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1's Turn">
                      <font>
@@ -61,27 +51,18 @@
          </children></HBox>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0">
          <children>
-            <Pane prefHeight="792.0" prefWidth="256.0" style="-fx-background-color: FFFFFF;">
+            <Pane prefHeight="792.0" prefWidth="256.0">
                <children>
-                  <ScrollPane fx:id="actionLogScrollPane" layoutX="7.0" layoutY="84.0" prefHeight="250.0" prefWidth="244.0" style="-fx-border-width: 3px; -fx-border-style: solid; -fx-background-color: FFFFFF;">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="245.0" prefWidth="222.0" style="-fx-background-color: FFFFFF;">
-                           <children>
-                              <TextArea fx:id="actionLogText" prefHeight="244.0" prefWidth="224.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
-                  <ScrollPane fx:id="cardsScrollPane" layoutX="8.0" layoutY="403.0" prefHeight="284.0" prefWidth="244.0" style="-fx-border-style: solid; -fx-border-width: 3px; -fx-background-color: FFFFFF;">
+                  <ScrollPane fx:id="cardsScrollPane" layoutX="8.0" layoutY="403.0" prefHeight="284.0" prefWidth="244.0">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="262.0" prefWidth="237.0" style="-fx-background-color: FFFFFF;">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="262.0" prefWidth="237.0">
                            <children>
-                              <TextFlow fx:id="cardsTextFlow" prefHeight="261.0" prefWidth="238.0" style="-fx-background-color: FFFFFF;" />
+                              <TextFlow fx:id="cardsTextFlow" prefHeight="261.0" prefWidth="238.0" />
                            </children>
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <Text fx:id="actionLogTitle" layoutX="12.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action Log" wrappingWidth="200.0">
+                  <Text fx:id="actionLogTitle" layoutX="12.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action Log" wrappingWidth="200.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -91,12 +72,13 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text fx:id="statsTitle" layoutX="24.0" layoutY="743.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Stats" wrappingWidth="200.0">
+                  <Text fx:id="statsTitle" layoutX="24.0" layoutY="733.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Stats" wrappingWidth="200.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
                   <Arc fill="DODGERBLUE" layoutX="224.0" layoutY="34.0" length="180.0" radiusY="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+                  <TextArea fx:id="actionLogText" editable="false" layoutX="8.0" layoutY="47.0" prefHeight="284.0" prefWidth="244.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
                </children></Pane>
             <Pane style="-fx-background-color: FFFFFF;" HBox.hgrow="NEVER">
                <children>
@@ -392,62 +374,62 @@
                         <Image url="@../ButtonResources/Help.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="100.0" fitWidth="492.0" layoutX="24.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="492.0" layoutX="24.0" layoutY="-55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlayerResources/playerStats.png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="72.0" layoutY="-9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text layoutX="72.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="72.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text layoutX="72.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="175.0" layoutY="-9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text layoutX="175.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="175.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text layoutX="175.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="277.0" layoutY="-9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text layoutX="277.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="277.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text layoutX="277.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="378.0" layoutY="-9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text layoutX="378.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="378.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text layoutX="378.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="476.0" layoutY="-9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text layoutX="476.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="476.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text layoutX="476.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="48.0" fitWidth="40.0" layoutX="200.0" layoutY="-86.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="48.0" fitWidth="40.0" layoutX="200.0" layoutY="-96.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlayerResources/player1Icon.png" />
                      </image>

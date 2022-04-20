@@ -350,6 +350,39 @@ public class GameController {
     private double xoffSet = 0;
     private double yoffSet = 0;
 
+
+
+
+
+    //turn buttons
+    @FXML
+    void buildClicked(MouseEvent event) {
+        actionLogText.appendText("Build clicked\n");
+    }
+
+    @FXML
+    void endTurnClicked(MouseEvent event) {
+        actionLogText.appendText("End turn clicked\n");
+    }
+
+    @FXML
+    void helpClicked(MouseEvent event) {
+        actionLogText.appendText("Help clicked\n");
+    }
+
+
+    //top menu related stuffs
+    @FXML //for top menu x button
+    void closeClicked(MouseEvent event) {
+        System.exit(0);
+    }
+
+    @FXML //for top menu minimize button
+    void minimizeClicked(MouseEvent event) {
+        HelloApplication.stage.setIconified(true);
+    }
+
+    //top menu window movement
     @FXML
     void mousePressed(MouseEvent event) {
         xoffSet = event.getSceneX ();
@@ -371,31 +404,6 @@ public class GameController {
     @FXML
     void onDragDone(MouseEvent event) {
         HelloApplication.stage.setOpacity (1.0f);
-    }
-
-    @FXML
-    void buildClicked(MouseEvent event) {
-        actionLogText.appendText("Build clicked\n");
-    }
-
-    @FXML
-    void endTurnClicked(MouseEvent event) {
-        actionLogText.appendText("End turn clicked\n");
-    }
-
-    @FXML
-    void helpClicked(MouseEvent event) {
-        actionLogText.appendText("Help clicked\n");
-    }
-
-    @FXML
-    void closeClicked(MouseEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    void minimizeClicked(MouseEvent event) {
-        HelloApplication.stage.setIconified(true);
     }
 
 }

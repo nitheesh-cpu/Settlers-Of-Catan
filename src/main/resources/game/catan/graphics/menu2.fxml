@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.MenuController">
+   <children>
+      <Pane>
+         <children>
+            <ImageView fitHeight="690.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../MenuResources/menu_bg.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="245.0" layoutY="269.0" opacity="0.31" stroke="WHITE" strokeType="INSIDE" width="971.0" />
+            <Button fx:id="playButton" layoutX="338.0" layoutY="456.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 15;" text="Play">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow height="11.0" offsetX="2.0" offsetY="2.0" radius="5.0" width="11.0">
+                     <color>
+                        <Color red="0.30263158679008484" green="0.27461013197898865" blue="0.27461013197898865" />
+                     </color>
+                  </DropShadow>
+               </effect></Button>
+            <Button fx:id="three" layoutX="443.0" layoutY="314.0" mnemonicParsing="false" onAction="#threePressed" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1;" text="3">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="four" layoutX="494.0" layoutY="314.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1;" text="4">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="helpButton" layoutX="527.0" layoutY="456.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 15;" text="Help">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow height="11.0" offsetX="2.0" offsetY="2.0" radius="5.0" width="11.0">
+                     <color>
+                        <Color red="0.30263158679008484" green="0.27461013197898865" blue="0.27461013197898865" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Text fx:id="text2" fill="WHITE" layoutX="381.0" layoutY="305.0" stroke="BLACK" strokeType="OUTSIDE" text="Number of Players:" textAlignment="CENTER" wrappingWidth="209.13671875">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font></Text>
+            <Text fx:id="text3" fill="WHITE" layoutX="380.0" layoutY="389.0" stroke="BLACK" strokeType="OUTSIDE" text="Screen Size:" textAlignment="CENTER" wrappingWidth="209.13671875">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Text>
+            <Button fx:id="large" layoutX="442.0" layoutY="397.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1;" text="L">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="small" layoutX="493.0" layoutY="397.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 25; -fx-border-style: solid; -fx-border-radius: 25; -fx-border-width: 1;" text="S">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Text fx:id="text1" fill="WHITE" layoutX="247.0" layoutY="119.0" stroke="BLACK" strokeType="OUTSIDE" text="Settlers of Catan" textAlignment="CENTER" wrappingWidth="477.13671875">
+               <font>
+                  <Font name="System Bold" size="57.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</HBox>
