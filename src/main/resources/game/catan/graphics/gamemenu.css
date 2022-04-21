@@ -1,0 +1,14 @@
+#root {
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
+}
+
+#title {
+    -fx-fill: white;
+}
+
+.scroll-pane {
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-background-color: FFFFFF;
+}

@@ -23,15 +23,6 @@
             <children>
                 <Pane layoutX="25.0" prefHeight="757.0" prefWidth="63.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">
                     <children>
-                        <ScrollPane fx:id="actionLogScrollPane" layoutX="15.0" layoutY="45.0" prefHeight="205.0" prefWidth="233.0" style="-fx-border-width: 3px; -fx-border-style: solid; -fx-background-color: FFFFFF;">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="199.0" style="-fx-background-color: FFFFFF;">
-                                    <children>
-                                        <TextArea fx:id="actionLogText" prefHeight="200.0" prefWidth="210.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </ScrollPane>
                         <ScrollPane fx:id="cardsScrollPane" layoutX="15.0" layoutY="285.0" prefHeight="266.0" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-width: 3px; -fx-background-color: FFFFFF;">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="245.0" prefWidth="199.0" style="-fx-background-color: FFFFFF;">
@@ -56,6 +47,7 @@
                                 <Font name="System Bold" size="25.0" />
                             </font>
                         </Text>
+                            <TextArea fx:id="actionLogText" layoutX="16.0" layoutY="51.0" prefHeight="199.0" prefWidth="232.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
                     </children></Pane>
                 <Pane prefHeight="758.0" prefWidth="692.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="NEVER">
                     <children>

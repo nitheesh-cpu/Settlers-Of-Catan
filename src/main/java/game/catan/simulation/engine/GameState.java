@@ -1,5 +1,6 @@
 package game.catan.simulation.engine;
 
+import game.catan.graphics.MenuController;
 import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Road;
 import game.catan.simulation.structures.Structure;
@@ -15,6 +16,7 @@ import java.util.Random;
 import java.util.Stack;
 
 public class GameState {
+    public static int numPlayers;
     public static Stack<Integer> TileNumbers;
     public Tile[][] tiles;
     public HashMap<String, Tile> tileMap;
@@ -30,8 +32,9 @@ public class GameState {
     }
 
     public void start() {
-        // TODO: prompt for number of players
+        numPlayers = MenuController.players;
         // TODO: get game seed
+
         // TODO: roll dice to get player order
         // TODO: prompt user for location of roads and settlements
 
