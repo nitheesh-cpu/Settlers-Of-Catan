@@ -1,5 +1,6 @@
 package game.catan.simulation.engine;
 
+import game.catan.graphics.GameController;
 import game.catan.graphics.MenuController;
 import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Road;
@@ -9,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
 import java.util.HashMap;
@@ -21,23 +23,37 @@ public class GameState {
     public Tile[][] tiles;
     public HashMap<String, Tile> tileMap;
     private Board board;
+    private Random rand;
+    private HashMap<Polygon, Tile> tilePolygonMap;
+    private HashMap<Rectangle, Road> roadMap;
+    private HashMap<ImageView, Structure> structureMap;
+    public static GameController gameController;
 
 
-    public GameState() {
+    public GameState(GameController gameController) {
+        this.gameController = gameController;
         TileNumbers = new Stack<>();
         int[] tileNumbers = {5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11};
         for (int i : tileNumbers)
             TileNumbers.push(i);
         tileMap = new HashMap<>();
+        roadMap = new HashMap<>();
+        structureMap = new HashMap<>();
+        tilePolygonMap = new HashMap<>();
+        for(Tile[] tileRow : tiles) {
+            for (Tile x : tileRow) {
+                tilePolygonMap.put(x.getPolygon(), x);
+            }
+        }
     }
 
     public void start() {
         numPlayers = MenuController.players;
         // TODO: get game seed
-
+        rand = new Random(123);
         // TODO: roll dice to get player order
         // TODO: prompt user for location of roads and settlements
-
+        rollDice();
         this.board = new Board(tiles);
 
         // Set robber location
@@ -63,9 +79,12 @@ public class GameState {
 
     }
 
-    public void rollDice() {
+    public int[] rollDice() {
         // TODO: make dice roll functional
-        System.out.println("Rolling dice...");
+        int roll = rand.nextInt(6) + 1;
+        int roll2 = rand.nextInt(6) + 1;
+        gameController.updateDiceGraphic(roll, roll2);
+        return new int[]{roll, roll2};
     }
 
     public void initializeTileNumbers() {
@@ -244,7 +263,10 @@ public class GameState {
         );
         roadPane.getChildren().add(rect);
         rect.setVisible(false);
-        w[i] = new Road(loc, rect);
+        Road road = new Road(loc, rect);
+        roadMap.put(rect, road);
+        w[i] = road;
+
     }
 
     public void createSettlements(Tile[][] tiles, Pane settlementPane) {
@@ -321,8 +343,10 @@ public class GameState {
         settl.setFitHeight(31);
         settlementPane.getChildren().add(settl);
         settl.setVisible(false);
+        Structure settlement = new Structure(loc, settl);
         //make Structure class
-        w[i] = new Structure(loc, settl);
+        structureMap.put(settl, settlement);
+        w[i] = settlement;
     }
 
 

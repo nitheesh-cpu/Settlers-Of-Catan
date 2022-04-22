@@ -13,6 +13,7 @@ public class Initialize {
     public static ImagePattern waterPattern;
     public static ImagePattern[] dicePatterns;
     public static Map<ResourceType, Image> harborImages;
+    public static Image[] diceImages;
 
 
     public static void init(){
@@ -66,5 +67,15 @@ public class Initialize {
         Map.entry(ResourceType.WOOD, new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Wood.png")))),
         Map.entry(ResourceType.MISC, new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Misc.png"))))
         );
+
+        //dice Images
+        diceImages = new Image[]{
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/1.png"))),
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/2.png"))),
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/3.png"))),
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/4.png"))),
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/5.png"))),
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/6.png"))),
+        };
     }
 }

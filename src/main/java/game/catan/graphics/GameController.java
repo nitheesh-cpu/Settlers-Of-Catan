@@ -23,255 +23,93 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static game.catan.simulation.engine.Initialize.tilePatterns;
-import static game.catan.simulation.engine.Initialize.waterPattern;
+import static game.catan.simulation.engine.Initialize.*;
 
 public class GameController {
-    @FXML
-    private ScrollPane actionLogScrollPane;
-
-    @FXML
-    private TextArea actionLogText;
-
-    @FXML
-    private Text actionLogTitle;
-
-    @FXML
-    private ImageView build;
-
-    @FXML
-    private ScrollPane cardsScrollPane;
-
-    @FXML
-    private Text cardsTitle;
-
-    @FXML
-    private Circle dice01;
-
-    @FXML
-    private Circle dice02;
-
-    @FXML
-    private Circle dice03;
-
-    @FXML
-    private Circle dice11;
-
-    @FXML
-    private Circle dice12;
-
-    @FXML
-    private Circle dice13;
-
-    @FXML
-    private Circle dice14;
-
-    @FXML
-    private Circle dice21;
-
-    @FXML
-    private Circle dice22;
-
-    @FXML
-    private Circle dice23;
-
-    @FXML
-    private Circle dice24;
-
-    @FXML
-    private Circle dice25;
-
-    @FXML
-    private Circle dice31;
-
-    @FXML
-    private Circle dice32;
-
-    @FXML
-    private Circle dice33;
-
-    @FXML
-    private Circle dice34;
-
-    @FXML
-    private Circle dice41;
-
-    @FXML
-    private Circle dice42;
-
-    @FXML
-    private Circle dice43;
-
-    @FXML
-    private ImageView endTurn;
-
-    @FXML
-    private ImageView harbor1;
-
-    @FXML
-    private ImageView harbor2;
-
-    @FXML
-    private ImageView harbor3;
-
-    @FXML
-    private ImageView harbor4;
-
-    @FXML
-    private ImageView harbor5;
-
-    @FXML
-    private ImageView harbor6;
-
-    @FXML
-    private ImageView harbor7;
-
-    @FXML
-    private ImageView harbor8;
-
-    @FXML
-    private ImageView harbor9;
-
-    @FXML
-    private ImageView help;
-
-    @FXML
-    private Text inventoryTitle1;
-
-    @FXML
-    private Text inventoryTitle2;
-
-    @FXML
-    private Text inventoryTitle3;
-
-    @FXML
-    private Pane roadPane;
-
-    @FXML
-    private VBox root;
-
-    @FXML
-    private Pane settlementPane;
-
-    @FXML
-    private Text statsTitle;
-
-    @FXML
-    private Polygon tile01;
-
-    @FXML
-    private Polygon tile02;
-
-    @FXML
-    private Polygon tile03;
-
-    @FXML
-    private Polygon tile11;
-
-    @FXML
-    private Polygon tile12;
-
-    @FXML
-    private Polygon tile13;
-
-    @FXML
-    private Polygon tile14;
-
-    @FXML
-    private Polygon tile21;
-
-    @FXML
-    private Polygon tile22;
-
-    @FXML
-    private Polygon tile23;
-
-    @FXML
-    private Polygon tile24;
-
-    @FXML
-    private Polygon tile25;
-
-    @FXML
-    private Polygon tile31;
-
-    @FXML
-    private Polygon tile32;
-
-    @FXML
-    private Polygon tile33;
-
-    @FXML
-    private Polygon tile34;
-
-    @FXML
-    private Polygon tile41;
-
-    @FXML
-    private Polygon tile42;
-
-    @FXML
-    private Polygon tile43;
-
-    @FXML
-    private Text turnTitle;
-
-    @FXML
-    private Polygon water1;
-
-    @FXML
-    private Polygon water10;
-
-    @FXML
-    private Polygon water11;
-
-    @FXML
-    private Polygon water12;
-
-    @FXML
-    private Polygon water13;
-
-    @FXML
-    private Polygon water14;
-
-    @FXML
-    private Polygon water15;
-
-    @FXML
-    private Polygon water16;
-
-    @FXML
-    private Polygon water17;
-
-    @FXML
-    private Polygon water18;
-
-    @FXML
-    private Polygon water2;
-
-    @FXML
-    private Polygon water3;
-
-    @FXML
-    private Polygon water4;
-
-    @FXML
-    private Polygon water5;
-
-    @FXML
-    private Polygon water6;
-
-    @FXML
-    private Polygon water7;
-
-    @FXML
-    private Polygon water8;
-
-    @FXML
-    private Polygon water9;
-
-    @FXML
-    private TextFlow cardsTextFlow;
+    public ImageView dice1;
+    public ImageView dice2;
+    public ScrollPane actionLogScrollPane;
+    public TextArea actionLogText;
+    public Text actionLogTitle;
+    public ImageView build;
+    public ScrollPane cardsScrollPane;
+    public Text cardsTitle;
+    public Circle dice01;
+    public Circle dice02;
+    public Circle dice03;
+    public Circle dice11;
+    public Circle dice12;
+    public Circle dice13;
+    public Circle dice14;
+    public Circle dice21;
+    public Circle dice22;
+    public Circle dice23;
+    public Circle dice24;
+    public Circle dice25;
+    public Circle dice31;
+    public Circle dice32;
+    public Circle dice33;
+    public Circle dice34;
+    public Circle dice41;
+    public Circle dice42;
+    public Circle dice43;
+    public ImageView endTurn;
+    public ImageView harbor1;
+    public ImageView harbor2;
+    public ImageView harbor3;
+    public ImageView harbor4;
+    public ImageView harbor5;
+    public ImageView harbor6;
+    public ImageView harbor7;
+    public ImageView harbor8;
+    public ImageView harbor9;
+    public ImageView help;
+    public Text inventoryTitle1;
+    public Text inventoryTitle2;
+    public Text inventoryTitle3;
+    public Pane roadPane;
+    public VBox root;
+    public Pane settlementPane;
+    public Text statsTitle;
+    public Polygon tile01;
+    public Polygon tile02;
+    public Polygon tile03;
+    public Polygon tile11;
+    public Polygon tile12;
+    public Polygon tile13;
+    public Polygon tile14;
+    public Polygon tile21;
+    public Polygon tile22;
+    public Polygon tile23;
+    public Polygon tile24;
+    public Polygon tile25;
+    public Polygon tile31;
+    public Polygon tile32;
+    public Polygon tile33;
+    public Polygon tile34;
+    public Polygon tile41;
+    public Polygon tile42;
+    public Polygon tile43;
+    public Text turnTitle;
+    public Polygon water1;
+    public Polygon water10;
+    public Polygon water11;
+    public Polygon water12;
+    public Polygon water13;
+    public Polygon water14;
+    public Polygon water15;
+    public Polygon water16;
+    public Polygon water17;
+    public Polygon water18;
+    public Polygon water2;
+    public Polygon water3;
+    public Polygon water4;
+    public Polygon water5;
+    public Polygon water6;
+    public Polygon water7;
+    public Polygon water8;
+    public Polygon water9;
+    public TextFlow cardsTextFlow;
 
     private Polygon[] waters;
     public Polygon[][] tilePolygons;
@@ -293,7 +131,7 @@ public class GameController {
         Collections.shuffle(tilesList);
         tileObjs = new Tile[][]{{null, null, null}, {null, null, null, null}, {null, null, null, null, null}, {null, null, null, null}, {null, null, null}};
         ArrayList<Tile> tiles = new ArrayList<>();
-        GameState gameState = new GameState();
+        GameState gameState = new GameState(this);
         for (int r = 0; r < tilePolygons.length; r++)
             for (int c = 0; c < tilePolygons[r].length; c++) {
                 tileObjs[r][c] = (new Tile(resourceNames[tilesList.get(0)], new Location(r, c)));
@@ -351,7 +189,10 @@ public class GameController {
     private double yoffSet = 0;
 
 
-
+    public void updateDiceGraphic(int roll1, int roll2) {
+        dice1.setImage(diceImages[roll1-1]);
+        dice2.setImage(diceImages[roll2-1]);
+    }
 
 
     //turn buttons
@@ -405,5 +246,6 @@ public class GameController {
     void onDragDone(MouseEvent event) {
         HelloApplication.gameStage.setOpacity (1.0f);
     }
+
 
 }

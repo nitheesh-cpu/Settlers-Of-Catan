@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Shadow?>
@@ -10,7 +11,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
@@ -87,7 +87,6 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Arc fill="DODGERBLUE" layoutX="224.0" layoutY="34.0" length="180.0" radiusY="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
                   <TextArea fx:id="actionLogText" editable="false" layoutX="8.0" layoutY="47.0" prefHeight="284.0" prefWidth="244.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
                </children></Pane>
             <Pane style="-fx-background-color: FFFFFF;" HBox.hgrow="NEVER">
@@ -236,7 +235,14 @@
                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="626.0" layoutY="494.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
                      </children>
                   </Pane>
-                  <Pane fx:id="settlementPane" prefHeight="800.0" prefWidth="750.0" />
+                  <Pane fx:id="settlementPane" prefHeight="800.0" prefWidth="750.0">
+                     <children>
+                        <Text layoutX="509.0" layoutY="765.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dice Roll" textAlignment="CENTER" wrappingWidth="132.0">
+                           <font>
+                              <Font name="System Bold" size="29.0" />
+                           </font>
+                        </Text>
+                     </children></Pane>
                </children>
             </Pane>
             <Pane prefHeight="792.0" prefWidth="234.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">
@@ -444,6 +450,18 @@
                         <Image url="@../PlayerResources/player1Icon.png" />
                      </image>
                   </ImageView>
+                  <Rectangle fx:id="diceContainer" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="71.0" layoutX="765.0" layoutY="-25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="132.0" />
+                  <ImageView fx:id="dice1" fitHeight="55.0" fitWidth="54.0" layoutX="774.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../DiceResources/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="dice2" fitHeight="55.0" fitWidth="54.0" layoutX="835.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../DiceResources/1.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="rollDiceButton" layoutX="810.0" layoutY="-5.0" mnemonicParsing="false" text="Roll" />
                </children>
             </Pane>
          </children></HBox>
