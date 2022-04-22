@@ -41,8 +41,8 @@ public class Player {
         return null;
     }
 
-    public Color getColor() {
-        return color;
+    public Color getColor(Color c) {
+        return c;
         // How do I pass the enum thing onto here
     }
 
@@ -80,7 +80,7 @@ public class Player {
     //total resources
     public int totalResources()
     {
-        return resources.getBricks()+resources.getWool()+resources.getWheat()+resources.getWood();
+        return resources.getBricks()+resources.getWool()+resources.getWheat()+resources.getWood() + resources.getOre();
     }
 
 
@@ -110,6 +110,20 @@ public class Player {
         }
         return false;
     }
+
+    public boolean hasMoreThanSeven() {
+        if(totalResources() > 7) {
+            return true;
+        }
+        return false;
+    }
+
+    public void addSettlements() {
+
+
+    }
+
+
 
 
 }
