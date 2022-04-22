@@ -20,6 +20,8 @@ public class Player {
     public static int numRoads = 15;
     public static int numCities = 4;
 
+    private Dice dello;
+
     private boolean hasLargestArmy;
     private boolean hasLargestRoad;
     private Boolean[] ports;
@@ -119,10 +121,20 @@ public class Player {
     }
 
     public void addSettlements() {
-
-
+        numSettlements++;
     }
 
+    public void addRoads() {
+        numRoads++;
+    }
+
+    public boolean RolledRobber() {
+        if(dello.getTotal() == 7) {
+            return true;
+        }
+        return false;
+        //this checks if the player rolled the number 7 to activate the robber
+    }
 
 
 

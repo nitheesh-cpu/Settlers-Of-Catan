@@ -87,6 +87,11 @@ public class Board {
     }
 
     public void stealFromPlayer(Player player){
+        if(player.RolledRobber()) {
+
+
+
+        }
 
     }
 
