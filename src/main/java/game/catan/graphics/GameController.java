@@ -110,6 +110,7 @@ public class GameController {
     public Polygon water8;
     public Polygon water9;
     public TextFlow cardsTextFlow;
+    public ImageView rollDiceButton;
 
     private Polygon[] waters;
     public Polygon[][] tilePolygons;
@@ -171,7 +172,7 @@ public class GameController {
         view.setFitHeight(80);
         view.setPreserveRatio(true);
 
-        gameState.createRoads(tileObjs, roadPane);
+        gameState.createRoads(tileObjs, settlementPane);
         gameState.createSettlements(tileObjs, settlementPane);
         BackgroundFill background_fill = new BackgroundFill(Color.WHITE,
                 CornerRadii.EMPTY, Insets.EMPTY);
@@ -183,13 +184,20 @@ public class GameController {
         //roads[0] == top left then go clockwise
 
         gameState.start();
+        resetDice();
     }
 
     private double xoffSet = 0;
     private double yoffSet = 0;
 
+    public void resetDice(){
+        rollDiceButton.setVisible(true);
+        dice1.setImage(null);
+        dice2.setImage(null);
+    }
 
     public void updateDiceGraphic(int roll1, int roll2) {
+        rollDiceButton.setVisible(false);
         dice1.setImage(diceImages[roll1-1]);
         dice2.setImage(diceImages[roll2-1]);
     }
@@ -247,5 +255,8 @@ public class GameController {
         HelloApplication.gameStage.setOpacity (1.0f);
     }
 
+    public void rollClicked(MouseEvent event) {
+        GameState.rollDice();
+    }
 
 }

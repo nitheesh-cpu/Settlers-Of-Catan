@@ -2,7 +2,6 @@ package game.catan.simulation.engine;
 
 import game.catan.graphics.GameController;
 import game.catan.graphics.MenuController;
-import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Road;
 import game.catan.simulation.structures.Structure;
 import game.catan.simulation.structures.Tile;
@@ -19,6 +18,9 @@ import java.util.Stack;
 
 public class GameState {
     public static int numPlayers;
+    public static Player[] players;
+    public static int currentPlayer;
+    public static int currentTurn;
     public static Stack<Integer> TileNumbers;
     public Tile[][] tiles;
     public HashMap<String, Tile> tileMap;
@@ -31,7 +33,9 @@ public class GameState {
 
 
     public GameState(GameController gameController) {
-        this.gameController = gameController;
+        numPlayers = MenuController.players;
+        GameState.gameController = gameController;
+        players = new Player[numPlayers];
         TileNumbers = new Stack<>();
         int[] tileNumbers = {5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11};
         for (int i : tileNumbers)
@@ -40,20 +44,18 @@ public class GameState {
         roadMap = new HashMap<>();
         structureMap = new HashMap<>();
         tilePolygonMap = new HashMap<>();
-        for(Tile[] tileRow : tiles) {
-            for (Tile x : tileRow) {
-                tilePolygonMap.put(x.getPolygon(), x);
-            }
-        }
     }
 
     public void start() {
-        numPlayers = MenuController.players;
-        // TODO: get game seed
+        for(int i = 0; i < numPlayers; i++) {
+            players[i] = new Player(i);
+        }
         rand = new Random(123);
         // TODO: roll dice to get player order
+        buildRoad(players[0]);
+        buildSettlement(players[0]);
         // TODO: prompt user for location of roads and settlements
-        rollDice();
+
         this.board = new Board(tiles);
 
         // Set robber location
@@ -79,12 +81,236 @@ public class GameState {
 
     }
 
-    public int[] rollDice() {
+    public static int[] rollDice() {
         // TODO: make dice roll functional
+        Random rand = new Random();
         int roll = rand.nextInt(6) + 1;
         int roll2 = rand.nextInt(6) + 1;
         gameController.updateDiceGraphic(roll, roll2);
         return new int[]{roll, roll2};
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setTiles(Tile[][] x) {
+        tiles = x;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                try {
+                    String key = i + "," + j;
+                    tileMap.put(key, tiles[i][j]);
+                } catch (ArrayIndexOutOfBoundsException ignored) {
+                }
+            }
+        }
+        for(Tile[] tileRow : tiles) {
+            for (Tile w : tileRow) {
+                tilePolygonMap.put(w.getPolygon(), w);
+            }
+        }
+        this.board = new Board(tiles);
+    }
+
+    public void buildRoad(Player player){
+        for (Road r : roadMap.values()) {
+            if (r.getOwner() == null) {
+                r.getRectangle().setOnMouseEntered(event -> r.getRectangle().setFill(Color.YELLOW));
+                r.getRectangle().setOnMouseExited(event -> r.getRectangle().setFill(Color.TRANSPARENT));
+                r.getRectangle().setOnMouseClicked(event -> {
+                    r.setOwner(player);
+                    r.getRectangle().setFill(Color.web(player.getColorHex()));
+                    gameController.actionLogText.appendText("Road clicked\n");
+                    disableBuildRoad();
+                });
+            }
+        }
+    }
+
+    public void buildSettlement(Player player){
+        for (Structure r : structureMap.values()) {
+            if (r.getOwner() == null) {
+                r.getImage().setOnMouseEntered(event -> r.getImage().setOpacity(1));
+                r.getImage().setOnMouseExited(event -> r.getImage().setOpacity(0));
+                r.getImage().setOnMouseClicked(event -> {
+                    r.setOwner(player);
+                    r.getImage().setImage(player.getImages().get("Settlement"));
+                    gameController.actionLogText.appendText("Settlement chosen\n");
+                    disableBuildSettlement();
+                });
+            }
+        }
+    }
+
+    public void disableBuildRoad(){
+        for (Road r : roadMap.values()) {
+            if (r.getOwner() == null) {
+                r.getRectangle().setOnMouseEntered(event -> event.consume());
+                r.getRectangle().setOnMouseExited(event -> event.consume());
+                r.getRectangle().setOnMouseClicked(event -> event.consume());
+            }
+        }
+    }
+
+    public void disableBuildSettlement(){
+        for (Structure r : structureMap.values()) {
+            if (r.getOwner() == null) {
+                r.getImage().setOnMouseEntered(event -> event.consume());
+                r.getImage().setOnMouseExited(event -> event.consume());
+                r.getImage().setOnMouseClicked(event -> event.consume());
+            }
+        }
+    }
+
+    public void createRoads(Tile[][] tiles, Pane roadPane) {
+//        Road Locations Relative to Tile
+//        1-topleft -> clockwise -> 6-bottomleft
+//        Road 1 = -78,-30
+//        Road 2 = -30,-56
+//        Road 3 = +17,-30
+//        Road 4 = +17,+22
+//        Road 5 = -30,+50
+//        Road 6 = -78,+23
+//        Width = 61
+//        Height = 7
+        for (int r = 0; r < tiles.length; r++) {
+            for (int c = 0; c < tiles[r].length; c++) {
+                for (int i = 0; c == tiles[r].length - 1 ? (r > 1 ? i < 5 : i < 4) : i < 3; i++) {
+                    createSingularRoad(r, c, i, roadPane);
+                }
+            }
+        }
+        createSingularRoad(2, 0, 5, roadPane);
+        createSingularRoad(3, 0, 5, roadPane);
+        createSingularRoad(4, 0, 4, roadPane);
+        createSingularRoad(4, 0, 5, roadPane);
+        createSingularRoad(4, 1, 4, roadPane);
+        createSingularRoad(4, 1, 5, roadPane);
+        createSingularRoad(4, 2, 5, roadPane);
+        for (int r = 0; r < tiles.length; r++) {
+            for (int c = 0; c < tiles[r].length; c++) {
+                Road[] w = tiles[r][c].getRoads();
+                if (w[3] == null) {
+                    w[3] = tiles[r][c + 1].getRoads()[0];
+                }
+                if (w[4] == null) {
+                    if (r < 2) w[4] = tiles[r + 1][c + 1].getRoads()[1];
+                    else w[4] = tiles[r + 1][c].getRoads()[1];
+                }
+                if (w[5] == null) {
+                    if (r < 2) w[5] = tiles[r + 1][c].getRoads()[2];
+                    else w[5] = tiles[r + 1][c - 1].getRoads()[2];
+                }
+                tiles[r][c].setRoads(w);
+            }
+        }
+    }
+
+    public void createSingularRoad(int r, int c, int i, Pane roadPane) {
+        int[][] roadOffset = new int[][]{{-78, 23, 59}, {-78, -30, -59}, {-30, -56, 0}, {17, -30, 59}, {17, 22, -59}, {-30, 50, 0}};
+        Road[] w = tiles[r][c].getRoads();
+        int x = (int) tiles[r][c].getPolygon().getLayoutX();
+        int y = (int) tiles[r][c].getPolygon().getLayoutY();
+        Location loc = new Location(x + roadOffset[i][0], y + roadOffset[i][1]);
+        Rectangle rect = new Rectangle();
+        rect.setX(loc.getX());
+        rect.setY(loc.getY());
+        rect.setRotate(roadOffset[i][2]);
+        rect.setWidth(61);
+        rect.setHeight(7);
+        rect.setFill(Color.TRANSPARENT);
+//        rect.setOnMouseClicked(event -> gameController.actionLogText.appendText("Road clicked\n"));
+//        rect.setOnMouseExited(event ->
+//                rect.setFill(Color.RED)
+//        );
+        roadPane.getChildren().add(rect);
+        Road road = new Road(loc, rect);
+        roadMap.put(rect, road);
+        w[i] = road;
+
+    }
+
+
+    public void createSettlements(Tile[][] tiles, Pane settlementPane) {
+//        Settlement 1 = -75,-18
+//        Settlement 2 = -48,-70
+//        Settlement 3 = +17,-70
+//        Settlement 4 = +44,-18
+//        Settlement 5 = +17,+36
+//        Settlement 6 = -48,+36
+//
+//        Width = 32
+//        Height = 31
+        for (int r = 0; r < tiles.length; r++) {
+            for (int c = 0; c < tiles[r].length; c++) {
+                for (int i = 0; (c == tiles[r].length - 1 ? (r == 2 || r == 3 ? i < 4 : i < 3) : i < 2); i++) {
+                    createSingularSettlement(r, c, i, settlementPane);
+                }
+            }
+        }
+        createSingularSettlement(2, 0, 5, settlementPane);
+        createSingularSettlement(3, 0, 5, settlementPane);
+        createSingularSettlement(4, 0, 5, settlementPane);
+        createSingularSettlement(4, 0, 3, settlementPane);
+        createSingularSettlement(4, 0, 4, settlementPane);
+        createSingularSettlement(4, 1, 3, settlementPane);
+        createSingularSettlement(4, 1, 4, settlementPane);
+        createSingularSettlement(4, 2, 3, settlementPane);
+        createSingularSettlement(4, 2, 4, settlementPane);
+        for (int r = 0; r < tiles.length; r++) {
+            for (int c = 0; c < tiles[r].length; c++) {
+                Structure[] w = tiles[r][c].getStructures();
+                if (w[2] == null) {
+                    w[2] = tiles[r][c + 1].getStructures()[0];
+                }
+                if (w[3] == null) {
+                    if (r < 2) w[3] = tiles[r + 1][c + 1].getStructures()[1];
+                    else w[3] = tiles[r + 1][c].getStructures()[1];
+                }
+                try {
+                    if (w[4] == null) {
+                        if (r < 2) w[4] = tiles[r + 1][c + 1].getStructures()[0];
+                        else w[4] = tiles[r + 1][c].getStructures()[0];
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignored) {
+                }
+                if (w[5] == null) {
+                    if (r < 2) w[5] = tiles[r + 1][c].getStructures()[1];
+                    else if (r == 4) w[5] = tiles[r][c - 1].getStructures()[3];
+                    else w[5] = tiles[r + 1][c - 1].getStructures()[1];
+                }
+                tiles[r][c].setStructures(w);
+            }
+        }
+        Structure[] w = tiles[2][4].getStructures();
+        w[4] =  tiles[3][3].getStructures()[2];
+        tiles[2][4].setStructures(w);
+        w = tiles[3][3].getStructures();
+        w[4] =  tiles[4][2].getStructures()[2];
+        tiles[3][3].setStructures(w);
+    }
+
+    public void createSingularSettlement(int r, int c, int i, Pane settlementPane) {
+        // TODO: Get player who placed settlement
+        int[][] roadOffset = new int[][]{{-75, -18}, {-48, -70}, {17, -70}, {44, -18}, {17, 36}, {-48, 36}};
+        Structure[] w = tiles[r][c].getStructures();
+        int x = (int) tiles[r][c].getPolygon().getLayoutX();
+        int y = (int) tiles[r][c].getPolygon().getLayoutY();
+
+        Location loc = new Location(x + roadOffset[i][0], y + roadOffset[i][1]);
+        ImageView settl = new ImageView(new Image("game/catan/PlayerResources/hover.jpg"));
+        settl.setX(loc.getX());
+        settl.setY(loc.getY());
+        settl.setFitWidth(32);
+        settl.setFitHeight(31);
+        settlementPane.getChildren().add(settl);
+        settl.setOpacity(0);
+        Structure settlement = new Structure(loc, settl);
+//        settl.setOnMouseClicked(event -> gameController.actionLogText.appendText("Settlement clicked\n"));
+        //make Structure class
+        structureMap.put(settl, settlement);
+        w[i] = settlement;
     }
 
     public void initializeTileNumbers() {
@@ -179,174 +405,6 @@ public class GameState {
             }
         }
         tiles[2][2].initialize();
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
-    public void setTiles(Tile[][] x) {
-        tiles = x;
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                try {
-                    String key = i + "," + j;
-                    tileMap.put(key, tiles[i][j]);
-                } catch (ArrayIndexOutOfBoundsException ignored) {
-                }
-            }
-        }
-
-        this.board = new Board(tiles);
-    }
-
-    public void createRoads(Tile[][] tiles, Pane roadPane) {
-//        Road Locations Relative to Tile
-//        1-topleft -> clockwise -> 6-bottomleft
-//        Road 1 = -78,-30
-//        Road 2 = -30,-56
-//        Road 3 = +17,-30
-//        Road 4 = +17,+22
-//        Road 5 = -30,+50
-//        Road 6 = -78,+23
-//        Width = 61
-//        Height = 7
-        for (int r = 0; r < tiles.length; r++) {
-            for (int c = 0; c < tiles[r].length; c++) {
-                for (int i = 0; c == tiles[r].length - 1 ? (r > 1 ? i < 5 : i < 4) : i < 3; i++) {
-                    createSingularRoad(r, c, i, roadPane);
-                }
-            }
-        }
-        createSingularRoad(2, 0, 5, roadPane);
-        createSingularRoad(3, 0, 5, roadPane);
-        createSingularRoad(4, 0, 4, roadPane);
-        createSingularRoad(4, 0, 5, roadPane);
-        createSingularRoad(4, 1, 4, roadPane);
-        createSingularRoad(4, 1, 5, roadPane);
-        createSingularRoad(4, 2, 5, roadPane);
-        for (int r = 0; r < tiles.length; r++) {
-            for (int c = 0; c < tiles[r].length; c++) {
-                Road[] w = tiles[r][c].getRoads();
-                if (w[3] == null) {
-                    w[3] = tiles[r][c + 1].getRoads()[0];
-                }
-                if (w[4] == null) {
-                    if (r < 2) w[4] = tiles[r + 1][c + 1].getRoads()[1];
-                    else w[4] = tiles[r + 1][c].getRoads()[1];
-                }
-                if (w[5] == null) {
-                    if (r < 2) w[5] = tiles[r + 1][c].getRoads()[2];
-                    else w[5] = tiles[r + 1][c - 1].getRoads()[2];
-                }
-                tiles[r][c].setRoads(w);
-            }
-        }
-    }
-
-    public void createSingularRoad(int r, int c, int i, Pane roadPane) {
-        int[][] roadOffset = new int[][]{{-78, 23, 59}, {-78, -30, -59}, {-30, -56, 0}, {17, -30, 59}, {17, 22, -59}, {-30, 50, 0}};
-        Road[] w = tiles[r][c].getRoads();
-        int x = (int) tiles[r][c].getPolygon().getLayoutX();
-        int y = (int) tiles[r][c].getPolygon().getLayoutY();
-        Location loc = new Location(x + roadOffset[i][0], y + roadOffset[i][1]);
-        Rectangle rect = new Rectangle();
-        rect.setX(loc.getX());
-        rect.setY(loc.getY());
-        rect.setRotate(roadOffset[i][2]);
-        rect.setWidth(61);
-        rect.setHeight(7);
-        rect.setFill(Color.RED);
-        rect.setOnMouseEntered(event -> rect.setFill(Color.GREEN));
-        rect.setOnMouseExited(event ->
-                rect.setFill(Color.RED)
-        );
-        roadPane.getChildren().add(rect);
-        rect.setVisible(false);
-        Road road = new Road(loc, rect);
-        roadMap.put(rect, road);
-        w[i] = road;
-
-    }
-
-    public void createSettlements(Tile[][] tiles, Pane settlementPane) {
-//        Settlement 1 = -75,-18
-//        Settlement 2 = -48,-70
-//        Settlement 3 = +17,-70
-//        Settlement 4 = +44,-18
-//        Settlement 5 = +17,+36
-//        Settlement 6 = -48,+36
-//
-//        Width = 32
-//        Height = 31
-        for (int r = 0; r < tiles.length; r++) {
-            for (int c = 0; c < tiles[r].length; c++) {
-                for (int i = 0; (c == tiles[r].length - 1 ? (r == 2 || r == 3 ? i < 4 : i < 3) : i < 2); i++) {
-                    createSingularSettlement(r, c, i, settlementPane);
-                }
-            }
-        }
-        createSingularSettlement(2, 0, 5, settlementPane);
-        createSingularSettlement(3, 0, 5, settlementPane);
-        createSingularSettlement(4, 0, 5, settlementPane);
-        createSingularSettlement(4, 0, 3, settlementPane);
-        createSingularSettlement(4, 0, 4, settlementPane);
-        createSingularSettlement(4, 1, 3, settlementPane);
-        createSingularSettlement(4, 1, 4, settlementPane);
-        createSingularSettlement(4, 2, 3, settlementPane);
-        createSingularSettlement(4, 2, 4, settlementPane);
-        for (int r = 0; r < tiles.length; r++) {
-            for (int c = 0; c < tiles[r].length; c++) {
-                Structure[] w = tiles[r][c].getStructures();
-                if (w[2] == null) {
-                    w[2] = tiles[r][c + 1].getStructures()[0];
-                }
-                if (w[3] == null) {
-                    if (r < 2) w[3] = tiles[r + 1][c + 1].getStructures()[1];
-                    else w[3] = tiles[r + 1][c].getStructures()[1];
-                }
-                try {
-                    if (w[4] == null) {
-                        if (r < 2) w[4] = tiles[r + 1][c + 1].getStructures()[0];
-                        else w[4] = tiles[r + 1][c].getStructures()[0];
-                    }
-                } catch (ArrayIndexOutOfBoundsException ignored) {
-                }
-                if (w[5] == null) {
-                    if (r < 2) w[5] = tiles[r + 1][c].getStructures()[1];
-                    else if (r == 4) w[5] = tiles[r][c - 1].getStructures()[3];
-                    else w[5] = tiles[r + 1][c - 1].getStructures()[1];
-                }
-                tiles[r][c].setStructures(w);
-            }
-        }
-        Structure[] w = tiles[2][4].getStructures();
-        w[4] =  tiles[3][3].getStructures()[2];
-        tiles[2][4].setStructures(w);
-        w = tiles[3][3].getStructures();
-        w[4] =  tiles[4][2].getStructures()[2];
-        tiles[3][3].setStructures(w);
-    }
-
-    public void createSingularSettlement(int r, int c, int i, Pane settlementPane) {
-        // TODO: Get player who placed settlement
-        int[][] roadOffset = new int[][]{{-75, -18}, {-48, -70}, {17, -70}, {44, -18}, {17, 36}, {-48, 36}};
-        Structure[] w = tiles[r][c].getStructures();
-        int x = (int) tiles[r][c].getPolygon().getLayoutX();
-        int y = (int) tiles[r][c].getPolygon().getLayoutY();
-
-        Location loc = new Location(x + roadOffset[i][0], y + roadOffset[i][1]);
-        ImageView settl = new ImageView(new Image("game/catan/PlayerResources/player1Settlement.png"));
-        settl.setX(loc.getX());
-        settl.setY(loc.getY());
-        settl.setFitWidth(32);
-        settl.setFitHeight(31);
-        settlementPane.getChildren().add(settl);
-        settl.setVisible(false);
-        Structure settlement = new Structure(loc, settl);
-        //make Structure class
-        structureMap.put(settl, settlement);
-        w[i] = settlement;
     }
 
 

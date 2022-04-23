@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
-
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <VBox fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
    <children>
       <AnchorPane onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="35.0" prefWidth="1250.0" style="-fx-background-color: #4a5d6f; -fx-background-radius: 18 18 0 0; -fx-border-radius: 18 18 0 0;">
@@ -146,6 +136,28 @@
                   </Pane>
                   <Pane mouseTransparent="true" prefHeight="800.0" prefWidth="750.0">
                      <children>
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="400.0" layoutY="104.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="343.0" layoutY="104.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="531.0" layoutY="214.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="500.0" layoutY="163.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="242.0" layoutY="163.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="213.0" layoutY="214.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="144.0" layoutY="322.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="600.0" layoutY="322.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="625.0" layoutY="376.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="118.0" layoutY="375.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="146.0" layoutY="534.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="116.0" layoutY="484.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="306.0" layoutY="591.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="247.0" layoutY="591.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="496.0" layoutY="591.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="438.0" layoutY="591.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="598.0" layoutY="534.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="626.0" layoutY="485.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                     </children>
+                  </Pane>
+                  <Pane mouseTransparent="true" prefHeight="800.0" prefWidth="750.0">
+                     <children>
                         <Circle fx:id="dice33" fill="#b99263" layoutX="470.0" layoutY="453.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fx:id="dice43" fill="#b99263" layoutX="565.0" layoutY="506.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fx:id="dice34" fill="#b99263" layoutX="565.0" layoutY="400.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
@@ -165,74 +177,52 @@
                         <Circle fx:id="dice41" fill="#b99263" layoutX="375.0" layoutY="612.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fx:id="dice31" fill="#b99263" layoutX="280.0" layoutY="559.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
                         <Circle fx:id="dice21" fill="#b99263" layoutX="185.0" layoutY="506.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-                        <ImageView fx:id="harbor1" fitHeight="72.0" fitWidth="76.0" layoutX="351.0" layoutY="46.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="harbor1" fitHeight="72.0" fitWidth="40.0" layoutX="355.0" layoutY="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Ports/Misc.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harbor9" fitHeight="81.0" fitWidth="73.0" layoutX="158.0" layoutY="148.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="harbor9" fitHeight="81.0" fitWidth="40.0" layoutX="151.0" layoutY="148.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Ports/Misc.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harbor8" fitHeight="81.0" fitWidth="73.0" layoutX="64.0" layoutY="307.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="harbor8" fitHeight="81.0" fitWidth="40.0" layoutX="54.0" layoutY="307.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Ports/Misc.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harbor7" fitHeight="81.0" fitWidth="73.0" layoutX="64.0" layoutY="519.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="harbor7" fitHeight="81.0" fitWidth="40.0" layoutX="55.0" layoutY="539.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Ports/Misc.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harbor6" fitHeight="81.0" fitWidth="73.0" layoutX="253.0" layoutY="625.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="harbor6" fitHeight="64.0" fitWidth="40.0" layoutX="260.0" layoutY="654.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Ports/Misc.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harbor5" fitHeight="81.0" fitWidth="73.0" layoutX="443.0" layoutY="625.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="harbor5" fitHeight="81.0" fitWidth="40.0" layoutX="450.0" layoutY="654.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Ports/Misc.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harbor4" fitHeight="81.0" fitWidth="73.0" layoutX="634.0" layoutY="519.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="harbor4" fitHeight="81.0" fitWidth="40.0" layoutX="654.0" layoutY="539.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Ports/Misc.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harbor3" fitHeight="81.0" fitWidth="73.0" layoutX="634.0" layoutY="307.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="harbor3" fitHeight="81.0" fitWidth="40.0" layoutX="654.0" layoutY="307.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Ports/Misc.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harbor2" fitHeight="81.0" fitWidth="73.0" layoutX="538.0" layoutY="148.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="harbor2" fitHeight="81.0" fitWidth="40.0" layoutX="559.0" layoutY="148.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Ports/Misc.png" />
                            </image>
                         </ImageView>
                         
-                     </children>
-                  </Pane>
-                  <Pane mouseTransparent="true" prefHeight="800.0" prefWidth="750.0">
-                     <children>
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="403.0" layoutY="118.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="340.0" layoutY="118.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="530.0" layoutY="225.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="500.0" layoutY="172.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="244.0" layoutY="172.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="213.0" layoutY="226.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="146.0" layoutY="331.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="598.0" layoutY="331.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="625.0" layoutY="385.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="118.0" layoutY="384.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="146.0" layoutY="543.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="118.0" layoutY="490.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="308.0" layoutY="596.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="246.0" layoutY="596.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="499.0" layoutY="596.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="438.0" layoutY="600.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="598.0" layoutY="543.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="32.0" layoutX="626.0" layoutY="494.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
                      </children>
                   </Pane>
                   <Pane fx:id="settlementPane" prefHeight="800.0" prefWidth="750.0">
@@ -461,7 +451,11 @@
                         <Image url="@../DiceResources/1.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="rollDiceButton" layoutX="810.0" layoutY="-5.0" mnemonicParsing="false" text="Roll" />
+                  <ImageView fx:id="rollDiceButton" fitHeight="33.0" fitWidth="90.0" layoutX="795.0" layoutY="-6.0" onMouseClicked="#rollClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../DiceResources/roll.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children></HBox>
