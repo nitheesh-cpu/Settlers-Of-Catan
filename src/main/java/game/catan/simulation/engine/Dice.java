@@ -1,31 +1,31 @@
-package game.catan.simulation.engine;
+package engine;
+
+import java.util.Random;
 
 public class Dice {
-    private int faceValue1;
-    private int faceValue2;
+    private static Random random;
+    private static int faceOne = 0;
+    private static int faceTwo = 0;
 
-    private final int MAX = 6;
-
-    public Dice(int fv1, int fv2) {
-        faceValue1 = fv1;
-        faceValue2 = fv2;
+    public static void init(int seed) {
+        random = new Random(seed);
     }
 
-    public int getFaceValue1() {
-        faceValue1 = (int)(Math.random()*MAX) + 1;
-        return faceValue1;
+    public static int roll() {
+        faceOne = random.nextInt(6) + 1;
+        faceTwo = random.nextInt(6) + 1;
+        return faceOne + faceTwo;
     }
 
-    public int getFaceValue2() {
-        faceValue2 = (int)(Math.random()*MAX) + 1;
-        return faceValue2;
+    public static int getFaceOne() {
+        return faceOne;
     }
 
-    public int getTotal() {
-        return faceValue1 + faceValue2;
+    public static int getFaceTwo() {
+        return faceTwo;
     }
 
-
-
-
+    public static Random getRef() {
+        return random;
+    }
 }

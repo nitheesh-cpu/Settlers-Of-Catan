@@ -16,7 +16,7 @@ public class Board {
     private Structure[][] structures;
     private Road[][] roads;
     private Tile robberTile;
-    private Dice dice;
+    private engine.Dice dice;
     private Stack<DevelopmentCard> developmentCards;
     private Stockpile stockpile;
     private Player[] players;

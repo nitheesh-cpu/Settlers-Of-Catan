@@ -237,17 +237,17 @@
             </Pane>
             <Pane prefHeight="792.0" prefWidth="234.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">
                <children>
-                  <ImageView fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="inventoryFrame1" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlayerResources/playerInventory.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="inventoryFrame2" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlayerResources/playerInventory.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="inventoryFrame3" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlayerResources/playerInventory.png" />
                      </image>
@@ -267,92 +267,92 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text layoutX="83.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="settlementCount1" layoutX="83.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Text layoutX="83.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="roadCount1" layoutX="83.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Text layoutX="160.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="cityCount1" layoutX="160.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Text layoutX="160.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="stockpileCount1" layoutX="160.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Text layoutX="83.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="settlementCount2" layoutX="83.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Text layoutX="83.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="roadCount2" layoutX="83.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Text layoutX="160.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="cityCount2" layoutX="160.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Text layoutX="160.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="stockpileCount2" layoutX="160.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Text layoutX="83.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="settlementCount3" layoutX="83.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Text layoutX="83.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="roadCount3" layoutX="83.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Text layoutX="160.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="cityCount3" layoutX="160.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <Text layoutX="160.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                  <Text fx:id="stockpileCount3" layoutX="160.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="40.0" fitWidth="184.0" layoutX="44.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="tradeButton1" fitHeight="40.0" fitWidth="184.0" layoutX="44.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/Trade.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="184.0" layoutX="43.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="tradeButton2" fitHeight="40.0" fitWidth="184.0" layoutX="43.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/Trade.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="184.0" layoutX="42.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="tradeButton3" fitHeight="40.0" fitWidth="184.0" layoutX="42.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/Trade.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="44.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="playerIcon1" fitHeight="54.0" fitWidth="40.0" layoutX="44.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlayerResources/player2Icon.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="42.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="playerIcon2" fitHeight="54.0" fitWidth="40.0" layoutX="42.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlayerResources/player3icon.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="44.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="playerIcon3" fitHeight="54.0" fitWidth="40.0" layoutX="44.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlayerResources/player4icon.png" />
                      </image>
@@ -385,57 +385,57 @@
                         <Image url="@../PlayerResources/playerStats.png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="72.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text fx:id="currentPlayerSettlements" layoutX="72.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="72.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text fx:id="currentPlayerBricks" layoutX="72.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="175.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text fx:id="currentPlayerCities" layoutX="175.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="175.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text fx:id="currentPlayerWool" layoutX="175.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="277.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text fx:id="currentPlayerRoads" layoutX="277.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="277.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text fx:id="currentPlayerOres" layoutX="277.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="378.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text fx:id="currentPlayerKnight" layoutX="378.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="378.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text fx:id="currentPlayerWheat" layoutX="378.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="476.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text fx:id="currentPlayerPoints" layoutX="476.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text layoutX="476.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                  <Text fx:id="currentPlayerLumber" layoutX="476.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="48.0" fitWidth="40.0" layoutX="200.0" layoutY="-96.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="currentPlayerIcon" fitHeight="48.0" fitWidth="40.0" layoutX="200.0" layoutY="-96.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlayerResources/player1Icon.png" />
                      </image>

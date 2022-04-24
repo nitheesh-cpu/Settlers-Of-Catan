@@ -7,6 +7,7 @@ import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Tile;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -64,9 +65,6 @@ public class GameController {
     public ImageView harbor8;
     public ImageView harbor9;
     public ImageView help;
-    public Text inventoryTitle1;
-    public Text inventoryTitle2;
-    public Text inventoryTitle3;
     public Pane roadPane;
     public VBox root;
     public Pane settlementPane;
@@ -112,16 +110,57 @@ public class GameController {
     public TextFlow cardsTextFlow;
     public ImageView rollDiceButton;
 
+    public ImageView currentPlayerIcon;
+    public Text currentPlayerSettlements;
+    public Text currentPlayerCities;
+    public Text currentPlayerRoads;
+    public Text currentPlayerKnight;
+    public Text currentPlayerPoints;
+    public Text currentPlayerBricks;
+    public Text currentPlayerWool;
+    public Text currentPlayerOres;
+    public Text currentPlayerWheat;
+    public Text currentPlayerLumber;
+
+    public ImageView playerIcon1;
+    public Text inventoryTitle1;
+    public Text settlementCount1;
+    public Text cityCount1;
+    public Text roadCount1;
+    public Text stockpileCount1;
+    public ImageView tradeButton1;
+    public ImageView inventoryFrame1;
+
+    public ImageView playerIcon2;
+    public Text inventoryTitle2;
+    public Text settlementCount2;
+    public Text cityCount2;
+    public Text roadCount2;
+    public Text stockpileCount2;
+    public ImageView tradeButton2;
+    public ImageView inventoryFrame2;
+
+    public ImageView playerIcon3;
+    public Text inventoryTitle3;
+    public Text settlementCount3;
+    public Text cityCount3;
+    public Text roadCount3;
+    public Text stockpileCount3;
+    public ImageView tradeButton3;
+    public ImageView inventoryFrame3;
+
     private Polygon[] waters;
     public Polygon[][] tilePolygons;
     private Circle[][] circles;
     private Tile[][] tileObjs;
     private ImageView[] harborImages;
+    private GameState gameState;
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() throws IOException, InterruptedException {
         Initialize.init(); //Initialize images
 
+        Node[][] nodes = {{playerIcon1,inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1,inventoryFrame1,tradeButton1},{playerIcon2,inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2,inventoryFrame2,tradeButton2},{playerIcon3,inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3,inventoryFrame3,tradeButton3}};
         //Initialize tiles
         waters = new Polygon[]{water1, water2, water3, water4, water5, water6, water7, water8, water9, water10, water11, water12, water13, water14, water15, water16, water17, water18};
         tilePolygons = new Polygon[][]{{tile01, tile02, tile03}, {tile11, tile12, tile13, tile14}, {tile21, tile22, tile23, tile24, tile25}, {tile31, tile32, tile33, tile34}, {tile41, tile42, tile43}};
@@ -132,7 +171,7 @@ public class GameController {
         Collections.shuffle(tilesList);
         tileObjs = new Tile[][]{{null, null, null}, {null, null, null, null}, {null, null, null, null, null}, {null, null, null, null}, {null, null, null}};
         ArrayList<Tile> tiles = new ArrayList<>();
-        GameState gameState = new GameState(this);
+        gameState = new GameState(this);
         for (int r = 0; r < tilePolygons.length; r++)
             for (int c = 0; c < tilePolygons[r].length; c++) {
                 tileObjs[r][c] = (new Tile(resourceNames[tilesList.get(0)], new Location(r, c)));
@@ -180,9 +219,20 @@ public class GameController {
         root.setBackground(new Background(background_fill));
         actionLogText.setBackground(new Background(background_fill));
         cardsTextFlow.setBackground(new Background(background_fill));
+
         //structures[0] == top left then go clockwise
         //roads[0] == top left then go clockwise
-
+        if(GameState.numPlayers == 3){
+            for(Node n: nodes[2]){
+                n.setVisible(false);
+            }
+            for(Node n: nodes[1]){
+                n.setLayoutY(n.getLayoutY() + 100);
+            }
+            for(Node n: nodes[0]){
+                n.setLayoutY(n.getLayoutY() + 100);
+            }
+        }
         gameState.start();
         resetDice();
     }
@@ -197,9 +247,37 @@ public class GameController {
     }
 
     public void updateDiceGraphic(int roll1, int roll2) {
+
         rollDiceButton.setVisible(false);
         dice1.setImage(diceImages[roll1-1]);
         dice2.setImage(diceImages[roll2-1]);
+    }
+
+    public void updatePlayerStats(){
+        Text[][] stats = {{inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1},{inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2},{inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3} };
+        ImageView[] icons = {playerIcon1,playerIcon2,playerIcon3};
+        currentPlayerBricks.setText(Integer.toString(gameState.getCurrentPlayer().getResource(ResourceType.BRICK)));
+        currentPlayerWool.setText(Integer.toString(gameState.getCurrentPlayer().getResource(ResourceType.WOOL)));
+        currentPlayerWheat.setText(Integer.toString(gameState.getCurrentPlayer().getResource(ResourceType.WHEAT)));
+        currentPlayerLumber.setText(Integer.toString(gameState.getCurrentPlayer().getResource(ResourceType.WOOD)));
+        currentPlayerOres.setText(Integer.toString(gameState.getCurrentPlayer().getResource(ResourceType.ORE)));
+        currentPlayerIcon.setImage(gameState.getCurrentPlayer().getImages().get("Icon"));
+        currentPlayerKnight.setText(Integer.toString(gameState.getCurrentPlayer().getNumKnights()));
+        currentPlayerPoints.setText(Integer.toString(gameState.getCurrentPlayer().getVictoryPoints()));
+        currentPlayerSettlements.setText(Integer.toString(gameState.getCurrentPlayer().getAmtSettlements()));
+        currentPlayerRoads.setText(Integer.toString(gameState.getCurrentPlayer().getAmtRoads()));
+        currentPlayerCities.setText(Integer.toString(gameState.getCurrentPlayer().getAmtCities()));
+
+        for(int i = 0; i < GameState.numPlayers-1; i++){
+            int index = GameState.nextTurnIndex(GameState.currentPlayerIndex+i);
+            stats[i][0].setText("Player " + (index+1));
+            stats[i][1].setText(Integer.toString(GameState.players[index].getAmtSettlements()));
+            stats[i][2].setText(Integer.toString(GameState.players[index].getAmtCities()));
+            stats[i][3].setText(Integer.toString(GameState.players[index].getAmtRoads()));
+            stats[i][4].setText(Integer.toString(GameState.players[index].totalResources()));
+            icons[i].setImage(GameState.players[index].getImages().get("Icon"));
+        }
+
     }
 
 
@@ -255,7 +333,9 @@ public class GameController {
         HelloApplication.gameStage.setOpacity (1.0f);
     }
 
-    public void rollClicked(MouseEvent event) {
+    @FXML
+    void rollClicked(MouseEvent event) {
+        System.out.println("roll clicked");
         GameState.rollDice();
     }
 

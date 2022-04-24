@@ -39,6 +39,9 @@ public class Player {
         devCards = new ArrayList<>();
         structures = new ArrayList<>();
         resources = new Stockpile();
+        numKnights = 0;
+        hasLargestArmy = false;
+        hasLargestRoad = false;
         victoryPoints = 0;
         switch (i) {
             case 0 -> {
@@ -170,8 +173,15 @@ public class Player {
         return false;
     }
 
-    public void addSettlements() {
+    public void addSettlement(Structure s) {
+        structures.add(s);
         numSettlements++;
+    }
+
+    public void addRoad(Road r) {
+
+        roads.add(r);
+        numRoads++;
     }
 
     public void addCity(Structure settlement)
@@ -189,14 +199,72 @@ public class Player {
         return images;
     }
 
-    public String getColorHex()
-    {
+    public String getColorHex() {
         return colorHex;
     }
 
+    public ArrayList<Structure> getStructures() {
+        return structures;
+    }
 
+    public ArrayList<Road> getRoads() {
+        return roads;
+    }
 
+    public int getNumKnights() {
+        return numKnights;
+    }
 
+    public void setNumKnights(int numKnights) {
+        this.numKnights = numKnights;
+    }
 
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    public void setVictoryPoints(int victoryPoints) {
+        this.victoryPoints = victoryPoints;
+    }
+
+    public boolean isHasLargestArmy() {
+        return hasLargestArmy;
+    }
+
+    public void setHasLargestArmy(boolean hasLargestArmy) {
+        this.hasLargestArmy = hasLargestArmy;
+    }
+
+    public boolean isHasLargestRoad() {
+        return hasLargestRoad;
+    }
+
+    public void setHasLargestRoad(boolean hasLargestRoad) {
+        this.hasLargestRoad = hasLargestRoad;
+    }
+
+    public int getAmtRoads() {
+        return roads.size();
+    }
+
+    public int getAmtSettlements() {
+        int amt = 0;
+        for(Structure s : structures){
+            if(s.getType()==Structure.StructureType.SETTLEMENT) {
+                amt++;
+            }
+        }
+        return amt;
+    }
+
+    public int getAmtCities() {
+        int amt = 0;
+        for(Structure s : structures){
+            if(s.getType()==Structure.StructureType.CITY) {
+                amt++;
+            }
+        }
+        return amt;
+    }
 }
 
