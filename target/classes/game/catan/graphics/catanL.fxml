@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<VBox fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
+   <children>
+      <AnchorPane onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="35.0" prefWidth="1250.0" style="-fx-background-color: #4a5d6f; -fx-background-radius: 18 18 0 0; -fx-border-radius: 18 18 0 0;">
+         <children>
+            <Text fx:id="title" fill="WHITE" layoutX="21.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settlers Of Catan" wrappingWidth="166.103515625">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <AnchorPane layoutX="1206.0" layoutY="4.0" onMouseClicked="#closeClicked" prefHeight="32.0" prefWidth="32.0">
+               <children>
+                  <ImageView fitHeight="27.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ButtonResources/icons8-close-26.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="1166.0" layoutY="4.0" onMouseClicked="#minimizeClicked" prefHeight="32.0" prefWidth="32.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="32.0" layoutY="5.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ButtonResources/icons8-subtract-52.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <HBox prefHeight="71.0" prefWidth="1250.0">
+         <children>
+            <Pane prefHeight="63.0" prefWidth="1249.0" style="-fx-background-color: FFFFFF;">
+               <children>
+                  <Text fx:id="turnTitle" layoutX="458.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1's Turn">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children></HBox>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0">
+         <children>
+            <Pane prefHeight="792.0" prefWidth="256.0" style="-fx-background-color: FFFFFF;">
+               <children>
+                  <ScrollPane fx:id="cardsScrollPane" layoutX="8.0" layoutY="403.0" prefHeight="284.0" prefWidth="244.0" style="-fx-background-color: FFFFFF;">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="262.0" prefWidth="237.0" style="-fx-background-color: FFFFFF;">
+                           <children>
+                              <TextFlow fx:id="cardsTextFlow" prefHeight="261.0" prefWidth="238.0" style="-fx-background-color: FFFFFF;" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <Text fx:id="actionLogTitle" layoutX="12.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action Log" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="cardsTitle" layoutX="10.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cards" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="statsTitle" layoutX="24.0" layoutY="733.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Stats" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <TextArea fx:id="actionLogText" editable="false" layoutX="8.0" layoutY="47.0" prefHeight="284.0" prefWidth="244.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
+               </children></Pane>
+            <Pane style="-fx-background-color: FFFFFF;" HBox.hgrow="NEVER">
+               <children>
+                  <Circle centerX="375.0" centerY="400.0" fill="DODGERBLUE" layoutX="-4.0" layoutY="-2.0" mouseTransparent="true" radius="344.0" stroke="BLACK" strokeType="INSIDE">
+                     <effect>
+                        <Shadow height="255.0" radius="127.0" width="255.0">
+                           <color>
+                              <Color red="0.6296296119689941" green="0.8518518805503845" blue="1.0" />
+                           </color>
+                        </Shadow>
+                     </effect>
+                  </Circle>
+                  <Pane fx:id="roadPane" prefHeight="800.0" prefWidth="750.0" />
+                  <Pane mouseTransparent="true" prefHeight="800.0" prefWidth="750.0">
+                     <children>
+                        <Polygon fill="DODGERBLUE" layoutX="526.0" layoutY="363.0" mouseTransparent="true" stroke="BLACK" strokeType="INSIDE">
+            </Polygon>
+                        <Polygon fx:id="tile02" fill="WHITE" layoutX="280.0" layoutY="241.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile03" fill="WHITE" layoutX="375.0" layoutY="188.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile14" fill="WHITE" layoutX="470.0" layoutY="241.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile12" fill="WHITE" layoutX="280.0" layoutY="347.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile13" fill="WHITE" layoutX="375.0" layoutY="294.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile24" fill="WHITE" layoutX="470.0" layoutY="347.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile22" fill="WHITE" layoutX="280.0" layoutY="453.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile23" fill="WHITE" layoutX="375.0" layoutY="400.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile33" fill="WHITE" layoutX="470.0" layoutY="453.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile31" fill="WHITE" layoutX="280.0" layoutY="559.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile32" fill="WHITE" layoutX="375.0" layoutY="506.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile42" fill="WHITE" layoutX="470.0" layoutY="559.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile41" fill="WHITE" layoutX="375.0" layoutY="612.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile25" fill="WHITE" layoutX="565.0" layoutY="294.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile34" fill="WHITE" layoutX="565.0" layoutY="400.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile43" fill="WHITE" layoutX="565.0" layoutY="506.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile01" fill="WHITE" layoutX="185.0" layoutY="294.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile11" fill="WHITE" layoutX="185.0" layoutY="400.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="tile21" fill="WHITE" layoutX="185.0" layoutY="506.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water12" fill="#7bd5ff" layoutX="470.0" layoutY="665.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water13" fill="#7bd5ff" layoutX="375.0" layoutY="718.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water11" fill="#7bd5ff" layoutX="565.0" layoutY="612.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water7" fill="#7bd5ff" layoutX="660.0" layoutY="241.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water8" fill="#7bd5ff" layoutX="660.0" layoutY="347.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water9" fill="#7bd5ff" layoutX="660.0" layoutY="453.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water10" fill="#7bd5ff" layoutX="660.0" layoutY="559.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water4" fill="#7bd5ff" layoutX="375.0" layoutY="82.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water5" fill="#7bd5ff" layoutX="470.0" layoutY="135.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water6" fill="#7bd5ff" layoutX="565.0" layoutY="188.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water2" fill="#7bd5ff" layoutX="185.0" layoutY="188.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water3" fill="#7bd5ff" layoutX="280.0" layoutY="135.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water1" fill="#7bd5ff" layoutX="90.0" layoutY="241.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water18" fill="#7bd5ff" layoutX="90.0" layoutY="347.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water17" fill="#7bd5ff" layoutX="90.0" layoutY="453.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water16" fill="#7bd5ff" layoutX="90.0" layoutY="559.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water15" fill="#7bd5ff" layoutX="185.0" layoutY="612.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Polygon fx:id="water14" fill="#7bd5ff" layoutX="280.0" layoutY="665.0" mouseTransparent="true" points="-30.0, 50.0, 30.0, 50.0, 60.0, 0.0, 30.0, -50.0, -30.0, -50.0, -60.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+                     </children>
+                  </Pane>
+                  <Pane mouseTransparent="true" prefHeight="800.0" prefWidth="750.0">
+                     <children>
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="400.0" layoutY="104.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="343.0" layoutY="104.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="531.0" layoutY="214.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="500.0" layoutY="163.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="242.0" layoutY="163.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="213.0" layoutY="214.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="144.0" layoutY="322.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="600.0" layoutY="322.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="625.0" layoutY="376.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="118.0" layoutY="375.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="146.0" layoutY="534.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="116.0" layoutY="484.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="306.0" layoutY="591.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="247.0" layoutY="591.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="496.0" layoutY="591.0" mouseTransparent="true" rotate="30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="438.0" layoutY="591.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="598.0" layoutY="534.0" mouseTransparent="true" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bcaa6b" height="50.0" layoutX="626.0" layoutY="485.0" mouseTransparent="true" rotate="-30.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+                     </children>
+                  </Pane>
+                  <Pane mouseTransparent="true" prefHeight="800.0" prefWidth="750.0">
+                     <children>
+                        <Circle fx:id="dice33" fill="#b99263" layoutX="470.0" layoutY="453.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice43" fill="#b99263" layoutX="565.0" layoutY="506.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice34" fill="#b99263" layoutX="565.0" layoutY="400.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice25" fill="#b99263" layoutX="565.0" layoutY="294.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice24" fill="#b99263" layoutX="470.0" layoutY="347.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice14" fill="#b99263" layoutX="470.0" layoutY="242.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice13" fill="#b99263" layoutX="375.0" layoutY="294.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice03" fill="#b99263" layoutX="375.0" layoutY="188.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice02" fill="#b99263" layoutX="280.0" layoutY="241.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice01" fill="#b99263" layoutX="185.0" layoutY="294.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice12" fill="#b99263" layoutX="280.0" layoutY="347.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice23" fill="#b99263" layoutX="375.0" layoutY="400.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice11" fill="#b99263" layoutX="185.0" layoutY="400.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice22" fill="#b99263" layoutX="280.0" layoutY="453.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice32" fill="#b99263" layoutX="375.0" layoutY="506.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice42" fill="#b99263" layoutX="470.0" layoutY="559.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice41" fill="#b99263" layoutX="375.0" layoutY="612.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice31" fill="#b99263" layoutX="280.0" layoutY="559.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="dice21" fill="#b99263" layoutX="185.0" layoutY="506.0" mouseTransparent="true" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+                        <ImageView fx:id="harbor1" fitHeight="72.0" fitWidth="40.0" layoutX="355.0" layoutY="36.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Ports/Misc.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="harbor9" fitHeight="81.0" fitWidth="40.0" layoutX="151.0" layoutY="148.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Ports/Misc.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="harbor8" fitHeight="81.0" fitWidth="40.0" layoutX="54.0" layoutY="307.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Ports/Misc.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="harbor7" fitHeight="81.0" fitWidth="40.0" layoutX="55.0" layoutY="539.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Ports/Misc.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="harbor6" fitHeight="64.0" fitWidth="40.0" layoutX="260.0" layoutY="654.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Ports/Misc.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="harbor5" fitHeight="81.0" fitWidth="40.0" layoutX="450.0" layoutY="654.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Ports/Misc.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="harbor4" fitHeight="81.0" fitWidth="40.0" layoutX="654.0" layoutY="539.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Ports/Misc.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="harbor3" fitHeight="81.0" fitWidth="40.0" layoutX="654.0" layoutY="307.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Ports/Misc.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="harbor2" fitHeight="81.0" fitWidth="40.0" layoutX="559.0" layoutY="148.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Ports/Misc.png" />
+                           </image>
+                        </ImageView>
+                        
+                     </children>
+                  </Pane>
+                  <Pane fx:id="settlementPane" prefHeight="800.0" prefWidth="750.0">
+                     <children>
+                        <Text fx:id="diceText" layoutX="509.0" layoutY="765.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dice Roll" textAlignment="CENTER" wrappingWidth="132.0">
+                           <font>
+                              <Font name="System Bold" size="29.0" />
+                           </font>
+                        </Text>
+                     </children></Pane>
+               </children>
+            </Pane>
+            <Pane prefHeight="792.0" prefWidth="234.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">
+               <children>
+                  <ImageView fx:id="inventoryFrame1" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/playerInventory.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="inventoryFrame2" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/playerInventory.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="inventoryFrame3" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/playerInventory.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="inventoryTitle1" layoutX="91.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="inventoryTitle2" layoutX="91.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 3" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="inventoryTitle3" layoutX="91.0" layoutY="556.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 4" wrappingWidth="200.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="settlementCount1" layoutX="83.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="roadCount1" layoutX="83.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="cityCount1" layoutX="160.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stockpileCount1" layoutX="160.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="settlementCount2" layoutX="83.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="roadCount2" layoutX="83.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="cityCount2" layoutX="160.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stockpileCount2" layoutX="160.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="settlementCount3" layoutX="83.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="roadCount3" layoutX="83.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="cityCount3" layoutX="160.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stockpileCount3" layoutX="160.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="tradeButton1" fitHeight="40.0" fitWidth="184.0" layoutX="44.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ButtonResources/Trade.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="tradeButton2" fitHeight="40.0" fitWidth="184.0" layoutX="43.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ButtonResources/Trade.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="tradeButton3" fitHeight="40.0" fitWidth="184.0" layoutX="42.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ButtonResources/Trade.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="playerIcon1" fitHeight="54.0" fitWidth="40.0" layoutX="44.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/player2Icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="playerIcon2" fitHeight="54.0" fitWidth="40.0" layoutX="42.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/player3icon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="playerIcon3" fitHeight="54.0" fitWidth="40.0" layoutX="44.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/player4icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <HBox prefHeight="55.0" prefWidth="1250.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18;">
+         <children>
+            <Pane prefHeight="60.0" prefWidth="1250.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18; -fx-background-color: FFFFFF;">
+               <children>
+                  <ImageView fx:id="build" fitHeight="83.52" fitWidth="90" layoutX="1043.0" layoutY="-39.0" onMouseClicked="#buildClicked">
+                      <image>
+                          <Image url="@../ButtonResources/Build.png" />
+                      </image>
+                  </ImageView>
+                  <ImageView fx:id="endTurn" fitHeight="83.52" fitWidth="90" layoutX="1142.0" layoutY="-39.0" onMouseClicked="#endTurnClicked">
+                      <image>
+                          <Image url="@../ButtonResources/EndTurn.png" />
+                      </image>
+                  </ImageView>
+                  <ImageView fx:id="help" fitHeight="31.0" fitWidth="32.0" layoutX="1004.0" layoutY="17.0" onMouseClicked="#helpClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ButtonResources/Help.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="492.0" layoutX="24.0" layoutY="-55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/playerStats.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="currentPlayerSettlements" layoutX="72.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayerBricks" layoutX="72.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayerCities" layoutX="175.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayerWool" layoutX="175.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayerRoads" layoutX="277.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayerOres" layoutX="277.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayerKnight" layoutX="378.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayerWheat" layoutX="378.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayerPoints" layoutX="476.0" layoutY="-19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentPlayerLumber" layoutX="476.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="40.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="currentPlayerIcon" fitHeight="48.0" fitWidth="40.0" layoutX="200.0" layoutY="-96.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlayerResources/player1Icon.png" />
+                     </image>
+                  </ImageView>
+                  <Rectangle fx:id="diceContainer" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="71.0" layoutX="765.0" layoutY="-25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="132.0" />
+                  <ImageView fx:id="dice1" fitHeight="55.0" fitWidth="54.0" layoutX="774.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../DiceResources/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="dice2" fitHeight="55.0" fitWidth="54.0" layoutX="835.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../DiceResources/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="rollDiceButton" fitHeight="33.0" fitWidth="90.0" layoutX="795.0" layoutY="-6.0" onMouseClicked="#rollClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../DiceResources/roll.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children></HBox>
+   </children>
+</VBox>

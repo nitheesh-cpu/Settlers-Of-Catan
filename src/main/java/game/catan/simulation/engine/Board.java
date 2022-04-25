@@ -87,13 +87,12 @@ public class Board {
     }
 
     public void stealFromPlayer(Player player){
-        if(player.RolledRobber()) {
 
 
 
         }
 
-    }
+
 
     public void initializeRobber() {
         for (Tile[] tile : tiles) {
