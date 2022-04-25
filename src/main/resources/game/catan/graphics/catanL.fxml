@@ -227,7 +227,7 @@
                   </Pane>
                   <Pane fx:id="settlementPane" prefHeight="800.0" prefWidth="750.0">
                      <children>
-                        <Text layoutX="509.0" layoutY="765.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dice Roll" textAlignment="CENTER" wrappingWidth="132.0">
+                        <Text fx:id="diceText" layoutX="509.0" layoutY="765.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dice Roll" textAlignment="CENTER" wrappingWidth="132.0">
                            <font>
                               <Font name="System Bold" size="29.0" />
                            </font>

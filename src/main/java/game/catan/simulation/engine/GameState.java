@@ -81,7 +81,11 @@ public class GameState {
 
     private int setupCounter = 0;
     public void setUpPhase() {
-        if(setupCounter == 24) return;
+        if(setupCounter == 24){
+            gameController.showDice();
+            gameController.resetDice();
+            return;
+        }
         setupCounter++;
         if (setupCounter<=12) {
             if(setupCounter%3 == 1)
@@ -92,7 +96,7 @@ public class GameState {
             }
             else if(setupCounter%3 == 0) {
                 gameController.actionLogText.appendText("Player " + (currentPlayerIndex+1) + " built a road\n");
-                nextTurn();
+                if(setupCounter!=12) nextTurn();
                 setUpPhase();
             }
         }
@@ -100,6 +104,7 @@ public class GameState {
             currentPlayerIndex--;
             if (currentPlayerIndex < 0)
                 currentPlayerIndex = numPlayers - 1;
+            currentPlayer = players[currentPlayerIndex];
         }
         else {
             if(setupCounter%3 == 1) {

@@ -17,6 +17,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -29,6 +30,8 @@ import static game.catan.simulation.engine.Initialize.*;
 public class GameController {
     public ImageView dice1;
     public ImageView dice2;
+    public Text diceText;
+    public Rectangle diceContainer;
     public ScrollPane actionLogScrollPane;
     public TextArea actionLogText;
     public Text actionLogTitle;
@@ -234,7 +237,10 @@ public class GameController {
             }
         }
         gameState.start();
-        resetDice();
+        rollDiceButton.setVisible(false);
+        dice1.setVisible(false);
+        dice2.setVisible(false);
+        diceText.setVisible(false);
     }
 
     private double xoffSet = 0;
@@ -247,10 +253,16 @@ public class GameController {
     }
 
     public void updateDiceGraphic(int roll1, int roll2) {
-
         rollDiceButton.setVisible(false);
         dice1.setImage(diceImages[roll1-1]);
         dice2.setImage(diceImages[roll2-1]);
+    }
+
+    public void showDice(){
+        rollDiceButton.setVisible(true);
+        dice1.setVisible(true);
+        dice2.setVisible(true);
+        diceText.setVisible(true);
     }
 
     public void updatePlayerStats(){
@@ -267,7 +279,7 @@ public class GameController {
         currentPlayerSettlements.setText(Integer.toString(gameState.getCurrentPlayer().getAmtSettlements()));
         currentPlayerRoads.setText(Integer.toString(gameState.getCurrentPlayer().getAmtRoads()));
         currentPlayerCities.setText(Integer.toString(gameState.getCurrentPlayer().getAmtCities()));
-
+        turnTitle.setText("Player " + (GameState.currentPlayerIndex+1) + "'s Turn");
         for(int i = 0; i < GameState.numPlayers-1; i++){
             int index = GameState.nextTurnIndex(GameState.currentPlayerIndex+i);
             stats[i][0].setText("Player " + (index+1));
