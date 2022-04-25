@@ -179,9 +179,12 @@ public class Player {
     }
 
     public void addRoad(Road r) {
+        if(resources.getBricks() >=1 && resources.getWood() >=1) {
+            roads.add(r);
+            numRoads++;
 
-        roads.add(r);
-        numRoads++;
+        }
+
     }
 
     public void addCity(Structure settlement)
