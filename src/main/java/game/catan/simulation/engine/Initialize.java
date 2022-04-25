@@ -4,7 +4,6 @@ import game.catan.simulation.structures.ResourceType;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -13,9 +12,14 @@ public class Initialize {
     public static ImagePattern waterPattern;
     public static ImagePattern[] dicePatterns;
     public static Map<ResourceType, Image> harborImages;
+    public static Image[] diceImages;
+    public static Image settlementHover;
+    public static Image settlementBlank;
 
 
     public static void init(){
+        settlementHover = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/hover.jpg"));
+        settlementBlank = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/blank.png"));
         //hexagon tile patterns
         Image brick = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/BrickTile.png"));
         Image desert = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/DesertTileEXP.png"));
@@ -66,5 +70,15 @@ public class Initialize {
         Map.entry(ResourceType.WOOD, new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Wood.png")))),
         Map.entry(ResourceType.MISC, new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Ports/Misc.png"))))
         );
+
+        //dice Images
+        diceImages = new Image[]{
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/1.png"))),
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/2.png"))),
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/3.png"))),
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/4.png"))),
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/5.png"))),
+            new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/6.png"))),
+        };
     }
 }
