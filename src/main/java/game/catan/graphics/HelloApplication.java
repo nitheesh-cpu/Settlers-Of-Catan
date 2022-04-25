@@ -14,18 +14,39 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     public static Stage stage;
     public static Stage gameStage;
+    public static Stage buildStage;
     @Override
     public void start(Stage stage) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 970, 690);
-
         this.stage = stage;
         stage.setResizable(true);
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Settlers of Catan");
         stage.setScene(scene);
         stage.show();
+
+
+        FXMLLoader fxmlLoader2 = new FXMLLoader(HelloApplication.class.getResource("buildMenu.fxml"));
+        Scene scene2 = new Scene(fxmlLoader2.load(), 500, 300);
+        Stage buildStage = new Stage();
+        scene2.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        buildStage.initStyle(StageStyle.TRANSPARENT);
+        this.buildStage = buildStage;
+        buildStage.setResizable(true);
+        scene2.setFill(Color.TRANSPARENT);
+        buildStage.setTitle("Settlers of Catan");
+        buildStage.setScene(scene2);
+    }
+
+    public static void toggleBuildMenu(){
+        if(buildStage.isShowing()){
+            buildStage.hide();
+        }else{
+            buildStage.show();
+        }
+
     }
 
     public static void showSmall() throws IOException {

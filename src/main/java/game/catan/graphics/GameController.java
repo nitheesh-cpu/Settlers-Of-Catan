@@ -158,6 +158,7 @@ public class GameController {
     private Tile[][] tileObjs;
     private ImageView[] harborImages;
     private GameState gameState;
+    public boolean buildEnabled;
 
     @FXML
     public void initialize() throws IOException, InterruptedException {
@@ -241,6 +242,7 @@ public class GameController {
         dice1.setVisible(false);
         dice2.setVisible(false);
         diceText.setVisible(false);
+        buildEnabled = false;
     }
 
     private double xoffSet = 0;
@@ -296,7 +298,7 @@ public class GameController {
     //turn buttons
     @FXML
     void buildClicked(MouseEvent event) {
-        actionLogText.appendText("Build clicked\n");
+        if(buildEnabled) HelloApplication.toggleBuildMenu();
     }
 
     @FXML

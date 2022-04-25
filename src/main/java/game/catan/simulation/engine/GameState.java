@@ -82,6 +82,7 @@ public class GameState {
     private int setupCounter = 0;
     public void setUpPhase() {
         if(setupCounter == 24){
+            gameController.buildEnabled = true;
             gameController.showDice();
             gameController.resetDice();
             return;
