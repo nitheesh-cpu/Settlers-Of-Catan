@@ -7,6 +7,8 @@ import game.catan.simulation.structures.Tile;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static game.catan.simulation.structures.Structure.StructureType.CITY;
+
 public class Player {
     private String name;
     private Color color;
@@ -18,9 +20,7 @@ public class Player {
     public static int numSettlements = 5;
     private int victoryPoints;
     public static int numRoads = 15;
-    public static int numCities = 4;
-
-    private Dice dello;
+    public static int numCities = 0;
 
     private boolean hasLargestArmy;
     private boolean hasLargestRoad;
@@ -31,6 +31,7 @@ public class Player {
 
     public Player() {
         resources = new Stockpile();
+        victoryPoints = 0;
     }
 
     public Stockpile getResources() {
@@ -74,9 +75,9 @@ public class Player {
     }
 
     //adding resources
-    public void addResources(ResourceType n, int count)
+    public void addResources(ResourceType n, int count, Stockpile stockpile)
     {
-        resources.add(n,count);
+        resources.add(n,stockpile.remove(n,count));
     }
 
     //total resources
@@ -85,7 +86,22 @@ public class Player {
         return resources.getBricks()+resources.getWool()+resources.getWheat()+resources.getWood() + resources.getOre();
     }
 
+    //removing resources
+    public void removeResource(ResourceType n, int count, Stockpile stockpile)
+    {
+        stockpile.add(n,resources.remove(n,count));
+    }
 
+    //when robber is activated and player has more than seven resources
+    public void removeHalfResources(int b, int o, int w, int wl, int wh, Stockpile stockpile)
+    {
+        stockpile.add(ResourceType.BRICK,resources.remove(ResourceType.BRICK,b));
+        stockpile.add(ResourceType.ORE,resources.remove(ResourceType.ORE,o));
+        stockpile.add(ResourceType.WOOD,resources.remove(ResourceType.WOOD,w));
+        stockpile.add(ResourceType.WOOL,resources.remove(ResourceType.WOOL,wl));
+        stockpile.add(ResourceType.WHEAT,resources.remove(ResourceType.WHEAT,wh));
+
+    }
 
     public int getNumCities() {
         return numCities;
@@ -124,17 +140,18 @@ public class Player {
         numSettlements++;
     }
 
-    public void addRoads() {
-        numRoads++;
+    public void addCity(Structure settlement)
+    {
+        //three ore, two wheat, and one settlment are needed for a city
+        if(resources.getOre()==3&&resources.getWheat()==2&&settlement.getType()== Structure.StructureType.SETTLEMENT&&settlement.getLocation()!=null)
+        {
+             settlement.setType(CITY);
+             numCities++;
+             victoryPoints+=2;
+        }
     }
 
-    public boolean RolledRobber() {
-        if(dello.getTotal() == 7) {
-            return true;
-        }
-        return false;
-        //this checks if the player rolled the number 7 to activate the robber
-    }
+
 
 
 

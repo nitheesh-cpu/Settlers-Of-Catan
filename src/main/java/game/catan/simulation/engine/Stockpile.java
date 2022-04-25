@@ -51,7 +51,7 @@ public class Stockpile {
         }
     }
 
-    public void remove(ResourceType resource, int count) {
+    public int remove(ResourceType resource, int count) {
         switch (resource) {
             case BRICK -> this.bricks -= count;
             case WHEAT -> this.wheat -= count;
@@ -59,6 +59,7 @@ public class Stockpile {
             case ORE -> this.ore -= count;
             case WOOL -> this.wool -= count;
         }
+        return count;
     }
 
     public int getTotal() {
