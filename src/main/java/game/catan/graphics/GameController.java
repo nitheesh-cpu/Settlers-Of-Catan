@@ -242,6 +242,7 @@ public class GameController {
         dice1.setVisible(false);
         dice2.setVisible(false);
         diceText.setVisible(false);
+        diceContainer.setVisible(false);
         buildEnabled = false;
     }
 
@@ -262,6 +263,7 @@ public class GameController {
 
     public void showDice(){
         rollDiceButton.setVisible(true);
+        diceContainer.setVisible(true);
         dice1.setVisible(true);
         dice2.setVisible(true);
         diceText.setVisible(true);
