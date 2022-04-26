@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="641.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.maritimeTradeController2">
+    <children>
+        <HBox prefHeight="409.0" prefWidth="600.0" style="-fx-background-color: FFFFFF; -fx-border-style: solid; -fx-border-width: 3; -fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;">
+            <children>
+                <Pane fx:id="root" onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="340.0" prefWidth="635.0">
+                    <children>
+                        <Text layoutX="166.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Resource to Obtain" textAlignment="CENTER" wrappingWidth="302.96875">
+                            <font>
+                                <Font name="System Bold" size="40.0" />
+                            </font>
+                        </Text>
+                        <ImageView fitHeight="99.0" fitWidth="90.0" layoutX="22.0" layoutY="195.0" onMouseClicked="#brickClicked" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ButtonResources/Bricks.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="116.0" fitWidth="90.0" layoutX="150.0" layoutY="195.0" onMouseClicked="#woolClicked" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ButtonResources/Wool.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="116.0" fitWidth="90.0" layoutX="275.0" layoutY="195.0" onMouseClicked="#oreClicked" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ButtonResources/Ore.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="116.0" fitWidth="90.0" layoutX="398.0" layoutY="195.0" onMouseClicked="#wheatClicked" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ButtonResources/Wheat.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="116.0" fitWidth="90.0" layoutX="521.0" layoutY="195.0" onMouseClicked="#lumberClicked" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ButtonResources/Lumber.jpg" />
+                            </image>
+                        </ImageView>
+                        <Text id="text" layoutX="42.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bricks" textAlignment="CENTER">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                        <Text id="text" layoutX="172.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wool" textAlignment="CENTER">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                        <Text id="text" layoutX="304.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ore" textAlignment="CENTER">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                        <Text id="text" layoutX="414.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wheat" textAlignment="CENTER">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                        <Text id="text" layoutX="529.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lumber" textAlignment="CENTER" wrappingWidth="73.412109375">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </Pane>
+            </children>
+        </HBox>
+    </children>
+</VBox>
