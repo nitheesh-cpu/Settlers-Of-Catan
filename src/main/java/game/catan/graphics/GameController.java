@@ -243,7 +243,7 @@ public class GameController {
         dice2.setVisible(false);
         diceText.setVisible(false);
         diceContainer.setVisible(false);
-        buildEnabled = false;
+        buildEnabled = true;
     }
 
     private double xoffSet = 0;

@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Tile {
+    public static final int NORTHWEST = 0, NORTH = 1, NORTHEAST = 2, SOUTHEAST = 3, SOUTH = 4, SOUTHWEST = 5;
+
     private ResourceType resource;
     private Road[] roads;
     private Polygon polygon;
@@ -49,6 +51,10 @@ public class Tile {
         int[] num = {0,0,0,1,2,3,4,0,5,6,7,8,9};
         numberPattern = Initialize.dicePatterns[num[tileNumber]];
     }
+
+
+
+
 
     public ResourceType getResource() {
         return resource;
@@ -105,6 +111,7 @@ public class Tile {
     public void setVertices(Vertex[] vertices) {
         this.vertices = vertices;
     }
+
 
     //create static Stack which holds tile numbers
     //create initialize() method which gives tile a tile number from the stack

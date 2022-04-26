@@ -5,6 +5,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +17,7 @@ public class buildMenuController implements Initializable {
     public ImageView devCardButton;
     public ImageView roadButton;
     public Pane root;
+    public Text title;
     public ImageView settlementButton;
 
     @Override

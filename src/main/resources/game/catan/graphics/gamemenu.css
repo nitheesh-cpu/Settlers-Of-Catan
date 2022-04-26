@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../Fonts/Montserrat-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat Bold';
+    src: url('../Fonts/Montserrat-SemiBold.ttf');
+}
+
 #root {
     -fx-background-radius: 18 18 18 18;
     -fx-border-radius: 18 18 18 18;
@@ -23,4 +33,12 @@
     -fx-border-width: 3px;
     -fx-border-style: solid;
     -fx-background-color: FFFFFF;
+}
+
+#bold {
+    -fx-font-family: "Montserrat Bold";
+}
+
+#text {
+    -fx-font-family: "Montserrat";
 }

@@ -14,7 +14,7 @@
          <children>
             <Pane fx:id="root" onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="310.0" prefWidth="513.0">
                <children>
-                  <Text layoutX="140.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Item To Buy" textAlignment="CENTER" wrappingWidth="217.96875">
+                  <Text id="bold" fx:id="title" layoutX="140.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Item To Buy" textAlignment="CENTER" wrappingWidth="217.96875">
                      <font>
                         <Font name="System Bold" size="40.0" />
                      </font>
