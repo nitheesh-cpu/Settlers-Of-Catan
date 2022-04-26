@@ -136,5 +136,9 @@ public class Board {
             }
         }
     }
+    public DevelopmentCard returnTop()
+    {
+        return developmentCards.pop();
+    }
 
 }
