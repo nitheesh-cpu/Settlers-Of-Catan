@@ -151,6 +151,11 @@ public class Player {
         }
     }
 
+    public int getNumSettlements() {return numSettlements;}
+    public int getNumKnights() {return numKnights;}
+    public int getVictoryPoints() {return victoryPoints;}
+    public int getNumRoads() {return numRoads;}
+
 
 
 
