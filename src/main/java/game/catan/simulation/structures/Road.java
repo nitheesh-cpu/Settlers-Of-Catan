@@ -1,16 +1,14 @@
 package game.catan.simulation.structures;
 
 import game.catan.simulation.engine.Location;
-import game.catan.simulation.engine.Player;
 import javafx.scene.shape.Rectangle;
 
 public class Road {
     private Location location;
     private Rectangle rectangle;
-    private Player owner;
+    //private Player owner;
 
     public Road(Location loc, Rectangle rect) {
-        owner = null;
         location = loc;
         rectangle = rect;
     }
@@ -23,11 +21,8 @@ public class Road {
         return rectangle;
     }
 
-    public void setOwner(Player p){
+    /* public void setOwner(Player p){
         owner = p;
-   }
-
-    public Player getOwner() {
-        return owner;
-    }
+/   }/
+    */
 }

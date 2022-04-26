@@ -1,74 +1,37 @@
 package game.catan.simulation.engine;
 import game.catan.simulation.card.DevelopmentCard;
 import game.catan.simulation.structures.ResourceType;
-import game.catan.simulation.structures.Road;
 import game.catan.simulation.structures.Structure;
 import game.catan.simulation.structures.Tile;
-import javafx.scene.image.Image;
 
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static game.catan.simulation.structures.Structure.StructureType.CITY;
 
 public class Player {
     private String name;
     private Color color;
-    private String colorHex;
     //public static Stockpile resources;
     private ArrayList<DevelopmentCard> devCards;
     private ArrayList<Structure> structures;
-    private ArrayList<Road> roads;
+    //private ArrayList<Road> roads;    -for some reason it shows an error with the type Road
     private int numKnights;
     public static int numSettlements = 5;
     private int victoryPoints;
     public static int numRoads = 15;
     public static int numCities = 0;
-    private HashMap<String, Image> images;
+
     private boolean hasLargestArmy;
     private boolean hasLargestRoad;
     private Boolean[] ports;
-    private ArrayList<Tile> tiles;
+    //private ArrayList<Tile> tiles;    -for some reason it shows an error with the type Tile
+
     private Stockpile resources;
 
-    public Player(int i) {
-        ports = new Boolean[6];
-        tiles = new ArrayList<>();
-        roads = new ArrayList<>();
-        images = new HashMap<>();
-        devCards = new ArrayList<>();
-        structures = new ArrayList<>();
+    public Player() {
         resources = new Stockpile();
-        numKnights = 0;
-        hasLargestArmy = false;
-        hasLargestRoad = false;
         victoryPoints = 0;
-        switch (i) {
-            case 0 -> {
-                color = Color.BLUE;
-                colorHex = "#009EDD";
-            }
-            case 1 -> {
-                color = Color.RED;
-                colorHex = "#F04243";
-            }
-            case 2 -> {
-                color = Color.YELLOW;
-                colorHex = "#F5953E";
-            }
-            case 3 -> {
-                color = Color.WHITE;
-                colorHex = "#FFFFFF";
-            }
-        }
-        setupImages(i+1);
-    }
-
-    private void setupImages(int i) {
-        images.put("City", new Image("game/catan/PlayerResources/player"+ i +"City.png"));
-        images.put("Settlement", new Image("game/catan/PlayerResources/player"+ i +"Settlement.png"));
-        images.put("Road", new Image("game/catan/PlayerResources/player"+ i +"Road.png"));
-        images.put("Icon", new Image("game/catan/PlayerResources/player"+ i +"Icon.png"));
     }
 
     public Stockpile getResources() {
@@ -173,18 +136,8 @@ public class Player {
         return false;
     }
 
-    public void addSettlement(Structure s) {
-        structures.add(s);
+    public void addSettlements() {
         numSettlements++;
-    }
-
-    public void addRoad(Road r) {
-        if(resources.getBricks() >=1 && resources.getWood() >=1) {
-            roads.add(r);
-            numRoads++;
-
-        }
-
     }
 
     public void addCity(Structure settlement)
@@ -198,76 +151,9 @@ public class Player {
         }
     }
 
-    public HashMap<String, Image> getImages() {
-        return images;
-    }
 
-    public String getColorHex() {
-        return colorHex;
-    }
 
-    public ArrayList<Structure> getStructures() {
-        return structures;
-    }
 
-    public ArrayList<Road> getRoads() {
-        return roads;
-    }
 
-    public int getNumKnights() {
-        return numKnights;
-    }
-
-    public void setNumKnights(int numKnights) {
-        this.numKnights = numKnights;
-    }
-
-    public int getVictoryPoints() {
-        return victoryPoints;
-    }
-
-    public void setVictoryPoints(int victoryPoints) {
-        this.victoryPoints = victoryPoints;
-    }
-
-    public boolean isHasLargestArmy() {
-        return hasLargestArmy;
-    }
-
-    public void setHasLargestArmy(boolean hasLargestArmy) {
-        this.hasLargestArmy = hasLargestArmy;
-    }
-
-    public boolean isHasLargestRoad() {
-        return hasLargestRoad;
-    }
-
-    public void setHasLargestRoad(boolean hasLargestRoad) {
-        this.hasLargestRoad = hasLargestRoad;
-    }
-
-    public int getAmtRoads() {
-        return roads.size();
-    }
-
-    public int getAmtSettlements() {
-        int amt = 0;
-        for(Structure s : structures){
-            if(s.getType()==Structure.StructureType.SETTLEMENT) {
-                amt++;
-            }
-        }
-        return amt;
-    }
-
-    public int getAmtCities() {
-        int amt = 0;
-        for(Structure s : structures){
-            if(s.getType()==Structure.StructureType.CITY) {
-                amt++;
-            }
-        }
-        return amt;
-    }
 }
 

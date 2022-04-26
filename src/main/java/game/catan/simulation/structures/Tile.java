@@ -1,11 +1,14 @@
 package game.catan.simulation.structures;
 
+import game.catan.simulation.engine.GameState;
 import game.catan.simulation.engine.Initialize;
 import game.catan.simulation.engine.Location;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,8 +33,6 @@ public class Tile {
     public Tile(ResourceType r, Location location){
         structures = new Structure[6];
         roads = new Road[6];
-        edges = new Edge[6];
-        vertices = new Vertex[6];
         resource = r;
         tileNumber = -1;
         int[] tileNumbers = {5,2,6,3,8,10,9,12,11,4,8,10,9,4,5,6,3,11};
@@ -96,21 +97,6 @@ public class Tile {
         this.structures = structures;
     }
 
-    public Edge[] getEdges() {
-        return edges;
-    }
-
-    public void setEdges(Edge[] edges) {
-        this.edges = edges;
-    }
-
-    public Vertex[] getVertices() {
-        return vertices;
-    }
-
-    public void setVertices(Vertex[] vertices) {
-        this.vertices = vertices;
-    }
 
 
     //create static Stack which holds tile numbers
