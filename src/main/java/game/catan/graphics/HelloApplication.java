@@ -25,6 +25,9 @@ public class HelloApplication extends Application {
         stage.setTitle("Settlers of Catan");
         stage.setScene(scene);
         stage.show();
+
+        FXMLLoader fxmlLoader2 = new FXMLLoader(HelloApplication.class.getResource("buildMenu.fxml"));
+        Scene scene2 = new Scene(fxmlLoader2.load(), 1200, 758);
     }
 
     public static void showSmall() throws IOException {
