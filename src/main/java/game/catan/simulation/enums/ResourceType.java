@@ -1,4 +1,4 @@
-package game.catan.simulation.structures;
+package game.catan.simulation.enums;
 
 public enum ResourceType {
     WOOD,
@@ -9,4 +9,3 @@ public enum ResourceType {
     DESERT,
     MISC
 }
-

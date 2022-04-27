@@ -1,8 +1,9 @@
 package game.catan.graphics;
 
-import game.catan.simulation.engine.GameState;
+import game.catan.simulation.GameState;
 import game.catan.simulation.engine.Initialize;
 import game.catan.simulation.engine.Location;
+import game.catan.simulation.enums.ResourceType;
 import game.catan.simulation.structures.ResourceType;
 import game.catan.simulation.structures.Tile;
 import javafx.fxml.FXML;
@@ -165,14 +166,17 @@ public class GameController {
         Initialize.init(); //Initialize images
 
         Node[][] nodes = {{playerIcon1,inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1,inventoryFrame1,tradeButton1},{playerIcon2,inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2,inventoryFrame2,tradeButton2},{playerIcon3,inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3,inventoryFrame3,tradeButton3}};
+
         //Initialize tiles
         waters = new Polygon[]{water1, water2, water3, water4, water5, water6, water7, water8, water9, water10, water11, water12, water13, water14, water15, water16, water17, water18};
         tilePolygons = new Polygon[][]{{tile01, tile02, tile03}, {tile11, tile12, tile13, tile14}, {tile21, tile22, tile23, tile24, tile25}, {tile31, tile32, tile33, tile34}, {tile41, tile42, tile43}};
         circles = new Circle[][]{{dice01, dice02, dice03}, {dice11, dice12, dice13, dice14}, {dice21, dice22, dice23, dice24, dice25}, {dice31, dice32, dice33, dice34}, {dice41, dice42, dice43}};
+
         int[] tileRandomizer = {0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5};
         ResourceType[] resourceNames = {ResourceType.BRICK, ResourceType.ORE, ResourceType.WHEAT, ResourceType.WOOL, ResourceType.WOOD, ResourceType.DESERT};
         List<Integer> tilesList = Arrays.stream(tileRandomizer).boxed().collect(Collectors.toList());
         Collections.shuffle(tilesList);
+
         tileObjs = new Tile[][]{{null, null, null}, {null, null, null, null}, {null, null, null, null, null}, {null, null, null, null}, {null, null, null}};
         ArrayList<Tile> tiles = new ArrayList<>();
         gameState = new GameState(this);
@@ -182,6 +186,8 @@ public class GameController {
                 tileObjs[r][c].setPolygon(tilePolygons[r][c]);
                 tilePolygons[r][c].setFill(tilePatterns[tilesList.remove(0)]);
             }
+
+
         gameState.setTiles(tileObjs);
         gameState.initializeTileNumbers();
         gameState.getBoard().print();
@@ -244,6 +250,18 @@ public class GameController {
         diceText.setVisible(false);
         diceContainer.setVisible(false);
         buildEnabled = true;
+    }
+
+    public void initGame() {
+        Node[][] nodes = {{playerIcon1,inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1,inventoryFrame1,tradeButton1},{playerIcon2,inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2,inventoryFrame2,tradeButton2},{playerIcon3,inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3,inventoryFrame3,tradeButton3}};
+
+        //Initialize tiles in fxml
+        waters = new Polygon[]{water1, water2, water3, water4, water5, water6, water7, water8, water9, water10, water11, water12, water13, water14, water15, water16, water17, water18};
+        tilePolygons = new Polygon[][]{{tile01, tile02, tile03}, {tile11, tile12, tile13, tile14}, {tile21, tile22, tile23, tile24, tile25}, {tile31, tile32, tile33, tile34}, {tile41, tile42, tile43}};
+        circles = new Circle[][]{{dice01, dice02, dice03}, {dice11, dice12, dice13, dice14}, {dice21, dice22, dice23, dice24, dice25}, {dice31, dice32, dice33, dice34}, {dice41, dice42, dice43}};
+
+        Board board = new Board();
+
     }
 
     private double xoffSet = 0;
