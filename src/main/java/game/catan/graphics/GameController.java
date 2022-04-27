@@ -1,11 +1,10 @@
 package game.catan.graphics;
 
 import game.catan.simulation.GameState;
-import game.catan.simulation.engine.Initialize;
-import game.catan.simulation.engine.Location;
+import game.catan.simulation.Tile;
 import game.catan.simulation.enums.ResourceType;
-import game.catan.simulation.structures.ResourceType;
-import game.catan.simulation.structures.Tile;
+import game.catan.simulation.Initialize;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -26,9 +25,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static game.catan.simulation.engine.Initialize.*;
-
 public class GameController {
+
+    // region Variables
     public ImageView dice1;
     public ImageView dice2;
     public Text diceText;
@@ -152,6 +151,7 @@ public class GameController {
     public Text stockpileCount3;
     public ImageView tradeButton3;
     public ImageView inventoryFrame3;
+    // endregion
 
     private Polygon[] waters;
     public Polygon[][] tilePolygons;
