@@ -16,16 +16,16 @@ public class GameState {
     private static Player currentPlayer = null;
     private static int currentPlayerIndex = 0;
 
-    private static Player[] players;
+    public static Player[] players;
     private final Board board;
 
     private Player longestRoadHolder = null;
     private Player largestArmyHolder = null;
 
-    private Scanner sc;
+    private Scanner sc = null;
 
-    public GameState(Scanner sc, int numPlayers, int seed) {
-        this.sc = sc;
+    public GameState(int numPlayers, int seed) {
+//        this.sc = sc;
         Dice.init(seed);
         board = new Board();
         players = new Player[numPlayers];
@@ -40,15 +40,15 @@ public class GameState {
 //            System.out.println("LONGEST ROAD: " + currentPlayer.longestRoad());
 //        }
 
-        setUpPhase();
-
-        while (true) {
-            resourceProductionPhase();
-            tradePhase();
-            buyPhase();
-
-            nextTurn();
-        }
+//        setUpPhase();
+//
+//        while (true) {
+//            resourceProductionPhase();
+//            tradePhase();
+//            buyPhase();
+//
+//            nextTurn();
+//        }
 
     }
 
@@ -586,5 +586,13 @@ public class GameState {
 
     public static Player[] getPlayers() {
         return players;
+    }
+
+    public static int getNumOfPlayers() {
+        return players.length;
+    }
+
+    public Board getBoard() {
+        return board;
     }
 }

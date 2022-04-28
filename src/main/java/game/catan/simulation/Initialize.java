@@ -36,7 +36,7 @@ public class Initialize {
         ImagePattern orePattern = new ImagePattern(ore, 71, 57, 145, 116, false);
         ImagePattern wheatPattern = new ImagePattern(wheat, 67, 57, 135, 116, false);
         waterPattern = new ImagePattern(water, 67, 56, 135, 112, false);
-        tilePatterns = new ImagePattern[]{brickPattern, orePattern, wheatPattern, sheepPattern, lumberPattern, desertPattern};
+        tilePatterns = new ImagePattern[]{lumberPattern, sheepPattern, wheatPattern, brickPattern, orePattern, desertPattern};
 
         //circle dice marker patterns
         Image two = new Image("game/catan/DiceMarkings/2.png");

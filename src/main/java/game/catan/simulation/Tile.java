@@ -4,6 +4,8 @@ import game.catan.simulation.enums.ResourceType;
 import game.catan.simulation.helper.Edge;
 import game.catan.simulation.helper.Location;
 import game.catan.simulation.helper.Vertex;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Polygon;
 
 import java.util.Arrays;
 
@@ -19,7 +21,14 @@ public class Tile {
 
     private Location location;
 
+    private Polygon polygon;
+    private ImagePattern tokenImage;
+
     public Tile(ResourceType resource){
+        this(resource, null);
+    }
+
+    public Tile(ResourceType resource, Location location) {
         this.resource = resource;
         number = -1;
 
@@ -27,7 +36,10 @@ public class Tile {
         edges = new Edge[6];
         vertices = new Vertex[6];
 
-        location = null;
+        this.location = location;
+
+        polygon = null;
+        tokenImage = null;
     }
 
     //region Setters
@@ -436,6 +448,9 @@ public class Tile {
 
     public void setNumber(int number) {
         this.number = number;
+
+        if (number > -1)
+            tokenImage = Initialize.dicePatterns[number - 2];
     }
 
     public void setVertex(Vertex vertex, int orientation) {
@@ -444,6 +459,10 @@ public class Tile {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public void setPolygon(Polygon polygon) {
+        this.polygon = polygon;
     }
 
     //endregion
@@ -485,6 +504,13 @@ public class Tile {
         return location;
     }
 
+    public Polygon getPolygon() {
+        return polygon;
+    }
+
+    public ImagePattern getNumberPattern() {
+        return tokenImage;
+    }
 
     //endregion
 

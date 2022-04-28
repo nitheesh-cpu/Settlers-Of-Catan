@@ -1,10 +1,9 @@
 package game.catan.graphics;
 
-import game.catan.simulation.GameState;
-import game.catan.simulation.Tile;
+import game.catan.simulation.*;
 import game.catan.simulation.enums.ResourceType;
-import game.catan.simulation.Initialize;
 
+import game.catan.simulation.helper.Location;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -165,42 +164,36 @@ public class GameController {
     public void initialize() throws IOException, InterruptedException {
         Initialize.init(); //Initialize images
 
-        Node[][] nodes = {{playerIcon1,inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1,inventoryFrame1,tradeButton1},{playerIcon2,inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2,inventoryFrame2,tradeButton2},{playerIcon3,inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3,inventoryFrame3,tradeButton3}};
+        Node[][] nodes = {{playerIcon1, inventoryTitle1, settlementCount1, cityCount1, roadCount1, stockpileCount1, inventoryFrame1, tradeButton1}, {playerIcon2, inventoryTitle2, settlementCount2, cityCount2, roadCount2, stockpileCount2, inventoryFrame2, tradeButton2}, {playerIcon3, inventoryTitle3, settlementCount3, cityCount3, roadCount3, stockpileCount3, inventoryFrame3, tradeButton3}};
 
         //Initialize tiles
         waters = new Polygon[]{water1, water2, water3, water4, water5, water6, water7, water8, water9, water10, water11, water12, water13, water14, water15, water16, water17, water18};
         tilePolygons = new Polygon[][]{{tile01, tile02, tile03}, {tile11, tile12, tile13, tile14}, {tile21, tile22, tile23, tile24, tile25}, {tile31, tile32, tile33, tile34}, {tile41, tile42, tile43}};
         circles = new Circle[][]{{dice01, dice02, dice03}, {dice11, dice12, dice13, dice14}, {dice21, dice22, dice23, dice24, dice25}, {dice31, dice32, dice33, dice34}, {dice41, dice42, dice43}};
 
-        int[] tileRandomizer = {0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5};
-        ResourceType[] resourceNames = {ResourceType.BRICK, ResourceType.ORE, ResourceType.WHEAT, ResourceType.WOOL, ResourceType.WOOD, ResourceType.DESERT};
-        List<Integer> tilesList = Arrays.stream(tileRandomizer).boxed().collect(Collectors.toList());
-        Collections.shuffle(tilesList);
+        GameState gameState = new GameState(4, 123); // need to pass in num of players and seed here
+        tileObjs = Board.getBoard();
 
-        tileObjs = new Tile[][]{{null, null, null}, {null, null, null, null}, {null, null, null, null, null}, {null, null, null, null}, {null, null, null}};
-        ArrayList<Tile> tiles = new ArrayList<>();
-        gameState = new GameState(this);
-        for (int r = 0; r < tilePolygons.length; r++)
+        for (int r = 0; r < tilePolygons.length; r++) {
             for (int c = 0; c < tilePolygons[r].length; c++) {
-                tileObjs[r][c] = (new Tile(resourceNames[tilesList.get(0)], new Location(r, c)));
-                tileObjs[r][c].setPolygon(tilePolygons[r][c]);
-                tilePolygons[r][c].setFill(tilePatterns[tilesList.remove(0)]);
+                Tile tile = tileObjs[r][c];
+                tile.setPolygon(tilePolygons[r][c]);
+                tilePolygons[r][c].setFill(Initialize.tilePatterns[tile.getResource().ordinal()]);
             }
+        }
 
-
-        gameState.setTiles(tileObjs);
-        gameState.initializeTileNumbers();
-        gameState.getBoard().print();
+        System.out.println(gameState.getBoard());
 
         for (int r = 0; r < circles.length; r++)
             for (int c = 0; c < circles[r].length; c++) {
-                if ((tileObjs[r][c].getTileNumber() > -1))
+                if ((tileObjs[r][c].getNumber() > -1))
                     circles[r][c].setFill(tileObjs[r][c].getNumberPattern());
                 else
                     circles[r][c].setVisible(false);
             }
+
         for (Polygon tile : waters)
-            tile.setFill(waterPattern);
+            tile.setFill(Initialize.waterPattern);
 
         //Initialize harbors
         ResourceType[] harbors = {ResourceType.BRICK, ResourceType.WOOL, ResourceType.ORE, ResourceType.WHEAT, ResourceType.WOOD, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC};
@@ -252,18 +245,6 @@ public class GameController {
         buildEnabled = true;
     }
 
-    public void initGame() {
-        Node[][] nodes = {{playerIcon1,inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1,inventoryFrame1,tradeButton1},{playerIcon2,inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2,inventoryFrame2,tradeButton2},{playerIcon3,inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3,inventoryFrame3,tradeButton3}};
-
-        //Initialize tiles in fxml
-        waters = new Polygon[]{water1, water2, water3, water4, water5, water6, water7, water8, water9, water10, water11, water12, water13, water14, water15, water16, water17, water18};
-        tilePolygons = new Polygon[][]{{tile01, tile02, tile03}, {tile11, tile12, tile13, tile14}, {tile21, tile22, tile23, tile24, tile25}, {tile31, tile32, tile33, tile34}, {tile41, tile42, tile43}};
-        circles = new Circle[][]{{dice01, dice02, dice03}, {dice11, dice12, dice13, dice14}, {dice21, dice22, dice23, dice24, dice25}, {dice31, dice32, dice33, dice34}, {dice41, dice42, dice43}};
-
-        Board board = new Board();
-
-    }
-
     private double xoffSet = 0;
     private double yoffSet = 0;
 
@@ -275,8 +256,8 @@ public class GameController {
 
     public void updateDiceGraphic(int roll1, int roll2) {
         rollDiceButton.setVisible(false);
-        dice1.setImage(diceImages[roll1-1]);
-        dice2.setImage(diceImages[roll2-1]);
+        dice1.setImage(Initialize.diceImages[roll1-1]);
+        dice2.setImage(Initialize.diceImages[roll2-1]);
     }
 
     public void showDice(){
@@ -290,11 +271,11 @@ public class GameController {
     public void updatePlayerStats(){
         Text[][] stats = {{inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1},{inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2},{inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3} };
         ImageView[] icons = {playerIcon1,playerIcon2,playerIcon3};
-        currentPlayerBricks.setText(Integer.toString(gameState.getCurrentPlayer().getResource(ResourceType.BRICK)));
-        currentPlayerWool.setText(Integer.toString(gameState.getCurrentPlayer().getResource(ResourceType.WOOL)));
-        currentPlayerWheat.setText(Integer.toString(gameState.getCurrentPlayer().getResource(ResourceType.WHEAT)));
-        currentPlayerLumber.setText(Integer.toString(gameState.getCurrentPlayer().getResource(ResourceType.WOOD)));
-        currentPlayerOres.setText(Integer.toString(gameState.getCurrentPlayer().getResource(ResourceType.ORE)));
+        currentPlayerBricks.setText(Integer.toString(gameState.getCurrentPlayer().getStockpile().getResourceCount(ResourceType.BRICK)));
+        currentPlayerWool.setText(Integer.toString(gameState.getCurrentPlayer().getStockpile().getResourceCount(ResourceType.WOOL)));
+        currentPlayerWheat.setText(Integer.toString(gameState.getCurrentPlayer().getStockpile().getResourceCount(ResourceType.WHEAT)));
+        currentPlayerLumber.setText(Integer.toString(gameState.getCurrentPlayer().getStockpile().getResourceCount(ResourceType.WOOD)));
+        currentPlayerOres.setText(Integer.toString(gameState.getCurrentPlayer().getStockpile().getResourceCount(ResourceType.ORE)));
         currentPlayerIcon.setImage(gameState.getCurrentPlayer().getImages().get("Icon"));
         currentPlayerKnight.setText(Integer.toString(gameState.getCurrentPlayer().getNumKnights()));
         currentPlayerPoints.setText(Integer.toString(gameState.getCurrentPlayer().getVictoryPoints()));
@@ -302,7 +283,8 @@ public class GameController {
         currentPlayerRoads.setText(Integer.toString(gameState.getCurrentPlayer().getAmtRoads()));
         currentPlayerCities.setText(Integer.toString(gameState.getCurrentPlayer().getAmtCities()));
         turnTitle.setText("Player " + (GameState.currentPlayerIndex+1) + "'s Turn");
-        for(int i = 0; i < GameState.numPlayers-1; i++){
+
+        for(int i = 0; i < GameState.getPlayers().length-1; i++){
             int index = GameState.nextTurnIndex(GameState.currentPlayerIndex+i);
             stats[i][0].setText("Player " + (index+1));
             stats[i][1].setText(Integer.toString(GameState.players[index].getAmtSettlements()));
