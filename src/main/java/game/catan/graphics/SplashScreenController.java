@@ -18,7 +18,7 @@ public class SplashScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("DASDASDASD");
+        System.out.println("Application started");
         FadeTransition.applyFadeTransition(parent, Duration.seconds(3), (e) ->{
             try {
                 Parent fxml = FXMLLoader.load(getClass().getResource("menu.fxml"));

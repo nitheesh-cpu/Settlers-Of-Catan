@@ -31,8 +31,6 @@ public class Board {
     public Board() {
         initializeBoard();
         initializeDevelopmentCards();
-
-        System.out.println(this);
     }
 
     // region Structure/Road Placement
@@ -50,7 +48,7 @@ public class Board {
         if (availableSettlementPlacements(GameState.isGameStart).contains(vertex)) {
             System.out.println("Player placed a settlement");
 
-            Structure structure = new Structure(location, GameState.getCurrentPlayer());
+            Structure structure = new Structure(vertex, GameState.getCurrentPlayer());
 
             tile.getVertex(location.getOrientation()).setStructure(structure);
             structure.setVertex(tile.getVertex(location.getOrientation()));
@@ -91,6 +89,16 @@ public class Board {
         }
     }
 
+    public void placeSettlement(Vertex vertex) {
+        vertex.setStructure(new Structure(vertex, GameState.getCurrentPlayer()));
+        GameState.getCurrentPlayer().addStructure(vertex.getStructure());
+    }
+
+    public void placeRoad(Edge edge) {
+        edge.setRoad(new Road(edge, GameState.getCurrentPlayer()));
+        GameState.getCurrentPlayer().addRoad(edge.getRoad());
+    }
+
     public boolean placeRoad(Location location) {
         // TODO: complete
 
@@ -107,7 +115,7 @@ public class Board {
         if (availableRoadPlacements.contains(selectedEdge)) {
             System.out.println("Player placed a road");
 
-            Road road = new Road(location, GameState.getCurrentPlayer());
+            Road road = new Road(selectedEdge, GameState.getCurrentPlayer());
 
             tile.getEdge(location.getOrientation()).setRoad(road);
             road.setEdge(tile.getEdge(location.getOrientation()));
@@ -152,10 +160,10 @@ public class Board {
         return true;
     }
 
-    public Set<Edge> availableRoadPlacements() {
+    public HashSet<Edge> availableRoadPlacements() {
         Player currentPlayer = GameState.getCurrentPlayer();
         ArrayList<Structure> playerStructures = currentPlayer.getStructures();
-        Set<Edge> availableEdges = new HashSet<>(); // available edges to place a road on
+        HashSet<Edge> availableEdges = new HashSet<>(); // available edges to place a road on
 
         // must connect to a structure
         // can lead of an existing road
@@ -163,6 +171,7 @@ public class Board {
         // can not be placed on top of a structure
         // can not go through other players' structures
 
+        // loop through all player structures' adjacent edges
         for (Structure s: playerStructures) {
             Vertex vertex = s.getVertex();
             Edge[] adjacentEdges = vertex.getAdjacentEdges();
@@ -474,6 +483,7 @@ public class Board {
     // endregion
     // region Initialization
     private void initializeBoard() {
+        System.out.println("Initializing board...");
         board = new Tile[5][];
 
         board[0] = new Tile[3];
@@ -488,6 +498,7 @@ public class Board {
     }
 
     private void initializeDevelopmentCards() {
+        System.out.println("Initializing development cards...");
         developmentCards = new Stack<>();
 
         final int KNIGHT_COUNT = 14;
@@ -560,6 +571,7 @@ public class Board {
                 board[row][col].setAdjacentEdges();
                 board[row][col].setAdjacentEdgesToVertices();
                 board[row][col].setAdjacentVerticesToEdges();
+                board[row][col].setAdjacentTilesToVertices();
             }
         }
     }
@@ -615,25 +627,18 @@ public class Board {
         // 1 0
         vertices = new Vertex[] {board[1][0].getVertex(Vertex.WEST), board[1][0].getVertex(Vertex.NORTHWEST)};
         harbors.get(8).setVertices(vertices);
-
-        for (Harbor harbor : harbors) {
-            System.out.println(Arrays.toString(harbor.getVertices()));
-        }
     }
 
     private void setNumberTokens() {
         ArrayList<Integer> tokens = new ArrayList<>();
 
-        try {
-            Scanner sc = new Scanner(new File("src/engine/board.txt"));
-            while (sc.hasNextLine()) {
-                tokens.add(sc.nextInt());
-            }
+        Scanner sc = new Scanner("5 2 6 3 8 10 9 12 11 4 8 10 9 4 5 6 3 11");
 
-            sc.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        while (sc.hasNextInt()) {
+            tokens.add(sc.nextInt());
         }
+
+        sc.close();
 
         // left column
         for (int row = 0; row < board.length; row++) {

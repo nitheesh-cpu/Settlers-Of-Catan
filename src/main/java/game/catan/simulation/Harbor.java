@@ -2,6 +2,7 @@ package game.catan.simulation;
 
 import game.catan.simulation.enums.ResourceType;
 import game.catan.simulation.helper.Vertex;
+import javafx.scene.image.ImageView;
 
 public class Harbor {
 
@@ -11,6 +12,7 @@ public class Harbor {
     private final ResourceType resourceType;
     private final int ratio;
     private final int id;
+    private ImageView image;
 
     public Harbor(ResourceType type) {
         vertices = new Vertex[2];
@@ -23,6 +25,8 @@ public class Harbor {
         } else {
             ratio = 2;
         }
+
+
     }
 
     public void setVertices(Vertex[] vertices) {

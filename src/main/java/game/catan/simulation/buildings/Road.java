@@ -3,17 +3,38 @@ package game.catan.simulation.buildings;
 import game.catan.simulation.helper.Edge;
 import game.catan.simulation.helper.Location;
 import game.catan.simulation.Player;
+import javafx.scene.shape.Rectangle;
 
 public class Road {
 
-    private final Location location;
     private final Player owner;
     private Edge edge;
 
-    public Road(Location location, Player owner) {
-        this.location = location;
+    private Rectangle rectangle;
+    private Location screenLocation;
+
+
+    public Road(Edge edge, Player owner) {
         this.owner = owner;
-        this.edge = null;
+        this.edge = edge;
+        this.rectangle = null;
+        this.screenLocation = null;
+    }
+
+    public Location getScreenLocation() {
+        return screenLocation;
+    }
+
+    public void setScreenLocation(Location screenLocation) {
+        this.screenLocation = screenLocation;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
     }
 
     public void setEdge(Edge edge) {
@@ -22,10 +43,6 @@ public class Road {
 
     public Edge getEdge() {
         return edge;
-    }
-
-    public Location getLocation() {
-        return location;
     }
 
     public Player getOwner() {

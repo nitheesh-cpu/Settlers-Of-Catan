@@ -1,9 +1,20 @@
 package game.catan.simulation;
 
+import game.catan.graphics.GameController;
+import game.catan.simulation.buildings.Road;
+import game.catan.simulation.buildings.Structure;
 import game.catan.simulation.cards.DevelopmentCard;
 import game.catan.simulation.enums.Color;
+import game.catan.simulation.enums.Phase;
 import game.catan.simulation.enums.ResourceType;
+import game.catan.simulation.helper.Edge;
 import game.catan.simulation.helper.Location;
+import game.catan.simulation.helper.Vertex;
+import javafx.event.Event;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 
 import java.util.*;
 
@@ -15,6 +26,7 @@ public class GameState {
 
     private static Player currentPlayer = null;
     private static int currentPlayerIndex = 0;
+    private static Phase phase = Phase.SETUP;
 
     public static Player[] players;
     private final Board board;
@@ -22,17 +34,28 @@ public class GameState {
     private Player longestRoadHolder = null;
     private Player largestArmyHolder = null;
 
-    private Scanner sc = null;
+    private HashMap<Rectangle, Edge> roadMap;
+    private HashMap<ImageView, Vertex> structureMap;
 
-    public GameState(int numPlayers, int seed) {
-//        this.sc = sc;
+    private static GameController gameController;
+    public static Scanner sc = new Scanner(System.in);
+
+    public GameState(int numPlayers, int seed, GameController controller) {
         Dice.init(seed);
+
+        gameController = controller;
         board = new Board();
         players = new Player[numPlayers];
+        roadMap = new HashMap<>();
+        structureMap = new HashMap<>();
 
         initializePlayers(numPlayers);
+    }
 
-//        nextTurn();
+    public void start() {
+        setUpPhase();
+
+        //        nextTurn();
 //        placeSettlement();
 //
 //        while (true) {
@@ -50,6 +73,20 @@ public class GameState {
 //            nextTurn();
 //        }
 
+
+    }
+
+    public static int nextTurnIndex(int i) {
+        int nextTurnIndex = i + 1;
+
+        if (nextTurnIndex >= players.length)
+            nextTurnIndex -= players.length;
+
+        return nextTurnIndex;
+    }
+
+    public static int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
     }
 
     public static void nextTurn() {
@@ -65,27 +102,54 @@ public class GameState {
         // TODO: player rolls dice
     }
 
+    public static int[] rollDice() {
+        Dice.roll();
+        int diceOne = Dice.getFaceTwo();
+        int diceTwo = Dice.getFaceOne();
+
+        gameController.actionLogText.appendText("Dice rolled\n");
+        gameController.updateDiceGraphic(diceOne, diceTwo);
+
+        return new int[]{diceOne, diceTwo};
+    }
+
+    public static Phase getPhase() {
+        return phase;
+    }
+
     // region Setup Phase
+    private boolean SETUP_placedSettlement = false;
+    private boolean SETUP_placedRoad = false;
     public void setUpPhase() {
-        for (int i = 0; i < players.length; i++) {
+        if (!SETUP_placedSettlement) {
             placeSettlement();
+        } else if (!SETUP_placedRoad) {
             placeRoad();
-            nextTurn();
+        } else {
+            // produce resources
+            System.out.println("Producing resources...");
         }
 
-        for (int i = 0; i < players.length; i++) {
-            placeSettlement();
-            placeRoad();
-            board.produceResources(currentPlayer.getStructures().get(1));
-
-            for (Player player: players) {
-                System.out.println(player + " - " + player.getStockpile());
-            }
-
-            nextTurn();
-        }
-
-        isGameStart = false;
+//        for (int i = 0; i < players.length; i++) {
+//            placeSettlement();
+//        }
+//            placeRoad();
+//            nextTurn();
+//        }
+//
+//        for (int i = 0; i < players.length; i++) {
+//            placeSettlement();
+//            placeRoad();
+//            board.produceResources(currentPlayer.getStructures().get(1));
+//
+//            for (Player player: players) {
+//                System.out.println(player + " - " + player.getStockpile());
+//            }
+//
+//            nextTurn();
+//        }
+//
+//        isGameStart = false;
     }
 
     private void initializePlayers(int numPlayers) {
@@ -524,43 +588,363 @@ public class GameState {
 
     }
 
+    // Corresponding road buttons with each road
+    public void createRoads(Tile[][] tiles, Pane roadPane) {
+//        Road Locations Relative to Tile
+//        1-topleft -> clockwise -> 6-bottomleft
+//        Road 1 = -78,-30
+//        Road 2 = -30,-56
+//        Road 3 = +17,-30
+//        Road 4 = +17,+22
+//        Road 5 = -30,+50
+//        Road 6 = -78,+23
+//        Width = 61
+//        Height = 7
+
+        for (int r = 0; r < tiles.length; r++) {
+            for (int c = 0; c < tiles[r].length; c++) {
+                // create six roads for each tile
+                for (int orientation = 0; orientation < 6; orientation++) {
+                    createSingularRoad(r, c, orientation, roadPane);
+                }
+            }
+        }
+
+//        // loop through all tiles and create 6 roads for each tile
+//        for (int r = 0; r < tiles.length; r++) {
+//            for (int c = 0; c < tiles[r].length; c++) {
+//                for (int i = 0; c == tiles[r].length - 1 ? (r > 1 ? i < 5 : i < 4) : i < 3; i++) {
+//                    createSingularRoad(r, c, i, roadPane);
+//                }
+//            }
+//        }
+//
+//        createSingularRoad(2, 0, 5, roadPane);
+//        createSingularRoad(3, 0, 5, roadPane);
+//        createSingularRoad(4, 0, 4, roadPane);
+//        createSingularRoad(4, 0, 5, roadPane);
+//        createSingularRoad(4, 1, 4, roadPane);
+//        createSingularRoad(4, 1, 5, roadPane);
+//        createSingularRoad(4, 2, 5, roadPane);
+
+//        for (int r = 0; r < tiles.length; r++) {
+//            for (int c = 0; c < tiles[r].length; c++) {
+//                Road[] w = tiles[r][c].getRoads();
+//                Edge[] e = tiles[r][c].getEdges();
+//                if (w[3] == null) {
+//                    w[3] = tiles[r][c + 1].getRoads()[0];
+//                    e[3] = tiles[r][c + 1].getEdges()[0];
+//                }
+//                if (w[4] == null) {
+//                    if (r < 2){ w[4] = tiles[r + 1][c + 1].getRoads()[1];
+//                        e[4] = tiles[r + 1][c + 1].getEdges()[1];}
+//                    else{ w[4] = tiles[r + 1][c].getRoads()[1];
+//                        e[4] = tiles[r + 1][c].getEdges()[1];}
+//                }
+//                if (w[5] == null) {
+//                    if (r < 2){ w[5] = tiles[r + 1][c].getRoads()[2];
+//                        e[5] = tiles[r + 1][c].getEdges()[2];}
+//                    else{ w[5] = tiles[r + 1][c - 1].getRoads()[2];
+//                        e[5] = tiles[r + 1][c - 1].getEdges()[2];}
+//                }
+//                tiles[r][c].setRoads(w);
+//                tiles[r][c].setEdges(e);
+//            }
+//        }
+    }
+
+    public void createSingularRoad(int r, int c, int i, Pane roadPane) {
+        // int[][] roadOffset = new int[][]{{-78, 23, 59}, {-78, -30, -59}, {-30, -56, 0}, {17, -30, 59}, {17, 22, -59}, {-30, 50, 0}};
+        int[][] roadOffset = new int[][]{{-78, -30, -59}, {-30, -56, 0}, {17, -30, 59}, {17, 22, -59}, {-30, 50, 0}, {-78, 23, 59}};
+        Tile tile = Board.getBoard()[r][c];
+        Edge edge = tile.getEdge(i);
+
+        if (edge.getRectangle() != null) return;
+
+//        int temp = i+1;
+//        if (temp >= roadOffset.length) temp = 0;
+
+//        Road[] w = tiles[r][c].getRoads();
+
+        int x = (int) tile.getPolygon().getLayoutX();
+        int y = (int) tile.getPolygon().getLayoutY();
+
+        Location loc = new Location(x + roadOffset[i][0], y + roadOffset[i][1]);
+        Rectangle rect = new Rectangle();
+
+        rect.setX(loc.getX());
+        rect.setY(loc.getY());
+
+        rect.setRotate(roadOffset[i][2]);
+        rect.setWidth(61);
+        rect.setHeight(7);
+        rect.setFill(javafx.scene.paint.Color.TRANSPARENT);
+//        rect.setOnMouseClicked(event -> gameController.actionLogText.appendText("Road clicked\n"));
+//        rect.setOnMouseExited(event ->
+//                rect.setFill(Color.RED)
+//        );
+
+        roadPane.getChildren().add(rect);
+
+//        Road road = new Road(loc, rect);
+//        Edge edge = new Edge(road, loc);
+
+//        roadMap.put(rect, road);
+        edge.setScreenLocation(loc);
+        edge.setRectangle(rect);
+        roadMap.put(rect, edge);
+
+//        w[i] = road;
+//        edges[i] = edge;
+//        tiles[r][c].setRoads(w);
+//        tiles[r][c].setEdges(edges);
+    }
+
+    public void createSettlements(Tile[][] tiles, Pane settlementPane) {
+//        Settlement 1 = -75,-18
+//        Settlement 2 = -48,-70
+//        Settlement 3 = +17,-70
+//        Settlement 4 = +44,-18
+//        Settlement 5 = +17,+36
+//        Settlement 6 = -48,+36
+//
+//        Width = 32
+//        Height = 31
+
+        for (int r = 0; r < tiles.length; r++) {
+            for (int c = 0; c < tiles[r].length; c++) {
+                // create six settlement places for each tile
+                for (int orientation = 0; orientation < 6; orientation++) {
+                    createSingularSettlement(r, c, orientation, settlementPane);
+                }
+            }
+        }
+
+//        for (int r = 0; r < tiles.length; r++) {
+//            for (int c = 0; c < tiles[r].length; c++) {
+//                for (int i = 0; (c == tiles[r].length - 1 ? (r == 2 || r == 3 ? i < 4 : i < 3) : i < 2); i++) {
+//                    createSingularSettlement(r, c, i, settlementPane);
+//                }
+//            }
+//        }
+//
+//        createSingularSettlement(2, 0, 5, settlementPane);
+//        createSingularSettlement(3, 0, 5, settlementPane);
+//        createSingularSettlement(4, 0, 5, settlementPane);
+//        createSingularSettlement(4, 0, 3, settlementPane);
+//        createSingularSettlement(4, 0, 4, settlementPane);
+//        createSingularSettlement(4, 1, 3, settlementPane);
+//        createSingularSettlement(4, 1, 4, settlementPane);
+//        createSingularSettlement(4, 2, 3, settlementPane);
+//        createSingularSettlement(4, 2, 4, settlementPane);
+//
+//        for (int r = 0; r < tiles.length; r++) {
+//            for (int c = 0; c < tiles[r].length; c++) {
+//                Structure[] w = tiles[r][c].getStructures();
+//                Vertex[] q = tiles[r][c].getVertices();
+//                if (w[2] == null) {
+//                    w[2] = tiles[r][c + 1].getStructures()[0];
+//                    q[2] = tiles[r][c + 1].getVertices()[0];
+//                }
+//                if (w[3] == null) {
+//                    if (r < 2){w[3] = tiles[r + 1][c + 1].getStructures()[1];
+//                        q[3] = tiles[r + 1][c + 1].getVertices()[1];}
+//                    else{ w[3] = tiles[r + 1][c].getStructures()[1];
+//                        q[3] = tiles[r + 1][c].getVertices()[1];}
+//                }
+//                try {
+//                    if (w[4] == null) {
+//                        if (r < 2){ w[4] = tiles[r + 1][c + 1].getStructures()[0];
+//                            q[4] = tiles[r + 1][c + 1].getVertices()[0];}
+//                        else{ w[4] = tiles[r + 1][c].getStructures()[0];
+//                            q[4] = tiles[r + 1][c].getVertices()[0];}
+//                    }
+//                } catch (ArrayIndexOutOfBoundsException ignored) {
+//                }
+//                if (w[5] == null) {
+//                    if (r < 2){ w[5] = tiles[r + 1][c].getStructures()[1];
+//                        q[5] = tiles[r + 1][c].getVertices()[1];}
+//                    else if (r == 4){ w[5] = tiles[r][c - 1].getStructures()[3];
+//                        q[5] = tiles[r][c - 1].getVertices()[3];}
+//                    else{ w[5] = tiles[r + 1][c - 1].getStructures()[1];
+//                        q[5] = tiles[r + 1][c - 1].getVertices()[1];}
+//                }
+//                tiles[r][c].setStructures(w);
+//                tiles[r][c].setVertices(q);
+//            }
+//        }
+//
+//        Structure[] w = tiles[2][4].getStructures();
+//        Vertex[] q = tiles[2][4].getVertices();
+//        w[4] =  tiles[3][3].getStructures()[2];
+//        q[4] =  tiles[3][3].getVertices()[2];
+//        tiles[2][4].setStructures(w);
+//        tiles[2][4].setVertices(q);
+//        w = tiles[3][3].getStructures();
+//        q = tiles[3][3].getVertices();
+//        w[4] =  tiles[4][2].getStructures()[2];
+//        q[4] =  tiles[4][2].getVertices()[2];
+//        tiles[3][3].setStructures(w);
+//        tiles[3][3].setVertices(q);
+    }
+
+    public void createSingularSettlement(int r, int c, int i, Pane settlementPane) {
+        // int[][] roadOffset = new int[][]{{-75, -18}, {-48, -70}, {17, -70}, {44, -18}, {17, 36}, {-48, 36}};
+        int[][] roadOffset = new int[][]{{-48, -70}, {17, -70}, {44, -18}, {17, 36}, {-48, 36}, {-75, -18}};
+
+        Tile[][] tiles = Board.getBoard();
+        Vertex vertex = tiles[r][c].getVertices()[i];
+
+        if (tiles[r][c].getVertex(i).getImage() != null) return;
+
+//        Structure[] w = tiles[r][c].getStructures();
+//        Vertex[] q = tiles[r][c].getVertices();
+
+        int x = (int) tiles[r][c].getPolygon().getLayoutX();
+        int y = (int) tiles[r][c].getPolygon().getLayoutY();
+
+        Location loc = new Location(x + roadOffset[i][0], y + roadOffset[i][1]);
+        ImageView settl = new ImageView(new Image("game/catan/PlayerResources/hover.jpg"));
+        settl.setX(loc.getX());
+        settl.setY(loc.getY());
+        settl.setFitWidth(32);
+        settl.setFitHeight(31);
+        settlementPane.getChildren().add(settl);
+        settl.setOpacity(0);
+
+        vertex.setImage(settl);
+
+
+//        Structure settlement = new Structure(loc, settl);
+//        Vertex v = new Vertex(settlement, loc);
+//        settl.setOnMouseClicked(event -> gameController.actionLogText.appendText("Settlement clicked\n"));
+        //make Structure class
+        structureMap.put(settl, vertex);
+//        w[i] = settlement;
+//        q[i] = v;
+//        tiles[r][c].setStructures(w);
+//        tiles[r][c].setVertices(q);
+    }
+
 
     // region Place settlements/roads
     public void placeSettlement() {
-        System.out.println("Available settlement placements: " + board.availableSettlementPlacements(isGameStart));
-        System.out.println("Enter location to place settlement: ");
-        String[] input = sc.nextLine().split(" ");
-
-        if (input[0].equals("skip"))
-            return;
-
-        boolean flag = board.placeSettlement(new Location(Integer.parseInt(input[0]), Integer.parseInt(input[1]), Integer.parseInt(input[2])));
-
-        while (!flag) {
-            System.out.println("Available settlement placements: " + board.availableSettlementPlacements(isGameStart));
-            System.out.println("Invalid settlement placement, try again: ");
-            input = sc.nextLine().split(" ");
-            flag = board.placeSettlement(new Location(Integer.parseInt(input[0]), Integer.parseInt(input[1]), Integer.parseInt(input[2])));
-        }
-
-        System.out.println("Available harbors: " + currentPlayer.getHarbors());
+        showSettlements();
+//        System.out.println("Available settlement placements: " + board.availableSettlementPlacements(isGameStart));
+//        System.out.println("Enter location to place settlement: ");
+//        String[] input = sc.nextLine().split(" ");
+//
+//        if (input[0].equals("skip"))
+//            return;
+//
+//        boolean flag = board.placeSettlement(new Location(Integer.parseInt(input[0]), Integer.parseInt(input[1]), Integer.parseInt(input[2])));
+//
+//        while (!flag) {
+//            System.out.println("Available settlement placements: " + board.availableSettlementPlacements(isGameStart));
+//            System.out.println("Invalid settlement placement, try again: ");
+//            input = sc.nextLine().split(" ");
+//            flag = board.placeSettlement(new Location(Integer.parseInt(input[0]), Integer.parseInt(input[1]), Integer.parseInt(input[2])));
+//        }
+//
+//        System.out.println("Available harbors: " + currentPlayer.getHarbors());
     }
 
+    private void showSettlements() {
+        HashSet<Vertex> availableVertices = board.availableSettlementPlacements(isGameStart);
+
+        for (Vertex vertex : structureMap.values()) {
+            // no player has placed a settlement on this vertex
+            if (availableVertices.contains(vertex) && vertex.getStructure() == null) {
+                ImageView image = vertex.getImage();
+                image.setOnMouseEntered(event -> {
+                    vertex.getImage().setOpacity(1);
+                    System.out.println("Hover over vertex " + vertex.getId());
+                });
+                image.setOnMouseExited(event -> vertex.getImage().setOpacity(0));
+                image.setOnMouseClicked(event -> buildSettlement(vertex, image));
+            }
+        }
+    }
+
+    private void buildSettlement(Vertex vertex, ImageView image) {
+        board.placeSettlement(vertex);
+        gameController.updatePlayerStats();
+        image.setImage(currentPlayer.getImages().get("Settlement"));
+        disableBuildSettlement();
+
+        if (phase == Phase.SETUP) {
+            SETUP_placedSettlement = true;
+            setUpPhase();
+        }
+    }
+
+    public void disableBuildSettlement(){
+        for (Vertex vertex : structureMap.values()) {
+            ImageView image = vertex.getImage();
+
+            image.setOnMouseEntered(Event::consume);
+            image.setOnMouseExited(Event::consume);
+            image.setOnMouseClicked(Event::consume);
+        }
+    }
+
+//    public void placeRoad() {
+//        System.out.println("Available road placements: " + board.availableRoadPlacements());
+//        System.out.println("Enter location to place road: ");
+//        String[] input = sc.nextLine().split(" ");
+//
+//        if (input[0].equals("skip"))
+//            return;
+//
+//        boolean flag = board.placeRoad(new Location(Integer.parseInt(input[0]), Integer.parseInt(input[1]), Integer.parseInt(input[2])));
+//
+//        while (!flag) {
+//            System.out.println("Available road placements: " + board.availableRoadPlacements());
+//            System.out.println("Invalid road placement, try again: ");
+//            input = sc.nextLine().split(" ");
+//            flag = board.placeRoad(new Location(Integer.parseInt(input[0]), Integer.parseInt(input[1]), Integer.parseInt(input[2])));
+//        }
+//    }
+
     public void placeRoad() {
-        System.out.println("Available road placements: " + board.availableRoadPlacements());
-        System.out.println("Enter location to place road: ");
-        String[] input = sc.nextLine().split(" ");
+        showRoads();
+    }
 
-        if (input[0].equals("skip"))
-            return;
+    public void showRoads() {
+        HashSet<Edge> availableEdges = board.availableRoadPlacements();
 
-        boolean flag = board.placeRoad(new Location(Integer.parseInt(input[0]), Integer.parseInt(input[1]), Integer.parseInt(input[2])));
+        for (Edge e : roadMap.values()) {
+            if (availableEdges.contains(e) && e.getRoad() == null) {
+                Rectangle rect = e.getRectangle();
 
-        while (!flag) {
-            System.out.println("Available road placements: " + board.availableRoadPlacements());
-            System.out.println("Invalid road placement, try again: ");
-            input = sc.nextLine().split(" ");
-            flag = board.placeRoad(new Location(Integer.parseInt(input[0]), Integer.parseInt(input[1]), Integer.parseInt(input[2])));
+                rect.setOnMouseEntered(event -> {
+                    rect.setFill(javafx.scene.paint.Color.YELLOW);
+                    System.out.println("Hover over edge " + e.getId());
+                });
+                rect.setOnMouseExited(event -> rect.setFill(javafx.scene.paint.Color.TRANSPARENT));
+                rect.setOnMouseClicked(event -> buildRoad(e, rect));
+            }
+        }
+    }
+
+    public void buildRoad(Edge edge, Rectangle rect) {
+        board.placeRoad(edge);
+        gameController.updatePlayerStats();
+        rect.setFill(javafx.scene.paint.Color.web(currentPlayer.getColorHex()));
+        disableBuildRoad();
+
+        if (phase == Phase.SETUP) {
+            SETUP_placedRoad = true;
+            setUpPhase();
+        }
+    }
+
+    public void disableBuildRoad() {
+        for (Edge e : roadMap.values()) {
+            Rectangle rect = e.getRectangle();
+            rect.setOnMouseEntered(Event::consume);
+            rect.setOnMouseExited(Event::consume);
+            rect.setOnMouseClicked(Event::consume);
         }
     }
 

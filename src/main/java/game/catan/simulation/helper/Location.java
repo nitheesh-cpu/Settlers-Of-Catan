@@ -22,7 +22,15 @@ public class Location {
         return row;
     }
 
+    public int getX() {
+        return row;
+    }
+
     public int getCol() {
+        return col;
+    }
+
+    public int getY() {
         return col;
     }
 

@@ -5,10 +5,13 @@ import game.catan.simulation.buildings.Structure;
 import game.catan.simulation.cards.DevelopmentCard;
 import game.catan.simulation.enums.Color;
 import game.catan.simulation.enums.DevelopmentCardType;
+import game.catan.simulation.enums.StructureType;
 import game.catan.simulation.helper.Edge;
 import game.catan.simulation.helper.Vertex;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Player {
@@ -28,6 +31,9 @@ public class Player {
     private int lengthOfLongestRoad;
     private int victoryPoints;
 
+    private HashMap<String, Image> images;
+    private String colorHex;
+
     public Player(Color color) {
         this.id = number++;
         this.color = color;
@@ -42,6 +48,10 @@ public class Player {
         numOfKnights = 0;
         lengthOfLongestRoad = 0;
         victoryPoints = 0;
+
+        images = new HashMap<>();
+
+        setGraphics();
     }
 
     // TODO: remember to add victory points
@@ -179,6 +189,26 @@ public class Player {
         return structures;
     }
 
+    public int getSettlementCount() {
+        int count = 0;
+
+        for (Structure structure: structures) {
+            if (structure.getType() == StructureType.SETTLEMENT) count++;
+        }
+
+        return count;
+    }
+
+    public int getCityCount() {
+        int count = 0;
+
+        for (Structure structure: structures) {
+            if (structure.getType() == StructureType.CITY) count++;
+        }
+
+        return count;
+    }
+
     public ArrayList<Road> getRoads() {
         return roads;
     }
@@ -219,7 +249,41 @@ public class Player {
         return id;
     }
 
+    public int getNumOfKnights() {
+        return numOfKnights;
+    }
+
+    public int getLengthOfLongestRoad() {
+        return lengthOfLongestRoad;
+    }
+
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    public String getColorHex() {
+        return colorHex;
+    }
+
     public String toString() {
         return "Player " + id + ": " + color;
+    }
+
+    private void setGraphics() {
+        switch (color) {
+            case BLUE -> colorHex = "#009EDD";
+            case RED -> colorHex = "#F04243";
+            case YELLOW -> colorHex = "#F5953E";
+            case WHITE -> colorHex = "#FFFFFF";
+        }
+
+        images.put("City", new Image("game/catan/PlayerResources/player"+ id +"City.png"));
+        images.put("Settlement", new Image("game/catan/PlayerResources/player"+ id +"Settlement.png"));
+        images.put("Road", new Image("game/catan/PlayerResources/player"+ id +"Road.png"));
+        images.put("Icon", new Image("game/catan/PlayerResources/player"+ id +"Icon.png"));
+    }
+
+    public HashMap<String, Image> getImages() {
+        return images;
     }
 }

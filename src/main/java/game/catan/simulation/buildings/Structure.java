@@ -7,20 +7,14 @@ import game.catan.simulation.helper.Vertex;
 
 public class Structure {
 
-    private Location location;
     private Player owner;
     private StructureType type;
     private Vertex vertex;
 
-    public Structure(Vertex vertex, Location location, Player owner) {
+    public Structure(Vertex vertex, Player owner) {
         this.vertex = vertex;
-        this.location = location;
         this.owner = owner;
         this.type = StructureType.SETTLEMENT;
-    }
-
-    public Structure(Location location, Player owner) {
-        this(null, location, owner);
     }
 
     public void upgradeToCity() {
@@ -33,10 +27,6 @@ public class Structure {
 
     public Vertex getVertex() {
         return vertex;
-    }
-
-    public Location getLocation() {
-        return location;
     }
 
     public Player getOwner() {

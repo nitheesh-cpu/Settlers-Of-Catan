@@ -4,6 +4,7 @@ import game.catan.simulation.enums.ResourceType;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -11,7 +12,8 @@ public class Initialize {
 
     public static ImagePattern[] tilePatterns;
     public static ImagePattern waterPattern;
-    public static ImagePattern[] dicePatterns;
+    //public static ImagePattern[] dicePatterns;
+    public static HashMap<Integer, ImagePattern> dicePatterns;
     public static Map<ResourceType, Image> harborImages;
     public static Image[] diceImages;
     public static Image settlementHover;
@@ -59,8 +61,18 @@ public class Initialize {
         ImagePattern tenPattern = new ImagePattern(ten, 31, 35, 60, 60, false);
         ImagePattern elevenPattern = new ImagePattern(eleven, 31, 35, 60, 60, false);
         ImagePattern twelvePattern = new ImagePattern(twelve, 31, 35, 60, 60, false);
-        dicePatterns = new ImagePattern[]{twoPattern, threePattern, fourPattern, fivePattern, sixPattern, eightPattern, ninePattern, tenPattern, elevenPattern, twelvePattern};
-
+        // dicePatterns = new ImagePattern[]{twoPattern, threePattern, fourPattern, fivePattern, sixPattern, eightPattern, ninePattern, tenPattern, elevenPattern, twelvePattern};
+        dicePatterns = new HashMap<>();
+        dicePatterns.put(2, twoPattern);
+        dicePatterns.put(3, threePattern);
+        dicePatterns.put(4, fourPattern);
+        dicePatterns.put(5, fivePattern);
+        dicePatterns.put(6, sixPattern);
+        dicePatterns.put(8, eightPattern);
+        dicePatterns.put(9, ninePattern);
+        dicePatterns.put(10, tenPattern);
+        dicePatterns.put(11, elevenPattern);
+        dicePatterns.put(12, twelvePattern);
 
         //port images
         harborImages = Map.ofEntries(

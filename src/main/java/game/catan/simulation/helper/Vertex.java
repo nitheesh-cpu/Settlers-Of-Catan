@@ -1,6 +1,10 @@
 package game.catan.simulation.helper;
 
+import game.catan.simulation.Tile;
 import game.catan.simulation.buildings.Structure;
+import javafx.scene.image.ImageView;
+
+import java.util.Arrays;
 
 public class Vertex {
 
@@ -10,6 +14,10 @@ public class Vertex {
     private int id;
     private Structure structure;
     private Edge[] adjacentEdges;
+    private Tile[] adjacentTiles;
+
+    private Location screenLocation;
+    private ImageView image;
 
     public Vertex(){
         this(null);
@@ -19,10 +27,30 @@ public class Vertex {
         this.structure = structure;
         this.id = count++;
         this.adjacentEdges = new Edge[3];
+        this.adjacentTiles = new Tile[3];
+
+        this.screenLocation = null;
+        this.image = null;
+    }
+
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
     }
 
     public void setAdjacentEdges(Edge[] adjacentEdges) {
         this.adjacentEdges = adjacentEdges;
+    }
+
+    public void setAdjacentTiles(Tile[] adjacentTiles) {
+        this.adjacentTiles = adjacentTiles;
+    }
+
+    public Tile[] getAdjacentTiles() {
+        return adjacentTiles;
     }
 
     public Edge[] getAdjacentEdges() {

@@ -1,6 +1,7 @@
 package game.catan.simulation.helper;
 
 import game.catan.simulation.buildings.Road;
+import javafx.scene.shape.Rectangle;
 
 public class Edge {
 
@@ -11,6 +12,9 @@ public class Edge {
     private Road road;
     private Vertex[] adjacentVertices;
 
+    private Location screenLocation;
+    private Rectangle rectangle;
+
     public Edge() {
         this(null);
     }
@@ -19,6 +23,25 @@ public class Edge {
         this.road = road;
         this.id = count++;
         adjacentVertices = new Vertex[2];
+
+        this.screenLocation = null;
+        this.rectangle = null;
+    }
+
+    public Location getScreenLocation() {
+        return screenLocation;
+    }
+
+    public void setScreenLocation(Location screenLocation) {
+        this.screenLocation = screenLocation;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
     }
 
     public void setAdjacentVertices(Vertex[] adjacentVertices) {

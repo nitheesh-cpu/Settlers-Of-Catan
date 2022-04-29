@@ -153,6 +153,8 @@ public class Tile {
         setAdjacentEdge(Edge.SOUTHEAST);
         setAdjacentEdge(Edge.SOUTH);
         setAdjacentEdge(Edge.SOUTHWEST);
+
+        System.out.println(this + " adjacent edges: " + Arrays.toString(edges));
     }
 
     private void setAdjacentEdge(int edgeOrientation) {
@@ -202,6 +204,8 @@ public class Tile {
         setAdjacentVertex(Vertex.SOUTHEAST);
         setAdjacentVertex(Vertex.SOUTHWEST);
         setAdjacentVertex(Vertex.WEST);
+
+        System.out.println(this + " adjacent vertices: " + Arrays.toString(vertices));
     }
 
     private void setAdjacentVertex(int vertexOrientation) {
@@ -339,12 +343,10 @@ public class Tile {
                     adjacentEdges[0] = edges[Edge.NORTHWEST];
                     adjacentEdges[1] = edges[Edge.NORTH];
 
-                    System.out.println(Arrays.toString(adjacentTiles));
                     // if northern tile exists
                     if (adjacentTiles[Tile.NORTH] != null) {
                         adjacentEdges[2] = adjacentTiles[Tile.NORTH].getEdge(Edge.SOUTHWEST);
                     } else if (adjacentTiles[Tile.NORTHWEST] != null) {
-                        System.out.println("DONE");
                         adjacentEdges[2] = adjacentTiles[Tile.NORTHWEST].getEdge(Edge.NORTHEAST);
                     }
                 }
@@ -357,6 +359,9 @@ public class Tile {
                     } else if (adjacentTiles[Tile.NORTHWEST] != null) {
                         adjacentEdges[2] = adjacentTiles[Tile.NORTHWEST].getEdge(Edge.NORTHWEST);
                     }
+
+                    System.out.println(Arrays.toString(adjacentEdges));
+                    System.out.println("LOOK! " + adjacentEdges[2]);
                 }
                 case Vertex.EAST -> {
                     adjacentEdges[0] = edges[Edge.NORTHEAST];
@@ -440,6 +445,48 @@ public class Tile {
             e.setAdjacentVertices(adjacentVertices);
         }
     }
+
+    public void setAdjacentTilesToVertices() {
+        for (int i = 0; i < vertices.length; i++) {
+            Vertex v = vertices[i];
+            Tile[] adjacentTilesToVertex = new Tile[3];
+
+            switch (i) {
+                case Vertex.NORTHWEST -> {
+                    adjacentTilesToVertex[0] = adjacentTiles[Tile.NORTHWEST];
+                    adjacentTilesToVertex[1] = adjacentTiles[Tile.NORTH];
+                    adjacentTilesToVertex[2] = this;
+                }
+                case Vertex.NORTHEAST -> {
+                    adjacentTilesToVertex[0] = adjacentTiles[Tile.NORTHEAST];
+                    adjacentTilesToVertex[1] = adjacentTiles[Tile.NORTH];
+                    adjacentTilesToVertex[2] = this;
+                }
+                case Vertex.EAST -> {
+                    adjacentTilesToVertex[0] = adjacentTiles[Tile.NORTHEAST];
+                    adjacentTilesToVertex[1] = adjacentTiles[Tile.SOUTHEAST];
+                    adjacentTilesToVertex[2] = this;
+                }
+                case Vertex.SOUTHEAST -> {
+                    adjacentTilesToVertex[0] = adjacentTiles[Tile.SOUTHEAST];
+                    adjacentTilesToVertex[1] = adjacentTiles[Tile.SOUTH];
+                    adjacentTilesToVertex[2] = this;
+                }
+                case Vertex.SOUTHWEST -> {
+                    adjacentTilesToVertex[0] = adjacentTiles[Tile.SOUTHWEST];
+                    adjacentTilesToVertex[1] = adjacentTiles[Tile.SOUTH];
+                    adjacentTilesToVertex[2] = this;
+                }
+                case Vertex.WEST -> {
+                    adjacentTilesToVertex[0] = adjacentTiles[Tile.SOUTHWEST];
+                    adjacentTilesToVertex[1] = adjacentTiles[Tile.NORTHWEST];
+                    adjacentTilesToVertex[2] = this;
+                }
+            }
+
+            v.setAdjacentTiles(adjacentTilesToVertex);
+        }
+    }
     // endregion
 
     public void setEdge(Edge edge, int orientation) {
@@ -449,8 +496,8 @@ public class Tile {
     public void setNumber(int number) {
         this.number = number;
 
-        if (number > -1)
-            tokenImage = Initialize.dicePatterns[number - 2];
+        if (number > -1 && number != 7)
+            tokenImage = Initialize.dicePatterns.get(number);
     }
 
     public void setVertex(Vertex vertex, int orientation) {

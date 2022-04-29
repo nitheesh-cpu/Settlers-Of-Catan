@@ -13,6 +13,6 @@ public class GameRunner {
         int seed = sc.nextInt();
         sc.nextLine();
 
-        new GameState(sc, numPlayers, seed);
+        // new GameState(sc, numPlayers, seed);
     }
 }

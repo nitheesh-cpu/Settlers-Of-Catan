@@ -47,7 +47,7 @@
                                 <Font name="System Bold" size="25.0" />
                             </font>
                         </Text>
-                            <TextArea fx:id="actionLogText" layoutX="16.0" layoutY="51.0" prefHeight="199.0" prefWidth="232.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
+                        <TextArea fx:id="actionLogText" layoutX="16.0" layoutY="51.0" prefHeight="199.0" prefWidth="232.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
                     </children></Pane>
                 <Pane prefHeight="758.0" prefWidth="692.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="NEVER">
                     <children>
@@ -196,14 +196,14 @@
                             </children>
                         </Pane>
                         <Pane fx:id="settlementPane" prefHeight="776.0" prefWidth="725.0">
-                     <children>
-                              <Text fx:id="turnTitle" layoutX="418.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1's Turn">
-                                  <font>
-                                      <Font name="System Bold Italic" size="37.0" />
-                                  </font>
-                              </Text>
-                     </children>
-                  </Pane>
+                            <children>
+                                <Text fx:id="turnTitle" layoutX="418.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1's Turn">
+                                    <font>
+                                        <Font name="System Bold Italic" size="37.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </Pane>
                     </children>
                 </Pane>
                 <Pane prefHeight="752.0" prefWidth="57.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">

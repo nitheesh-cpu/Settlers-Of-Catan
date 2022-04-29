@@ -1,5 +1,6 @@
 package game.catan.graphics;
 
+import game.catan.simulation.Player;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -81,6 +82,11 @@ public class HelloApplication extends Application {
         game.setScene(scene);
         game.show();
         gameStage = game;
+    }
+
+    public static void showTradeMenu(Player player){
+//        tradeStage.show();
+//        tradeController.newTrade(player);
     }
 
     public static void main(String[] args) {
