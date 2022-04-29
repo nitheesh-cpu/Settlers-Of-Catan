@@ -89,7 +89,7 @@ public class GameState {
         return currentPlayerIndex;
     }
 
-    public static void nextTurn() {
+    public void nextTurn() {
         // TODO: check win condition
         currentPlayerIndex++;
 
@@ -98,7 +98,11 @@ public class GameState {
 
         currentPlayer = players[currentPlayerIndex];
         System.out.println("Next turn: " + currentPlayer);
+        gameController.updatePlayerStats();
 
+        if (phase == Phase.SETUP) {
+            setUpPhase();
+        }
         // TODO: player rolls dice
     }
 
@@ -120,14 +124,16 @@ public class GameState {
     // region Setup Phase
     private boolean SETUP_placedSettlement = false;
     private boolean SETUP_placedRoad = false;
+
     public void setUpPhase() {
         if (!SETUP_placedSettlement) {
             placeSettlement();
         } else if (!SETUP_placedRoad) {
             placeRoad();
         } else {
-            // produce resources
-            System.out.println("Producing resources...");
+            SETUP_placedSettlement = false;
+            SETUP_placedRoad = false;
+            nextTurn();
         }
 
 //        for (int i = 0; i < players.length; i++) {
@@ -175,6 +181,7 @@ public class GameState {
         }
 
         currentPlayer = players[0];
+        System.out.println(Arrays.toString(players));
     }
     // endregion
 
@@ -928,9 +935,9 @@ public class GameState {
     }
 
     public void buildRoad(Edge edge, Rectangle rect) {
+        rect.setFill(currentPlayer.getColorHex());
         board.placeRoad(edge);
-        gameController.updatePlayerStats();
-        rect.setFill(javafx.scene.paint.Color.web(currentPlayer.getColorHex()));
+        // gameController.updatePlayerStats();
         disableBuildRoad();
 
         if (phase == Phase.SETUP) {
