@@ -283,6 +283,7 @@ public class GameController {
     public void updatePlayerStats(){
         Text[][] stats = {{inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1},{inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2},{inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3} };
         ImageView[] icons = {playerIcon1,playerIcon2,playerIcon3};
+
         currentPlayerBricks.setText(Integer.toString(GameState.getCurrentPlayer().getStockpile().getResourceCount(ResourceType.BRICK)));
         currentPlayerWool.setText(Integer.toString(GameState.getCurrentPlayer().getStockpile().getResourceCount(ResourceType.WOOL)));
         currentPlayerWheat.setText(Integer.toString(GameState.getCurrentPlayer().getStockpile().getResourceCount(ResourceType.WHEAT)));
@@ -294,17 +295,34 @@ public class GameController {
         currentPlayerSettlements.setText(Integer.toString(GameState.getCurrentPlayer().getSettlementCount()));
         currentPlayerRoads.setText(Integer.toString(GameState.getCurrentPlayer().getRoads().size()));
         currentPlayerCities.setText(Integer.toString(GameState.getCurrentPlayer().getCityCount()));
+
         turnTitle.setText("Player " + (GameState.getCurrentPlayer().getId()) + "'s Turn");
 
-        for(int i = 0; i < GameState.getPlayers().length-1; i++){
-            int index = GameState.nextTurnIndex(GameState.getCurrentPlayerIndex()+1);
-            stats[i][0].setText("Player " + (index+1));
-            stats[i][1].setText(Integer.toString(GameState.players[index].getSettlementCount()));
-            stats[i][2].setText(Integer.toString(GameState.players[index].getCityCount()));
-            stats[i][3].setText(Integer.toString(GameState.players[index].getRoads().size()));
-            stats[i][4].setText(Integer.toString(GameState.players[index].getStockpile().getTotal()));
-            icons[i].setImage(GameState.players[index].getImages().get("Icon"));
+        int index = 0;
+        for (Player player: GameState.getPlayers()) {
+            if (player.equals(GameState.getCurrentPlayer())) continue;
+
+            stats[index][0].setText("Player " + (player.getId()));
+            stats[index][1].setText(Integer.toString(player.getSettlementCount()));
+            stats[index][2].setText(Integer.toString(player.getCityCount()));
+            stats[index][3].setText(Integer.toString(player.getRoads().size()));
+            stats[index][4].setText(Integer.toString(player.getStockpile().getTotal()));
+            icons[index].setImage(player.getImages().get("Icon"));
+            index++;
         }
+//
+//        for(int i = 0; i < GameState.getPlayers().length; i++){
+//            if (!GameState.getPlayers()[i].equals(GameState.getCurrentPlayer())) continue;
+//
+//
+//            // int index = GameState.nextTurnIndex(GameState.getCurrentPlayerIndex()+1);
+//            stats[i][0].setText("Player " + (i+1));
+//            stats[i][1].setText(Integer.toString(GameState.players[i].getSettlementCount()));
+//            stats[i][2].setText(Integer.toString(GameState.players[i].getCityCount()));
+//            stats[i][3].setText(Integer.toString(GameState.players[i].getRoads().size()));
+//            stats[i][4].setText(Integer.toString(GameState.players[i].getStockpile().getTotal()));
+//            icons[i].setImage(GameState.players[i].getImages().get("Icon"));
+//        }
 
     }
 

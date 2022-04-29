@@ -32,7 +32,7 @@ public class Player {
     private int victoryPoints;
 
     private HashMap<String, Image> images;
-    private String colorHex;
+    private javafx.scene.paint.Color colorHex;
 
     public Player(Color color) {
         this.id = number++;
@@ -51,6 +51,7 @@ public class Player {
 
         images = new HashMap<>();
 
+        System.out.println("Player " + id + " Color: " + color);
         setGraphics();
     }
 
@@ -261,7 +262,7 @@ public class Player {
         return victoryPoints;
     }
 
-    public String getColorHex() {
+    public javafx.scene.paint.Color getColorHex() {
         return colorHex;
     }
 
@@ -270,17 +271,34 @@ public class Player {
     }
 
     private void setGraphics() {
+
+        int imageId = -1;
         switch (color) {
-            case BLUE -> colorHex = "#009EDD";
-            case RED -> colorHex = "#F04243";
-            case YELLOW -> colorHex = "#F5953E";
-            case WHITE -> colorHex = "#FFFFFF";
+            case BLUE -> {
+                colorHex = javafx.scene.paint.Color.web("#009EDD");
+                imageId = 1;
+            }
+            case RED -> {
+                colorHex = javafx.scene.paint.Color.web("#F04243");
+                imageId = 2;
+            }
+            case ORANGE -> {
+                colorHex = javafx.scene.paint.Color.web("#F5953E");
+                imageId = 3;
+            }
+            case WHITE -> {
+                colorHex = javafx.scene.paint.Color.web("#FFFFFF");
+                imageId = 4;
+            }
         }
 
-        images.put("City", new Image("game/catan/PlayerResources/player"+ id +"City.png"));
-        images.put("Settlement", new Image("game/catan/PlayerResources/player"+ id +"Settlement.png"));
-        images.put("Road", new Image("game/catan/PlayerResources/player"+ id +"Road.png"));
-        images.put("Icon", new Image("game/catan/PlayerResources/player"+ id +"Icon.png"));
+
+        images.put("City", new Image("game/catan/PlayerResources/player"+ imageId +"City.png"));
+        images.put("Settlement", new Image("game/catan/PlayerResources/player"+ imageId +"Settlement.png"));
+        images.put("Road", new Image("game/catan/PlayerResources/player"+ imageId +"Road.png"));
+        images.put("Icon", new Image("game/catan/PlayerResources/player"+ imageId +"Icon.png"));
+
+
     }
 
     public HashMap<String, Image> getImages() {
