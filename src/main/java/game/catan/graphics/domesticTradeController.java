@@ -153,6 +153,9 @@ public class domesticTradeController implements Initializable {
     public void confirmTrade(MouseEvent event) {
         HelloApplication.tradeStage.hide();
         //TODO: implement trade followup
+        if(!followup) {
+
+        }
         if(followup) {
             GameState.gameController.domesticTradeFollowup();
             domesticTradeController.followup = false;
