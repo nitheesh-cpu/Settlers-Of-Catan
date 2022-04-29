@@ -37,7 +37,7 @@ public class GameState {
     private HashMap<Rectangle, Edge> roadMap;
     private HashMap<ImageView, Vertex> structureMap;
 
-    private static GameController gameController;
+    public static GameController gameController;
     public static Scanner sc = new Scanner(System.in);
 
     public GameState(int numPlayers, int seed, GameController controller) {
