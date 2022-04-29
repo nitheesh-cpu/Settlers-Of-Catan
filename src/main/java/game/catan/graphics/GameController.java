@@ -389,17 +389,24 @@ public class GameController {
     public void trade1Clicked(MouseEvent mouseEvent) {
         HelloApplication.showTradeMenu(gameState.getCurrentPlayer());
         domesticTradePlayer = 1;
+        domesticTradeController.followup = true;
     }
 
     public void trade2Clicked(MouseEvent mouseEvent) {
         HelloApplication.showTradeMenu(gameState.getCurrentPlayer());
         domesticTradePlayer = 2;
+        domesticTradeController.followup = true;
     }
 
     public void trade3Clicked(MouseEvent mouseEvent) {
         HelloApplication.showTradeMenu(gameState.getCurrentPlayer());
         domesticTradePlayer = 3;
+        domesticTradeController.followup = true;
     }
 
-
+    public void domesticTradeFollowup(){
+        int index = GameState.nextTurnIndex(GameState.getCurrentPlayerIndex() +domesticTradePlayer-1);
+        HelloApplication.showTradeMenu(GameState.players[index]);
+        domesticTradePlayer = 0;
+    }
 }

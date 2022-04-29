@@ -5,6 +5,7 @@ import game.catan.simulation.buildings.Structure;
 import game.catan.simulation.cards.DevelopmentCard;
 import game.catan.simulation.enums.Color;
 import game.catan.simulation.enums.DevelopmentCardType;
+import game.catan.simulation.enums.ResourceType;
 import game.catan.simulation.enums.StructureType;
 import game.catan.simulation.helper.Edge;
 import game.catan.simulation.helper.Vertex;
@@ -54,6 +55,32 @@ public class Player {
         System.out.println("Player " + id + " Color: " + color);
         setGraphics();
     }
+
+    public int getResource(ResourceType n) {
+        switch (n) {
+            case BRICK -> {
+                return stockpile.getBricks();
+            }
+            case ORE -> {
+                return stockpile.getOre();
+            }
+            case WOOD -> {
+                return stockpile.getWood();
+            }
+            case WHEAT -> {
+                return stockpile.getWheat();
+            }
+            case WOOL -> {
+                return stockpile.getWool();
+
+                //don't need to return MISC or desert cuz thats 0 by default
+            }
+
+
+        }
+        return -1;
+    }
+
 
     // TODO: remember to add victory points
     public void addStructure(Structure structure) {

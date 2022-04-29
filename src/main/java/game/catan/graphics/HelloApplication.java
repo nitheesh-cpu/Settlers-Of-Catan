@@ -16,11 +16,14 @@ public class HelloApplication extends Application {
     public static Stage stage;
     public static Stage gameStage;
     public static Stage buildStage;
+    public static Stage tradeStage;
+    public static domesticTradeController tradeController;
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 970, 690);
-
         this.stage = stage;
         stage.setResizable(true);
         scene.setFill(Color.TRANSPARENT);
@@ -39,6 +42,17 @@ public class HelloApplication extends Application {
         scene2.setFill(Color.TRANSPARENT);
         buildStage.setTitle("Settlers of Catan");
         buildStage.setScene(scene2);
+
+        FXMLLoader fxmlLoader3 = new FXMLLoader(HelloApplication.class.getResource("domesticTrade.fxml"));
+        Scene scene3 = new Scene(fxmlLoader3.load(), 600, 400);
+        Stage tradeStage = new Stage();
+        scene3.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        tradeStage.initStyle(StageStyle.TRANSPARENT);
+        this.tradeStage = tradeStage;
+        tradeStage.setResizable(true);
+        scene3.setFill(Color.TRANSPARENT);
+        tradeStage.setTitle("Trade");
+        tradeStage.setScene(scene3);
     }
 
     public static void toggleBuildMenu(){
@@ -50,6 +64,10 @@ public class HelloApplication extends Application {
 
     }
 
+    public static void showTradeMenu(Player player){
+        tradeStage.show();
+        tradeController.newTrade(player);
+    }
 
     public static void showSmall() throws IOException {
         stage.hide();
@@ -82,11 +100,6 @@ public class HelloApplication extends Application {
         game.setScene(scene);
         game.show();
         gameStage = game;
-    }
-
-    public static void showTradeMenu(Player player){
-//        tradeStage.show();
-//        tradeController.newTrade(player);
     }
 
     public static void main(String[] args) {

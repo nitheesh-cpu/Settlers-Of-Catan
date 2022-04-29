@@ -89,12 +89,12 @@
                         <Image url="@../DomesticTrade/minus.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="confirm" fitHeight="34.0" fitWidth="179.0" layoutX="131.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="confirm" fitHeight="34.0" fitWidth="179.0" layoutX="131.0" layoutY="343.0" onMouseClicked="#confirmTrade" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../DomesticTrade/confirm.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="cancel" fitHeight="34.0" fitWidth="179.0" layoutX="323.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cancel" fitHeight="34.0" fitWidth="179.0" layoutX="323.0" layoutY="343.0" onMouseClicked="#cancelTrade" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../DomesticTrade/cancel.png" />
                      </image>
