@@ -29,6 +29,7 @@ public class HelloApplication extends Application {
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Settlers of Catan");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 
 

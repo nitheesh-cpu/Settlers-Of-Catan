@@ -24,7 +24,7 @@ public class Board {
 
     private HashMap<Location, Tile> tileLocations;
     private HashMap<Integer, ArrayList<Tile>> resourceTiles; // key: tile number, value: list of tiles
-    private Location robberLocation; // location of tile with robber
+    private static Location robberLocation; // location of tile with robber
 
     private Stack<DevelopmentCard> developmentCards;
 
@@ -261,7 +261,6 @@ public class Board {
         for (Road r: currentPlayer.getRoads()) {
             Edge e = r.getEdge();
             Vertex[] adjacentVertices = e.getAdjacentVertices();
-            System.out.println("adjacent vertices: " + Arrays.toString(adjacentVertices));
 
             for (Vertex v: adjacentVertices) {
                 if (excludedVertices.contains(v)) continue;
@@ -290,6 +289,7 @@ public class Board {
     // region Resources
     public void produceResources(int diceRoll) {
         ArrayList<Tile> tiles = resourceTiles.get(diceRoll);
+        HashMap<Player, TreeMap<ResourceType, Integer>> resourcesGained = new HashMap<>();
 
         for (Tile t: tiles) {
             if (t.getLocation().equals(robberLocation)) continue;
@@ -305,11 +305,14 @@ public class Board {
                 Player owner = s.getOwner();
                 Stockpile playerStockpile = owner.getStockpile();
 
+                if (!resourcesGained.containsKey(owner)) resourcesGained.put(owner, new TreeMap<>());
+
                 switch (s.getType()) {
                     case SETTLEMENT -> {
                         final int AMOUNT = 1;
                         if (boardStockpile.getResourceCount(resource) < AMOUNT) continue;
 
+                        resourcesGained.get(owner).put(resource, resourcesGained.get(owner).get(resource) != null ? resourcesGained.get(owner).get(resource) + AMOUNT : AMOUNT);
                         transferResources(boardStockpile, playerStockpile, resource, AMOUNT);
                     }
                     case CITY -> {
@@ -321,12 +324,30 @@ public class Board {
                 }
             }
         }
+
+        for (Player player: resourcesGained.keySet()) {
+            String message = "";
+
+            TreeMap<ResourceType, Integer> resources = resourcesGained.get(player);
+
+            for (ResourceType resource: resources.keySet()) {
+                int count = resources.get(resource);
+                message += count + "x " +  resource.name() + ", ";
+            }
+
+            if (message.length() > 0) message = message.substring(0, message.length() - 2);
+            else message = "no resources";
+
+            GameState.log(player + " gained " + message);
+            GameState.updatePlayerStats();
+        }
     }
 
     // when player gains resources from second settlement at beginning of game
     public void produceResources(Structure structure) {
         Vertex vertex = structure.getVertex();
         ArrayList<Tile> productionTiles = new ArrayList<>();
+        TreeMap<ResourceType, Integer> resourceGained = new TreeMap<>();
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
@@ -353,15 +374,34 @@ public class Board {
                     if (boardStockpile.getResourceCount(resource) < AMOUNT) continue;
 
                     transferResources(boardStockpile, structure.getOwner().getStockpile(), resource, AMOUNT);
+                    resourceGained.put(resource, resourceGained.get(resource) != null ? resourceGained.get(resource) + AMOUNT : AMOUNT);
                 }
                 case CITY -> {
                     final int AMOUNT = 2;
                     if (boardStockpile.getResourceCount(resource) < AMOUNT) continue;
 
                     transferResources(boardStockpile, structure.getOwner().getStockpile(), resource, AMOUNT);
+                    resourceGained.put(resource, resourceGained.get(resource) != null ? resourceGained.get(resource) + AMOUNT : AMOUNT);
                 }
             }
         }
+
+        String message = "";
+
+        for (ResourceType resource: resourceGained.keySet()) {
+            int count = resourceGained.get(resource);
+            message += count + "x " +  resource.name() + ", ";
+        }
+
+        if (message.length() == 0) {
+            message = "no resources";
+        } else {
+            message = message.trim();
+            message = message.substring(0, message.length() - 1);
+        }
+
+        GameState.log(structure.getOwner() + " gained " + message);
+        GameState.updatePlayerStats();
     }
     // endregion
 
@@ -745,6 +785,11 @@ public class Board {
     public static Stockpile getStockpile() {
         return boardStockpile;
     }
+
+    public static Location getRobberLocation() {
+        return robberLocation;
+    }
+
     // endregion
 
     public String toString() {

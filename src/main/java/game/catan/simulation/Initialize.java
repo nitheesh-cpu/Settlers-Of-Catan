@@ -18,11 +18,15 @@ public class Initialize {
     public static Image[] diceImages;
     public static Image settlementHover;
     public static Image settlementBlank;
+    public static Image robber;
 
 
     public static void init() {
         settlementHover = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/hover.jpg"));
         settlementBlank = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/blank.png"));
+        robber = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/robber.png"));
+        // robber = new ImagePattern(robberTemp);
+
         //hexagon tile patterns
         Image brick = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/BrickTile.png"));
         Image desert = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/DesertTileEXP.png"));

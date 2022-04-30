@@ -40,6 +40,10 @@ public class Tile {
 
         polygon = null;
         tokenImage = null;
+//
+//        if (resource == ResourceType.DESERT) {
+//            tokenImage = Initialize.robber;
+//        }
     }
 
     //region Setters
@@ -153,8 +157,6 @@ public class Tile {
         setAdjacentEdge(Edge.SOUTHEAST);
         setAdjacentEdge(Edge.SOUTH);
         setAdjacentEdge(Edge.SOUTHWEST);
-
-        System.out.println(this + " adjacent edges: " + Arrays.toString(edges));
     }
 
     private void setAdjacentEdge(int edgeOrientation) {
@@ -204,8 +206,6 @@ public class Tile {
         setAdjacentVertex(Vertex.SOUTHEAST);
         setAdjacentVertex(Vertex.SOUTHWEST);
         setAdjacentVertex(Vertex.WEST);
-
-        System.out.println(this + " adjacent vertices: " + Arrays.toString(vertices));
     }
 
     private void setAdjacentVertex(int vertexOrientation) {
@@ -360,8 +360,6 @@ public class Tile {
                         adjacentEdges[2] = adjacentTiles[Tile.NORTHWEST].getEdge(Edge.NORTHWEST);
                     }
 
-                    System.out.println(Arrays.toString(adjacentEdges));
-                    System.out.println("LOOK! " + adjacentEdges[2]);
                 }
                 case Vertex.EAST -> {
                     adjacentEdges[0] = edges[Edge.NORTHEAST];
@@ -496,8 +494,8 @@ public class Tile {
     public void setNumber(int number) {
         this.number = number;
 
-        if (number > -1 && number != 7)
-            tokenImage = Initialize.dicePatterns.get(number);
+        if (number == 7 || number < 2) return;
+        tokenImage = Initialize.dicePatterns.get(number);
     }
 
     public void setVertex(Vertex vertex, int orientation) {

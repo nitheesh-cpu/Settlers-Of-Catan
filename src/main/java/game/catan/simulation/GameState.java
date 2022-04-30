@@ -49,10 +49,16 @@ public class GameState {
         roadMap = new HashMap<>();
         structureMap = new HashMap<>();
 
-        initializePlayers(numPlayers);
+        for (int i = 0; i < players.length; i++) {
+            players[i] = new Player(Color.values()[i]);
+        }
+
+        currentPlayer = players[currentPlayerIndex];
     }
 
+    // region Switching Turns/Rolling Dice
     public void start() {
+        gameController.log("Setup phase has begun. Each player rolls the dice to determine the order of play.");
         setUpPhase();
 
         //        nextTurn();
@@ -72,8 +78,6 @@ public class GameState {
 //
 //            nextTurn();
 //        }
-
-
     }
 
     public static int nextTurnIndex(int i) {
@@ -87,6 +91,21 @@ public class GameState {
 
     public static int getCurrentPlayerIndex() {
         return currentPlayerIndex;
+    }
+
+    public void nextTurnBackwards() {
+        currentPlayerIndex--;
+
+        if (currentPlayerIndex < 0)
+            currentPlayerIndex = 0;
+
+        currentPlayer = players[currentPlayerIndex];
+        System.out.println("Next turn: " + currentPlayer);
+        gameController.updatePlayerStats();
+
+        if (phase == Phase.SETUP) {
+            setUpPhase();
+        }
     }
 
     public void nextTurn() {
@@ -106,13 +125,23 @@ public class GameState {
         // TODO: player rolls dice
     }
 
-    public static int[] rollDice() {
-        Dice.roll();
+    public int[] rollDice() {
+        int roll = Dice.roll();
         int diceOne = Dice.getFaceTwo();
         int diceTwo = Dice.getFaceOne();
 
-        gameController.actionLogText.appendText("Dice rolled\n");
+        gameController.log(currentPlayer.getColor() + " rolled " + roll + ".");
         gameController.updateDiceGraphic(diceOne, diceTwo);
+
+        switch (phase) {
+            case SETUP -> {
+                addPlayerRoll(roll);
+                nextTurn();
+            }
+            case RESOURCE_PRODUCTION -> {
+                resourceProductionPhase(roll);
+            }
+        }
 
         return new int[]{diceOne, diceTwo};
     }
@@ -121,19 +150,74 @@ public class GameState {
         return phase;
     }
 
+    public static void log(String message) {
+        gameController.log(message);
+    }
+
+    public static void updatePlayerStats() {
+        gameController.updatePlayerStats();
+    }
+
+    // endregion
+
     // region Setup Phase
+    private int SETUP_numOfRolls = 0;
+    private boolean SETUP_determinePlayerOrder = false;
     private boolean SETUP_placedSettlement = false;
     private boolean SETUP_placedRoad = false;
-
+    private boolean SETUP_playerRepeat = false; // 4th player repeats and places settlement/road
+    private boolean SETUP_backwards = false; // Player order goes backwards
     public void setUpPhase() {
+        // Still determining player order; allow player to roll dice
+        if (SETUP_numOfRolls < players.length) {
+            gameController.showDice();
+            return;
+        }
+
+        // Every player has rolled the dice; determine player order
+        if (!SETUP_determinePlayerOrder) {
+            SETUP_determinePlayerOrder = true;
+            determinePlayerOrder();
+            return;
+        }
+
+        // If current player hasn't placed their settlement
         if (!SETUP_placedSettlement) {
-            placeSettlement();
+            log(currentPlayer + ", place a settlement.");
+            showSettlements();
         } else if (!SETUP_placedRoad) {
             placeRoad();
         } else {
+            // Current player placed their road and settlement
             SETUP_placedSettlement = false;
             SETUP_placedRoad = false;
-            nextTurn();
+
+            // Reverse player order
+            if (currentPlayerIndex == players.length-1) {
+                SETUP_backwards = true;
+            }
+
+            if (SETUP_backwards && !SETUP_playerRepeat) {
+                SETUP_playerRepeat = true;
+                setUpPhase();
+            } else if (SETUP_backwards) {
+                board.produceResources(currentPlayer.getStructures().get(1));
+
+                // The last player has placed their final settlement/road
+                if (currentPlayerIndex == 0) {
+                    phase = Phase.RESOURCE_PRODUCTION;
+                    isGameStart = false; // no longer start of the game
+                    log("End of setup phase.\n");
+                    log(currentPlayer + "'s turn.");
+                    gameController.showDice();
+                }
+                else {
+                    nextTurnBackwards();
+                }
+
+            } else {
+                nextTurn();
+            }
         }
 
 //        for (int i = 0; i < players.length; i++) {
@@ -158,44 +242,53 @@ public class GameState {
 //        isGameStart = false;
     }
 
-    private void initializePlayers(int numPlayers) {
-        TreeMap<Integer, Player> playerMap = new TreeMap<>();
+    private TreeMap<Integer, Player> playerMap = new TreeMap<>();
+    private void addPlayerRoll(int roll) {
+        SETUP_numOfRolls++;
+        playerMap.put(roll, currentPlayer);
 
-        for (int i = 0; i < numPlayers; i++) {
-            int roll = Dice.roll();
-
-            while (playerMap.containsKey(roll)) {
-                roll = Dice.roll();
-            }
-
-            playerMap.put(roll, new Player(Color.values()[i]));
+        if (SETUP_numOfRolls == players.length) {
+            setUpPhase();
         }
+    }
 
+    private void determinePlayerOrder() {
         Set<Integer> keys = playerMap.keySet();
 
-        int index = numPlayers - 1;
+        int index = players.length - 1;
 
         for (Integer key: keys) {
             players[index] = playerMap.get(key);
+            players[index].setId(index+1);
             index--;
         }
 
         currentPlayer = players[0];
-        System.out.println(Arrays.toString(players));
+        gameController.log("Player order: " + Arrays.toString(players));
     }
     // endregion
 
     // region Resource Production Phase
-    public void resourceProductionPhase() {
-        int diceRoll = Dice.roll();
-        System.out.println(currentPlayer + " rolled " + diceRoll);
+//    public void resourceProductionPhase() {
+//        int diceRoll = Dice.roll();
+//        System.out.println(currentPlayer + " rolled " + diceRoll);
+//
+//        if (diceRoll == 7) {
+//            discardHalf();
+//            moveRobber();
+//            stealResource();
+//        } else {
+//            board.produceResources(diceRoll);
+//        }
+//    }
 
-        if (diceRoll == 7) {
+    public void resourceProductionPhase(int roll) {
+        if (roll == 7) {
             discardHalf();
             moveRobber();
             stealResource();
         } else {
-            board.produceResources(diceRoll);
+            board.produceResources(roll);
         }
     }
 
@@ -686,6 +779,7 @@ public class GameState {
         rect.setWidth(61);
         rect.setHeight(7);
         rect.setFill(javafx.scene.paint.Color.TRANSPARENT);
+
 //        rect.setOnMouseClicked(event -> gameController.actionLogText.appendText("Road clicked\n"));
 //        rect.setOnMouseExited(event ->
 //                rect.setFill(Color.RED)
@@ -811,7 +905,7 @@ public class GameState {
         int y = (int) tiles[r][c].getPolygon().getLayoutY();
 
         Location loc = new Location(x + roadOffset[i][0], y + roadOffset[i][1]);
-        ImageView settl = new ImageView(new Image("game/catan/PlayerResources/hover.jpg"));
+        ImageView settl = new ImageView(new Image("game/catan/PlayerResources/hover2.png"));
         settl.setX(loc.getX());
         settl.setY(loc.getY());
         settl.setFitWidth(32);
@@ -863,6 +957,9 @@ public class GameState {
             // no player has placed a settlement on this vertex
             if (availableVertices.contains(vertex) && vertex.getStructure() == null) {
                 ImageView image = vertex.getImage();
+                image.getStyleClass().add("hover");
+                image.setVisible(true);
+
                 image.setOnMouseEntered(event -> {
                     vertex.getImage().setOpacity(1);
                     System.out.println("Hover over vertex " + vertex.getId());
@@ -888,6 +985,9 @@ public class GameState {
     public void disableBuildSettlement(){
         for (Vertex vertex : structureMap.values()) {
             ImageView image = vertex.getImage();
+            image.getStyleClass().remove("hover");
+
+            if (vertex.getStructure() == null) image.setVisible(false);
 
             image.setOnMouseEntered(Event::consume);
             image.setOnMouseExited(Event::consume);
@@ -925,13 +1025,16 @@ public class GameState {
                 Rectangle rect = e.getRectangle();
 
                 rect.setOnMouseEntered(event -> {
-                    rect.setFill(javafx.scene.paint.Color.YELLOW);
+                    rect.setFill(javafx.scene.paint.Color.GRAY);
                     System.out.println("Hover over edge " + e.getId());
                 });
+
                 rect.setOnMouseExited(event -> rect.setFill(javafx.scene.paint.Color.TRANSPARENT));
                 rect.setOnMouseClicked(event -> buildRoad(e, rect));
             }
         }
+
+        log(currentPlayer + ", place a road.");
     }
 
     public void buildRoad(Edge edge, Rectangle rect) {
