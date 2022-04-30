@@ -273,6 +273,10 @@ public class Player {
         return stockpile;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
@@ -293,8 +297,12 @@ public class Player {
         return colorHex;
     }
 
+    public Color getColor() {
+        return color;
+    }
+
     public String toString() {
-        return "Player " + id + ": " + color;
+        return color.toString();
     }
 
     private void setGraphics() {

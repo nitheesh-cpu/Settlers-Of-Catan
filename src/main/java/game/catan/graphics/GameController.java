@@ -159,6 +159,7 @@ public class GameController {
     private ImageView[] harborImages;
     private GameState gameState;
     public boolean buildEnabled;
+    public ImageView robberImage;
 
     @FXML
     public void initialize() throws IOException, InterruptedException {
@@ -171,7 +172,7 @@ public class GameController {
         tilePolygons = new Polygon[][]{{tile01, tile02, tile03}, {tile11, tile12, tile13, tile14}, {tile21, tile22, tile23, tile24, tile25}, {tile31, tile32, tile33, tile34}, {tile41, tile42, tile43}};
         circles = new Circle[][]{{dice01, dice02, dice03}, {dice11, dice12, dice13, dice14}, {dice21, dice22, dice23, dice24, dice25}, {dice31, dice32, dice33, dice34}, {dice41, dice42, dice43}};
 
-        GameState gameState = new GameState(4, 123, this); // need to pass in num of players and seed here
+        gameState = new GameState(MenuController.players, 123, this); // need to pass in num of players and seed here
         tileObjs = Board.getBoard();
 
         // Set polygons to corresponding tiles
@@ -185,13 +186,20 @@ public class GameController {
 
         System.out.println(gameState.getBoard());
 
+        // Set robber image
+        robberImage = new ImageView();
+        robberImage.setImage(Initialize.robber);
+        settlementPane.getChildren().add(robberImage);
+
         // Set number tokens to corresponding tiles
         for (int r = 0; r < circles.length; r++)
             for (int c = 0; c < circles[r].length; c++) {
                 if ((tileObjs[r][c].getNumber() > -1))
                     circles[r][c].setFill(tileObjs[r][c].getNumberPattern());
-                else
+                else {
                     circles[r][c].setVisible(false);
+                    updateRobberLocation(Board.getRobberLocation(), null);
+                }
             }
 
         // Set water tiles
@@ -204,7 +212,7 @@ public class GameController {
 //        Collections.shuffle(harborsList);
 
         ArrayList<Harbor> harbors = Board.getHarbors();
-        actionLogText.appendText("Shuffled harbors: " + harbors + "\n");
+
         harborImages = new ImageView[]{harbor1, harbor2, harbor3, harbor4, harbor5, harbor6, harbor7, harbor8, harbor9};
 
         // Set harbor images to corresponding harbors
@@ -223,7 +231,7 @@ public class GameController {
         view.setFitHeight(80);
         view.setPreserveRatio(true);
 
-        // Initialize road and settlement buttons BUGS FOUND HERE
+        // Initialize road and settlement buttons
         gameState.createRoads(tileObjs, settlementPane);
         gameState.createSettlements(tileObjs, settlementPane);
         BackgroundFill background_fill = new BackgroundFill(Color.WHITE,
@@ -249,12 +257,14 @@ public class GameController {
 
         gameState.start();
 
-        rollDiceButton.setVisible(false);
-        dice1.setVisible(false);
-        dice2.setVisible(false);
-        diceText.setVisible(false);
-        diceContainer.setVisible(false);
-        buildEnabled = true;
+        updatePlayerStats();
+        disableTrade();
+        showDice();
+        buildEnabled = false;
+    }
+
+    public void log(String message){
+        actionLogText.appendText("> " + message + "\n");
     }
 
     private double xoffSet = 0;
@@ -267,12 +277,14 @@ public class GameController {
     }
 
     public void updateDiceGraphic(int roll1, int roll2) {
+        rollDiceButton.getStyleClass().remove("hover");
         rollDiceButton.setVisible(false);
         dice1.setImage(Initialize.diceImages[roll1-1]);
         dice2.setImage(Initialize.diceImages[roll2-1]);
     }
 
     public void showDice(){
+        rollDiceButton.getStyleClass().add("hover");
         rollDiceButton.setVisible(true);
         diceContainer.setVisible(true);
         dice1.setVisible(true);
@@ -280,9 +292,30 @@ public class GameController {
         diceText.setVisible(true);
     }
 
+    public void disableTrade() {
+        tradeButton1.getStyleClass().remove("hover");
+        tradeButton2.getStyleClass().remove("hover");
+        tradeButton3.getStyleClass().remove("hover");
+
+        tradeButton1.setVisible(false);
+        tradeButton2.setVisible(false);
+        tradeButton3.setVisible(false);
+    }
+
+    public void showTrade() {
+        tradeButton1.getStyleClass().add("hover");
+        tradeButton2.getStyleClass().add("hover");
+        tradeButton3.getStyleClass().add("hover");
+
+        tradeButton1.setVisible(true);
+        tradeButton2.setVisible(true);
+        tradeButton3.setVisible(true);
+    }
+
     public void updatePlayerStats(){
         Text[][] stats = {{inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1},{inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2},{inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3} };
         ImageView[] icons = {playerIcon1,playerIcon2,playerIcon3};
+        statsTitle.setText("Player Stats");
 
         currentPlayerBricks.setText(Integer.toString(GameState.getCurrentPlayer().getStockpile().getResourceCount(ResourceType.BRICK)));
         currentPlayerWool.setText(Integer.toString(GameState.getCurrentPlayer().getStockpile().getResourceCount(ResourceType.WOOL)));
@@ -324,6 +357,16 @@ public class GameController {
 //            icons[i].setImage(GameState.players[i].getImages().get("Icon"));
 //        }
 
+    }
+
+    public void updateRobberLocation(Location location, Location previousLocation) {
+        if (previousLocation != null)
+            circles[previousLocation.getX()][previousLocation.getY()].setVisible(true);
+
+        Circle circle = circles[location.getX()][location.getY()];
+        circle.setVisible(false);
+        robberImage.setLayoutX(circle.getLayoutX() - (robberImage.getImage().getWidth()/2));
+        robberImage.setLayoutY(circle.getLayoutY() - (robberImage.getImage().getHeight()/2));
     }
 
 
@@ -379,10 +422,11 @@ public class GameController {
         HelloApplication.gameStage.setOpacity (1.0f);
     }
 
+    // dice clicked
     @FXML
     void rollClicked(MouseEvent event) {
-        System.out.println("roll clicked");
-        GameState.rollDice();
+        System.out.println("Roll clicked");
+        gameState.rollDice();
     }
 
     private int domesticTradePlayer = 0;
