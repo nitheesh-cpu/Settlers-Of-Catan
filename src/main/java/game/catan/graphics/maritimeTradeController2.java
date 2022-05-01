@@ -109,8 +109,7 @@ public class maritimeTradeController2 implements Initializable {
 
     @FXML
     void menuCloseClick(MouseEvent event) {
-        Trade.resetResources();
-        Trade.resetHarbor();
+        Trade.resetTrade();
         maritimeTradeController.tradeType = null;
         maritimeTradeController.harbor = null;
         GameController.actionButtonEnabled = true;

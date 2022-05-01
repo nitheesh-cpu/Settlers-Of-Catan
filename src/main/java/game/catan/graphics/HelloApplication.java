@@ -20,12 +20,15 @@ public class HelloApplication extends Application {
     public static Stage gameStage;
     public static Stage buildStage;
     public static Stage domesticTradeStage;
+    public static Stage domesticTradeConfirmStage;
+
     public static Stage maritimeTradeStage;
     public static Stage maritimeTradeStage2;
 
     public static domesticTradeController domesticTradeController;
     public static maritimeTradeController maritimeTradeController;
     public static maritimeTradeController2 maritimeTradeController2;
+    public static domesticTradeConfirmController domesticTradeConfirmController;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -87,6 +90,18 @@ public class HelloApplication extends Application {
         maritimeStage2.setTitle("Maritime Trade");
         maritimeStage2.setScene(scene5);
         maritimeTradeStage2 = maritimeStage2;
+
+        FXMLLoader fxmlLoader6 = new FXMLLoader(HelloApplication.class.getResource("confirmTrade.fxml"));
+        Scene scene6 = new Scene(fxmlLoader6.load(), 624, 475);
+        Stage confirmStage = new Stage();
+        scene6.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        confirmStage.initStyle(StageStyle.TRANSPARENT);
+        confirmStage.setResizable(true);
+        scene6.setFill(Color.TRANSPARENT);
+        confirmStage.setAlwaysOnTop(true);
+        confirmStage.setTitle("Confirm Trade");
+        confirmStage.setScene(scene6);
+        domesticTradeConfirmStage = confirmStage;
     }
 
     public static void toggleBuildMenu(){
@@ -101,6 +116,11 @@ public class HelloApplication extends Application {
     public static void showDomesticTradeMenu(Player player){
         domesticTradeStage.show();
         domesticTradeController.newTrade(player);
+    }
+
+    public static void showDomesticConfirmTradeMenu() {
+        domesticTradeConfirmController.update();
+        domesticTradeConfirmStage.show();
     }
 
     // only for stockpile trade
@@ -121,7 +141,7 @@ public class HelloApplication extends Application {
         if (maritimeTradeStage.isShowing()) {
             maritimeTradeStage.hide();
             maritimeTradeController.setTradeType(null);
-            Trade.resetHarbor();
+            Trade.resetTrade();
 
         } else {
             maritimeTradeStage.show();

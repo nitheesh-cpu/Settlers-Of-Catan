@@ -110,7 +110,7 @@ public class Stockpile {
     // endregion
 
     public String toString() {
-        return "Stockpile: BRICK-" + this.bricks + "\nWHEAT-" + this.wheat + "\nWOOD-" + this.wood + "\nORE-" + this.ore + "WOOL-" + this.wool;
+        return "\nBRICK-" + this.bricks + "\nWHEAT-" + this.wheat + "\nWOOD-" + this.wood + "\nORE-" + this.ore + "\nWOOL-" + this.wool;
     }
 
     public int getBricks() {
