@@ -1,6 +1,7 @@
 package game.catan.graphics;
 
 import game.catan.simulation.Player;
+import game.catan.simulation.Trade;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,8 +17,13 @@ public class HelloApplication extends Application {
     public static Stage stage;
     public static Stage gameStage;
     public static Stage buildStage;
-    public static Stage tradeStage;
-    public static domesticTradeController tradeController;
+    public static Stage domesticTradeStage;
+    public static Stage maritimeTradeStage;
+    public static Stage maritimeTradeStage2;
+
+    public static domesticTradeController domesticTradeController;
+    public static maritimeTradeController maritimeTradeController;
+    public static maritimeTradeController2 maritimeTradeController2;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -48,12 +54,37 @@ public class HelloApplication extends Application {
         Scene scene3 = new Scene(fxmlLoader3.load(), 600, 400);
         Stage tradeStage = new Stage();
         scene3.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
-        tradeStage.initStyle(StageStyle.TRANSPARENT);
-        this.tradeStage = tradeStage;
         tradeStage.setResizable(true);
         scene3.setFill(Color.TRANSPARENT);
-        tradeStage.setTitle("Trade");
+        tradeStage.setAlwaysOnTop(true);
+        tradeStage.setTitle("Domestic Trade");
         tradeStage.setScene(scene3);
+        tradeStage.initStyle(StageStyle.TRANSPARENT);
+        domesticTradeStage = tradeStage;
+
+        FXMLLoader fxmlLoader4 = new FXMLLoader(HelloApplication.class.getResource("maritimeTradeMenu.fxml"));
+        Scene scene4 = new Scene(fxmlLoader4.load(), 635, 340);
+        Stage maritimeStage = new Stage();
+        scene4.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        maritimeStage.initStyle(StageStyle.TRANSPARENT);
+        maritimeStage.setResizable(true);
+        scene4.setFill(Color.TRANSPARENT);
+        maritimeStage.setAlwaysOnTop(true);
+        maritimeStage.setTitle("Maritime Trade");
+        maritimeStage.setScene(scene4);
+        maritimeTradeStage = maritimeStage;
+
+        FXMLLoader fxmlLoader5 = new FXMLLoader(HelloApplication.class.getResource("maritimeTradeMenu2.fxml"));
+        Scene scene5 = new Scene(fxmlLoader5.load(), 635, 340);
+        Stage maritimeStage2 = new Stage();
+        scene5.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        maritimeStage2.initStyle(StageStyle.TRANSPARENT);
+        maritimeStage2.setResizable(true);
+        scene4.setFill(Color.TRANSPARENT);
+        maritimeStage2.setAlwaysOnTop(true);
+        maritimeStage2.setTitle("Maritime Trade");
+        maritimeStage2.setScene(scene5);
+        maritimeTradeStage2 = maritimeStage2;
     }
 
     public static void toggleBuildMenu(){
@@ -62,12 +93,36 @@ public class HelloApplication extends Application {
         }else{
             buildStage.show();
         }
-
     }
 
-    public static void showTradeMenu(Player player){
-        tradeStage.show();
-        tradeController.newTrade(player);
+    // domestic trade
+    public static void showDomesticTradeMenu(Player player){
+        domesticTradeStage.show();
+        domesticTradeController.newTrade(player);
+    }
+
+    public static void toggleMaritimeTradeMenu() {
+        if (maritimeTradeStage.isShowing()) {
+            maritimeTradeStage.hide();
+        } else {
+            maritimeTradeStage.show();
+        }
+    }
+
+    public static void toggleMaritimeTradeMenu(boolean isFromActionButton) {
+        toggleMaritimeTradeMenu();
+
+        if (isFromActionButton && !maritimeTradeStage.isShowing()) {
+            Trade.resetStockpileResources();
+        }
+    }
+
+    public static void toggleMaritimeTradeMenu2() {
+        if (maritimeTradeStage2.isShowing()) {
+            maritimeTradeStage2.hide();
+        } else {
+            maritimeTradeStage2.show();
+        }
     }
 
     public static void showSmall() throws IOException {

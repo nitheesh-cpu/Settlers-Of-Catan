@@ -245,21 +245,21 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane prefHeight="792.0" prefWidth="234.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">
+            <Pane prefHeight="800.0" prefWidth="211.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">
                <children>
                   <ImageView fx:id="inventoryFrame1" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../PlayerResources/playerInventory.png" />
+                        <Image url="@../PlayerResources/playerInventoryTest.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="inventoryFrame2" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../PlayerResources/playerInventory.png" />
+                        <Image url="@../PlayerResources/playerInventoryTest.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="inventoryFrame3" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../PlayerResources/playerInventory.png" />
+                        <Image url="@../PlayerResources/playerInventoryTest.png" />
                      </image>
                   </ImageView>
                   <Text fx:id="inventoryTitle1" layoutX="91.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" wrappingWidth="200.0">
@@ -367,6 +367,21 @@
                         <Image url="@../PlayerResources/player4icon.png" />
                      </image>
                   </ImageView>
+                  <Text fx:id="victoryPointCount1" layoutX="200.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="32.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="victoryPointCount2" layoutX="200.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="32.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="victoryPointCount3" layoutX="200.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="32.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
          </children>
@@ -375,9 +390,9 @@
          <children>
             <Pane prefHeight="60.0" prefWidth="1250.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18; -fx-background-color: FFFFFF;">
                <children>
-                  <ImageView fx:id="build" fitHeight="83.52" fitWidth="90" layoutX="1043.0" layoutY="-39.0" onMouseClicked="#buildClicked">
+                  <ImageView fx:id="actionButton" fitHeight="83.52" fitWidth="90" layoutX="1043.0" layoutY="-39.0" onMouseClicked="#actionButtonClicked">
                      <image>
-                        <Image url="@../ButtonResources/Build.png" />
+                        <Image url="@../ButtonResources/TradeButton.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="endTurn" fitHeight="83.52" fitWidth="90" layoutX="1142.0" layoutY="-39.0" onMouseClicked="#endTurnClicked">

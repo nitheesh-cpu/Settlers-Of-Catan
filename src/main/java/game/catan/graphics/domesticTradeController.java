@@ -151,7 +151,7 @@ public class domesticTradeController implements Initializable {
 
     public static boolean followup = false;
     public void confirmTrade(MouseEvent event) {
-        HelloApplication.tradeStage.hide();
+        HelloApplication.domesticTradeStage.hide();
         //TODO: implement trade followup
         if(!followup) {
 
@@ -163,7 +163,7 @@ public class domesticTradeController implements Initializable {
     }
 
     public void cancelTrade(MouseEvent event) {
-        HelloApplication.tradeStage.hide();
+        HelloApplication.domesticTradeStage.hide();
     }
 
     private double xoffSet;
@@ -177,19 +177,19 @@ public class domesticTradeController implements Initializable {
 
     @FXML
     void mouseReleased(MouseEvent event) {
-        HelloApplication.tradeStage.setOpacity (1.0f);
+        HelloApplication.domesticTradeStage.setOpacity (1.0f);
     }
 
     @FXML
     void mouseDragged(MouseEvent event) {
-        HelloApplication.tradeStage.setX(event.getScreenX ()- xoffSet);
-        HelloApplication.tradeStage.setY (event.getScreenY ()- yoffSet);
-        HelloApplication.tradeStage.setOpacity (0.8f);
+        HelloApplication.domesticTradeStage.setX(event.getScreenX ()- xoffSet);
+        HelloApplication.domesticTradeStage.setY (event.getScreenY ()- yoffSet);
+        HelloApplication.domesticTradeStage.setOpacity (0.8f);
     }
 
     @FXML
     void onDragDone(MouseEvent event) {
-        HelloApplication.tradeStage.setOpacity (1.0f);
+        HelloApplication.domesticTradeStage.setOpacity (1.0f);
     }
 
     public void updateText(){
@@ -209,6 +209,6 @@ public class domesticTradeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        HelloApplication.tradeController = this;
+        HelloApplication.domesticTradeController = this;
     }
 }

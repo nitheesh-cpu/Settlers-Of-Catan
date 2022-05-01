@@ -22,7 +22,6 @@ import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class GameController {
 
@@ -34,7 +33,8 @@ public class GameController {
     public ScrollPane actionLogScrollPane;
     public TextArea actionLogText;
     public Text actionLogTitle;
-    public ImageView build;
+    public ImageView actionButton; // build button
+
     public ScrollPane cardsScrollPane;
     public Text cardsTitle;
     public Circle dice01;
@@ -130,6 +130,7 @@ public class GameController {
     public Text cityCount1;
     public Text roadCount1;
     public Text stockpileCount1;
+    public Text victoryPointCount1;
     public ImageView tradeButton1;
     public ImageView inventoryFrame1;
 
@@ -139,6 +140,7 @@ public class GameController {
     public Text cityCount2;
     public Text roadCount2;
     public Text stockpileCount2;
+    public Text victoryPointCount2;
     public ImageView tradeButton2;
     public ImageView inventoryFrame2;
 
@@ -148,6 +150,7 @@ public class GameController {
     public Text cityCount3;
     public Text roadCount3;
     public Text stockpileCount3;
+    public Text victoryPointCount3;
     public ImageView tradeButton3;
     public ImageView inventoryFrame3;
     // endregion
@@ -158,7 +161,7 @@ public class GameController {
     private Tile[][] tileObjs;
     private ImageView[] harborImages;
     private GameState gameState;
-    public boolean buildEnabled;
+    public static boolean actionButtonEnabled;
     public ImageView robberImage;
 
     @FXML
@@ -222,7 +225,7 @@ public class GameController {
         }
 
         help.setPickOnBounds(true);
-        build.setPickOnBounds(true);
+        actionButton.setPickOnBounds(true);
         endTurn.setPickOnBounds(true);
 
         // Initialize build button
@@ -260,7 +263,7 @@ public class GameController {
         updatePlayerStats();
         disableTrade();
         showDice();
-        buildEnabled = false;
+        actionButtonEnabled = false;
     }
 
     public void log(String message){
@@ -279,6 +282,7 @@ public class GameController {
     public void updateDiceGraphic(int roll1, int roll2) {
         rollDiceButton.getStyleClass().remove("hover");
         rollDiceButton.setVisible(false);
+
         dice1.setImage(Initialize.diceImages[roll1-1]);
         dice2.setImage(Initialize.diceImages[roll2-1]);
     }
@@ -312,8 +316,15 @@ public class GameController {
         tradeButton3.setVisible(true);
     }
 
+    public void updateActionButton() {
+        switch (GameState.getPhase()) {
+            case TRADE -> actionButton.setImage(Initialize.tradeButton);
+            case BUY -> actionButton.setImage(Initialize.buildButton);
+        }
+    }
+
     public void updatePlayerStats(){
-        Text[][] stats = {{inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1},{inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2},{inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3} };
+        Text[][] stats = {{inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1, victoryPointCount1},{inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2, victoryPointCount2},{inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3, victoryPointCount3} };
         ImageView[] icons = {playerIcon1,playerIcon2,playerIcon3};
         statsTitle.setText("Player Stats");
 
@@ -340,6 +351,8 @@ public class GameController {
             stats[index][2].setText(Integer.toString(player.getCityCount()));
             stats[index][3].setText(Integer.toString(player.getRoads().size()));
             stats[index][4].setText(Integer.toString(player.getStockpile().getTotal()));
+            stats[index][5].setText(Integer.toString(player.getVictoryPoints()));
+
             icons[index].setImage(player.getImages().get("Icon"));
             index++;
         }
@@ -372,8 +385,14 @@ public class GameController {
 
     //turn buttons
     @FXML
-    void buildClicked(MouseEvent event) {
-        if(buildEnabled) HelloApplication.toggleBuildMenu();
+    void actionButtonClicked(MouseEvent event) {
+        System.out.println("Action button clicked");
+        if (!actionButtonEnabled) return;
+
+        switch (GameState.getPhase()) {
+            case TRADE -> HelloApplication.toggleMaritimeTradeMenu(true);
+            case BUY -> HelloApplication.toggleBuildMenu();
+        }
     }
 
     @FXML
@@ -431,26 +450,26 @@ public class GameController {
 
     private int domesticTradePlayer = 0;
     public void trade1Clicked(MouseEvent mouseEvent) {
-        HelloApplication.showTradeMenu(gameState.getCurrentPlayer());
+        HelloApplication.showDomesticTradeMenu(gameState.getCurrentPlayer());
         domesticTradePlayer = 1;
         domesticTradeController.followup = true;
     }
 
     public void trade2Clicked(MouseEvent mouseEvent) {
-        HelloApplication.showTradeMenu(gameState.getCurrentPlayer());
+        HelloApplication.showDomesticTradeMenu(gameState.getCurrentPlayer());
         domesticTradePlayer = 2;
         domesticTradeController.followup = true;
     }
 
     public void trade3Clicked(MouseEvent mouseEvent) {
-        HelloApplication.showTradeMenu(gameState.getCurrentPlayer());
+        HelloApplication.showDomesticTradeMenu(gameState.getCurrentPlayer());
         domesticTradePlayer = 3;
         domesticTradeController.followup = true;
     }
 
     public void domesticTradeFollowup(){
         int index = GameState.nextTurnIndex(GameState.getCurrentPlayerIndex() +domesticTradePlayer-1);
-        HelloApplication.showTradeMenu(GameState.players[index]);
+        HelloApplication.showDomesticTradeMenu(GameState.players[index]);
         domesticTradePlayer = 0;
     }
 }

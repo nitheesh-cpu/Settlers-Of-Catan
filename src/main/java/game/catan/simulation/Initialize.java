@@ -19,12 +19,16 @@ public class Initialize {
     public static Image settlementHover;
     public static Image settlementBlank;
     public static Image robber;
+    public static Image buildButton;
+    public static Image tradeButton;
 
 
     public static void init() {
         settlementHover = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/hover.jpg"));
         settlementBlank = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/blank.png"));
-        robber = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/robber.png"));
+        robber = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/robber.png"));
+        buildButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png"));
+        tradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/TradeButton.png"));
         // robber = new ImagePattern(robberTemp);
 
         //hexagon tile patterns

@@ -1,8 +1,6 @@
 package game.catan.simulation;
 
 import game.catan.graphics.GameController;
-import game.catan.simulation.buildings.Road;
-import game.catan.simulation.buildings.Structure;
 import game.catan.simulation.cards.DevelopmentCard;
 import game.catan.simulation.enums.Color;
 import game.catan.simulation.enums.Phase;
@@ -29,7 +27,7 @@ public class GameState {
     private static Phase phase = Phase.SETUP;
 
     public static Player[] players;
-    private final Board board;
+    private static Board board;
 
     private Player longestRoadHolder = null;
     private Player largestArmyHolder = null;
@@ -54,6 +52,8 @@ public class GameState {
         }
 
         currentPlayer = players[currentPlayerIndex];
+
+        Trade.initialize(this);
     }
 
     // region Switching Turns/Rolling Dice
@@ -135,8 +135,8 @@ public class GameState {
 
         switch (phase) {
             case SETUP -> {
-                addPlayerRoll(roll);
-                nextTurn();
+                if (addPlayerRoll(roll))
+                    nextTurn();
             }
             case RESOURCE_PRODUCTION -> {
                 resourceProductionPhase(roll);
@@ -243,24 +243,33 @@ public class GameState {
     }
 
     private TreeMap<Integer, Player> playerMap = new TreeMap<>();
-    private void addPlayerRoll(int roll) {
+    private boolean addPlayerRoll(int roll) {
+        if (playerMap.containsKey(roll)) {
+            log("Number has already been rolled. Reroll the dice.");
+            gameController.showDice();
+            return false;
+        }
+
         SETUP_numOfRolls++;
         playerMap.put(roll, currentPlayer);
 
         if (SETUP_numOfRolls == players.length) {
             setUpPhase();
         }
+
+        return true;
     }
 
     private void determinePlayerOrder() {
-        Set<Integer> keys = playerMap.keySet();
+        Set<Integer> keys = playerMap.descendingKeySet();
 
-        int index = players.length - 1;
+        // int index = players.length - 1;
+        int index = 0;
 
         for (Integer key: keys) {
             players[index] = playerMap.get(key);
             players[index].setId(index+1);
-            index--;
+            index++;
         }
 
         currentPlayer = players[0];
@@ -284,12 +293,26 @@ public class GameState {
 
     public void resourceProductionPhase(int roll) {
         if (roll == 7) {
-            discardHalf();
-            moveRobber();
-            stealResource();
+            log("Rolled a 7. Need to implement robber.");
+//            discardHalf();
+//            moveRobber();
+//            stealResource();
         } else {
             board.produceResources(roll);
         }
+
+        log("End of resource production phase.\n");
+        tradePhase();
+    }
+
+    // harbor, stockpile, domestic
+    public void tradePhase() {
+        log("Start of trade phase.");
+        gameController.showTrade();
+
+        phase = Phase.TRADE;
+        gameController.actionButtonEnabled = true;
+        gameController.updateActionButton();
     }
 
     public void discardHalf() {
@@ -341,25 +364,25 @@ public class GameState {
 
     // region Trade Phase
     // TODO: complete this first
-    public void tradePhase() {
-        System.out.println("Start of the trade phase");
-        System.out.println("Enter next action: ");
-        String input = sc.nextLine();
-
-        while (!input.equalsIgnoreCase("stop")) {
-            switch (input.toLowerCase(Locale.ROOT)) {
-                case "domestic" -> // TODO: need to test
-                        domesticTrade();
-                case "stockpile" -> // TODO: need to test
-                        stockpileTrade();
-                case "harbor" -> // TODO: need to test
-                        harborTrade();
-            }
-
-            System.out.println("Enter next action: ");
-            input = sc.nextLine();
-        }
-    }
+//    public void tradePhase() {
+//        System.out.println("Start of the trade phase");
+//        System.out.println("Enter next action: ");
+//        String input = sc.nextLine();
+//
+//        while (!input.equalsIgnoreCase("stop")) {
+//            switch (input.toLowerCase(Locale.ROOT)) {
+//                case "domestic" -> // TODO: need to test
+//                        domesticTrade();
+//                case "stockpile" -> // TODO: need to test
+//                        stockpileTrade();
+//                case "harbor" -> // TODO: need to test
+//                        harborTrade();
+//            }
+//
+//            System.out.println("Enter next action: ");
+//            input = sc.nextLine();
+//        }
+//    }
 
     // TODO: must trade resource cards of different types
     public void domesticTrade() {
@@ -1086,7 +1109,11 @@ public class GameState {
         return players.length;
     }
 
-    public Board getBoard() {
+    public static Board getBoard() {
         return board;
+    }
+
+    public static GameController getGameController() {
+        return gameController;
     }
 }
