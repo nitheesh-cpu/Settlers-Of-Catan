@@ -208,7 +208,7 @@ public class GameState {
                     phase = Phase.RESOURCE_PRODUCTION;
                     isGameStart = false; // no longer start of the game
                     log("End of setup phase.\n");
-                    gameController.buildEnabled=true;
+                    GameController.actionButtonEnabled = true;
                     gameController.showTrade();
                     log(currentPlayer + "'s turn.");
                     gameController.showDice();
