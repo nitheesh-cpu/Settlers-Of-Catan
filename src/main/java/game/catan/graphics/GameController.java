@@ -1,6 +1,7 @@
 package game.catan.graphics;
 
 import game.catan.simulation.*;
+import game.catan.simulation.enums.DevelopmentCardType;
 import game.catan.simulation.enums.ResourceType;
 
 import game.catan.simulation.helper.Location;
@@ -18,10 +19,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameController {
 
@@ -110,7 +111,6 @@ public class GameController {
     public Polygon water7;
     public Polygon water8;
     public Polygon water9;
-    public TextFlow cardsTextFlow;
     public ImageView rollDiceButton;
 
     public ImageView currentPlayerIcon;
@@ -166,6 +166,8 @@ public class GameController {
     public ImageView tradePort9;
 
     public ImageView[] tradePortImages;
+    public Pane cardsPane;
+  
     // endregion
 
     private Polygon[] waters;
@@ -276,7 +278,7 @@ public class GameController {
 
         root.setBackground(new Background(background_fill));
         actionLogText.setBackground(new Background(background_fill));
-        cardsTextFlow.setBackground(new Background(background_fill));
+        cardsPane.setBackground(new Background(background_fill));
 
         //structures[0] == top left then go clockwise
         //roads[0] == top left then go clockwise
@@ -293,8 +295,8 @@ public class GameController {
         }
 
         gameState.start();
-
         updatePlayerStats();
+        updatePlayerCards();
         disableTrade();
         showDice();
         actionButtonEnabled = false;
@@ -440,6 +442,46 @@ public class GameController {
             icons[index].setImage(player.getImages().get("Icon"));
             index++;
         }
+    }
+
+    public void updatePlayerCards(){
+        AtomicInteger count = new AtomicInteger();
+        GameState.getCurrentPlayer().getDevelopmentCards().forEach(card -> {
+            ImageView imageView = new ImageView();
+            if(card.getType() == DevelopmentCardType.KNIGHT) {
+                imageView.setImage(new Image("game/catan/Cards/KnightCard/KNIGHT.png"));
+            }
+            else if(card.getName().equals("Chapel")){
+                imageView.setImage(new Image("game/catan/Cards/VictoryPointCards/CHAPEL.png"));
+            }
+            else if(card.getName().equals("Great Hall")){
+                imageView.setImage(new Image("game/catan/Cards/VictoryPointCards/GREAT_HALL.png"));
+            }
+            else if(card.getName().equals("Library")){
+                imageView.setImage(new Image("game/catan/Cards/VictoryPointCards/LIBRARY.png"));
+            }
+            else if(card.getName().equals("Market")){
+                imageView.setImage(new Image("game/catan/Cards/VictoryPointCards/MARKET.png"));
+            }
+            else if(card.getName().equals("University")){
+                imageView.setImage(new Image("game/catan/Cards/VictoryPointCards/UNIVERSITY.png"));
+            }
+            else if(card.getName().equals("Monopoly")){
+                imageView.setImage(new Image("game/catan/Cards/ProgressCards/MONOPOLY.png"));
+            }
+            else if(card.getName().equals("Road Building")){
+                imageView.setImage(new Image("game/catan/Cards/ProgressCards/ROAD_BUILDING.png"));
+            }
+            else if(card.getName().equals("Year of Plenty")){
+                imageView.setImage(new Image("game/catan/Cards/ProgressCards/YEAR_OF_PLENTY.png"));
+            }
+            imageView.setPreserveRatio(true);
+            imageView.setFitHeight(260);
+            imageView.setX(2+(150*count.get()));
+            imageView.setY(3);
+            cardsPane.getChildren().add(imageView);
+            count.getAndIncrement();
+        });
     }
 
     public void updateRobberLocation(Location location, Location previousLocation) {

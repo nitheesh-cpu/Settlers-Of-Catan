@@ -197,7 +197,16 @@ public class domesticTradeController implements Initializable {
         for(int i = 0; i < GameState.players.length; i++) {
             if (GameState.players[i] == player) index = i;
         }
-
+        amtBricks.setText("0");
+        amtLumber.setText("0");
+        amtOres.setText("0");
+        amtWool.setText("0");
+        amtWheat.setText("0");
+        brickAmt = 0;
+        lumberAmt = 0;
+        oreAmt = 0;
+        woolAmt = 0;
+        wheatAmt = 0;
         int i = index+1;
         titleText.setText("Player "+i+", enter # of resources you're trading");
     }
