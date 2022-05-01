@@ -77,14 +77,6 @@ public class Trade {
     }
 
     public static boolean domesticTrade(Player playerOne, Stockpile tradeOne, Player playerTwo, Stockpile tradeTwo) {
-        System.out.println("Player one stockpile: " + playerOne.getStockpile());
-        System.out.println("Player two stockpile: " + playerTwo.getStockpile());
-
-        System.out.println("\n");
-
-        System.out.println("Trade one: " + tradeOne);
-        System.out.println("Trade two: " + tradeTwo);
-
         for (ResourceType resource : ResourceType.values()) {
             if (!verifyAmountOfResources(playerOne.getStockpile(), resource, tradeOne.getResourceCount(resource))) {
                 System.out.println("Player one doesn't have enough resources to trade");
