@@ -583,7 +583,6 @@ public class GameController {
     }
 
     public void domesticTradeFollowup(){
-        // int index = GameState.nextTurnIndex(GameState.getCurrentPlayerIndex() +domesticTradePlayer-1);
         HelloApplication.showDomesticTradeMenu(domesticTradePlayer);
         domesticTradePlayer = null;
     }
@@ -591,8 +590,8 @@ public class GameController {
     public Player getCorrespondingTrader(int index) {
         int count = 1;
 
-        for (Player player: gameState.getPlayers()) {
-            if (player.equals(gameState.getCurrentPlayer())) continue;
+        for (Player player: GameState.getPlayers()) {
+            if (player.equals(GameState.getCurrentPlayer())) continue;
 
             if (count == index) {
                 System.out.println("Corresponding trader: " + player.getId());

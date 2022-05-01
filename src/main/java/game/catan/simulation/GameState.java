@@ -209,7 +209,7 @@ public class GameState {
                     isGameStart = false; // no longer start of the game
                     log("End of setup phase.\n");
                     GameController.actionButtonEnabled = true;
-                    gameController.showTrade();
+                    // gameController.showTrade();
                     log(currentPlayer + "'s turn.");
                     gameController.showDice();
                 }

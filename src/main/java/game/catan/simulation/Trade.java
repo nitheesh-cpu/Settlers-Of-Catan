@@ -12,6 +12,12 @@ public class Trade {
 
     private static Harbor harbor = null;
 
+    private static Player playerOne;
+    private static Stockpile tradeOne;
+
+    private static Player playerTwo;
+    private static Stockpile tradeTwo;
+
     public static void initialize(GameState gameState) {
         Trade.gameState = gameState;
         board = GameState.getBoard();
@@ -38,7 +44,8 @@ public class Trade {
 
         GameState.getGameController().updatePlayerStats();
         GameState.log(GameState.getCurrentPlayer() + " traded 4x " + tradingResource + " for 1x " + receivingResource + " with the stockpile.");
-        resetResources();
+
+        resetTrade();
         return true;
     }
 
@@ -65,8 +72,48 @@ public class Trade {
         GameState.getGameController().updatePlayerStats();
         GameState.log(GameState.getCurrentPlayer() + " traded " + ratio + "x " + tradingResource + " for 1x " + receivingResource + " with the harbor of type " + harbor.getResourceType() + ".");
 
-        resetHarbor();
-        resetResources();
+        resetTrade();
+        return true;
+    }
+
+    public static boolean domesticTrade(Player playerOne, Stockpile tradeOne, Player playerTwo, Stockpile tradeTwo) {
+        for (ResourceType resource : ResourceType.values()) {
+            if (!verifyAmountOfResources(playerOne.getStockpile(), resource, tradeOne.getResourceCount(resource))) {
+                System.out.println("Player one doesn't have enough resources to trade");
+                return false;
+            }
+
+            if (!verifyAmountOfResources(playerTwo.getStockpile(), resource, tradeTwo.getResourceCount(resource))) {
+                System.out.println("Player two doesn't have enough resources to trade");
+                return false;
+            }
+
+            // trading same resource
+            if (tradeOne.getResourceCount(resource) != 0 && tradeTwo.getResourceCount(resource) != 0) {
+                System.out.println("Cannot trade same resource");
+                return false;
+            }
+        }
+
+        board.transferResources(playerOne.getStockpile(), playerTwo.getStockpile(), tradeOne, tradeTwo);
+
+        String tradeOneMsg = "";
+        String tradeTwoMsg = "";
+
+        for (ResourceType resource : ResourceType.values()) {
+            if (tradeOne.getResourceCount(resource) != 0) {
+                tradeOneMsg += tradeOne.getResourceCount(resource) + "x " + resource + " ";
+            }
+
+            if (tradeTwo.getResourceCount(resource) != 0) {
+                tradeTwoMsg += tradeTwo.getResourceCount(resource) + "x " + resource + " ";
+            }
+        }
+
+        GameState.getGameController().updatePlayerStats();
+        GameState.log(GameState.getCurrentPlayer() + " traded " + tradeOneMsg + " with " + playerTwo + " for " + tradeTwoMsg + ".");
+
+        resetTrade();
         return true;
     }
 
@@ -78,6 +125,26 @@ public class Trade {
         Trade.receivingResource = receivingResource;
     }
 
+    public static void setTradeOne(Stockpile tradeOne) {
+        Trade.tradeOne = tradeOne;
+    }
+
+    public static void setTradeTwo(Stockpile tradeTwo) {
+        Trade.tradeTwo = tradeTwo;
+    }
+
+    public static void setHarbor(Harbor harbor) {
+        Trade.harbor = harbor;
+    }
+
+    public static void setPlayerOne(Player playerOne) {
+        Trade.playerOne = playerOne;
+    }
+
+    public static void setPlayerTwo(Player playerTwo) {
+        Trade.playerTwo = playerTwo;
+    }
+
     public static ResourceType getTradingResource() {
         return tradingResource;
     }
@@ -86,20 +153,45 @@ public class Trade {
         return receivingResource;
     }
 
-    public static void resetResources() {
-        Trade.tradingResource = null;
-        Trade.receivingResource = null;
+    public static Stockpile getTradeOne() {
+        return tradeOne;
+    }
+
+    public static Stockpile getTradeTwo() {
+        return tradeTwo;
     }
 
     public static Harbor getHarbor() {
         return harbor;
     }
 
-    public static void setHarbor(Harbor harbor) {
-        Trade.harbor = harbor;
+    public static Player getPlayerOne() {
+        return playerOne;
+    }
+
+    public static Player getPlayerTwo() {
+        return playerTwo;
+    }
+
+    public static void resetResources() {
+        Trade.tradingResource = null;
+        Trade.receivingResource = null;
     }
 
     public static void resetHarbor() {
         harbor = null;
+    }
+
+    public static void resetDomestic() {
+        tradeOne = null;
+        tradeTwo = null;
+        playerOne = null;
+        playerTwo = null;
+    }
+
+    public static void resetTrade() {
+        resetResources();
+        resetHarbor();
+        resetDomestic();
     }
 }
