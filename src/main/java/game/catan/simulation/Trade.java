@@ -77,6 +77,14 @@ public class Trade {
     }
 
     public static boolean domesticTrade(Player playerOne, Stockpile tradeOne, Player playerTwo, Stockpile tradeTwo) {
+        System.out.println("Player one stockpile: " + playerOne.getStockpile());
+        System.out.println("Player two stockpile: " + playerTwo.getStockpile());
+
+        System.out.println("\n");
+
+        System.out.println("Trade one: " + tradeOne);
+        System.out.println("Trade two: " + tradeTwo);
+
         for (ResourceType resource : ResourceType.values()) {
             if (!verifyAmountOfResources(playerOne.getStockpile(), resource, tradeOne.getResourceCount(resource))) {
                 System.out.println("Player one doesn't have enough resources to trade");
@@ -102,16 +110,16 @@ public class Trade {
 
         for (ResourceType resource : ResourceType.values()) {
             if (tradeOne.getResourceCount(resource) != 0) {
-                tradeOneMsg += tradeOne.getResourceCount(resource) + "x " + resource + " ";
+                tradeOneMsg += tradeOne.getResourceCount(resource) + "x " + resource + ", ";
             }
 
             if (tradeTwo.getResourceCount(resource) != 0) {
-                tradeTwoMsg += tradeTwo.getResourceCount(resource) + "x " + resource + " ";
+                tradeTwoMsg += tradeTwo.getResourceCount(resource) + "x " + resource + ", ";
             }
         }
 
         GameState.getGameController().updatePlayerStats();
-        GameState.log(GameState.getCurrentPlayer() + " traded " + tradeOneMsg + " with " + playerTwo + " for " + tradeTwoMsg + ".");
+        GameState.log(GameState.getCurrentPlayer() + " traded " + tradeOneMsg.substring(0, tradeOneMsg.length()-2) + " with " + playerTwo + " for " + tradeTwoMsg.substring(0, tradeTwoMsg.length()-2) + ".");
 
         resetTrade();
         return true;

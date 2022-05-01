@@ -566,6 +566,7 @@ public class GameController {
 
     public void trade1Clicked(MouseEvent mouseEvent) {
         HelloApplication.showDomesticTradeMenu(gameState.getCurrentPlayer());
+
         domesticTradePlayer = getCorrespondingTrader(1);
         domesticTradeController.followup = true;
     }

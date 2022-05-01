@@ -155,11 +155,15 @@ public class domesticTradeController implements Initializable {
 
     public static boolean followup = false;
     public void confirmTrade(MouseEvent event) {
-        HelloApplication.domesticTradeStage.hide();
         //TODO: implement trade followup
         if(!followup) {
             Stockpile tradeOne = Trade.getTradeOne();
-            Stockpile tradeTwo = new Stockpile(brickAmt, lumberAmt, oreAmt, wheatAmt, woolAmt);
+            Stockpile tradeTwo = new Stockpile(brickAmt, wheatAmt, lumberAmt, oreAmt, woolAmt);
+
+            if (tradeTwo.getTotal() == 0) {
+                errorModal("You must trade at least one resource.", "Invalid Trade");
+                return;
+            }
 
             if (!verifyTrade(tradeOne, tradeTwo)) {
                 errorModal("Players cannot trade the same resource!", "Invalid Trade");
@@ -171,15 +175,30 @@ public class domesticTradeController implements Initializable {
 
             // show confirmation screen
             HelloApplication.domesticTradeStage.hide();
-
+            HelloApplication.showDomesticConfirmTradeMenu();
         } else {
-            Stockpile tradeOne = new Stockpile(brickAmt, lumberAmt, oreAmt, wheatAmt, woolAmt);
+
+            Stockpile tradeOne = new Stockpile(brickAmt, wheatAmt, lumberAmt, oreAmt, woolAmt);
+
+            if (tradeOne.getTotal() == 0) {
+                errorModal("You must trade at least one resource.", "Invalid Trade");
+                return;
+            }
+
+            HelloApplication.domesticTradeStage.hide();
+
             Trade.setTradeOne(tradeOne);
             Trade.setPlayerOne(player);
 
             GameState.gameController.domesticTradeFollowup();
             domesticTradeController.followup = false;
         }
+
+        brickAmt = 0;
+        lumberAmt = 0;
+        oreAmt = 0;
+        woolAmt = 0;
+        wheatAmt = 0;
     }
 
     // cannot trade same resource

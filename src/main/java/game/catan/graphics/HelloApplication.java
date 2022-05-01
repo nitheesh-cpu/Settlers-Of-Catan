@@ -92,7 +92,7 @@ public class HelloApplication extends Application {
         maritimeTradeStage2 = maritimeStage2;
 
         FXMLLoader fxmlLoader6 = new FXMLLoader(HelloApplication.class.getResource("confirmTrade.fxml"));
-        Scene scene6 = new Scene(fxmlLoader6.load(), 624, 465);
+        Scene scene6 = new Scene(fxmlLoader6.load(), 624, 475);
         Stage confirmStage = new Stage();
         scene6.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
         confirmStage.initStyle(StageStyle.TRANSPARENT);
@@ -116,6 +116,11 @@ public class HelloApplication extends Application {
     public static void showDomesticTradeMenu(Player player){
         domesticTradeStage.show();
         domesticTradeController.newTrade(player);
+    }
+
+    public static void showDomesticConfirmTradeMenu() {
+        domesticTradeConfirmController.update();
+        domesticTradeConfirmStage.show();
     }
 
     // only for stockpile trade

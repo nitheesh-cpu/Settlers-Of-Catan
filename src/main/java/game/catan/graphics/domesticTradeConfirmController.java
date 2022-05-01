@@ -67,19 +67,19 @@ public class domesticTradeConfirmController implements Initializable {
 
     @FXML
     void mouseReleased(MouseEvent event) {
-        HelloApplication.domesticTradeStage.setOpacity (1.0f);
+        HelloApplication.domesticTradeConfirmStage.setOpacity (1.0f);
     }
 
     @FXML
     void mouseDragged(MouseEvent event) {
-        HelloApplication.domesticTradeStage.setX(event.getScreenX ()- xoffSet);
-        HelloApplication.domesticTradeStage.setY (event.getScreenY ()- yoffSet);
-        HelloApplication.domesticTradeStage.setOpacity (0.8f);
+        HelloApplication.domesticTradeConfirmStage.setX(event.getScreenX ()- xoffSet);
+        HelloApplication.domesticTradeConfirmStage.setY (event.getScreenY ()- yoffSet);
+        HelloApplication.domesticTradeConfirmStage.setOpacity (0.8f);
     }
 
     @FXML
     void onDragDone(MouseEvent event) {
-        HelloApplication.domesticTradeStage.setOpacity (1.0f);
+        HelloApplication.domesticTradeConfirmStage.setOpacity (1.0f);
     }
 
     public void confirmTrade(MouseEvent event) {
