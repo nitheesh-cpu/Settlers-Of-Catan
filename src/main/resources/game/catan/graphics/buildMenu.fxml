@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.buildMenuController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.buildMenuController">
    <children>
       <HBox style="-fx-background-color: FFFFFF; -fx-background-radius: 18 18 18 18; -fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 18 18 18 18;">
          <children>
@@ -37,6 +37,11 @@
                   <ImageView fx:id="devCardButton" fitHeight="113.0" fitWidth="121.0" layoutX="374.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/DevCard.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="close" fitHeight="36.0" fitWidth="32.0" layoutX="448.0" layoutY="14.0" onMouseClicked="#menuCloseClick" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                     <image>
+                        <Image url="@../ButtonResources/close-black.png" />
                      </image>
                   </ImageView>
                </children>

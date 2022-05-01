@@ -27,7 +27,7 @@
             </Text>
             <AnchorPane layoutX="1206.0" layoutY="4.0" onMouseClicked="#closeClicked" prefHeight="32.0" prefWidth="32.0">
                <children>
-                  <ImageView fitHeight="27.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="27.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                      <image>
                         <Image url="@../ButtonResources/icons8-close-26.png" />
                      </image>
@@ -221,7 +221,7 @@
                               <Image url="@../Ports/Misc.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harbor2" fitHeight="72.0" fitWidth="40.0" layoutX="549.0" layoutY="156.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="harbor2" fitHeight="72.0" fitWidth="40.0" layoutX="546.0" layoutY="156.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Ports/Misc.png" />
                            </image>
@@ -231,6 +231,19 @@
                   </Pane>
                   <Pane fx:id="settlementPane" prefHeight="800.0" prefWidth="750.0">
                      <children>
+                        <Pane fx:id="harborPane" prefHeight="800.0" prefWidth="750.0">
+                           <children>
+                              <ImageView fx:id="tradePort1" fitHeight="40.0" fitWidth="55.0" layoutX="348.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort2" fitHeight="40.0" fitWidth="55.0" layoutX="538.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort3" fitHeight="40.0" fitWidth="55.0" layoutX="633.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort4" fitHeight="40.0" fitWidth="55.0" layoutX="633.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort5" fitHeight="40.0" fitWidth="55.0" layoutX="442.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort6" fitHeight="40.0" fitWidth="55.0" layoutX="251.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort7" fitHeight="40.0" fitWidth="55.0" layoutX="61.0" layoutY="536.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort8" fitHeight="40.0" fitWidth="55.0" layoutX="61.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort9" fitHeight="40.0" fitWidth="55.0" layoutX="155.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
                         <Text fx:id="diceText" layoutX="509.0" layoutY="765.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dice Roll" textAlignment="CENTER" wrappingWidth="132.0">
                            <font>
                               <Font name="System Bold" size="29.0" />
@@ -240,21 +253,21 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane prefHeight="792.0" prefWidth="234.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">
+            <Pane prefHeight="800.0" prefWidth="211.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="ALWAYS">
                <children>
                   <ImageView fx:id="inventoryFrame1" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../PlayerResources/playerInventory.png" />
+                        <Image url="@../PlayerResources/playerInventoryTest.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="inventoryFrame2" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../PlayerResources/playerInventory.png" />
+                        <Image url="@../PlayerResources/playerInventoryTest.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="inventoryFrame3" fitHeight="208.0" fitWidth="224.0" layoutX="8.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../PlayerResources/playerInventory.png" />
+                        <Image url="@../PlayerResources/playerInventoryTest.png" />
                      </image>
                   </ImageView>
                   <Text fx:id="inventoryTitle1" layoutX="91.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" wrappingWidth="200.0">
@@ -362,6 +375,21 @@
                         <Image url="@../PlayerResources/player4icon.png" />
                      </image>
                   </ImageView>
+                  <Text fx:id="victoryPointCount1" layoutX="200.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="32.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="victoryPointCount2" layoutX="200.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="32.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="victoryPointCount3" layoutX="200.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="32.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
          </children>
@@ -370,14 +398,14 @@
          <children>
             <Pane prefHeight="60.0" prefWidth="1250.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18; -fx-background-color: FFFFFF;">
                <children>
-                  <ImageView fx:id="build" fitHeight="83.52" fitWidth="90" layoutX="1043.0" layoutY="-39.0" onMouseClicked="#buildClicked">
+                  <ImageView fx:id="actionButton" fitHeight="83.52" fitWidth="90" layoutX="1043.0" layoutY="-39.0" onMouseClicked="#actionButtonClicked">
                      <image>
-                        <Image url="@../ButtonResources/Build.png" />
+                        <Image url="@../ButtonResources/TradeButton.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="endTurn" fitHeight="83.52" fitWidth="90" layoutX="1142.0" layoutY="-39.0" onMouseClicked="#endTurnClicked">
+                  <ImageView fx:id="endButton" fitHeight="83.52" fitWidth="90" layoutX="1142.0" layoutY="-39.0" onMouseClicked="#endButtonClicked">
                      <image>
-                        <Image url="@../ButtonResources/EndTurn.png" />
+                        <Image url="@../ButtonResources/EndTrade.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="help" fitHeight="31.0" fitWidth="32.0" layoutX="1004.0" layoutY="17.0" onMouseClicked="#helpClicked" pickOnBounds="true" preserveRatio="true">
