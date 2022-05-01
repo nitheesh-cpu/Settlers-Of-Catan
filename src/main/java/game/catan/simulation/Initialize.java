@@ -21,6 +21,9 @@ public class Initialize {
     public static Image robber;
     public static Image buildButton;
     public static Image tradeButton;
+    public static Image tradeHands;
+    public static Image endTradeButton;
+    public static Image endTurnButton;
 
 
     public static void init() {
@@ -29,6 +32,9 @@ public class Initialize {
         robber = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/robber.png"));
         buildButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png"));
         tradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/TradeButton.png"));
+        tradeHands = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/TradeHands.png"));
+        endTradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/EndTrade.png"));
+        endTurnButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/EndTurn.png"));
         // robber = new ImagePattern(robberTemp);
 
         //hexagon tile patterns

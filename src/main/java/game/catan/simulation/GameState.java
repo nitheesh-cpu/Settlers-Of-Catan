@@ -273,7 +273,7 @@ public class GameState {
         }
 
         currentPlayer = players[0];
-        gameController.log("Player order: " + Arrays.toString(players));
+        gameController.log("Player order: " + Arrays.toString(players) + "\n");
     }
     // endregion
 
@@ -309,10 +309,10 @@ public class GameState {
     public void tradePhase() {
         log("Start of trade phase.");
         gameController.showTrade();
-
         phase = Phase.TRADE;
+
         gameController.actionButtonEnabled = true;
-        gameController.updateActionButton();
+        gameController.updateButtons();
     }
 
     public void discardHalf() {

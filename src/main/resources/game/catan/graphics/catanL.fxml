@@ -28,7 +28,7 @@
             </Text>
             <AnchorPane layoutX="1206.0" layoutY="4.0" onMouseClicked="#closeClicked" prefHeight="32.0" prefWidth="32.0">
                <children>
-                  <ImageView fitHeight="27.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="27.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                      <image>
                         <Image url="@../ButtonResources/icons8-close-26.png" />
                      </image>
@@ -226,7 +226,7 @@
                               <Image url="@../Ports/Misc.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="harbor2" fitHeight="72.0" fitWidth="40.0" layoutX="549.0" layoutY="156.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="harbor2" fitHeight="72.0" fitWidth="40.0" layoutX="546.0" layoutY="156.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Ports/Misc.png" />
                            </image>
@@ -236,6 +236,19 @@
                   </Pane>
                   <Pane fx:id="settlementPane" prefHeight="800.0" prefWidth="750.0">
                      <children>
+                        <Pane fx:id="harborPane" prefHeight="800.0" prefWidth="750.0">
+                           <children>
+                              <ImageView fx:id="tradePort1" fitHeight="40.0" fitWidth="55.0" layoutX="348.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort2" fitHeight="40.0" fitWidth="55.0" layoutX="538.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort3" fitHeight="40.0" fitWidth="55.0" layoutX="633.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort4" fitHeight="40.0" fitWidth="55.0" layoutX="633.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort5" fitHeight="40.0" fitWidth="55.0" layoutX="442.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort6" fitHeight="40.0" fitWidth="55.0" layoutX="251.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort7" fitHeight="40.0" fitWidth="55.0" layoutX="61.0" layoutY="536.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort8" fitHeight="40.0" fitWidth="55.0" layoutX="61.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="tradePort9" fitHeight="40.0" fitWidth="55.0" layoutX="155.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </Pane>
                         <Text fx:id="diceText" layoutX="509.0" layoutY="765.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dice Roll" textAlignment="CENTER" wrappingWidth="132.0">
                            <font>
                               <Font name="System Bold" size="29.0" />
@@ -395,9 +408,9 @@
                         <Image url="@../ButtonResources/TradeButton.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="endTurn" fitHeight="83.52" fitWidth="90" layoutX="1142.0" layoutY="-39.0" onMouseClicked="#endTurnClicked">
+                  <ImageView fx:id="endButton" fitHeight="83.52" fitWidth="90" layoutX="1142.0" layoutY="-39.0" onMouseClicked="#endButtonClicked">
                      <image>
-                        <Image url="@../ButtonResources/EndTurn.png" />
+                        <Image url="@../ButtonResources/EndTrade.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="help" fitHeight="31.0" fitWidth="32.0" layoutX="1004.0" layoutY="17.0" onMouseClicked="#helpClicked" pickOnBounds="true" preserveRatio="true">

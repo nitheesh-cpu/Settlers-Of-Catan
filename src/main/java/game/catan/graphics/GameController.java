@@ -56,7 +56,7 @@ public class GameController {
     public Circle dice41;
     public Circle dice42;
     public Circle dice43;
-    public ImageView endTurn;
+    public ImageView endButton;
     public ImageView harbor1;
     public ImageView harbor2;
     public ImageView harbor3;
@@ -70,6 +70,7 @@ public class GameController {
     public Pane roadPane;
     public VBox root;
     public Pane settlementPane;
+    public Pane harborPane;
     public Text statsTitle;
     public Polygon tile01;
     public Polygon tile02;
@@ -153,6 +154,18 @@ public class GameController {
     public Text victoryPointCount3;
     public ImageView tradeButton3;
     public ImageView inventoryFrame3;
+
+    public ImageView tradePort1;
+    public ImageView tradePort2;
+    public ImageView tradePort3;
+    public ImageView tradePort4;
+    public ImageView tradePort5;
+    public ImageView tradePort6;
+    public ImageView tradePort7;
+    public ImageView tradePort8;
+    public ImageView tradePort9;
+
+    public ImageView[] tradePortImages;
     // endregion
 
     private Polygon[] waters;
@@ -168,7 +181,7 @@ public class GameController {
     public void initialize() throws IOException, InterruptedException {
         Initialize.init(); //Initialize images
 
-        Node[][] nodes = {{playerIcon1, inventoryTitle1, settlementCount1, cityCount1, roadCount1, stockpileCount1, inventoryFrame1, tradeButton1}, {playerIcon2, inventoryTitle2, settlementCount2, cityCount2, roadCount2, stockpileCount2, inventoryFrame2, tradeButton2}, {playerIcon3, inventoryTitle3, settlementCount3, cityCount3, roadCount3, stockpileCount3, inventoryFrame3, tradeButton3}};
+        Node[][] nodes = {{playerIcon1, inventoryTitle1, settlementCount1, cityCount1, roadCount1, stockpileCount1, inventoryFrame1, tradeButton1, victoryPointCount1}, {playerIcon2, inventoryTitle2, settlementCount2, cityCount2, roadCount2, stockpileCount2, inventoryFrame2, tradeButton2, victoryPointCount2}, {playerIcon3, inventoryTitle3, settlementCount3, cityCount3, roadCount3, stockpileCount3, inventoryFrame3, victoryPointCount3}};
 
         //Initialize tiles
         waters = new Polygon[]{water1, water2, water3, water4, water5, water6, water7, water8, water9, water10, water11, water12, water13, water14, water15, water16, water17, water18};
@@ -206,8 +219,10 @@ public class GameController {
             }
 
         // Set water tiles
-        for (Polygon tile : waters)
+        for (Polygon tile : waters) {
             tile.setFill(Initialize.waterPattern);
+        }
+
 
         //Initialize harbors
 //        ResourceType[] harbors = {ResourceType.BRICK, ResourceType.WOOL, ResourceType.ORE, ResourceType.WHEAT, ResourceType.WOOD, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC};
@@ -217,16 +232,35 @@ public class GameController {
         ArrayList<Harbor> harbors = Board.getHarbors();
 
         harborImages = new ImageView[]{harbor1, harbor2, harbor3, harbor4, harbor5, harbor6, harbor7, harbor8, harbor9};
+        tradePortImages = new ImageView[]{tradePort1, tradePort2, tradePort3, tradePort4, tradePort5, tradePort6, tradePort7, tradePort8, tradePort9};
 
         // Set harbor images to corresponding harbors
         for (int i = 0; i < harbors.size(); i++) {
             Harbor harbor = harbors.get(i);
+
             harborImages[i].setImage(Initialize.harborImages.get(harbor.getResourceType()));
+
+            tradePortImages[i].setImage(Initialize.tradeHands);
+            tradePortImages[i].setVisible(false);
+
+//            tradePortImages[i].getStyleClass().add("hover");
+//            tradePortImages[i].setOpacity(0.0);
+//
+//            int finalI = i;
+//            tradePortImages[i].setOnMouseEntered(e -> {
+//                tradePortImages[finalI].setOpacity(1.0);
+//                harborImages[finalI].setVisible(false);
+//            });
+//
+//            tradePortImages[i].setOnMouseExited(e -> {
+//                tradePortImages[finalI].setOpacity(0.0);
+//                harborImages[finalI].setVisible(true);
+//            });
         }
 
         help.setPickOnBounds(true);
         actionButton.setPickOnBounds(true);
-        endTurn.setPickOnBounds(true);
+        endButton.setPickOnBounds(true);
 
         // Initialize build button
         Image img = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png")));
@@ -296,6 +330,46 @@ public class GameController {
         diceText.setVisible(true);
     }
 
+    public void showHarbors() {
+        ArrayList<Harbor> availableHarbors = GameState.getCurrentPlayer().getHarbors();
+        ArrayList<Harbor> harbors = Board.getHarbors();
+
+        for(int i = 0; i < harbors.size(); i++) {
+            if (availableHarbors.contains(harbors.get(i))) {
+                ImageView tradePort = tradePortImages[i];
+
+                tradePort.setVisible(true);
+
+                tradePort.getStyleClass().add("hover");
+                tradePort.setOpacity(0.0);
+
+                int finalI = i;
+
+                tradePortImages[i].setOnMouseEntered(e -> {
+                    tradePortImages[finalI].setOpacity(1.0);
+                    harborImages[finalI].setVisible(false);
+                });
+
+                tradePortImages[i].setOnMouseExited(e -> {
+                    tradePortImages[finalI].setOpacity(0.0);
+                    harborImages[finalI].setVisible(true);
+                });
+
+                tradePortImages[i].setOnMouseClicked(e -> {
+                   HelloApplication.toggleMaritimeTradeMenu(harbors.get(finalI));
+                });
+            }
+        }
+    }
+
+    public void disableHarbors() {
+        for (int i = 0; i < Board.getHarbors().size(); i++) {
+            tradePortImages[i].setOpacity(0.0);
+            harborImages[i].getStyleClass().remove("hover");
+            tradePortImages[i].setVisible(false);
+        }
+    }
+
     public void disableTrade() {
         tradeButton1.getStyleClass().remove("hover");
         tradeButton2.getStyleClass().remove("hover");
@@ -304,22 +378,32 @@ public class GameController {
         tradeButton1.setVisible(false);
         tradeButton2.setVisible(false);
         tradeButton3.setVisible(false);
+
+        disableHarbors();
     }
 
     public void showTrade() {
         tradeButton1.getStyleClass().add("hover");
         tradeButton2.getStyleClass().add("hover");
-        tradeButton3.getStyleClass().add("hover");
+        if (GameState.getNumOfPlayers() == 4) tradeButton3.getStyleClass().add("hover");
 
         tradeButton1.setVisible(true);
         tradeButton2.setVisible(true);
-        tradeButton3.setVisible(true);
+        if (GameState.getNumOfPlayers() == 4) tradeButton3.setVisible(true);
+
+        showHarbors();
     }
 
-    public void updateActionButton() {
+    public void updateButtons() {
         switch (GameState.getPhase()) {
-            case TRADE -> actionButton.setImage(Initialize.tradeButton);
-            case BUY -> actionButton.setImage(Initialize.buildButton);
+            case TRADE -> {
+                actionButton.setImage(Initialize.tradeButton);
+                endButton.setImage(Initialize.endTradeButton);
+            }
+            case BUY -> {
+                actionButton.setImage(Initialize.buildButton);
+                endButton.setImage(Initialize.endTurnButton);
+            }
         }
     }
 
@@ -356,20 +440,6 @@ public class GameController {
             icons[index].setImage(player.getImages().get("Icon"));
             index++;
         }
-//
-//        for(int i = 0; i < GameState.getPlayers().length; i++){
-//            if (!GameState.getPlayers()[i].equals(GameState.getCurrentPlayer())) continue;
-//
-//
-//            // int index = GameState.nextTurnIndex(GameState.getCurrentPlayerIndex()+1);
-//            stats[i][0].setText("Player " + (i+1));
-//            stats[i][1].setText(Integer.toString(GameState.players[i].getSettlementCount()));
-//            stats[i][2].setText(Integer.toString(GameState.players[i].getCityCount()));
-//            stats[i][3].setText(Integer.toString(GameState.players[i].getRoads().size()));
-//            stats[i][4].setText(Integer.toString(GameState.players[i].getStockpile().getTotal()));
-//            icons[i].setImage(GameState.players[i].getImages().get("Icon"));
-//        }
-
     }
 
     public void updateRobberLocation(Location location, Location previousLocation) {
@@ -378,10 +448,9 @@ public class GameController {
 
         Circle circle = circles[location.getX()][location.getY()];
         circle.setVisible(false);
-        robberImage.setLayoutX(circle.getLayoutX() - (robberImage.getImage().getWidth()/2));
-        robberImage.setLayoutY(circle.getLayoutY() - (robberImage.getImage().getHeight()/2));
+        robberImage.setLayoutX(circle.getLayoutX() - (robberImage.getImage().getWidth() / 2));
+        robberImage.setLayoutY(circle.getLayoutY() - (robberImage.getImage().getHeight() / 2));
     }
-
 
     //turn buttons
     @FXML
@@ -390,14 +459,17 @@ public class GameController {
         if (!actionButtonEnabled) return;
 
         switch (GameState.getPhase()) {
-            case TRADE -> HelloApplication.toggleMaritimeTradeMenu(true);
+            case TRADE -> HelloApplication.toggleMaritimeTradeMenu();
             case BUY -> HelloApplication.toggleBuildMenu();
         }
     }
 
     @FXML
-    void endTurnClicked(MouseEvent event) {
-        actionLogText.appendText("End turn clicked\n");
+    void endButtonClicked(MouseEvent event) {
+        switch (GameState.getPhase()) {
+            case TRADE -> gameState.buyPhase();
+            case BUY -> gameState.nextTurn();
+        }
     }
 
     @FXML
@@ -448,28 +520,47 @@ public class GameController {
         gameState.rollDice();
     }
 
-    private int domesticTradePlayer = 0;
+    private Player domesticTradePlayer = null;
+
     public void trade1Clicked(MouseEvent mouseEvent) {
         HelloApplication.showDomesticTradeMenu(gameState.getCurrentPlayer());
-        domesticTradePlayer = 1;
+        domesticTradePlayer = getCorrespondingTrader(1);
         domesticTradeController.followup = true;
     }
 
     public void trade2Clicked(MouseEvent mouseEvent) {
         HelloApplication.showDomesticTradeMenu(gameState.getCurrentPlayer());
-        domesticTradePlayer = 2;
+        domesticTradePlayer = getCorrespondingTrader(2);
         domesticTradeController.followup = true;
     }
 
     public void trade3Clicked(MouseEvent mouseEvent) {
         HelloApplication.showDomesticTradeMenu(gameState.getCurrentPlayer());
-        domesticTradePlayer = 3;
+        domesticTradePlayer = getCorrespondingTrader(3);
         domesticTradeController.followup = true;
     }
 
     public void domesticTradeFollowup(){
-        int index = GameState.nextTurnIndex(GameState.getCurrentPlayerIndex() +domesticTradePlayer-1);
-        HelloApplication.showDomesticTradeMenu(GameState.players[index]);
-        domesticTradePlayer = 0;
+        // int index = GameState.nextTurnIndex(GameState.getCurrentPlayerIndex() +domesticTradePlayer-1);
+        HelloApplication.showDomesticTradeMenu(domesticTradePlayer);
+        domesticTradePlayer = null;
     }
+
+    public Player getCorrespondingTrader(int index) {
+        int count = 1;
+
+        for (Player player: gameState.getPlayers()) {
+            if (player.equals(gameState.getCurrentPlayer())) continue;
+
+            if (count == index) {
+                System.out.println("Corresponding trader: " + player.getId());
+                return player;
+            }
+
+            count++;
+        }
+
+        return null;
+    }
+
 }

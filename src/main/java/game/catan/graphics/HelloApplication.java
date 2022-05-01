@@ -1,7 +1,9 @@
 package game.catan.graphics;
 
+import game.catan.simulation.Harbor;
 import game.catan.simulation.Player;
 import game.catan.simulation.Trade;
+import game.catan.simulation.enums.TradeType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -101,19 +103,30 @@ public class HelloApplication extends Application {
         domesticTradeController.newTrade(player);
     }
 
-    public static void toggleMaritimeTradeMenu() {
+    // only for stockpile trade
+    public static void toggleMaritimeTradeMenu(){
         if (maritimeTradeStage.isShowing()) {
             maritimeTradeStage.hide();
+            maritimeTradeController.setTradeType(null);
+            GameController.actionButtonEnabled = true;
+
+            Trade.resetResources();
         } else {
             maritimeTradeStage.show();
+            maritimeTradeController.setTradeType(TradeType.STOCKPILE);
         }
     }
 
-    public static void toggleMaritimeTradeMenu(boolean isFromActionButton) {
-        toggleMaritimeTradeMenu();
+    public static void toggleMaritimeTradeMenu(Harbor harbor) {
+        if (maritimeTradeStage.isShowing()) {
+            maritimeTradeStage.hide();
+            maritimeTradeController.setTradeType(null);
+            Trade.resetHarbor();
 
-        if (isFromActionButton && !maritimeTradeStage.isShowing()) {
-            Trade.resetStockpileResources();
+        } else {
+            maritimeTradeStage.show();
+            maritimeTradeController.setTradeType(TradeType.HARBOR);
+            maritimeTradeController.setHarbor(harbor);
         }
     }
 

@@ -341,7 +341,7 @@
                                 <Image url="@../ButtonResources/Build.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="endTurn" fitHeight="83.52" fitWidth="90" layoutX="1088.0" layoutY="-93.0" onMouseClicked="#endTurnClicked">
+                        <ImageView fx:id="endButton" fitHeight="83.52" fitWidth="90" layoutX="1088.0" layoutY="-93.0" onMouseClicked="#endButtonClicked">
                             <image>
                                 <Image url="@../ButtonResources/EndTurn.png" />
                             </image>

@@ -1,7 +1,6 @@
 package game.catan.graphics;
 
 import game.catan.simulation.Board;
-import game.catan.simulation.GameState;
 import game.catan.simulation.Trade;
 import game.catan.simulation.enums.ResourceType;
 import javafx.fxml.FXML;
@@ -52,7 +51,14 @@ public class maritimeTradeController2 implements Initializable {
         Trade.setReceivingResource(resourceType);
         HelloApplication.toggleMaritimeTradeMenu2();
 
-        Trade.stockpileTrade(Trade.getTradingResource(), Trade.getReceivingResource());
+        switch (maritimeTradeController.tradeType) {
+            case STOCKPILE -> Trade.stockpileTrade(Trade.getTradingResource(), Trade.getReceivingResource());
+            case HARBOR -> Trade.harborTrade(Trade.getTradingResource(), Trade.getReceivingResource(), Trade.getHarbor());
+        }
+
+        maritimeTradeController.tradeType = null;
+        maritimeTradeController.harbor = null;
+        GameController.actionButtonEnabled = true;
     }
 
     public void errorModal(String message) {
@@ -99,6 +105,17 @@ public class maritimeTradeController2 implements Initializable {
     @FXML
     void onDragDone(MouseEvent event) {
         HelloApplication.maritimeTradeStage2.setOpacity (1.0f);
+    }
+
+    @FXML
+    void menuCloseClick(MouseEvent event) {
+        Trade.resetResources();
+        Trade.resetHarbor();
+        maritimeTradeController.tradeType = null;
+        maritimeTradeController.harbor = null;
+        GameController.actionButtonEnabled = true;
+
+        HelloApplication.toggleMaritimeTradeMenu2();
     }
 
     @Override
