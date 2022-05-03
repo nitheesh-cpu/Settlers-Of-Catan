@@ -20,6 +20,23 @@ public class buildMenuController implements Initializable {
     public Text title;
     public ImageView settlementButton;
 
+    public void cityClicked(MouseEvent mouseEvent) {
+        System.out.println("City clicked");
+    }
+
+    public void devCardClicked(MouseEvent mouseEvent) {
+        System.out.println("Dev card clicked");
+    }
+
+    public void roadClicked(MouseEvent mouseEvent) {
+        System.out.println("Road clicked");
+    }
+
+    public void settlementClicked(MouseEvent mouseEvent) {
+        System.out.println("Settlement clicked");
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

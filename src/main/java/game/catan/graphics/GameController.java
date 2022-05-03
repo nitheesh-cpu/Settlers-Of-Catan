@@ -1,10 +1,12 @@
 package game.catan.graphics;
 
 import game.catan.simulation.*;
+import game.catan.simulation.cards.DevelopmentCard;
 import game.catan.simulation.enums.DevelopmentCardType;
 import game.catan.simulation.enums.ResourceType;
 
 import game.catan.simulation.helper.Location;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -13,6 +15,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
