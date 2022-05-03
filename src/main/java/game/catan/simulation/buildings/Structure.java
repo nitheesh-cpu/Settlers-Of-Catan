@@ -2,7 +2,6 @@ package game.catan.simulation.buildings;
 
 import game.catan.simulation.Player;
 import game.catan.simulation.enums.StructureType;
-import game.catan.simulation.helper.Location;
 import game.catan.simulation.helper.Vertex;
 
 public class Structure {
@@ -19,6 +18,7 @@ public class Structure {
 
     public void upgradeToCity() {
         this.type = StructureType.CITY;
+        owner.upgradeToCity();
     }
 
     public void setVertex(Vertex vertex) {

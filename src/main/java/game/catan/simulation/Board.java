@@ -632,40 +632,41 @@ public class Board {
         Collections.shuffle(harbors, Dice.getRef());
 
         Vertex[] vertices;
-        // 0 1
-        vertices = new Vertex[] {board[0][1].getVertex(Vertex.WEST), board[0][1].getVertex(Vertex.NORTHWEST)};
-        harbors.get(0).setVertices(vertices);
 
         // 0 2
         vertices = new Vertex[] {board[0][2].getVertex(Vertex.NORTHWEST), board[0][2].getVertex(Vertex.NORTHEAST)};
-        harbors.get(1).setVertices(vertices);
+        harbors.get(0).setVertices(vertices);
 
         // 1 3
         vertices = new Vertex[] {board[1][3].getVertex(Vertex.NORTHEAST), board[1][3].getVertex(Vertex.EAST)};
-        harbors.get(2).setVertices(vertices);
+        harbors.get(1).setVertices(vertices);
 
         // 3 3
         vertices = new Vertex[] {board[3][3].getVertex(Vertex.NORTHEAST), board[3][3].getVertex(Vertex.EAST)};
-        harbors.get(3).setVertices(vertices);
+        harbors.get(2).setVertices(vertices);
 
         // 4 2
         vertices = new Vertex[] {board[4][2].getVertex(Vertex.EAST), board[4][2].getVertex(Vertex.SOUTHEAST)};
-        harbors.get(4).setVertices(vertices);
+        harbors.get(3).setVertices(vertices);
 
         // 4 1
         vertices = new Vertex[] {board[4][1].getVertex(Vertex.SOUTHEAST), board[4][1].getVertex(Vertex.SOUTHWEST)};
-        harbors.get(5).setVertices(vertices);
+        harbors.get(4).setVertices(vertices);
 
         // 3 0
         vertices = new Vertex[] {board[3][0].getVertex(Vertex.SOUTHEAST), board[3][0].getVertex(Vertex.SOUTHWEST)};
-        harbors.get(6).setVertices(vertices);
+        harbors.get(5).setVertices(vertices);
 
         // 2 0
         vertices = new Vertex[] {board[2][0].getVertex(Vertex.SOUTHWEST), board[2][0].getVertex(Vertex.WEST)};
-        harbors.get(7).setVertices(vertices);
+        harbors.get(6).setVertices(vertices);
 
         // 1 0
         vertices = new Vertex[] {board[1][0].getVertex(Vertex.WEST), board[1][0].getVertex(Vertex.NORTHWEST)};
+        harbors.get(7).setVertices(vertices);
+
+        // 0 1
+        vertices = new Vertex[] {board[0][1].getVertex(Vertex.WEST), board[0][1].getVertex(Vertex.NORTHWEST)};
         harbors.get(8).setVertices(vertices);
     }
 

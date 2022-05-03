@@ -67,4 +67,9 @@ public class buildMenuController implements Initializable {
     void onDragDone(MouseEvent event) {
         HelloApplication.buildStage.setOpacity (1.0f);
     }
+
+    @FXML
+    void menuCloseClick(MouseEvent event) {
+        HelloApplication.toggleBuildMenu();
+    }
 }

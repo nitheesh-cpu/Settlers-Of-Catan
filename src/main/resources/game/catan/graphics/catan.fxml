@@ -344,12 +344,12 @@
             <children>
                 <Pane maxHeight="5.0" minHeight="5.0" prefHeight="5.0" prefWidth="1250.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18; -fx-background-color: FFFFFF;">
                     <children>
-                        <ImageView fx:id="build" fitHeight="83.52" fitWidth="90" layoutX="989.0" layoutY="-93.0" onMouseClicked="#buildClicked">
+                        <ImageView fx:id="actionButton" fitHeight="83.52" fitWidth="90" layoutX="989.0" layoutY="-93.0" onMouseClicked="#actionButtonClicked">
                             <image>
                                 <Image url="@../ButtonResources/Build.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="endTurn" fitHeight="83.52" fitWidth="90" layoutX="1088.0" layoutY="-93.0" onMouseClicked="#endTurnClicked">
+                        <ImageView fx:id="endButton" fitHeight="83.52" fitWidth="90" layoutX="1088.0" layoutY="-93.0" onMouseClicked="#endButtonClicked">
                             <image>
                                 <Image url="@../ButtonResources/EndTurn.png" />
                             </image>

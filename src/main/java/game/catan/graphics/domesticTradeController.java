@@ -2,13 +2,17 @@ package game.catan.graphics;
 
 import game.catan.simulation.GameState;
 import game.catan.simulation.Player;
+import game.catan.simulation.Stockpile;
+import game.catan.simulation.Trade;
 import game.catan.simulation.enums.ResourceType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -151,19 +155,67 @@ public class domesticTradeController implements Initializable {
 
     public static boolean followup = false;
     public void confirmTrade(MouseEvent event) {
-        HelloApplication.tradeStage.hide();
         //TODO: implement trade followup
         if(!followup) {
+            Stockpile tradeOne = Trade.getTradeOne();
+            Stockpile tradeTwo = new Stockpile(brickAmt, wheatAmt, lumberAmt, oreAmt, woolAmt);
 
-        }
-        if(followup) {
+            if (tradeTwo.getTotal() == 0) {
+                errorModal("You must trade at least one resource.", "Invalid Trade");
+                return;
+            }
+
+            if (!verifyTrade(tradeOne, tradeTwo)) {
+                errorModal("Players cannot trade the same resource!", "Invalid Trade");
+                return;
+            }
+
+            Trade.setTradeTwo(tradeTwo);
+            Trade.setPlayerTwo(player);
+
+            // show confirmation screen
+            HelloApplication.domesticTradeStage.hide();
+            HelloApplication.showDomesticConfirmTradeMenu();
+        } else {
+
+            Stockpile tradeOne = new Stockpile(brickAmt, wheatAmt, lumberAmt, oreAmt, woolAmt);
+
+            if (tradeOne.getTotal() == 0) {
+                errorModal("You must trade at least one resource.", "Invalid Trade");
+                return;
+            }
+
+            HelloApplication.domesticTradeStage.hide();
+
+            Trade.setTradeOne(tradeOne);
+            Trade.setPlayerOne(player);
+
             GameState.gameController.domesticTradeFollowup();
             domesticTradeController.followup = false;
         }
+
+        brickAmt = 0;
+        lumberAmt = 0;
+        oreAmt = 0;
+        woolAmt = 0;
+        wheatAmt = 0;
+    }
+
+    // cannot trade same resource
+    private boolean verifyTrade(Stockpile tradeOne, Stockpile tradeTwo) {
+        for (ResourceType r : ResourceType.values()) {
+            if (tradeOne.getResourceCount(r) > 0 && tradeTwo.getResourceCount(r) > 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void cancelTrade(MouseEvent event) {
-        HelloApplication.tradeStage.hide();
+        HelloApplication.domesticTradeStage.hide();
+        Trade.resetTrade();
+        followup = false;
     }
 
     private double xoffSet;
@@ -177,26 +229,22 @@ public class domesticTradeController implements Initializable {
 
     @FXML
     void mouseReleased(MouseEvent event) {
-        HelloApplication.tradeStage.setOpacity (1.0f);
+        HelloApplication.domesticTradeStage.setOpacity (1.0f);
     }
 
     @FXML
     void mouseDragged(MouseEvent event) {
-        HelloApplication.tradeStage.setX(event.getScreenX ()- xoffSet);
-        HelloApplication.tradeStage.setY (event.getScreenY ()- yoffSet);
-        HelloApplication.tradeStage.setOpacity (0.8f);
+        HelloApplication.domesticTradeStage.setX(event.getScreenX ()- xoffSet);
+        HelloApplication.domesticTradeStage.setY (event.getScreenY ()- yoffSet);
+        HelloApplication.domesticTradeStage.setOpacity (0.8f);
     }
 
     @FXML
     void onDragDone(MouseEvent event) {
-        HelloApplication.tradeStage.setOpacity (1.0f);
+        HelloApplication.domesticTradeStage.setOpacity (1.0f);
     }
 
     public void updateText(){
-        int index = 0;
-        for(int i = 0; i < GameState.players.length; i++) {
-            if (GameState.players[i] == player) index = i;
-        }
         amtBricks.setText("0");
         amtLumber.setText("0");
         amtOres.setText("0");
@@ -207,8 +255,8 @@ public class domesticTradeController implements Initializable {
         oreAmt = 0;
         woolAmt = 0;
         wheatAmt = 0;
-        int i = index+1;
-        titleText.setText("Player "+i+", enter # of resources you're trading");
+
+        titleText.setText("Player "+ player.getId() +", enter # of resources you're trading");
     }
 
     public void newTrade(Player player) {
@@ -216,8 +264,18 @@ public class domesticTradeController implements Initializable {
         updateText();
     }
 
+    public void errorModal(String message, String header) {
+        Alert.AlertType type = Alert.AlertType.ERROR;
+        Alert alert = new Alert (type, "");
+        alert.initModality (Modality.APPLICATION_MODAL);
+        alert.initOwner(root.getScene().getWindow());
+        alert.getDialogPane().setContentText(message);
+        alert.getDialogPane().setHeaderText(header); // you can set header text
+        alert.showAndWait();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        HelloApplication.tradeController = this;
+        HelloApplication.domesticTradeController = this;
     }
 }

@@ -30,7 +30,8 @@ public class Player {
 
     private int numOfKnights;
     private int lengthOfLongestRoad;
-    private int victoryPoints;
+    private int victoryPoints; // shown to GUI; need to add longest road and largest army
+    private int secretVictoryPoints; // not shown to GUI; contains victory points from victory point cards
 
     private HashMap<String, Image> images;
     private javafx.scene.paint.Color colorHex;
@@ -98,6 +99,8 @@ public class Player {
                 }
             }
         }
+
+        victoryPoints++;
     }
 
     public void addRoad(Road road) {
@@ -106,8 +109,16 @@ public class Player {
         longestRoad();
     }
 
+    public void upgradeToCity() {
+        victoryPoints++;
+    }
+
     public void addDevelopmentCard(DevelopmentCard card) {
         developmentCards.add(card);
+
+        if (card.getType() == DevelopmentCardType.VICTORY_POINT) {
+            victoryPoints++;
+        }
     }
 
     public void useDevelopmentCard(DevelopmentCardType type) {
