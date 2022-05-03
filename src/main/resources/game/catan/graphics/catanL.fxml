@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
+<VBox fx:id="root" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
    <children>
       <AnchorPane onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="35.0" prefWidth="1250.0" style="-fx-background-color: #4a5d6f; -fx-background-radius: 18 18 0 0; -fx-border-radius: 18 18 0 0;">
          <children>
@@ -398,17 +398,17 @@
          <children>
             <Pane prefHeight="60.0" prefWidth="1250.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18; -fx-background-color: FFFFFF;">
                <children>
-                  <ImageView fx:id="actionButton" fitHeight="83.52" fitWidth="90" layoutX="1043.0" layoutY="-39.0" onMouseClicked="#actionButtonClicked">
+                  <ImageView fx:id="actionButton" fitHeight="83.52" fitWidth="90" layoutX="1043.0" layoutY="-46.0" onMouseClicked="#actionButtonClicked">
                      <image>
                         <Image url="@../ButtonResources/TradeButton.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="endButton" fitHeight="83.52" fitWidth="90" layoutX="1142.0" layoutY="-39.0" onMouseClicked="#endButtonClicked">
+                  <ImageView fx:id="endButton" fitHeight="83.52" fitWidth="90" layoutX="1142.0" layoutY="-46.0" onMouseClicked="#endButtonClicked">
                      <image>
                         <Image url="@../ButtonResources/EndTrade.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="help" fitHeight="31.0" fitWidth="32.0" layoutX="1004.0" layoutY="17.0" onMouseClicked="#helpClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="help" fitHeight="31.0" fitWidth="32.0" layoutX="1004.0" layoutY="10.0" onMouseClicked="#helpClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/Help.png" />
                      </image>
