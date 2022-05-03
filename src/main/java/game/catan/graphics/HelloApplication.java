@@ -18,12 +18,15 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     public static Stage stage;
     public static Stage gameStage;
+    public static Stage helpStage;
     public static Stage buildStage;
     public static Stage domesticTradeStage;
     public static Stage domesticTradeConfirmStage;
 
     public static Stage maritimeTradeStage;
     public static Stage maritimeTradeStage2;
+
+    public static Stage[] stages = new Stage[]{gameStage, helpStage, buildStage, domesticTradeStage, domesticTradeConfirmStage, maritimeTradeStage, maritimeTradeStage2};
 
     public static domesticTradeController domesticTradeController;
     public static maritimeTradeController maritimeTradeController;
@@ -102,6 +105,18 @@ public class HelloApplication extends Application {
         confirmStage.setTitle("Confirm Trade");
         confirmStage.setScene(scene6);
         domesticTradeConfirmStage = confirmStage;
+
+        FXMLLoader fxmlLoader7 = new FXMLLoader(HelloApplication.class.getResource("helpMenu.fxml"));
+        Scene scene7 = new Scene(fxmlLoader7.load(), 620, 654);
+        Stage helpStage = new Stage();
+        scene7.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        helpStage.initStyle(StageStyle.TRANSPARENT);
+        helpStage.setResizable(true);
+        scene7.setFill(Color.TRANSPARENT);
+        helpStage.setAlwaysOnTop(true);
+        helpStage.setTitle("Help");
+        helpStage.setScene(scene7);
+        this.helpStage = helpStage;
     }
 
     public static void toggleBuildMenu(){
@@ -109,6 +124,14 @@ public class HelloApplication extends Application {
             buildStage.hide();
         }else{
             buildStage.show();
+        }
+    }
+
+    public static void toggleHelpMenu(){
+        if(helpStage.isShowing()){
+            helpStage.hide();
+        }else{
+            helpStage.show();
         }
     }
 

@@ -59,7 +59,7 @@ public class MenuController implements Initializable {
 
     @FXML
     void helpPressed(ActionEvent event) {
-
+        HelloApplication.toggleHelpMenu();
     }
 
 

@@ -22,6 +22,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.*;
@@ -520,12 +521,20 @@ public class GameController {
     @FXML
     void helpClicked(MouseEvent event) {
         actionLogText.appendText("Help clicked\n");
+        HelloApplication.toggleHelpMenu();
     }
 
 
     //top menu related stuffs
     @FXML //for top menu x button
     void closeClicked(MouseEvent event) {
+        for(Stage s : HelloApplication.stages){
+            try {
+                s.close();
+            } catch (NullPointerException ignored) {
+
+            }
+        }
         System.exit(0);
     }
 
