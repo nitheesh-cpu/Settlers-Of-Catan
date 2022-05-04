@@ -399,7 +399,7 @@
          <children>
             <Pane prefHeight="60.0" prefWidth="1250.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18; -fx-background-color: FFFFFF;">
                <children>
-                  <ImageView fx:id="actionButton" fitHeight="83.52" fitWidth="90" layoutX="1043.0" layoutY="-47.0" onMouseClicked="#actionButtonClicked">r
+                  <ImageView fx:id="actionButton" fitHeight="83.52" fitWidth="90" layoutX="1043.0" layoutY="-47.0" onMouseClicked="#actionButtonClicked">
                      <image>
                         <Image url="@../ButtonResources/TradeButton.png" />
                      </image>
