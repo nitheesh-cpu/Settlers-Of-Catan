@@ -22,6 +22,7 @@ public class SplashScreenController implements Initializable {
         FadeTransition.applyFadeTransition(parent, Duration.seconds(3), (e) ->{
             try {
                 Parent fxml = FXMLLoader.load(getClass().getResource("menu.fxml"));
+                fxml.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
                 parent.getChildren().removeAll();
                 parent.getChildren().setAll(fxml);
             } catch (IOException ex) {
