@@ -113,7 +113,6 @@ public class HelloApplication extends Application {
         helpStage.initStyle(StageStyle.TRANSPARENT);
         helpStage.setResizable(true);
         scene7.setFill(Color.TRANSPARENT);
-        helpStage.setAlwaysOnTop(true);
         helpStage.setTitle("Help");
         helpStage.setScene(scene7);
         this.helpStage = helpStage;

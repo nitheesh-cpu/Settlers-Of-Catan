@@ -4,8 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class HelpController {
 
@@ -49,15 +52,14 @@ public class HelpController {
     }
 
     @FXML
-    void download(ActionEvent event) {
+    void download(ActionEvent event) throws URISyntaxException, IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
+        fileChooser.setInitialFileName("instructions.pdf");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
         String fileLocationPath = fileChooser.showSaveDialog(HelloApplication.helpStage).getAbsolutePath();
-        File fileLocation = new File("https://www.catan.com/sites/prod/files/2021-06/catan_base_rules_2020_200707.pdf");
-        File fileLocation1 = new File(fileLocation.getName());
-        if(fileLocation.exists()){
-            fileLocationPath = fileLocation1.getAbsolutePath();
-        }
+        File fileLocation = new File(HelpController.class.getClassLoader().getResource("game/catan/HelpMenu/instructions.pdf").toURI());
+        File fileLocation1 = new File(fileLocationPath);
+        FileUtils.copyFile(fileLocation, fileLocation1);
     }
 }
