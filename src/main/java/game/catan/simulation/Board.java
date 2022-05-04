@@ -535,7 +535,7 @@ public class Board {
             }
         }
 
-        if (previousPlayer.equals(longestRoadHolder)) return;
+        if (previousPlayer == null || previousPlayer.equals(longestRoadHolder)) return;
 
         longestRoadHolder.addLongestRoad();
         previousPlayer.removeLongestRoad();

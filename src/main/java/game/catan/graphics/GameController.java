@@ -761,7 +761,6 @@ public class GameController {
 
     @FXML
     void helpClicked(MouseEvent event) {
-        actionLogText.appendText("Help clicked\n");
         HelloApplication.toggleHelpMenu();
     }
 

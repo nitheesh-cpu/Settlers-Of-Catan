@@ -12,8 +12,6 @@ import java.net.URISyntaxException;
 
 public class HelpController {
 
-
-
     private double xoffSet = 0;
     private double yoffSet = 0;
 
