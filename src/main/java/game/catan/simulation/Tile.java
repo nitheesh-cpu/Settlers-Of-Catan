@@ -4,6 +4,7 @@ import game.catan.simulation.enums.ResourceType;
 import game.catan.simulation.helper.Edge;
 import game.catan.simulation.helper.Location;
 import game.catan.simulation.helper.Vertex;
+import javafx.fxml.Initializable;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
@@ -31,7 +32,6 @@ public class Tile {
     public Tile(ResourceType resource, Location location) {
         this.resource = resource;
         number = -1;
-
         adjacentTiles = new Tile[6];
         edges = new Edge[6];
         vertices = new Vertex[6];

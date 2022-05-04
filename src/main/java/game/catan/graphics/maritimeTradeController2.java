@@ -1,11 +1,14 @@
 package game.catan.graphics;
 
 import game.catan.simulation.Board;
+import game.catan.simulation.GameState;
 import game.catan.simulation.Trade;
+import game.catan.simulation.enums.DevelopmentCardType;
 import game.catan.simulation.enums.ResourceType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -16,6 +19,11 @@ import java.util.ResourceBundle;
 public class maritimeTradeController2 implements Initializable {
 
     public Pane root;
+    @FXML
+    private ImageView close;
+
+    private static String type = null; // year of plenty or road building
+    private static int timesBought = 0; // FOR YEAR OF PLENTY
 
     public void brickClicked(MouseEvent event) {
         handleTrade(ResourceType.BRICK);
@@ -38,13 +46,22 @@ public class maritimeTradeController2 implements Initializable {
     }
 
     public void handleTrade(ResourceType resourceType) {
-        if (resourceType == Trade.getTradingResource()) {
-            errorModal("You can't trade for the same resource!", "Trade Error");
+        if (!Trade.verifyAmountOfResources(Board.getStockpile(), resourceType, 1)) {
+            errorModal("Stockpile doesn't have enough of the specified resource to give!");
             return;
         }
 
-        if (!Trade.verifyAmountOfResources(Board.getStockpile(), resourceType, 1)) {
-            errorModal("Stockpile doesn't have enough of the specified resource to give!");
+
+        if (type.equalsIgnoreCase("Year of Plenty")) {
+            handleYearOfPlenty(resourceType);
+            return;
+        } else if (type.equalsIgnoreCase("Monopoly")) {
+            handleMonopoly(resourceType);
+            return;
+        }
+
+        if (resourceType == Trade.getTradingResource()) {
+            errorModal("You can't trade for the same resource!", "Trade Error");
             return;
         }
 
@@ -59,6 +76,36 @@ public class maritimeTradeController2 implements Initializable {
         maritimeTradeController.tradeType = null;
         maritimeTradeController.harbor = null;
         GameController.actionButtonEnabled = true;
+    }
+
+    public void handleYearOfPlenty(ResourceType resourceType) {
+        Trade.obtainResource(resourceType);
+        timesBought++;
+
+        if (timesBought == 2) {
+            type = null;
+            timesBought = 0;
+            close.setVisible(true);
+            HelloApplication.disableYearOfPlenty();
+        }
+    }
+
+    public void handleMonopoly(ResourceType resourceType) {
+        Trade.stealAllResources(resourceType);
+
+        type = null;
+        close.setVisible(true);
+        HelloApplication.disableMonopoly();
+    }
+
+    public void initializeYearOfPlenty() {
+        type = "Year of Plenty";
+        close.setVisible(false);
+    }
+
+    public void initializeMonopoly() {
+        type = "Monopoly";
+        close.setVisible(false);
     }
 
     public void errorModal(String message) {
@@ -80,6 +127,7 @@ public class maritimeTradeController2 implements Initializable {
         alert.getDialogPane().setHeaderText(header); // you can set header text
         alert.showAndWait();
     }
+
 
     private double xoffSet = 0;
     private double yoffSet = 0;

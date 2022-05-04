@@ -20,18 +20,23 @@ public class Initialize {
     public static Image settlementBlank;
     public static Image robber;
     public static Image buildButton;
+    public static Image tradeIcon;
     public static Image tradeButton;
+    public static Image stealButton;
     public static Image tradeHands;
     public static Image endTradeButton;
     public static Image endTurnButton;
 
 
+
     public static void init() {
-        settlementHover = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/hover.jpg"));
+        settlementHover = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/hover2.png"));
         settlementBlank = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/blank.png"));
         robber = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/robber.png"));
         buildButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png"));
-        tradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/TradeButton.png"));
+        tradeIcon = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/TradeButton.png"));
+        tradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Trade.png"));
+        stealButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Steal.png"));
         tradeHands = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/TradeHands.png"));
         endTradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/EndTrade.png"));
         endTurnButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/EndTurn.png"));
@@ -55,16 +60,16 @@ public class Initialize {
         tilePatterns = new ImagePattern[]{lumberPattern, sheepPattern, wheatPattern, brickPattern, orePattern, desertPattern};
 
         //circle dice marker patterns
-        Image two = new Image("game/catan/DiceMarkings/2.png");
-        Image three = new Image("game/catan/DiceMarkings/3.png");
-        Image four = new Image("game/catan/DiceMarkings/4.png");
-        Image five = new Image("game/catan/DiceMarkings/5.png");
-        Image six = new Image("game/catan/DiceMarkings/6.png");
-        Image eight = new Image("game/catan/DiceMarkings/8.png");
-        Image nine = new Image("game/catan/DiceMarkings/9.png");
-        Image ten = new Image("game/catan/DiceMarkings/10.png");
-        Image eleven = new Image("game/catan/DiceMarkings/11.png");
-        Image twelve = new Image("game/catan/DiceMarkings/12.png");
+        Image two = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceMarkings/2.png"));
+        Image three = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceMarkings/3.png"));
+        Image four = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceMarkings/4.png"));
+        Image five = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceMarkings/5.png"));
+        Image six = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceMarkings/6.png"));
+        Image eight = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceMarkings/8.png"));
+        Image nine = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceMarkings/9.png"));
+        Image ten = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceMarkings/10.png"));
+        Image eleven = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceMarkings/11.png"));
+        Image twelve = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceMarkings/12.png"));
         ImagePattern twoPattern = new ImagePattern(two, 31, 35, 60, 60, false);
         ImagePattern threePattern = new ImagePattern(three, 31, 35, 60, 60, false);
         ImagePattern fourPattern = new ImagePattern(four, 31, 35, 60, 60, false);

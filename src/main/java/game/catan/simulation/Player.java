@@ -12,10 +12,11 @@ import game.catan.simulation.helper.Vertex;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class Player {
+public class Player implements Comparable<Player>{
     private static int number = 1;
 
     private int id;
@@ -76,9 +77,8 @@ public class Player {
 
                 //don't need to return MISC or desert cuz thats 0 by default
             }
-
-
         }
+
         return -1;
     }
 
@@ -106,7 +106,7 @@ public class Player {
     public void addRoad(Road road) {
         roads.add(road);
 
-        longestRoad();
+        Board.updateLongestRoad();
     }
 
     public void upgradeToCity() {
@@ -117,36 +117,15 @@ public class Player {
         developmentCards.add(card);
 
         if (card.getType() == DevelopmentCardType.VICTORY_POINT) {
-            victoryPoints++;
+            secretVictoryPoints++;
         }
+
+        Collections.sort(developmentCards);
     }
 
-    public void useDevelopmentCard(DevelopmentCardType type) {
-        // TODO: need to implement
-
-        if (!hasTypeOfDevelopmentCard(type)) return;
+    public void removeDevelopmentCard(DevelopmentCard card) {
+        developmentCards.remove(card);
     }
-
-//    // specifically for progress cards
-//    public void useDevelopmentCard(DevelopmentCardType type, String name) {
-//        if (type != DevelopmentCardType.PROGRESS) {
-//            useDevelopmentCard(type);
-//            return;
-//        }
-//
-//        if (!hasTypeOfDevelopmentCard(name)) return;
-//
-//        switch (name.toUpperCase()) {
-//            case "MONOPOLY":
-//                Board.
-//                break;
-//            case "YEAR OF PLENTY":
-//                break;
-//            case "ROAD BUILDING":
-//                break;
-//
-//        }
-//    }
 
     public int longestRoad() {
         ArrayList<Edge> endpointEdges = getEndpointEdges();
@@ -222,6 +201,28 @@ public class Player {
         }
 
         return endpointEdges;
+    }
+
+    public void addKnight() {
+        numOfKnights++;
+
+        Board.updateLargestArmy();
+    }
+
+    public void addLargestArmy() {
+        victoryPoints += 2;
+    }
+
+    public void removeLargestArmy() {
+        victoryPoints -= 2;
+    }
+
+    public void addLongestRoad() {
+        victoryPoints += 2;
+    }
+
+    public void removeLongestRoad() {
+        victoryPoints -= 2;
     }
 
     public ArrayList<Structure> getStructures() {
@@ -304,6 +305,10 @@ public class Player {
         return victoryPoints;
     }
 
+    public int getTotalVictoryPoints() {
+        return victoryPoints + secretVictoryPoints;
+    }
+
     public javafx.scene.paint.Color getColorHex() {
         return colorHex;
     }
@@ -339,15 +344,20 @@ public class Player {
         }
 
 
-        images.put("City", new Image("game/catan/PlayerResources/player"+ imageId +"City.png"));
-        images.put("Settlement", new Image("game/catan/PlayerResources/player"+ imageId +"Settlement.png"));
-        images.put("Road", new Image("game/catan/PlayerResources/player"+ imageId +"Road.png"));
-        images.put("Icon", new Image("game/catan/PlayerResources/player"+ imageId +"Icon.png"));
 
+        images.put("City", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player"+ imageId +"City.png")));
+        images.put("Settlement", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player"+ imageId +"Settlement.png")));
+        images.put("Road", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player"+ imageId +"Road.png")));
+        images.put("Icon", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player"+ imageId +"Icon.png")));
 
     }
 
     public HashMap<String, Image> getImages() {
         return images;
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return Integer.compare(id, o.getId());
     }
 }

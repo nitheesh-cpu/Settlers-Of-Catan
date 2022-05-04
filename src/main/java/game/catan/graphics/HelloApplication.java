@@ -1,5 +1,6 @@
 package game.catan.graphics;
 
+import game.catan.simulation.GameState;
 import game.catan.simulation.Harbor;
 import game.catan.simulation.Player;
 import game.catan.simulation.Trade;
@@ -14,6 +15,7 @@ import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 
 import java.io.IOException;
+import java.util.TreeMap;
 
 public class HelloApplication extends Application {
     public static Stage stage;
@@ -29,9 +31,18 @@ public class HelloApplication extends Application {
     public static Stage[] stages = new Stage[]{gameStage, helpStage, buildStage, domesticTradeStage, domesticTradeConfirmStage, maritimeTradeStage, maritimeTradeStage2};
 
     public static domesticTradeController domesticTradeController;
+    public static domesticTradeConfirmController domesticTradeConfirmController;
+
+    public static Stage discardResourcesStage;
+
     public static maritimeTradeController maritimeTradeController;
     public static maritimeTradeController2 maritimeTradeController2;
-    public static domesticTradeConfirmController domesticTradeConfirmController;
+
+    public static buildMenuController buildMenuController;
+    public static boolean isSmall = false;
+
+    public static discardResourcesController discardResourcesController;
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -46,7 +57,6 @@ public class HelloApplication extends Application {
         stage.setResizable(false);
         stage.show();
 
-
         FXMLLoader fxmlLoader2 = new FXMLLoader(HelloApplication.class.getResource("buildMenu.fxml"));
         Scene scene2 = new Scene(fxmlLoader2.load(), 500, 300);
         Stage buildStage = new Stage();
@@ -54,6 +64,7 @@ public class HelloApplication extends Application {
         buildStage.initStyle(StageStyle.TRANSPARENT);
         this.buildStage = buildStage;
         buildStage.setResizable(true);
+        buildStage.setAlwaysOnTop(true);
         scene2.setFill(Color.TRANSPARENT);
         buildStage.setTitle("Settlers of Catan");
         buildStage.setScene(scene2);
@@ -106,15 +117,27 @@ public class HelloApplication extends Application {
         confirmStage.setScene(scene6);
         domesticTradeConfirmStage = confirmStage;
 
-        FXMLLoader fxmlLoader7 = new FXMLLoader(HelloApplication.class.getResource("helpMenu.fxml"));
-        Scene scene7 = new Scene(fxmlLoader7.load(), 620, 654);
-        Stage helpStage = new Stage();
+        FXMLLoader fxmlLoader7 = new FXMLLoader(HelloApplication.class.getResource("discardResources.fxml"));
+        Scene scene7 = new Scene(fxmlLoader7.load(), 600, 400);
+        Stage discardStage = new Stage();
         scene7.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        discardStage.initStyle(StageStyle.TRANSPARENT);
+        discardStage.setResizable(true);
+        scene7.setFill(Color.TRANSPARENT);
+        discardStage.setAlwaysOnTop(true);
+        discardStage.setTitle("Discard Resources");
+        discardStage.setScene(scene7);
+        discardResourcesStage = discardStage;
+
+        FXMLLoader fxmlLoader8 = new FXMLLoader(HelloApplication.class.getResource("helpMenu.fxml"));
+        Scene scene8 = new Scene(fxmlLoader8.load(), 620, 654);
+        Stage helpStage = new Stage();
+        scene8.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
         helpStage.initStyle(StageStyle.TRANSPARENT);
         helpStage.setResizable(true);
-        scene7.setFill(Color.TRANSPARENT);
+        scene8.setFill(Color.TRANSPARENT);
         helpStage.setTitle("Help");
-        helpStage.setScene(scene7);
+        helpStage.setScene(scene8);
         this.helpStage = helpStage;
     }
 
@@ -145,6 +168,20 @@ public class HelloApplication extends Application {
         domesticTradeConfirmStage.show();
     }
 
+    public static void showDiscardResourcesMenu(TreeMap<Player, Integer> playersToDiscard) {
+        discardResourcesController.setup(playersToDiscard);
+        discardResourcesStage.show();
+
+        GameState.getGameController().disableButtons();
+    }
+
+    public static void hideDiscardResourcesMenu() {
+        discardResourcesController.reset();
+        discardResourcesStage.hide();
+
+        GameState.getGameController().enableButtons();
+    }
+
     // only for stockpile trade
     public static void toggleMaritimeTradeMenu(){
         if (maritimeTradeStage.isShowing()) {
@@ -164,7 +201,6 @@ public class HelloApplication extends Application {
             maritimeTradeStage.hide();
             maritimeTradeController.setTradeType(null);
             Trade.resetTrade();
-
         } else {
             maritimeTradeStage.show();
             maritimeTradeController.setTradeType(TradeType.HARBOR);
@@ -180,11 +216,30 @@ public class HelloApplication extends Application {
         }
     }
 
+    public static void showYearOfPlentyMenu() {
+        maritimeTradeController2.initializeYearOfPlenty();
+        maritimeTradeStage2.show();
+    }
+
+    public static void showMonopolyMenu() {
+        maritimeTradeController2.initializeMonopoly();
+        maritimeTradeStage2.show();
+    }
+
+    public static void disableYearOfPlenty() {
+        maritimeTradeStage2.hide();
+    }
+
+    public static void disableMonopoly() {
+        maritimeTradeStage2.hide();
+    }
+
     public static void showSmall() throws IOException {
         stage.hide();
+        isSmall = true;
         Stage game = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catanS.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1200, 758);
+        Scene scene = new Scene(fxmlLoader.load(), 1233, 750);
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
         scene.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());

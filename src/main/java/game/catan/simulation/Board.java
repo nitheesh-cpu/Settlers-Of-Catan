@@ -10,8 +10,6 @@ import game.catan.simulation.helper.Edge;
 import game.catan.simulation.helper.Location;
 import game.catan.simulation.helper.Vertex;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Board {
@@ -26,7 +24,10 @@ public class Board {
     private HashMap<Integer, ArrayList<Tile>> resourceTiles; // key: tile number, value: list of tiles
     private static Location robberLocation; // location of tile with robber
 
-    private Stack<DevelopmentCard> developmentCards;
+    private static Player longestRoadHolder = null;
+    private static Player largestArmyHolder = null;
+
+    private static Stack<DevelopmentCard> developmentCards;
 
     public Board() {
         initializeBoard();
@@ -142,22 +143,8 @@ public class Board {
         }
     }
 
-    public boolean upgradeSettlementToCity(Location location) {
-        Tile tile = getTile(location);
-
-        if (tile == null) {
-            System.out.println("Invalid location");
-            return false;
-        }
-
-        Vertex selectedVertex = tile.getVertex(location.getOrientation());
-
-        if (availableSettlementToCityUpgrades().contains(selectedVertex)) {
-            selectedVertex.getStructure().upgradeToCity();
-            System.out.println("Player upgraded a settlement to a city");
-        }
-
-        return true;
+    public void upgradeSettlementToCity(Vertex vertex) {
+        vertex.getStructure().upgradeToCity();
     }
 
     public HashSet<Edge> availableRoadPlacements() {
@@ -338,7 +325,7 @@ public class Board {
             if (message.length() > 0) message = message.substring(0, message.length() - 2);
             else message = "no resources";
 
-            GameState.log(player + " gained " + message);
+            GameState.log(player + " gained " + message + ".");
             GameState.updatePlayerStats();
         }
     }
@@ -400,7 +387,7 @@ public class Board {
             message = message.substring(0, message.length() - 1);
         }
 
-        GameState.log(structure.getOwner() + " gained " + message);
+        GameState.log(structure.getOwner() + " gained " + message + ".");
         GameState.updatePlayerStats();
     }
     // endregion
@@ -416,7 +403,7 @@ public class Board {
 
     // All players around robber tile
     public ArrayList<Player> getAvailablePlayersToStealFrom() {
-        Tile robberTile = tileLocations.get(robberLocation);
+        Tile robberTile = board[robberLocation.getX()][robberLocation.getY()];
         Vertex[] vertices = robberTile.getVertices();
 
         ArrayList<Player> availablePlayers = new ArrayList<>();
@@ -444,12 +431,19 @@ public class Board {
             }
         }
 
+        if (availableResourcesToSteal.size() == 0) {
+            GameState.log(currentPlayer + " stole no resources from " + player + ".");
+        }
+
         ResourceType randomResource = availableResourcesToSteal.get(Dice.getRef().nextInt(availableResourcesToSteal.size()));
 
         Stockpile currentPlayerStockpile = currentPlayer.getStockpile();
         Stockpile playerStockpile = player.getStockpile();
 
         transferResources(playerStockpile, currentPlayerStockpile, randomResource, 1);
+
+        GameState.log(currentPlayer + " stole 1x " + randomResource + " from " + player + ".");
+        GameState.updatePlayerStats();
     }
     // endregion
 
@@ -521,6 +515,59 @@ public class Board {
 //    }
 
     // endregion
+
+    // region Special Cards
+
+    public static void updateLongestRoad() {
+        Player previousPlayer = longestRoadHolder;
+
+        for (Player player: GameState.getPlayers()) {
+            int roadLength = player.longestRoad();
+            if (roadLength < 5) continue;
+
+            if (longestRoadHolder == null) {
+                longestRoadHolder = player;
+                continue;
+            }
+
+            if (roadLength > longestRoadHolder.longestRoad()) {
+                longestRoadHolder = player;
+            }
+        }
+
+        if (previousPlayer.equals(longestRoadHolder)) return;
+
+        longestRoadHolder.addLongestRoad();
+        previousPlayer.removeLongestRoad();
+
+        GameState.log(longestRoadHolder + " is the new longest road holder of road length " + longestRoadHolder.getLengthOfLongestRoad() + ".");
+    }
+
+    public static void updateLargestArmy() {
+        Player previousPlayer = largestArmyHolder;
+
+        for (Player player: GameState.getPlayers()) {
+            int armySize = player.getNumOfKnights();
+            if (armySize < 3) continue;
+
+            if (largestArmyHolder == null) {
+                largestArmyHolder = player;
+                continue;
+            }
+
+            if (armySize > largestArmyHolder.getNumOfKnights()) {
+                largestArmyHolder = player;
+            }
+        }
+
+        if (largestArmyHolder.equals(previousPlayer)) return;
+
+        largestArmyHolder.addLargestArmy();
+        previousPlayer.removeLargestArmy();
+
+        GameState.log(largestArmyHolder + " is the new largest army holder of army size " + largestArmyHolder.getNumOfKnights() + ".");
+    }
+
     // region Initialization
     private void initializeBoard() {
         System.out.println("Initializing board...");
@@ -561,6 +608,8 @@ public class Board {
         }
 
         Collections.shuffle(developmentCards, Dice.getRef());
+
+        System.out.println(developmentCards);
     }
 
     private void setTiles() {
@@ -789,6 +838,18 @@ public class Board {
 
     public static Location getRobberLocation() {
         return robberLocation;
+    }
+
+    public static int getDevelopmentCardCount() {
+        return developmentCards.size();
+    }
+
+    public static Player getLongestRoadHolder() {
+        return longestRoadHolder;
+    }
+
+    public static Player getLargestArmyHolder() {
+        return largestArmyHolder;
     }
 
     // endregion
