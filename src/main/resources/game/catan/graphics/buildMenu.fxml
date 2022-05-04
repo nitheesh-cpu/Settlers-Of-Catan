@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.buildMenuController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="game.catan.graphics.buildMenuController">
    <children>
       <HBox style="-fx-background-color: FFFFFF; -fx-background-radius: 18 18 18 18; -fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 18 18 18 18;">
          <children>
@@ -19,22 +19,22 @@
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="roadButton" fitHeight="100.0" fitWidth="83.0" layoutX="28.0" layoutY="171.0" onMouseClicked="#roadClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="roadButton" fitHeight="120.0" fitWidth="83.0" layoutX="25.0" layoutY="167.0" onMouseClicked="#buyRoad" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/Road.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="settlementButton" fitHeight="100.0" fitWidth="111.0" layoutX="138.0" layoutY="171.0" onMouseClicked="#settlementClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="settlementButton" fitHeight="113.0" fitWidth="111.0" layoutX="140.0" layoutY="167.0" onMouseClicked="#buySettlement" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/Settlement.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="cityButton" fitHeight="100.0" fitWidth="83.0" layoutX="267.0" layoutY="171.0" onMouseClicked="#cityClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cityButton" fitHeight="123.0" fitWidth="83.0" layoutX="273.0" layoutY="167.0" onMouseClicked="#buyCity" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/City.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="devCardButton" fitHeight="100.0" fitWidth="121.0" layoutX="370.0" layoutY="171.0" onMouseClicked="#devCardClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="devCardButton" fitHeight="113.0" fitWidth="121.0" layoutX="374.0" layoutY="167.0" onMouseClicked="#buyDevelopmentCard" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/DevCard.png" />
                      </image>

@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox fx:id="root" prefHeight="758.0" prefWidth="1200.0" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
+<VBox fx:id="root" prefHeight="758.0" prefWidth="1200.0" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="game.catan.graphics.GameController">
     <children>
         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1200.0">
             <children>
@@ -328,12 +328,12 @@
                         </ImageView>
                         <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="42.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../PlayerResources/player3icon.png" />
+                                <Image url="@../PlayerResources/player3Icon.png" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="54.0" fitWidth="40.0" layoutX="44.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../PlayerResources/player4icon.png" />
+                                <Image url="@../PlayerResources/player4Icon.png" />
                             </image>
                         </ImageView>
                     </children>

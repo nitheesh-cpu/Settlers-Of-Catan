@@ -1,8 +1,7 @@
 package game.catan.graphics;
 
 import game.catan.simulation.*;
-import game.catan.simulation.cards.DevelopmentCard;
-import game.catan.simulation.enums.DevelopmentCardType;
+import game.catan.simulation.enums.Phase;
 import game.catan.simulation.enums.ResourceType;
 
 import game.catan.simulation.helper.Location;
@@ -61,6 +60,10 @@ public class GameController {
     public Circle dice41;
     public Circle dice42;
     public Circle dice43;
+
+    @FXML
+    private Pane tileListenerPane;
+
     public ImageView endButton;
     public ImageView harbor1;
     public ImageView harbor2;
@@ -136,7 +139,7 @@ public class GameController {
     public Text roadCount1;
     public Text stockpileCount1;
     public Text victoryPointCount1;
-    public ImageView tradeButton1;
+    public ImageView playerButton1;
     public ImageView inventoryFrame1;
 
     public ImageView playerIcon2;
@@ -146,7 +149,7 @@ public class GameController {
     public Text roadCount2;
     public Text stockpileCount2;
     public Text victoryPointCount2;
-    public ImageView tradeButton2;
+    public ImageView playerButton2;
     public ImageView inventoryFrame2;
 
     public ImageView playerIcon3;
@@ -156,7 +159,7 @@ public class GameController {
     public Text roadCount3;
     public Text stockpileCount3;
     public Text victoryPointCount3;
-    public ImageView tradeButton3;
+    public ImageView playerButton3;
     public ImageView inventoryFrame3;
 
     public ImageView tradePort1;
@@ -175,11 +178,12 @@ public class GameController {
     // endregion
 
     private Polygon[] waters;
-    public Polygon[][] tilePolygons;
+    public static Polygon[][] tilePolygons;
     private Circle[][] circles;
+    private ImageView[][] tileClickListeners;
     private Tile[][] tileObjs;
     private ImageView[] harborImages;
-    private GameState gameState;
+    private static GameState gameState;
     public static boolean actionButtonEnabled;
     public ImageView robberImage;
 
@@ -187,12 +191,14 @@ public class GameController {
     public void initialize() throws IOException, InterruptedException {
         Initialize.init(); //Initialize images
 
-        Node[][] nodes = {{playerIcon1, inventoryTitle1, settlementCount1, cityCount1, roadCount1, stockpileCount1, inventoryFrame1, tradeButton1, victoryPointCount1}, {playerIcon2, inventoryTitle2, settlementCount2, cityCount2, roadCount2, stockpileCount2, inventoryFrame2, tradeButton2, victoryPointCount2}, {playerIcon3, inventoryTitle3, settlementCount3, cityCount3, roadCount3, stockpileCount3, inventoryFrame3, victoryPointCount3}};
+        Node[][] nodes = {{playerIcon1, inventoryTitle1, settlementCount1, cityCount1, roadCount1, stockpileCount1, inventoryFrame1, playerButton1, victoryPointCount1}, {playerIcon2, inventoryTitle2, settlementCount2, cityCount2, roadCount2, stockpileCount2, inventoryFrame2, playerButton2, victoryPointCount2}, {playerIcon3, inventoryTitle3, settlementCount3, cityCount3, roadCount3, stockpileCount3, inventoryFrame3, victoryPointCount3}};
 
         //Initialize tiles
         waters = new Polygon[]{water1, water2, water3, water4, water5, water6, water7, water8, water9, water10, water11, water12, water13, water14, water15, water16, water17, water18};
         tilePolygons = new Polygon[][]{{tile01, tile02, tile03}, {tile11, tile12, tile13, tile14}, {tile21, tile22, tile23, tile24, tile25}, {tile31, tile32, tile33, tile34}, {tile41, tile42, tile43}};
         circles = new Circle[][]{{dice01, dice02, dice03}, {dice11, dice12, dice13, dice14}, {dice21, dice22, dice23, dice24, dice25}, {dice31, dice32, dice33, dice34}, {dice41, dice42, dice43}};
+        // tileClickListeners = new ImageView[][]{{tileClick1, tileClick2, tileClick3}, {tileClick4, tileClick5, tileClick6, tileClick7}, {tileClick8, tileClick9, tileClick10, tileClick11, tileClick12}, {tileClick13, tileClick14, tileClick15, tileClick16}, {tileClick17, tileClick18, tileClick19}};
+        tileClickListeners = new ImageView[][]{{null, null, null}, {null, null, null, null}, {null, null, null, null, null}, {null, null, null, null}, {null, null, null}};
 
         gameState = new GameState(MenuController.players, 123, this); // need to pass in num of players and seed here
         tileObjs = Board.getBoard();
@@ -216,10 +222,11 @@ public class GameController {
         // Set number tokens to corresponding tiles
         for (int r = 0; r < circles.length; r++)
             for (int c = 0; c < circles[r].length; c++) {
-                if ((tileObjs[r][c].getNumber() > -1))
+                if ((tileObjs[r][c].getNumber() > -1)) {
                     circles[r][c].setFill(tileObjs[r][c].getNumberPattern());
+                }
                 else {
-                    circles[r][c].setVisible(false);
+                    circles[r][c].setOpacity(0.0);
                     updateRobberLocation(Board.getRobberLocation(), null);
                 }
             }
@@ -228,12 +235,6 @@ public class GameController {
         for (Polygon tile : waters) {
             tile.setFill(Initialize.waterPattern);
         }
-
-
-        //Initialize harbors
-//        ResourceType[] harbors = {ResourceType.BRICK, ResourceType.WOOL, ResourceType.ORE, ResourceType.WHEAT, ResourceType.WOOD, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC, ResourceType.MISC};
-//        List<ResourceType> harborsList = Arrays.stream(harbors).collect(Collectors.toList());
-//        Collections.shuffle(harborsList);
 
         ArrayList<Harbor> harbors = Board.getHarbors();
 
@@ -248,20 +249,6 @@ public class GameController {
 
             tradePortImages[i].setImage(Initialize.tradeHands);
             tradePortImages[i].setVisible(false);
-
-//            tradePortImages[i].getStyleClass().add("hover");
-//            tradePortImages[i].setOpacity(0.0);
-//
-//            int finalI = i;
-//            tradePortImages[i].setOnMouseEntered(e -> {
-//                tradePortImages[finalI].setOpacity(1.0);
-//                harborImages[finalI].setVisible(false);
-//            });
-//
-//            tradePortImages[i].setOnMouseExited(e -> {
-//                tradePortImages[finalI].setOpacity(0.0);
-//                harborImages[finalI].setVisible(true);
-//            });
         }
 
         help.setPickOnBounds(true);
@@ -304,6 +291,8 @@ public class GameController {
         disableTrade();
         showDice();
         actionButtonEnabled = false;
+
+        createTileClickListeners();
     }
 
     public void log(String message){
@@ -336,7 +325,7 @@ public class GameController {
         diceText.setVisible(true);
     }
 
-    public void showHarbors() {
+    private void showHarbors() {
         ArrayList<Harbor> availableHarbors = GameState.getCurrentPlayer().getHarbors();
         ArrayList<Harbor> harbors = Board.getHarbors();
 
@@ -368,7 +357,70 @@ public class GameController {
         }
     }
 
-    public void disableHarbors() {
+    public void showAvailableRobberTiles() {
+        log("Move robber to a new tile.");
+
+        disableButtons();
+
+        for (int r = 0; r < tileClickListeners.length; r++) {
+            for (int c = 0; c < tileClickListeners[r].length; c++) {
+                int finalR = r;
+                int finalC = c;
+
+                if (Board.getTile(r, c).equals(Board.getTile(Board.getRobberLocation()))) continue;
+
+                tileClickListeners[r][c].setVisible(true);
+
+                tileClickListeners[r][c].setOnMouseClicked(e -> {
+                    gameState.moveRobber(new Location(finalR, finalC));
+                    disableAvailableRobberTile();
+                    showSteal();
+                });
+
+                tileClickListeners[r][c].setOnMouseEntered(e -> {
+                   circles[finalR][finalC].setVisible(false);
+                   tileClickListeners[finalR][finalC].setOpacity(1.0);
+                });
+
+                tileClickListeners[r][c].setOnMouseExited(e -> {
+                   circles[finalR][finalC].setVisible(true);
+                   tileClickListeners[finalR][finalC].setOpacity(0.0);
+                });
+
+                tileClickListeners[r][c].getStyleClass().add("hover");
+            }
+        }
+    }
+
+    public void disableAvailableRobberTile() {
+        // loop through tileClickListeners
+        for (int r = 0; r < tileClickListeners.length; r++) {
+            for (int c = 0; c < tileClickListeners[r].length; c++) {
+                tileClickListeners[r][c].setVisible(false);
+                tileClickListeners[r][c].setOpacity(0.0);
+                tileClickListeners[r][c].getStyleClass().remove("hover");
+            }
+        }
+    }
+
+    public void createTileClickListeners() {
+        for (int r = 0; r < tileClickListeners.length; r++) {
+            for (int c = 0; c < tileClickListeners[r].length; c++) {
+                tileClickListeners[r][c] = new ImageView();
+                Circle circle = circles[r][c];
+                tileClickListeners[r][c].setLayoutX(circle.getLayoutX() - (robberImage.getImage().getWidth() / 2));
+                tileClickListeners[r][c].setLayoutY(circle.getLayoutY() - (robberImage.getImage().getHeight() / 2));
+
+                tileClickListeners[r][c].setImage(Initialize.robber);
+                tileClickListeners[r][c].setOpacity(0.0);
+                tileClickListeners[r][c].setVisible(false);
+
+                tileListenerPane.getChildren().add(tileClickListeners[r][c]);
+            }
+        }
+    }
+
+    private void disableHarbors() {
         for (int i = 0; i < Board.getHarbors().size(); i++) {
             tradePortImages[i].setOpacity(0.0);
             harborImages[i].getStyleClass().remove("hover");
@@ -377,33 +429,124 @@ public class GameController {
     }
 
     public void disableTrade() {
-        tradeButton1.getStyleClass().remove("hover");
-        tradeButton2.getStyleClass().remove("hover");
-        tradeButton3.getStyleClass().remove("hover");
+        playerButton1.getStyleClass().remove("hover");
+        playerButton2.getStyleClass().remove("hover");
+        playerButton3.getStyleClass().remove("hover");
 
-        tradeButton1.setVisible(false);
-        tradeButton2.setVisible(false);
-        tradeButton3.setVisible(false);
+        playerButton1.setVisible(false);
+        playerButton2.setVisible(false);
+        playerButton3.setVisible(false);
 
         disableHarbors();
     }
 
-    public void showTrade() {
-        tradeButton1.getStyleClass().add("hover");
-        tradeButton2.getStyleClass().add("hover");
-        if (GameState.getNumOfPlayers() == 4) tradeButton3.getStyleClass().add("hover");
+    public void disableSteal(){
+        GameState.isStealing = false;
 
-        tradeButton1.setVisible(true);
-        tradeButton2.setVisible(true);
-        if (GameState.getNumOfPlayers() == 4) tradeButton3.setVisible(true);
+        if (GameState.getPhase() == Phase.TRADE) {
+            showTrade();
+        } else {
+            enableButtons();
+
+            playerButton1.getStyleClass().remove("hover");
+            playerButton2.getStyleClass().remove("hover");
+            playerButton3.getStyleClass().remove("hover");
+
+            playerButton1.setVisible(false);
+            playerButton2.setVisible(false);
+            playerButton3.setVisible(false);
+        }
+    }
+
+    public void disableButtons() {
+        disableTrade();
+        disablePlayerCards();
+
+        rollDiceButton.setVisible(false);
+        endButton.setDisable(true);
+        actionButtonEnabled = false;
+    }
+
+    public void enableButtons() {
+        if (GameState.getPhase() == Phase.TRADE) {
+            showTrade();
+        } else if (GameState.getPhase() == Phase.RESOURCE_PRODUCTION) {
+            rollDiceButton.setVisible(true);
+        }
+
+        enablePlayerCards();
+        endButton.setDisable(false);
+        actionButtonEnabled = true;
+    }
+
+    public void showTrade() {
+        playerButton1.getStyleClass().add("hover");
+        playerButton2.getStyleClass().add("hover");
+        if (GameState.getNumOfPlayers() == 4) playerButton3.getStyleClass().add("hover");
+
+        playerButton1.setImage(Initialize.tradeButton);
+        playerButton2.setImage(Initialize.tradeButton);
+
+        playerButton1.setVisible(true);
+        playerButton2.setVisible(true);
+
+        if (GameState.getNumOfPlayers() == 4) {
+            playerButton3.setImage(Initialize.tradeButton);
+            playerButton3.setVisible(true);
+        }
 
         showHarbors();
+    }
+
+    public void showSteal() {
+        GameState.isStealing = true;
+
+        ArrayList<Player> availablePlayersToStealFrom = GameState.getBoard().getAvailablePlayersToStealFrom();
+        ArrayList<Integer> indices = new ArrayList<>();
+
+        if (availablePlayersToStealFrom.size() == 0) {
+            log("No players to steal from.");
+            disableSteal();
+            return;
+        }
+
+        for (int i = 1; i <= 3; i++) {
+            Player correspondingPlayer = getCorrespondingPlayer(i);
+
+            if (availablePlayersToStealFrom.contains(correspondingPlayer)) {
+                indices.add(i);
+            }
+        }
+
+        for (Integer index: indices) {
+            switch (index) {
+                case 1 -> {
+                    playerButton1.getStyleClass().add("hover");
+                    playerButton1.setImage(Initialize.stealButton);
+                    playerButton1.setVisible(true);
+                }
+                case 2 -> {
+                    playerButton2.getStyleClass().add("hover");
+                    playerButton2.setImage(Initialize.stealButton);
+                    playerButton2.setVisible(true);
+                }
+                case 3 -> {
+                    playerButton3.getStyleClass().add("hover");
+                    playerButton3.setImage(Initialize.stealButton);
+                    playerButton3.setVisible(true);
+                }
+            }
+        }
+    }
+
+    public void showDiscard(TreeMap<Player, Integer> playersToDiscard) {
+        HelloApplication.showDiscardResourcesMenu(playersToDiscard);
     }
 
     public void updateButtons() {
         switch (GameState.getPhase()) {
             case TRADE -> {
-                actionButton.setImage(Initialize.tradeButton);
+                actionButton.setImage(Initialize.tradeIcon);
                 endButton.setImage(Initialize.endTradeButton);
             }
             case BUY -> {
@@ -449,43 +592,141 @@ public class GameController {
     }
 
     public void updatePlayerCards(){
+        cardsPane.getChildren().clear();
+
         AtomicInteger count = new AtomicInteger();
+
+        if (GameState.getCurrentPlayer().equals(Board.getLargestArmyHolder())) {
+            ImageView imageView = new ImageView(new Image(GameController.class.getResourceAsStream("game/catan/Cards/SpecialCards/LARGEST_ARMY.png")));
+
+            if(HelloApplication.isSmall){
+                imageView.setPreserveRatio(true);
+                imageView.setFitHeight(250);
+                imageView.setX(2+(150*count.get()));
+                imageView.setY(2);
+                cardsPane.getChildren().add(imageView);
+                count.getAndIncrement();
+                System.out.println("Small");
+            }
+            else{
+                imageView.setPreserveRatio(true);
+                imageView.setFitHeight(260);
+                imageView.setX(2+(150*count.get()));
+                imageView.setY(3);
+                cardsPane.getChildren().add(imageView);
+                count.getAndIncrement();
+                System.out.println("Big");
+            }
+        }
+
+        if (GameState.getCurrentPlayer().equals(Board.getLongestRoadHolder())) {
+            ImageView imageView = new ImageView(new Image(GameController.class.getResourceAsStream("game/catan/Cards/SpecialCards/LONGEST_ROAD.png")));
+
+            if(HelloApplication.isSmall){
+                imageView.setPreserveRatio(true);
+                imageView.setFitHeight(250);
+                imageView.setX(2+(150*count.get()));
+                imageView.setY(2);
+                cardsPane.getChildren().add(imageView);
+                count.getAndIncrement();
+                System.out.println("Small");
+            }
+            else{
+                imageView.setPreserveRatio(true);
+                imageView.setFitHeight(260);
+                imageView.setX(2+(150*count.get()));
+                imageView.setY(3);
+                cardsPane.getChildren().add(imageView);
+                count.getAndIncrement();
+                System.out.println("Big");
+            }
+        }
+
         GameState.getCurrentPlayer().getDevelopmentCards().forEach(card -> {
             ImageView imageView = new ImageView();
-            if(card.getType() == DevelopmentCardType.KNIGHT) {
-                imageView.setImage(new Image("game/catan/Cards/KnightCard/KNIGHT.png"));
+
+            switch (card.getType()) {
+                case KNIGHT -> {
+                    imageView.setImage(new Image(GameController.class.getResourceAsStream("game/catan/Cards/KnightCard/KNIGHT.png")));
+                    imageView.getStyleClass().add("hover");
+
+                    imageView.setOnMouseClicked(event -> {
+                        log(GameState.getCurrentPlayer() + " played a Knight card.");
+
+                        GameState.getCurrentPlayer().addKnight();
+                        GameState.getCurrentPlayer().getDevelopmentCards().remove(card);
+                        updatePlayerCards();
+                        showAvailableRobberTiles();
+                    });
+                }
+                case PROGRESS -> {
+                    switch (card.getName()) {
+                        case "Monopoly" -> {
+                            imageView.setImage(new Image(GameController.class.getResourceAsStream("game/catan/Cards/ProgressCard/Monopoly.png")));
+                            imageView.setOnMouseClicked(event -> {
+                                gameState.useMonopolyCard();
+
+                                GameState.getCurrentPlayer().getDevelopmentCards().remove(card);
+                                updatePlayerCards();
+                            });
+                        }
+                        case "Road Building" -> {
+                            imageView.setImage(new Image(GameController.class.getResourceAsStream("game/catan/Cards/ProgressCard/RoadBuilding.png")));
+                            imageView.setOnMouseClicked(event -> {
+                                gameState.useRoadBuildingCard();
+
+                                GameState.getCurrentPlayer().removeDevelopmentCard(card);
+                                updatePlayerCards();
+                                disableButtons();
+                            });
+                        }
+                        case "Year of Plenty" -> {
+                            imageView.setImage(new Image(GameController.class.getResourceAsStream("game/catan/Cards/ProgressCard/YearOfPlenty.png")));
+                            imageView.setOnMouseClicked(event -> {
+                                log("Played a Year of Plenty Card");
+                                gameState.useYearOfPlentyCard();
+
+                                GameState.getCurrentPlayer().removeDevelopmentCard(card);
+                                updatePlayerCards();
+                            });
+                        }
+                    }
+
+                    imageView.getStyleClass().add("hover");
+                }
+                case VICTORY_POINT -> {
+                    String name = card.getName().toUpperCase().replaceAll(" ", "_");
+                    imageView.setImage(new Image(GameController.class.getResourceAsStream("game/catan/Cards/VictoryPointCard/" + name + ".png")));
+                }
             }
-            else if(card.getName().equals("Chapel")){
-                imageView.setImage(new Image("game/catan/Cards/VictoryPointCards/CHAPEL.png"));
+
+            if(HelloApplication.isSmall){
+                imageView.setPreserveRatio(true);
+                imageView.setFitHeight(250);
+                imageView.setX(2+(150*count.get()));
+                imageView.setY(2);
+                cardsPane.getChildren().add(imageView);
+                count.getAndIncrement();
+                System.out.println("Small");
             }
-            else if(card.getName().equals("Great Hall")){
-                imageView.setImage(new Image("game/catan/Cards/VictoryPointCards/GREAT_HALL.png"));
+            else{
+                imageView.setPreserveRatio(true);
+                imageView.setFitHeight(260);
+                imageView.setX(2+(150*count.get()));
+                imageView.setY(3);
+                cardsPane.getChildren().add(imageView);
+                count.getAndIncrement();
+                System.out.println("Big");
             }
-            else if(card.getName().equals("Library")){
-                imageView.setImage(new Image("game/catan/Cards/VictoryPointCards/LIBRARY.png"));
-            }
-            else if(card.getName().equals("Market")){
-                imageView.setImage(new Image("game/catan/Cards/VictoryPointCards/MARKET.png"));
-            }
-            else if(card.getName().equals("University")){
-                imageView.setImage(new Image("game/catan/Cards/VictoryPointCards/UNIVERSITY.png"));
-            }
-            else if(card.getName().equals("Monopoly")){
-                imageView.setImage(new Image("game/catan/Cards/ProgressCards/MONOPOLY.png"));
-            }
-            else if(card.getName().equals("Road Building")){
-                imageView.setImage(new Image("game/catan/Cards/ProgressCards/ROAD_BUILDING.png"));
-            }
-            else if(card.getName().equals("Year of Plenty")){
-                imageView.setImage(new Image("game/catan/Cards/ProgressCards/YEAR_OF_PLENTY.png"));
-            }
-            imageView.setPreserveRatio(true);
-            imageView.setFitHeight(260);
-            imageView.setX(2+(150*count.get()));
-            imageView.setY(3);
-            cardsPane.getChildren().add(imageView);
-            count.getAndIncrement();
         });
+    }
+
+    public void enablePlayerCards() {
+        cardsPane.setDisable(false);
+    }
+
+    public void disablePlayerCards() {
+        cardsPane.setDisable(true);
     }
 
     public void updateRobberLocation(Location location, Location previousLocation) {
@@ -576,22 +817,46 @@ public class GameController {
 
     private Player domesticTradePlayer = null;
 
-    public void trade1Clicked(MouseEvent mouseEvent) {
+    public void playerButton1Clicked(MouseEvent mouseEvent) {
+        Player correspondingPlayer = getCorrespondingPlayer(1);
+
+        if (GameState.isStealing) {
+            gameState.stealFromPlayer(correspondingPlayer);
+            disableSteal();
+            return;
+        }
+
         HelloApplication.showDomesticTradeMenu(gameState.getCurrentPlayer());
 
-        domesticTradePlayer = getCorrespondingTrader(1);
+        domesticTradePlayer = correspondingPlayer;
         domesticTradeController.followup = true;
     }
 
-    public void trade2Clicked(MouseEvent mouseEvent) {
+    public void playerButton2Clicked(MouseEvent mouseEvent) {
+        Player correspondingPlayer = getCorrespondingPlayer(2);
+
+        if (GameState.isStealing) {
+            gameState.stealFromPlayer(correspondingPlayer);
+            disableSteal();
+            return;
+        }
+
         HelloApplication.showDomesticTradeMenu(gameState.getCurrentPlayer());
-        domesticTradePlayer = getCorrespondingTrader(2);
+        domesticTradePlayer = correspondingPlayer;
         domesticTradeController.followup = true;
     }
 
-    public void trade3Clicked(MouseEvent mouseEvent) {
+    public void playerButton3Clicked(MouseEvent mouseEvent) {
+        Player correspondingPlayer = getCorrespondingPlayer(3);
+
+        if (GameState.isStealing) {
+            gameState.stealFromPlayer(correspondingPlayer);
+            disableSteal();
+            return;
+        }
+
         HelloApplication.showDomesticTradeMenu(gameState.getCurrentPlayer());
-        domesticTradePlayer = getCorrespondingTrader(3);
+        domesticTradePlayer = correspondingPlayer;
         domesticTradeController.followup = true;
     }
 
@@ -600,14 +865,14 @@ public class GameController {
         domesticTradePlayer = null;
     }
 
-    public Player getCorrespondingTrader(int index) {
+    public Player getCorrespondingPlayer(int index) {
         int count = 1;
 
         for (Player player: GameState.getPlayers()) {
             if (player.equals(GameState.getCurrentPlayer())) continue;
 
             if (count == index) {
-                System.out.println("Corresponding trader: " + player.getId());
+                System.out.println("Corresponding player: " + player.getId());
                 return player;
             }
 
@@ -615,6 +880,10 @@ public class GameController {
         }
 
         return null;
+    }
+
+    public static GameState getGameState() {
+        return gameState;
     }
 
 }

@@ -1,5 +1,6 @@
 package game.catan.graphics;
 
+import game.catan.simulation.GameState;
 import game.catan.simulation.Player;
 import game.catan.simulation.Trade;
 import javafx.fxml.FXML;
@@ -85,11 +86,16 @@ public class domesticTradeConfirmController implements Initializable {
     public void confirmTrade(MouseEvent event) {
         HelloApplication.domesticTradeConfirmStage.hide();
         Trade.domesticTrade(Trade.getPlayerOne(), Trade.getTradeOne(), Trade.getPlayerTwo(), Trade.getTradeTwo());
+        Trade.resetTrade();
+
+        GameState.getGameController().enableButtons();
     }
 
     public void cancelTrade(MouseEvent event) {
         Trade.resetTrade();
         HelloApplication.domesticTradeConfirmStage.hide();
+
+        GameState.getGameController().enableButtons();
     }
 
     @Override

@@ -117,6 +117,41 @@ public class Trade {
         return true;
     }
 
+    public static void obtainResource(ResourceType resource) {
+        Player player = GameState.getCurrentPlayer();
+        board.transferResources(Board.getStockpile(), player.getStockpile(), resource, 1);
+
+        GameState.log(player + " obtained 1x " + resource + ".");
+        GameState.getGameController().updatePlayerStats();
+    }
+
+    public static void stealAllResources(ResourceType resource) {
+        Player player = GameState.getCurrentPlayer();
+
+        for (Player otherPlayer : GameState.getPlayers()) {
+            if (player.equals(otherPlayer)) continue;
+
+            int amount = otherPlayer.getStockpile().getResourceCount(resource);
+            if (amount == 0) continue;
+
+            board.transferResources(otherPlayer.getStockpile(), player.getStockpile(), resource, amount);
+            GameState.log(player + " stole " + amount + "x " + resource + " from " + otherPlayer + ".");
+        }
+
+        GameState.getGameController().updatePlayerStats();
+    }
+
+    public static void discardResource(Player player, ResourceType resource, int amount) {
+        if (player.getStockpile().getResourceCount(resource) < amount) {
+            System.out.println("Player doesn't have enough resources to discard");
+            return;
+        }
+
+        board.transferResources(player.getStockpile(), Board.getStockpile(), resource, amount);
+        GameState.log(player + " discarded " + amount + "x " + resource + ".");
+        GameState.getGameController().updatePlayerStats();
+    }
+
     public static void setTradingResource(ResourceType tradingResource) {
         Trade.tradingResource = tradingResource;
     }

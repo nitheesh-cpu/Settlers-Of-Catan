@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="root" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
+<VBox fx:id="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="game.catan.graphics.GameController">
    <children>
       <AnchorPane onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="35.0" prefWidth="1250.0" style="-fx-background-color: #4a5d6f; -fx-background-radius: 18 18 0 0; -fx-border-radius: 18 18 0 0;">
          <children>
@@ -233,6 +233,7 @@
                      <children>
                         <Pane fx:id="harborPane" prefHeight="800.0" prefWidth="750.0">
                            <children>
+                              <Pane fx:id="tileListenerPane" prefHeight="800.0" prefWidth="750.0" />
                               <ImageView fx:id="tradePort1" fitHeight="40.0" fitWidth="55.0" layoutX="348.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="tradePort2" fitHeight="40.0" fitWidth="55.0" layoutX="538.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="tradePort3" fitHeight="40.0" fitWidth="55.0" layoutX="633.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true" />
@@ -345,17 +346,17 @@
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="tradeButton1" fitHeight="40.0" fitWidth="184.0" layoutX="44.0" layoutY="163.0" onMouseClicked="#trade1Clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="playerButton1" fitHeight="40.0" fitWidth="184.0" layoutX="44.0" layoutY="163.0" onMouseClicked="#playerButton1Clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/Trade.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="tradeButton2" fitHeight="40.0" fitWidth="184.0" layoutX="43.0" layoutY="413.0" onMouseClicked="#trade2Clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="playerButton2" fitHeight="40.0" fitWidth="184.0" layoutX="43.0" layoutY="413.0" onMouseClicked="#playerButton2Clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/Trade.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="tradeButton3" fitHeight="40.0" fitWidth="184.0" layoutX="42.0" layoutY="666.0" onMouseClicked="#trade3Clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="playerButton3" fitHeight="40.0" fitWidth="184.0" layoutX="42.0" layoutY="666.0" onMouseClicked="#playerButton3Clicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/Trade.png" />
                      </image>
@@ -367,12 +368,12 @@
                   </ImageView>
                   <ImageView fx:id="playerIcon2" fitHeight="54.0" fitWidth="40.0" layoutX="42.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../PlayerResources/player3icon.png" />
+                        <Image url="@../PlayerResources/player3Icon.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="playerIcon3" fitHeight="54.0" fitWidth="40.0" layoutX="44.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../PlayerResources/player4icon.png" />
+                        <Image url="@../PlayerResources/player4Icon.png" />
                      </image>
                   </ImageView>
                   <Text fx:id="victoryPointCount1" layoutX="200.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="32.0">
@@ -398,17 +399,17 @@
          <children>
             <Pane prefHeight="60.0" prefWidth="1250.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18; -fx-background-color: FFFFFF;">
                <children>
-                  <ImageView fx:id="actionButton" fitHeight="83.52" fitWidth="90" layoutX="1043.0" layoutY="-46.0" onMouseClicked="#actionButtonClicked">
+                  <ImageView fx:id="actionButton" fitHeight="83.52" fitWidth="90" layoutX="1043.0" layoutY="-47.0" onMouseClicked="#actionButtonClicked">r
                      <image>
                         <Image url="@../ButtonResources/TradeButton.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="endButton" fitHeight="83.52" fitWidth="90" layoutX="1142.0" layoutY="-46.0" onMouseClicked="#endButtonClicked">
+                  <ImageView fx:id="endButton" fitHeight="83.52" fitWidth="90" layoutX="1142.0" layoutY="-47.0" onMouseClicked="#endButtonClicked">
                      <image>
                         <Image url="@../ButtonResources/EndTrade.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="help" fitHeight="31.0" fitWidth="32.0" layoutX="1004.0" layoutY="10.0" onMouseClicked="#helpClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="help" fitHeight="31.0" fitWidth="32.0" layoutX="1004.0" layoutY="9.0" onMouseClicked="#helpClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ButtonResources/Help.png" />
                      </image>
