@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<VBox fx:id="root" prefHeight="750.0" prefWidth="1233.0" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
+<VBox fx:id="root" prefHeight="750.0" prefWidth="1233.0" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
     <children>
         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1233.0">
             <children>
@@ -41,7 +34,7 @@
                                 <Font name="System Bold" size="25.0" />
                             </font>
                         </Text>
-                        <TextArea fx:id="actionLogText" layoutX="16.0" layoutY="47.0" prefHeight="199.0" prefWidth="232.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
+                        <TextArea fx:id="actionLogText" editable="false" layoutX="16.0" layoutY="47.0" prefHeight="199.0" prefWidth="232.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
                     </children></Pane>
                 <Pane prefHeight="743.0" prefWidth="692.0" style="-fx-background-color: FFFFFF;" HBox.hgrow="NEVER">
                     <children>
