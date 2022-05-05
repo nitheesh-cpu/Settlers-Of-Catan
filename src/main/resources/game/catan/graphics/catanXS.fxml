@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="750.0" prefWidth="1233.0" style="-fx-border-style: solid; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
+<VBox prefHeight="750.0" prefWidth="1233.0" scaleX="0.85" scaleY="0.85" style="-fx-border-style: solid; -fx-border-width: 3;" translateX="-88.0" translateY="-52.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
     <children>
         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1233.0">
             <children>
@@ -23,7 +23,7 @@
                     <children>
                         <ScrollPane fx:id="cardsScrollPane" layoutX="15.0" layoutY="285.0" prefHeight="272.0" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-width: 3px; -fx-background-color: FFFFFF;">
                             <content>
-                        <Pane fx:id="cardsPane" prefHeight="250.0" prefWidth="2200.0" />
+                                <Pane fx:id="cardsPane" prefHeight="250.0" prefWidth="2200.0" />
                             </content>
                         </ScrollPane>
                         <Text fx:id="actionLogTitle" layoutX="15.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action Log" wrappingWidth="200.0">
@@ -196,25 +196,25 @@
                                         <Font name="System Bold" size="38.0" />
                                     </font>
                                 </Text>
-                        <Pane fx:id="harborPane" prefHeight="762.0" prefWidth="692.0">
-                           <children>
-                              <ImageView fx:id="tradePort1" fitHeight="40.0" fitWidth="55.0" layoutX="317.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="tradePort2" fitHeight="40.0" fitWidth="55.0" layoutX="506.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="tradePort3" fitHeight="40.0" fitWidth="55.0" layoutX="602.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="tradePort4" fitHeight="40.0" fitWidth="55.0" layoutX="602.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="tradePort5" fitHeight="40.0" fitWidth="55.0" layoutX="412.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="tradePort6" fitHeight="40.0" fitWidth="55.0" layoutX="222.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="tradePort7" fitHeight="40.0" fitWidth="55.0" layoutX="35.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="tradePort8" fitHeight="40.0" fitWidth="55.0" layoutX="32.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="tradePort9" fitHeight="40.0" fitWidth="55.0" layoutX="127.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" />
-                              <Text fx:id="diceText" layoutX="501.0" layoutY="665.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dice Roll" textAlignment="CENTER" wrappingWidth="132.0">
-                                 <font>
-                                    <Font name="System Bold" size="29.0" />
-                                 </font>
-                              </Text>
-                              <Pane fx:id="tileListenerPane" prefHeight="762.0" prefWidth="692.0" />
-                           </children>
-                        </Pane>
+                                <Pane fx:id="harborPane" prefHeight="762.0" prefWidth="692.0">
+                                    <children>
+                                        <ImageView fx:id="tradePort1" fitHeight="40.0" fitWidth="55.0" layoutX="317.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+                                        <ImageView fx:id="tradePort2" fitHeight="40.0" fitWidth="55.0" layoutX="506.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" />
+                                        <ImageView fx:id="tradePort3" fitHeight="40.0" fitWidth="55.0" layoutX="602.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" />
+                                        <ImageView fx:id="tradePort4" fitHeight="40.0" fitWidth="55.0" layoutX="602.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
+                                        <ImageView fx:id="tradePort5" fitHeight="40.0" fitWidth="55.0" layoutX="412.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true" />
+                                        <ImageView fx:id="tradePort6" fitHeight="40.0" fitWidth="55.0" layoutX="222.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true" />
+                                        <ImageView fx:id="tradePort7" fitHeight="40.0" fitWidth="55.0" layoutX="35.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
+                                        <ImageView fx:id="tradePort8" fitHeight="40.0" fitWidth="55.0" layoutX="32.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" />
+                                        <ImageView fx:id="tradePort9" fitHeight="40.0" fitWidth="55.0" layoutX="127.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" />
+                                        <Text fx:id="diceText" layoutX="501.0" layoutY="665.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dice Roll" textAlignment="CENTER" wrappingWidth="132.0">
+                                            <font>
+                                                <Font name="System Bold" size="29.0" />
+                                            </font>
+                                        </Text>
+                                        <Pane fx:id="tileListenerPane" prefHeight="762.0" prefWidth="692.0" />
+                                    </children>
+                                </Pane>
                             </children>
                         </Pane>
                     </children>
@@ -341,32 +341,32 @@
                                 <Image url="@../PlayerResources/player4Icon.png" />
                             </image>
                         </ImageView>
-                  <Text fx:id="victoryPointCount1" layoutX="230.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="victoryPointCount2" layoutX="230.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="victoryPointCount3" layoutX="230.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Text>
-                  <Rectangle fx:id="diceContainer" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="66.0" layoutX="-190.0" layoutY="672.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="132.0" />
-                  <ImageView fx:id="dice1" fitHeight="55.0" fitWidth="54.0" layoutX="-179.0" layoutY="680.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../DiceResources/1.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="dice2" fitHeight="55.0" fitWidth="54.0" layoutX="-121.0" layoutY="680.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../DiceResources/1.png" />
-                     </image>
-                  </ImageView>
+                        <Text fx:id="victoryPointCount1" layoutX="230.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="victoryPointCount2" layoutX="230.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="victoryPointCount3" layoutX="230.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="31.0">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Text>
+                        <Rectangle fx:id="diceContainer" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="66.0" layoutX="-190.0" layoutY="672.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="132.0" />
+                        <ImageView fx:id="dice1" fitHeight="55.0" fitWidth="54.0" layoutX="-179.0" layoutY="680.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../DiceResources/1.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="dice2" fitHeight="55.0" fitWidth="54.0" layoutX="-121.0" layoutY="680.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../DiceResources/1.png" />
+                            </image>
+                        </ImageView>
                     </children>
                 </Pane>
             </children>
@@ -450,11 +450,11 @@
                                 <Image url="@../PlayerResources/player1Icon.png" />
                             </image>
                         </ImageView>
-                  <ImageView fx:id="rollDiceButton" fitHeight="33.0" fitWidth="73.0" layoutX="912.0" layoutY="-58.0" onMouseClicked="#rollClicked">
-                     <image>
-                        <Image url="@../DiceResources/roll.png" />
-                     </image>
-                  </ImageView>
+                        <ImageView fx:id="rollDiceButton" fitHeight="33.0" fitWidth="73.0" layoutX="912.0" layoutY="-58.0" onMouseClicked="#rollClicked">
+                            <image>
+                                <Image url="@../DiceResources/roll.png" />
+                            </image>
+                        </ImageView>
                     </children>
                 </Pane>
             </children></HBox>

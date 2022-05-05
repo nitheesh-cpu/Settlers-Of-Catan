@@ -17,6 +17,8 @@
     <orderEntry type="library" name="slf4j-log4j12-1.7.9" level="project" />
     <orderEntry type="library" name="jmetro-11.6.15" level="project" />
     <orderEntry type="library" name="commons-io-2.11.0" level="project" />
+    <orderEntry type="library" name="commons-io-2.11.0" level="project" />
+    <orderEntry type="library" name="commons-io-2.6" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:16" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:16" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:16" level="project" />
@@ -32,7 +34,5 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-commons:1.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.1" level="project" />
-    <orderEntry type="library" name="commons-io-2.11.0" level="project" />
-    <orderEntry type="library" name="commons-io-2.6" level="project" />
   </component>
 </module>

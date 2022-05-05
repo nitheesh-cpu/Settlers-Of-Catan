@@ -283,6 +283,23 @@ public class HelloApplication extends Application {
         gameStage = game;
     }
 
+    public static void showXSmall() throws IOException {
+        stage.hide();
+        isSmall = true;
+        Stage game = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catanXS.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1043, 636);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
+        scene.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+//        game.setResizable(false);
+        scene.setFill(Color.TRANSPARENT);
+        game.setTitle("Settlers of Catan");
+        game.setScene(scene);
+        game.show();
+        gameStage = game;
+    }
+
     public static void main(String[] args) {
         launch();
     }

@@ -272,7 +272,7 @@ public class GameController {
         BackgroundFill background_fill = new BackgroundFill(Color.WHITE,
                 CornerRadii.EMPTY, Insets.EMPTY);
 
-        root.setBackground(new Background(background_fill));
+//        root.setBackground(new Background(background_fill));
         actionLogText.setBackground(new Background(background_fill));
         cardsPane.setBackground(new Background(background_fill));
 
