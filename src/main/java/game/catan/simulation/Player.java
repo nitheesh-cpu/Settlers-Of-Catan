@@ -40,7 +40,7 @@ public class Player implements Comparable<Player>{
     public Player(Color color) {
         this.id = number++;
         this.color = color;
-        stockpile = new Stockpile();
+        stockpile = new Stockpile(1, 10, 1, 10, 10);
 
         developmentCards = new ArrayList<>();
         structures = new ArrayList<>();
@@ -105,7 +105,6 @@ public class Player implements Comparable<Player>{
 
     public void addRoad(Road road) {
         roads.add(road);
-
         Board.updateLongestRoad();
     }
 
@@ -205,7 +204,6 @@ public class Player implements Comparable<Player>{
 
     public void addKnight() {
         numOfKnights++;
-
         Board.updateLargestArmy();
     }
 

@@ -51,11 +51,10 @@ public class maritimeTradeController2 implements Initializable {
             return;
         }
 
-
-        if (type.equalsIgnoreCase("Year of Plenty")) {
+        if (type != null && type.equalsIgnoreCase("Year of Plenty")) {
             handleYearOfPlenty(resourceType);
             return;
-        } else if (type.equalsIgnoreCase("Monopoly")) {
+        } else if (type != null && type.equalsIgnoreCase("Monopoly")) {
             handleMonopoly(resourceType);
             return;
         }
@@ -75,7 +74,6 @@ public class maritimeTradeController2 implements Initializable {
 
         maritimeTradeController.tradeType = null;
         maritimeTradeController.harbor = null;
-        GameController.actionButtonEnabled = true;
     }
 
     public void handleYearOfPlenty(ResourceType resourceType) {
@@ -96,6 +94,7 @@ public class maritimeTradeController2 implements Initializable {
         type = null;
         close.setVisible(true);
         HelloApplication.disableMonopoly();
+
     }
 
     public void initializeYearOfPlenty() {

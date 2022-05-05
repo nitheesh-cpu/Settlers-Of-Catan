@@ -144,8 +144,10 @@ public class HelloApplication extends Application {
     public static void toggleBuildMenu(){
         if(buildStage.isShowing()){
             buildStage.hide();
+            GameState.getGameController().enableButtons();
         }else{
             buildStage.show();
+            GameState.getGameController().disableButtons();
         }
     }
 
@@ -161,11 +163,15 @@ public class HelloApplication extends Application {
     public static void showDomesticTradeMenu(Player player){
         domesticTradeStage.show();
         domesticTradeController.newTrade(player);
+
+        GameState.getGameController().disableButtons();
     }
 
     public static void showDomesticConfirmTradeMenu() {
         domesticTradeConfirmController.update();
         domesticTradeConfirmStage.show();
+
+        GameState.getGameController().disableButtons();
     }
 
     public static void showDiscardResourcesMenu(TreeMap<Player, Integer> playersToDiscard) {
@@ -187,12 +193,13 @@ public class HelloApplication extends Application {
         if (maritimeTradeStage.isShowing()) {
             maritimeTradeStage.hide();
             maritimeTradeController.setTradeType(null);
-            GameController.actionButtonEnabled = true;
 
+            GameState.getGameController().enableButtons();
             Trade.resetResources();
         } else {
             maritimeTradeStage.show();
             maritimeTradeController.setTradeType(TradeType.STOCKPILE);
+            GameState.getGameController().disableButtons();
         }
     }
 
@@ -201,37 +208,45 @@ public class HelloApplication extends Application {
             maritimeTradeStage.hide();
             maritimeTradeController.setTradeType(null);
             Trade.resetTrade();
+            GameState.getGameController().enableButtons();
         } else {
             maritimeTradeStage.show();
             maritimeTradeController.setTradeType(TradeType.HARBOR);
             maritimeTradeController.setHarbor(harbor);
+            GameState.getGameController().disableButtons();
         }
     }
 
     public static void toggleMaritimeTradeMenu2() {
         if (maritimeTradeStage2.isShowing()) {
             maritimeTradeStage2.hide();
+            GameState.getGameController().enableButtons();
         } else {
             maritimeTradeStage2.show();
+            GameState.getGameController().disableButtons();
         }
     }
 
     public static void showYearOfPlentyMenu() {
         maritimeTradeController2.initializeYearOfPlenty();
         maritimeTradeStage2.show();
+        GameState.getGameController().disableButtons();
     }
 
     public static void showMonopolyMenu() {
         maritimeTradeController2.initializeMonopoly();
         maritimeTradeStage2.show();
+        GameState.getGameController().disableButtons();
     }
 
     public static void disableYearOfPlenty() {
         maritimeTradeStage2.hide();
+        GameState.getGameController().enableButtons();
     }
 
     public static void disableMonopoly() {
         maritimeTradeStage2.hide();
+        GameState.getGameController().enableButtons();
     }
 
     public static void showSmall() throws IOException {

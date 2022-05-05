@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,6 +17,8 @@ import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
@@ -74,10 +73,49 @@ public class MenuController implements Initializable {
             alert.getDialogPane().setContentText("Please go back and select a size and number of players");
             alert.getDialogPane().setHeaderText("Missing parameters!"); // you can set header text
             alert.showAndWait();
-        }else if(size == 0) {
-            HelloApplication.showSmall();
-        }else if(size == 1) {
-            HelloApplication.showLarge();
+        } else {
+            TextInputDialog dialog = new TextInputDialog("");
+            dialog.setTitle("Enter game seed");
+            dialog.setHeaderText("Enter a game seed (leave empty for random seed)");
+            dialog.setContentText("Seed:");
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(playButton.getScene().getWindow());
+            Optional<String> result = dialog.showAndWait();
+
+            if (!result.isPresent()) {
+                return;
+            }
+
+            String seedTemp = result.get().trim();
+            int seed;
+            try {
+
+                if (!seedTemp.equals("")) {
+                    seed = Integer.parseInt(seedTemp);
+                } else {
+                    seed = new Random().nextInt();
+                }
+
+            } catch (NumberFormatException e) {
+                Stage stage = (Stage) playButton.getScene().getWindow();
+                Alert.AlertType type = Alert.AlertType.ERROR;
+                Alert alert = new Alert (type, "");
+                alert.initModality (Modality.APPLICATION_MODAL);
+                alert.initOwner (stage);
+                alert.getDialogPane().setContentText("User entered invalid seed. Must be an integer.");
+                alert.getDialogPane().setHeaderText("Invalid seed!"); // you can set header text
+                alert.showAndWait();
+                return;
+            }
+
+            System.out.println("Seed: " + seed);
+            GameController.seed = seed;
+
+            if(size == 0) {
+                HelloApplication.showSmall();
+            }else if(size == 1) {
+                HelloApplication.showLarge();
+            }
         }
     }
 

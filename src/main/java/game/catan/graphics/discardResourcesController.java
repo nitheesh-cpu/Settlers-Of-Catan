@@ -164,11 +164,12 @@ public class discardResourcesController implements Initializable {
 
     public void confirmTrade(MouseEvent event) {
         int total = brickAmt + lumberAmt + oreAmt + wheatAmt + woolAmt;
+
         if (total < amountToDiscard) {
             errorModal("Still need to discard " + (amountToDiscard - total) + " resources!", "More Resources to Discard");
             return;
         } else if (total > amountToDiscard) {
-            errorModal("Only need to discard " + (total) + " resources!", "Discarding Too Many Resources");
+            errorModal("Only need to discard " + (amountToDiscard) + " resources!", "Discarding Too Many Resources");
             return;
         }
 
@@ -177,6 +178,34 @@ public class discardResourcesController implements Initializable {
         Trade.discardResource(player, ResourceType.ORE, oreAmt);
         Trade.discardResource(player, ResourceType.WHEAT, wheatAmt);
         Trade.discardResource(player, ResourceType.WOOL, woolAmt);
+
+        String message = "";
+
+        if (brickAmt > 0) {
+            message += brickAmt + "x BRICK, ";
+        }
+
+        if (lumberAmt > 0) {
+            message += lumberAmt + "x WOOD, ";
+        }
+
+        if (oreAmt > 0) {
+            message += oreAmt + "x ORE, ";
+        }
+
+        if (wheatAmt > 0) {
+            message += wheatAmt + "x WHEAT, ";
+        }
+
+        if (woolAmt > 0) {
+            message += woolAmt + "x WOOL, ";
+        }
+
+        if (message.length() > 0) {
+            message = message.substring(0, message.length() - 2);
+        }
+
+        GameState.log(player + " discarded " + message + ".");
 
         usedPlayers.add(player);
 
@@ -195,6 +224,8 @@ public class discardResourcesController implements Initializable {
 
         player = playersToDiscard.higherKey(player);
         amountToDiscard = playersToDiscard.get(player);
+
+        updateText();
     }
 
     private double xoffSet;
@@ -208,19 +239,19 @@ public class discardResourcesController implements Initializable {
 
     @FXML
     void mouseReleased(MouseEvent event) {
-        HelloApplication.domesticTradeStage.setOpacity (1.0f);
+        HelloApplication.discardResourcesStage.setOpacity (1.0f);
     }
 
     @FXML
     void mouseDragged(MouseEvent event) {
-        HelloApplication.domesticTradeStage.setX(event.getScreenX ()- xoffSet);
-        HelloApplication.domesticTradeStage.setY (event.getScreenY ()- yoffSet);
-        HelloApplication.domesticTradeStage.setOpacity (0.8f);
+        HelloApplication.discardResourcesStage.setX(event.getScreenX ()- xoffSet);
+        HelloApplication.discardResourcesStage.setY (event.getScreenY ()- yoffSet);
+        HelloApplication.discardResourcesStage.setOpacity (0.8f);
     }
 
     @FXML
     void onDragDone(MouseEvent event) {
-        HelloApplication.domesticTradeStage.setOpacity (1.0f);
+        HelloApplication.discardResourcesStage.setOpacity (1.0f);
     }
 
     public void updateText(){
@@ -235,7 +266,7 @@ public class discardResourcesController implements Initializable {
         woolAmt = 0;
         wheatAmt = 0;
 
-        titleText.setText("Player "+ player.getId() +",\ndiscard # resources");
+        titleText.setText("Player "+ player.getId() +",\ndiscard " + amountToDiscard + " resources");
     }
 
     public void setup(TreeMap<Player, Integer> playersToDiscard) {

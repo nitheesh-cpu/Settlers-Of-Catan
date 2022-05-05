@@ -36,7 +36,7 @@
                                           </ImageView>
                                           <ImageView fitHeight="213.0" fitWidth="569.0" layoutX="25.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../HelpMenu/Group%20124.png" />
+                                                <Image url="@../HelpMenu/Group%20125.png" />
                                              </image>
                                           </ImageView>
                                           <ImageView fitHeight="35.0" fitWidth="196.0" layoutX="25.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
@@ -117,7 +117,7 @@
                                                 <Image url="@../HelpMenu/Maritime%20Trade.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="43.0" fitWidth="293.0" layoutX="30.0" layoutY="653.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="43.0" fitWidth="330.0" layoutX="30.0" layoutY="653.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../HelpMenu/PORT_%20Select%20the%20corresponding%20port%20tile.png" />
                                              </image>

@@ -41,6 +41,9 @@ public class GameState {
     public static GameController gameController;
     public static boolean isStealing = false;
 
+    public static DevelopmentCard boughtDevelopmentCard = null;
+    public static boolean usedDevelopmentCard = false;
+
     public GameState(int numPlayers, int seed, GameController controller) {
         Dice.init(seed);
 
@@ -61,8 +64,20 @@ public class GameState {
 
     // region Switching Turns/Rolling Dice
     public void start() {
-        gameController.log("Setup phase has begun. Each player rolls the dice to determine the order of play.");
+        gameController.log("Setup phase has begun. Each player rolls the dice to determine the order of play.\n");
         setUpPhase();
+    }
+
+    public static boolean checkWin() {
+        if (currentPlayer.getTotalVictoryPoints() >= 10) {
+            gameController.disableButtons();
+            gameController.log(currentPlayer + " has won the game!");
+            gameController.showWinner(currentPlayer);
+            gameController.disableButtons();
+            return true;
+        }
+
+        return false;
     }
 
     public static int nextTurnIndex(int i) {
@@ -94,7 +109,12 @@ public class GameState {
     }
 
     public void nextTurn() {
+        if (checkWin()) return;
+
         Player lastPlayer = currentPlayer;
+
+        boughtDevelopmentCard = null;
+        usedDevelopmentCard = false;
 
         currentPlayerIndex++;
 
@@ -176,9 +196,10 @@ public class GameState {
 
         // If current player hasn't placed their settlement
         if (!SETUP_placedSettlement) {
-            log(currentPlayer + ", place a settlement.");
+            log(currentPlayer + ", place your " + (!SETUP_backwards ? "first" : "second" ) + " starting settlement.");
             showSettlements();
         } else if (!SETUP_placedRoad) {
+            log(currentPlayer + ", place your " + (!SETUP_backwards ? "first" : "second" ) + " starting road.");
             showRoads();
         } else {
             // Current player placed their road and settlement
@@ -274,7 +295,7 @@ public class GameState {
         gameController.showTrade();
         phase = Phase.TRADE;
 
-        gameController.actionButtonEnabled = true;
+        // gameController.actionButtonEnabled = true;
         gameController.updateButtons();
     }
 
@@ -296,6 +317,7 @@ public class GameState {
 
     public void stealFromPlayer(Player player) {
         board.stealRandomResource(player);
+        gameController.enableButtons();
     }
 
     // endregion
@@ -307,7 +329,7 @@ public class GameState {
 
         phase = Phase.BUY;
 
-        GameController.actionButtonEnabled = true;
+        // GameController.actionButtonEnabled = true;
         gameController.disableTrade();
         gameController.updateButtons();
     }
@@ -319,10 +341,13 @@ public class GameState {
         board.transferResources(playerStockpile, Board.getStockpile(), ResourceType.WOOL, 1);
         board.transferResources(playerStockpile, Board.getStockpile(), ResourceType.WHEAT, 1);
 
-        currentPlayer.addDevelopmentCard(board.drawDevelopmentCard());
+        DevelopmentCard card = board.drawDevelopmentCard();
+        currentPlayer.addDevelopmentCard(card);
+        boughtDevelopmentCard = card;
 
         updatePlayerStats();
         gameController.updatePlayerCards();
+        GameState.checkWin();
     }
 
     public void buyRoad() {
@@ -358,13 +383,6 @@ public class GameState {
 
     // TODO: remember that development cards can be played at any time, including before the roll
     // TODO: only 1 development card can be played per turn; obtained development card only played on a different turn
-
-    public void useKnightCard() {
-        if (!currentPlayer.hasTypeOfDevelopmentCard(DevelopmentCardType.KNIGHT)) {
-            log("You do not have a knight card.");
-            return;
-        }
-    }
 
     public void useRoadBuildingCard() {
         if (!currentPlayer.hasTypeOfDevelopmentCard("Road Building")) {
@@ -457,9 +475,10 @@ public class GameState {
     }
 
     private void buildSettlement(Vertex vertex, ImageView image) {
-        log(currentPlayer + " placed a settlement.");
+        log(currentPlayer + " placed a settlement." + (phase == Phase.SETUP ? "\n" : ""));
 
         board.placeSettlement(vertex);
+        Board.updateLongestRoad();
         gameController.updatePlayerStats();
 
         image.setImage(currentPlayer.getImages().get("Settlement"));
@@ -487,12 +506,21 @@ public class GameState {
     }
 
     public void showRoads() {
-        HashSet<Edge> availableEdges = board.availableRoadPlacements();
+        HashSet<Edge> availableEdges;
+
+        // when placing second road
+        if (phase == Phase.SETUP && SETUP_backwards) {
+            availableEdges = board.availableRoadPlacements(currentPlayer.getStructures().get(1));
+        } else {
+            availableEdges = board.availableRoadPlacements();
+        }
+
         gameController.disableButtons();
 
         for (Edge e : roadMap.values()) {
             if (availableEdges.contains(e) && e.getRoad() == null) {
                 Rectangle rect = e.getRectangle();
+                rect.getStyleClass().add("hover");
 
                 rect.setOnMouseEntered(event -> {
                     rect.setFill(javafx.scene.paint.Color.GRAY);
@@ -503,8 +531,6 @@ public class GameState {
                 rect.setOnMouseClicked(event -> buildRoad(e, rect, false));
             }
         }
-
-        log(currentPlayer + ", place a road.");
     }
 
     private int numOfPlacedRoads = 0; // ONLY FOR ROAD BUILDING
@@ -530,7 +556,7 @@ public class GameState {
     }
 
     public void buildRoad(Edge edge, Rectangle rect, boolean isRoadBuilding) {
-        log(currentPlayer + " placed a road.");
+        log(currentPlayer + " placed a road." + (phase == Phase.SETUP ? "\n" : ""));
 
         rect.setFill(currentPlayer.getColorHex());
         board.placeRoad(edge);
@@ -553,6 +579,8 @@ public class GameState {
     public void disableBuildRoad() {
         for (Edge e : roadMap.values()) {
             Rectangle rect = e.getRectangle();
+            rect.getStyleClass().remove("hover");
+
             rect.setOnMouseEntered(Event::consume);
             rect.setOnMouseExited(Event::consume);
             rect.setOnMouseClicked(Event::consume);

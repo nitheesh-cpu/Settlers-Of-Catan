@@ -1,9 +1,11 @@
 package game.catan.simulation;
 
+import game.catan.graphics.GameController;
 import game.catan.simulation.buildings.Road;
 import game.catan.simulation.buildings.Structure;
 import game.catan.simulation.cards.DevelopmentCard;
 import game.catan.simulation.enums.DevelopmentCardType;
+import game.catan.simulation.enums.Phase;
 import game.catan.simulation.enums.ResourceType;
 import game.catan.simulation.enums.StructureType;
 import game.catan.simulation.helper.Edge;
@@ -35,64 +37,11 @@ public class Board {
     }
 
     // region Structure/Road Placement
-    public boolean placeSettlement(Location location) {
-        // TODO: complete
-
-        Tile tile = getTile(location);
-        if (tile == null) {
-            System.out.println("Invalid location");
-            return false;
-        }
-
-        Vertex vertex = tile.getVertex(location.getOrientation());
-
-        if (availableSettlementPlacements(GameState.isGameStart).contains(vertex)) {
-            System.out.println("Player placed a settlement");
-
-            Structure structure = new Structure(vertex, GameState.getCurrentPlayer());
-
-            tile.getVertex(location.getOrientation()).setStructure(structure);
-            structure.setVertex(tile.getVertex(location.getOrientation()));
-
-            GameState.getCurrentPlayer().addStructure(structure);
-
-            // update other player's longest road (accounts for when player breaks others roads with settlement placement)
-            Edge[] adjacentEdges = structure.getVertex().getAdjacentEdges();
-            HashSet<Player> updatedPlayersLongestRoad = new HashSet<>();
-            for (Edge edge : adjacentEdges) {
-                if (edge == null || edge.getRoad() == null || edge.getRoad().getOwner().equals(GameState.getCurrentPlayer())) continue;
-
-                Player player = edge.getRoad().getOwner();
-
-                if (updatedPlayersLongestRoad.contains(player)) continue;
-
-                player.longestRoad();
-                updatedPlayersLongestRoad.add(player);
-            }
-
-            System.out.println("Current tile vertices: " + Arrays.toString(tile.getVertices()));
-            Tile[] adjacentTiles = tile.getAdjacentTiles();
-
-            for (Tile t: adjacentTiles) {
-                if (t != null) {
-                    System.out.println(t + ": " + Arrays.toString(t.getVertices()));
-                } else {
-                    System.out.println("null");
-                }
-            }
-
-            System.out.println();
-
-            return true;
-        } else {
-            System.out.println("Vertex already has a structure");
-            return false;
-        }
-    }
 
     public void placeSettlement(Vertex vertex) {
         vertex.setStructure(new Structure(vertex, GameState.getCurrentPlayer()));
         GameState.getCurrentPlayer().addStructure(vertex.getStructure());
+        GameState.checkWin();
     }
 
     public void placeRoad(Edge edge) {
@@ -100,54 +49,12 @@ public class Board {
         GameState.getCurrentPlayer().addRoad(edge.getRoad());
     }
 
-    public boolean placeRoad(Location location) {
-        // TODO: complete
-
-        Tile tile = getTile(location);
-
-        if (tile == null) {
-            System.out.println("Invalid location");
-            return false;
-        }
-
-        Set<Edge> availableRoadPlacements = availableRoadPlacements();
-        Edge selectedEdge = tile.getEdge(location.getOrientation());
-
-        if (availableRoadPlacements.contains(selectedEdge)) {
-            System.out.println("Player placed a road");
-
-            Road road = new Road(selectedEdge, GameState.getCurrentPlayer());
-
-            tile.getEdge(location.getOrientation()).setRoad(road);
-            road.setEdge(tile.getEdge(location.getOrientation()));
-
-            GameState.getCurrentPlayer().addRoad(road);
-
-            System.out.println("Current tile edges: " + Arrays.toString(tile.getEdges()));
-            Tile[] adjacentTiles = tile.getAdjacentTiles();
-
-            for (Tile t : adjacentTiles) {
-                if (t != null) {
-                    System.out.println(t + ": " + Arrays.toString(t.getEdges()));
-                } else {
-                    System.out.println("null");
-                }
-            }
-
-            System.out.println();
-
-            return true;
-        } else {
-            System.out.println("Invalid location");
-            return false;
-        }
-    }
-
     public void upgradeSettlementToCity(Vertex vertex) {
         vertex.getStructure().upgradeToCity();
+        GameState.checkWin();
     }
 
-    public HashSet<Edge> availableRoadPlacements() {
+    public HashSet<Edge> availableRoadPlacements()  {
         Player currentPlayer = GameState.getCurrentPlayer();
         ArrayList<Structure> playerStructures = currentPlayer.getStructures();
         HashSet<Edge> availableEdges = new HashSet<>(); // available edges to place a road on
@@ -190,6 +97,22 @@ public class Board {
                         availableEdges.add(e);
                     }
                 }
+            }
+        }
+
+        return availableEdges;
+    }
+
+    // primarily for second settlement placement
+    public HashSet<Edge> availableRoadPlacements(Structure structure) {
+        HashSet<Edge> availableEdges = new HashSet<>();
+        Edge[] adjacentEdges = structure.getVertex().getAdjacentEdges();
+
+        for (Edge e: adjacentEdges) {
+            if (e == null) continue;
+            // if an adjacent edge to a structure doesn't have a road on it
+            if (e.getRoad() == null) {
+                availableEdges.add(e);
             }
         }
 
@@ -387,7 +310,7 @@ public class Board {
             message = message.substring(0, message.length() - 1);
         }
 
-        GameState.log(structure.getOwner() + " gained " + message + ".");
+        GameState.log(structure.getOwner() + " gained " + message + "."  + (GameState.getPhase() == Phase.SETUP ? "\n" : ""));
         GameState.updatePlayerStats();
     }
     // endregion
@@ -471,49 +394,6 @@ public class Board {
         return developmentCards.pop();
     }
 
-    // region Progress Cards
-    public boolean playMonopoly(ResourceType resource) {
-        Player currentPlayer = GameState.getCurrentPlayer();
-        int resourceCount = 0;
-
-        for (Player player: GameState.getPlayers()) {
-            if (player.equals(currentPlayer)) continue;
-
-            Stockpile stockpile = player.getStockpile();
-            int count = stockpile.getResourceCount(resource);
-
-            resourceCount += count;
-            stockpile.remove(resource, count);
-        }
-
-        currentPlayer.getStockpile().add(resource, resourceCount);
-        return true;
-    }
-
-    public boolean playYearOfPlenty(ResourceType resourceOne, ResourceType resourceTwo) {
-        if (boardStockpile.getResourceCount(resourceOne) < 1 || boardStockpile.getResourceCount(resourceTwo) < 1) {
-            System.out.println("Not enough resources to play year of plenty");
-            return false;
-        }
-
-        boardStockpile.remove(resourceOne, 1);
-        boardStockpile.remove(resourceTwo, 1);
-
-        GameState.getCurrentPlayer().getStockpile().add(resourceOne, 1);
-        GameState.getCurrentPlayer().getStockpile().add(resourceTwo, 1);
-        return true;
-    }
-
-    // need to fix if wrong location
-    public boolean playRoadBuilding(Location one, Location two) {
-        return placeRoad(one) && placeRoad(two);
-    }
-    // endregion
-
-//    public boolean playKnight(Location location) {
-//        if (!moveRobber(location)) return false;
-//    }
-
     // endregion
 
     // region Special Cards
@@ -535,12 +415,17 @@ public class Board {
             }
         }
 
-        if (previousPlayer == null || previousPlayer.equals(longestRoadHolder)) return;
+        if (longestRoadHolder == null || (previousPlayer != null && previousPlayer.equals(longestRoadHolder))) return;
 
         longestRoadHolder.addLongestRoad();
-        previousPlayer.removeLongestRoad();
+
+        if (previousPlayer != null) {
+            previousPlayer.removeLongestRoad();
+        }
 
         GameState.log(longestRoadHolder + " is the new longest road holder of road length " + longestRoadHolder.getLengthOfLongestRoad() + ".");
+        GameState.getGameController().updatePlayerCards();
+        GameState.checkWin();
     }
 
     public static void updateLargestArmy() {
@@ -560,12 +445,17 @@ public class Board {
             }
         }
 
-        if (largestArmyHolder.equals(previousPlayer)) return;
+        if (largestArmyHolder == null || (largestArmyHolder.equals(previousPlayer))) return;
 
         largestArmyHolder.addLargestArmy();
-        previousPlayer.removeLargestArmy();
+
+        if (previousPlayer != null) {
+            previousPlayer.removeLargestArmy();
+        }
 
         GameState.log(largestArmyHolder + " is the new largest army holder of army size " + largestArmyHolder.getNumOfKnights() + ".");
+        GameState.getGameController().updatePlayerCards();
+        GameState.checkWin();
     }
 
     // region Initialization

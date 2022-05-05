@@ -147,8 +147,10 @@ public class Trade {
             return;
         }
 
+        if (amount == 0) return;
+
         board.transferResources(player.getStockpile(), Board.getStockpile(), resource, amount);
-        GameState.log(player + " discarded " + amount + "x " + resource + ".");
+        // GameState.log(player + " discarded " + amount + "x " + resource + ".");
         GameState.getGameController().updatePlayerStats();
     }
 

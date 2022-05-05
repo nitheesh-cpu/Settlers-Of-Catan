@@ -57,7 +57,7 @@ public class maritimeTradeController implements Initializable {
         Trade.setTradingResource(resourceType);
         if (tradeType == TradeType.HARBOR) Trade.setHarbor(harbor);
 
-        GameController.actionButtonEnabled = false;
+        // GameController.actionButtonEnabled = false;
         HelloApplication.maritimeTradeStage.hide();
         HelloApplication.toggleMaritimeTradeMenu2();
     }

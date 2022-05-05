@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -21,6 +22,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -187,8 +189,11 @@ public class GameController {
     public static boolean actionButtonEnabled;
     public ImageView robberImage;
 
+    public static int seed;
+
     @FXML
     public void initialize() throws IOException, InterruptedException {
+        System.out.println("CALLED");
         Initialize.init(); //Initialize images
 
         Node[][] nodes = {{playerIcon1, inventoryTitle1, settlementCount1, cityCount1, roadCount1, stockpileCount1, inventoryFrame1, playerButton1, victoryPointCount1}, {playerIcon2, inventoryTitle2, settlementCount2, cityCount2, roadCount2, stockpileCount2, inventoryFrame2, playerButton2, victoryPointCount2}, {playerIcon3, inventoryTitle3, settlementCount3, cityCount3, roadCount3, stockpileCount3, inventoryFrame3, victoryPointCount3}};
@@ -200,7 +205,7 @@ public class GameController {
         // tileClickListeners = new ImageView[][]{{tileClick1, tileClick2, tileClick3}, {tileClick4, tileClick5, tileClick6, tileClick7}, {tileClick8, tileClick9, tileClick10, tileClick11, tileClick12}, {tileClick13, tileClick14, tileClick15, tileClick16}, {tileClick17, tileClick18, tileClick19}};
         tileClickListeners = new ImageView[][]{{null, null, null}, {null, null, null, null}, {null, null, null, null, null}, {null, null, null, null}, {null, null, null}};
 
-        gameState = new GameState(MenuController.players, 123, this); // need to pass in num of players and seed here
+        gameState = new GameState(MenuController.players, seed, this); // need to pass in num of players and seed here
         tileObjs = Board.getBoard();
 
         // Set polygons to corresponding tiles
@@ -290,13 +295,21 @@ public class GameController {
         updatePlayerCards();
         disableTrade();
         showDice();
-        actionButtonEnabled = false;
+        // actionButtonEnabled = false;
 
         createTileClickListeners();
+
+        actionButton.getStyleClass().add("hover");
+        endButton.getStyleClass().add("hover");
+        help.getStyleClass().add("hover");
+
+        actionButton.setDisable(true);
+        endButton.setDisable(true);
     }
 
     public void log(String message){
         actionLogText.appendText("> " + message + "\n");
+        actionLogText.setScrollTop(Double.MAX_VALUE);
     }
 
     private double xoffSet = 0;
@@ -464,7 +477,7 @@ public class GameController {
 
         rollDiceButton.setVisible(false);
         endButton.setDisable(true);
-        actionButtonEnabled = false;
+        actionButton.setDisable(true);
     }
 
     public void enableButtons() {
@@ -476,7 +489,8 @@ public class GameController {
 
         enablePlayerCards();
         endButton.setDisable(false);
-        actionButtonEnabled = true;
+        actionButton.setDisable(false);
+        // actionButtonEnabled = true;
     }
 
     public void showTrade() {
@@ -556,6 +570,26 @@ public class GameController {
         }
     }
 
+    public void showWinner(Player winner) {
+        Alert.AlertType type = Alert.AlertType.INFORMATION;
+        Alert alert = new Alert(type);
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initOwner(root.getScene().getWindow());
+        alert.getDialogPane().setHeaderText(winner + " has won the game!");
+
+        String message = "";
+        message += winner + " won the game with " + winner.getTotalVictoryPoints() + " victory points.\n\nSTATS:\n";
+        message += "Settlements: " + winner.getSettlementCount() + (winner.getSettlementCount() > 0 ? " (+" + winner.getSettlementCount() + ")" : "") + "\n";
+        message += "Cities: " + winner.getCityCount() + (winner.getCityCount() > 0 ? " (+" + winner.getCityCount() + ")" : "") + "\n";
+        message += "Victory Point Cards: " + (winner.getTotalVictoryPoints() - winner.getVictoryPoints()) + (winner.getTotalVictoryPoints() - winner.getVictoryPoints() > 0 ? " (+" + (winner.getTotalVictoryPoints() - winner.getVictoryPoints()) + ")" : "") + "\n";
+        message += "Has longest road: " + (Board.getLongestRoadHolder() != null && Board.getLongestRoadHolder().equals(winner)) + (Board.getLongestRoadHolder() != null && Board.getLongestRoadHolder().equals(winner) ? " (+2)" : "") + "\n";
+        message += "Has largest army: " + (Board.getLargestArmyHolder() != null && Board.getLargestArmyHolder().equals(winner)) + (Board.getLargestArmyHolder() != null && Board.getLargestArmyHolder().equals(winner) ? " (+2)" : "") + "\n";
+
+        alert.getDialogPane().setContentText(message);
+
+        alert.showAndWait();
+    }
+
     public void updatePlayerStats(){
         Text[][] stats = {{inventoryTitle1,settlementCount1,cityCount1,roadCount1,stockpileCount1, victoryPointCount1},{inventoryTitle2,settlementCount2,cityCount2,roadCount2,stockpileCount2, victoryPointCount2},{inventoryTitle3,settlementCount3,cityCount3,roadCount3,stockpileCount3, victoryPointCount3} };
         ImageView[] icons = {playerIcon1,playerIcon2,playerIcon3};
@@ -568,7 +602,7 @@ public class GameController {
         currentPlayerOres.setText(Integer.toString(GameState.getCurrentPlayer().getStockpile().getResourceCount(ResourceType.ORE)));
         currentPlayerIcon.setImage(GameState.getCurrentPlayer().getImages().get("Icon"));
         currentPlayerKnight.setText(Integer.toString(GameState.getCurrentPlayer().getNumOfKnights()));
-        currentPlayerPoints.setText(Integer.toString(GameState.getCurrentPlayer().getVictoryPoints()));
+        currentPlayerPoints.setText(Integer.toString(GameState.getCurrentPlayer().getTotalVictoryPoints()));
         currentPlayerSettlements.setText(Integer.toString(GameState.getCurrentPlayer().getSettlementCount()));
         currentPlayerRoads.setText(Integer.toString(GameState.getCurrentPlayer().getRoads().size()));
         currentPlayerCities.setText(Integer.toString(GameState.getCurrentPlayer().getCityCount()));
@@ -597,7 +631,7 @@ public class GameController {
         AtomicInteger count = new AtomicInteger();
 
         if (GameState.getCurrentPlayer().equals(Board.getLargestArmyHolder())) {
-            ImageView imageView = new ImageView(new Image(GameController.class.getResourceAsStream("game/catan/Cards/SpecialCards/LARGEST_ARMY.png")));
+            ImageView imageView = new ImageView(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/SpecialCards/LARGEST_ARMY.png")));
 
             if(HelloApplication.isSmall){
                 imageView.setPreserveRatio(true);
@@ -620,7 +654,7 @@ public class GameController {
         }
 
         if (GameState.getCurrentPlayer().equals(Board.getLongestRoadHolder())) {
-            ImageView imageView = new ImageView(new Image(GameController.class.getResourceAsStream("game/catan/Cards/SpecialCards/LONGEST_ROAD.png")));
+            ImageView imageView = new ImageView(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/SpecialCards/LONGEST_ROAD.png")));
 
             if(HelloApplication.isSmall){
                 imageView.setPreserveRatio(true);
@@ -647,11 +681,16 @@ public class GameController {
 
             switch (card.getType()) {
                 case KNIGHT -> {
-                    imageView.setImage(new Image(GameController.class.getResourceAsStream("game/catan/Cards/KnightCard/KNIGHT.png")));
+                    imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/KnightCard/KNIGHT.png")));
+
+                    if (GameState.usedDevelopmentCard || card.equals(GameState.boughtDevelopmentCard)) break;
+
                     imageView.getStyleClass().add("hover");
 
                     imageView.setOnMouseClicked(event -> {
                         log(GameState.getCurrentPlayer() + " played a Knight card.");
+
+                        GameState.usedDevelopmentCard = true;
 
                         GameState.getCurrentPlayer().addKnight();
                         GameState.getCurrentPlayer().getDevelopmentCards().remove(card);
@@ -662,28 +701,48 @@ public class GameController {
                 case PROGRESS -> {
                     switch (card.getName()) {
                         case "Monopoly" -> {
-                            imageView.setImage(new Image(GameController.class.getResourceAsStream("game/catan/Cards/ProgressCard/Monopoly.png")));
+                            imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/MONOPOLY.png")));
+
+                            if (GameState.usedDevelopmentCard || card.equals(GameState.boughtDevelopmentCard)) break;
+
+                            imageView.getStyleClass().add("hover");
+
                             imageView.setOnMouseClicked(event -> {
                                 gameState.useMonopolyCard();
+
+                                GameState.usedDevelopmentCard = true;
 
                                 GameState.getCurrentPlayer().getDevelopmentCards().remove(card);
                                 updatePlayerCards();
                             });
                         }
                         case "Road Building" -> {
-                            imageView.setImage(new Image(GameController.class.getResourceAsStream("game/catan/Cards/ProgressCard/RoadBuilding.png")));
+                            imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/ROAD_BUILDING.png")));
+
+                            if (GameState.usedDevelopmentCard || card.equals(GameState.boughtDevelopmentCard)) break;
+
+                            imageView.getStyleClass().add("hover");
+
                             imageView.setOnMouseClicked(event -> {
                                 gameState.useRoadBuildingCard();
 
+                                GameState.usedDevelopmentCard = true;
+
                                 GameState.getCurrentPlayer().removeDevelopmentCard(card);
                                 updatePlayerCards();
-                                disableButtons();
                             });
                         }
                         case "Year of Plenty" -> {
-                            imageView.setImage(new Image(GameController.class.getResourceAsStream("game/catan/Cards/ProgressCard/YearOfPlenty.png")));
+                            imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/YEAR_OF_PLENTY.png")));
+
+                            if (GameState.usedDevelopmentCard || card.equals(GameState.boughtDevelopmentCard)) break;
+
+                            imageView.getStyleClass().add("hover");
+
                             imageView.setOnMouseClicked(event -> {
                                 log("Played a Year of Plenty Card");
+                                GameState.usedDevelopmentCard = true;
+
                                 gameState.useYearOfPlentyCard();
 
                                 GameState.getCurrentPlayer().removeDevelopmentCard(card);
@@ -691,12 +750,10 @@ public class GameController {
                             });
                         }
                     }
-
-                    imageView.getStyleClass().add("hover");
                 }
                 case VICTORY_POINT -> {
                     String name = card.getName().toUpperCase().replaceAll(" ", "_");
-                    imageView.setImage(new Image(GameController.class.getResourceAsStream("game/catan/Cards/VictoryPointCard/" + name + ".png")));
+                    imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/VictoryPointCards/" + name + ".png")));
                 }
             }
 
@@ -743,7 +800,7 @@ public class GameController {
     @FXML
     void actionButtonClicked(MouseEvent event) {
         System.out.println("Action button clicked");
-        if (!actionButtonEnabled) return;
+        // if (!actionButtonEnabled) return;
 
         switch (GameState.getPhase()) {
             case TRADE -> HelloApplication.toggleMaritimeTradeMenu();
