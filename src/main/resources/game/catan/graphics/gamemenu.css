@@ -43,6 +43,6 @@
     -fx-font-family: "Montserrat";
 }
 
-.hover:hover {
+.hover {
     -fx-cursor: hand;
 }
