@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox fx:id="root" prefHeight="750.0" prefWidth="1233.0" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
+<VBox prefHeight="750.0" prefWidth="1233.0" style="-fx-border-style: solid; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
     <children>
         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1233.0">
             <children>
@@ -184,9 +191,9 @@
                         </Pane>
                         <Pane fx:id="settlementPane" prefHeight="762.0" prefWidth="692.0">
                             <children>
-                                <Text fx:id="turnTitle" layoutX="420.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1's Turn">
+                                <Text fx:id="turnTitle" layoutX="419.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1's Turn">
                                     <font>
-                                        <Font name="System Bold Italic" size="37.0" />
+                                        <Font name="System Bold" size="38.0" />
                                     </font>
                                 </Text>
                         <Pane fx:id="harborPane" prefHeight="762.0" prefWidth="692.0">
@@ -368,17 +375,17 @@
             <children>
                 <Pane maxHeight="5.0" minHeight="5.0" prefHeight="5.0" prefWidth="1250.0" style="-fx-border-radius: 0 0 18 18; -fx-background-radius: 0 0 18 18; -fx-background-color: FFFFFF;">
                     <children>
-                        <ImageView fx:id="actionButton" fitHeight="83.52" fitWidth="90" layoutX="1032.0" layoutY="-93.0" onMouseClicked="#actionButtonClicked">
+                        <ImageView fx:id="actionButton" fitHeight="83.52" fitWidth="90" layoutX="1032.0" layoutY="-90.0" onMouseClicked="#actionButtonClicked">
                             <image>
                                 <Image url="@../ButtonResources/Build.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="endButton" fitHeight="83.52" fitWidth="90" layoutX="1131.0" layoutY="-93.0" onMouseClicked="#endButtonClicked">
+                        <ImageView fx:id="endButton" fitHeight="83.52" fitWidth="90" layoutX="1131.0" layoutY="-90.0" onMouseClicked="#endButtonClicked">
                             <image>
                                 <Image url="@../ButtonResources/EndTurn.png" />
                             </image>
                         </ImageView>
-                        <ImageView fx:id="help" fitHeight="31.0" fitWidth="32.0" layoutX="993.0" layoutY="-37.0" onMouseClicked="#helpClicked" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="help" fitHeight="31.0" fitWidth="32.0" layoutX="993.0" layoutY="-34.0" onMouseClicked="#helpClicked" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../ButtonResources/Help.png" />
                             </image>

@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="620.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.HelpController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="620.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.HelpController">
    <children>
       <HBox prefHeight="654.0" prefWidth="620.0" style="-fx-background-color: transparent;">
          <children>
@@ -48,57 +48,57 @@
                                              <content>
                                                 <Pane prefHeight="172.0" prefWidth="1093.0">
                                                    <children>
-                                                      <ImageView fitHeight="166.0" fitWidth="192.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="knight" fitHeight="166.0" fitWidth="192.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../Cards/KnightCard/KNIGHT.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fitHeight="166.0" fitWidth="192.0" layoutX="104.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="monopoly" fitHeight="166.0" fitWidth="192.0" layoutX="104.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../Cards/ProgressCards/MONOPOLY.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fitHeight="166.0" fitWidth="192.0" layoutX="203.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="roadBuilding" fitHeight="166.0" fitWidth="192.0" layoutX="203.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../Cards/ProgressCards/ROAD_BUILDING.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fitHeight="166.0" fitWidth="192.0" layoutX="301.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="yearOfPlenty" fitHeight="166.0" fitWidth="192.0" layoutX="301.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../Cards/ProgressCards/YEAR_OF_PLENTY.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fitHeight="166.0" fitWidth="192.0" layoutX="399.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="largestArmy" fitHeight="166.0" fitWidth="192.0" layoutX="399.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../Cards/SpecialCards/LARGEST_ARMY.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fitHeight="166.0" fitWidth="192.0" layoutX="498.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="longestRoad" fitHeight="166.0" fitWidth="192.0" layoutX="498.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../Cards/SpecialCards/LONGEST_ROAD.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fitHeight="166.0" fitWidth="192.0" layoutX="597.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="chapel" fitHeight="166.0" fitWidth="192.0" layoutX="597.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../Cards/VictoryPointCards/CHAPEL.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fitHeight="166.0" fitWidth="192.0" layoutX="695.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="greatHall" fitHeight="166.0" fitWidth="192.0" layoutX="695.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../Cards/VictoryPointCards/GREAT_HALL.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fitHeight="166.0" fitWidth="192.0" layoutX="794.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="library" fitHeight="166.0" fitWidth="192.0" layoutX="794.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../Cards/VictoryPointCards/LIBRARY.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fitHeight="166.0" fitWidth="192.0" layoutX="893.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="market" fitHeight="166.0" fitWidth="192.0" layoutX="893.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../Cards/VictoryPointCards/MARKET.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fitHeight="166.0" fitWidth="192.0" layoutX="991.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fx:id="university" fitHeight="166.0" fitWidth="192.0" layoutX="991.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../Cards/VictoryPointCards/UNIVERSITY.png" />
                                                          </image>
@@ -167,7 +167,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Button layoutX="233.0" layoutY="256.0" mnemonicParsing="false" onAction="#download" prefHeight="59.0" prefWidth="155.0" style="-fx-background-color: FFFFFF; -fx-border-style: solid; -fx-border-width: 3;" text="Download PDF">
+                                    <Button fx:id="download" layoutX="233.0" layoutY="256.0" mnemonicParsing="false" onAction="#download" prefHeight="59.0" prefWidth="155.0" style="-fx-background-color: FFFFFF; -fx-border-style: solid; -fx-border-width: 3;" text="Download PDF">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
