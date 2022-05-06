@@ -15,23 +15,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+
 <VBox fx:id="root" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.GameController">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="811.0" prefWidth="1250.0">
          <children>
             <Pane prefHeight="792.0" prefWidth="256.0" style="-fx-background-color: FFFFFF;">
                <children>
-                  <ScrollPane fx:id="cardsScrollPane" layoutX="8.0" layoutY="368.0" prefHeight="285.0" prefWidth="245.0" style="-fx-background-color: FFFFFF;">
+                  <ScrollPane fx:id="cardsScrollPane" layoutX="8.0" layoutY="373.0" prefHeight="285.0" prefWidth="245.0" style="-fx-background-color: FFFFFF;">
                      <content>
                         <Pane fx:id="cardsPane" prefHeight="264.0" prefWidth="2240.0" />
                      </content>
                   </ScrollPane>
-                  <Text fx:id="actionLogTitle" layoutX="12.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action Log" wrappingWidth="200.0">
+                  <Text fx:id="actionLogTitle" layoutX="12.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action Log" wrappingWidth="200.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Text fx:id="cardsTitle" layoutX="10.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cards" wrappingWidth="200.0">
+                  <Text fx:id="cardsTitle" layoutX="10.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cards" wrappingWidth="200.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -41,8 +42,9 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <TextArea fx:id="actionLogText" editable="false" layoutX="8.0" layoutY="47.0" prefHeight="276.0" prefWidth="244.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
-               </children></Pane>
+                  <TextArea fx:id="actionLogText" editable="false" layoutX="8.0" layoutY="47.0" prefHeight="285.0" prefWidth="244.0" style="-fx-background-color: FFFFFF;" wrapText="true" />
+               </children>
+            </Pane>
             <Pane style="-fx-background-color: FFFFFF;" HBox.hgrow="NEVER">
                <children>
                   <Circle centerX="375.0" centerY="400.0" fill="DODGERBLUE" layoutX="-4.0" layoutY="-2.0" mouseTransparent="true" radius="344.0" stroke="BLACK" strokeType="INSIDE">
@@ -187,7 +189,7 @@
                            </image>
                         </ImageView>
 
-                     </children>
+                                                   </children>
                   </Pane>
                   <Pane fx:id="settlementPane" prefHeight="800.0" prefWidth="750.0">
                      <children>
@@ -200,7 +202,8 @@
                                           <Font name="System Bold" size="44.0" />
                                        </font>
                                     </Text>
-                                 </children></Pane>
+                                 </children>
+                              </Pane>
                               <ImageView fx:id="tradePort1" fitHeight="40.0" fitWidth="55.0" layoutX="348.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="tradePort2" fitHeight="40.0" fitWidth="55.0" layoutX="538.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="tradePort3" fitHeight="40.0" fitWidth="55.0" layoutX="633.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true" />

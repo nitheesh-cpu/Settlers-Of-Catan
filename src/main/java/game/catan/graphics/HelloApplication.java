@@ -11,6 +11,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -272,8 +273,9 @@ public class HelloApplication extends Application {
         gameStage = game;
         VBox root = fxmlLoader.getRoot();
         letterbox(scene, root);
-
+        game.setFullScreen(true);
     }
+
 
     public static void showLarge() throws IOException {
         stage.hide();
@@ -335,10 +337,6 @@ public class HelloApplication extends Application {
             scale.setPivotX(0);
             scale.setPivotY(0);
             scene.getRoot().getTransforms().setAll(scale);
-
-            contentPane.setPrefWidth (newWidth  / scaleFactor);
-            contentPane.setPrefHeight(newHeight / scaleFactor);
-
         }
     }
 }
