@@ -633,47 +633,24 @@ public class GameController {
         if (GameState.getCurrentPlayer().equals(Board.getLargestArmyHolder())) {
             ImageView imageView = new ImageView(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/SpecialCards/LARGEST_ARMY.png")));
 
-            if(HelloApplication.isSmall){
-                imageView.setPreserveRatio(true);
-                imageView.setFitHeight(250);
-                imageView.setX(2+(150*count.get()));
-                imageView.setY(2);
-                cardsPane.getChildren().add(imageView);
-                count.getAndIncrement();
-                System.out.println("Small");
-            }
-            else{
-                imageView.setPreserveRatio(true);
-                imageView.setFitHeight(260);
-                imageView.setX(2+(150*count.get()));
-                imageView.setY(3);
-                cardsPane.getChildren().add(imageView);
-                count.getAndIncrement();
-                System.out.println("Big");
-            }
+            imageView.setPreserveRatio(true);
+            imageView.setFitHeight(260);
+            imageView.setX(2+(150*count.get()));
+            imageView.setY(3);
+            cardsPane.getChildren().add(imageView);
+            count.getAndIncrement();
+            System.out.println("Big");
         }
 
         if (GameState.getCurrentPlayer().equals(Board.getLongestRoadHolder())) {
             ImageView imageView = new ImageView(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/SpecialCards/LONGEST_ROAD.png")));
 
-            if(HelloApplication.isSmall){
-                imageView.setPreserveRatio(true);
-                imageView.setFitHeight(250);
-                imageView.setX(2+(150*count.get()));
-                imageView.setY(2);
-                cardsPane.getChildren().add(imageView);
-                count.getAndIncrement();
-                System.out.println("Small");
-            }
-            else{
-                imageView.setPreserveRatio(true);
-                imageView.setFitHeight(260);
-                imageView.setX(2+(150*count.get()));
-                imageView.setY(3);
-                cardsPane.getChildren().add(imageView);
-                count.getAndIncrement();
-                System.out.println("Big");
-            }
+            imageView.setPreserveRatio(true);
+            imageView.setFitHeight(260);
+            imageView.setX(2+(150*count.get()));
+            imageView.setY(3);
+            cardsPane.getChildren().add(imageView);
+            count.getAndIncrement();
         }
 
         GameState.getCurrentPlayer().getDevelopmentCards().forEach(card -> {
@@ -757,24 +734,13 @@ public class GameController {
                 }
             }
 
-            if(HelloApplication.isSmall){
-                imageView.setPreserveRatio(true);
-                imageView.setFitHeight(250);
-                imageView.setX(2+(150*count.get()));
-                imageView.setY(2);
-                cardsPane.getChildren().add(imageView);
-                count.getAndIncrement();
-                System.out.println("Small");
-            }
-            else{
-                imageView.setPreserveRatio(true);
-                imageView.setFitHeight(260);
-                imageView.setX(2+(150*count.get()));
-                imageView.setY(3);
-                cardsPane.getChildren().add(imageView);
-                count.getAndIncrement();
-                System.out.println("Big");
-            }
+
+            imageView.setPreserveRatio(true);
+            imageView.setFitHeight(260);
+            imageView.setX(2+(150*count.get()));
+            imageView.setY(3);
+            cardsPane.getChildren().add(imageView);
+            count.getAndIncrement();
         });
     }
 

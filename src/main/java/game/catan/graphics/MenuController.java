@@ -109,10 +109,10 @@ public class MenuController implements Initializable {
             }
 
             System.out.println("Seed: " + seed);
-            GameController.seed = seed;
+//            GameController.seed = seed;
 
             if(size == 0) {
-                HelloApplication.showXSmall();
+                HelloApplication.showSmall();
             }else if(size == 1) {
                 HelloApplication.showLarge();
             }

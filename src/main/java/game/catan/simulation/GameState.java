@@ -72,8 +72,8 @@ public class GameState {
         if (currentPlayer.getTotalVictoryPoints() >= 10) {
             gameController.disableButtons();
             gameController.log(currentPlayer + " has won the game!");
-            gameController.showWinner(currentPlayer);
-            gameController.disableButtons();
+//            gameController.showWinner(currentPlayer);
+//            gameController.disableButtons();
             return true;
         }
 
@@ -313,6 +313,7 @@ public class GameState {
             log("No players have more than 7 resources.");
             gameController.showAvailableRobberTiles();
         }
+        gameController.updatePlayerStats();
     }
 
     public void stealFromPlayer(Player player) {
