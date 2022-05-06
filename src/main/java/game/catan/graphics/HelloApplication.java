@@ -273,7 +273,7 @@ public class HelloApplication extends Application {
         gameStage = game;
         VBox root = fxmlLoader.getRoot();
         letterbox(scene, root);
-        game.setFullScreen(true);
+        // game.setFullScreen(true);
     }
 
 
