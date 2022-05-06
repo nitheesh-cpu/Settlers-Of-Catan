@@ -72,8 +72,8 @@ public class GameState {
         if (currentPlayer.getTotalVictoryPoints() >= 10) {
             gameController.disableButtons();
             gameController.log(currentPlayer + " has won the game!");
-            gameController.showWinner(currentPlayer);
-            gameController.disableButtons();
+//            gameController.showWinner(currentPlayer);
+//            gameController.disableButtons();
             return true;
         }
 
@@ -274,7 +274,6 @@ public class GameState {
     // endregion
 
     public void resourceProductionPhase(int roll) {
-
         if (roll == 7) {
             phase = Phase.TRADE;
             log("Rolled a 7. Activated robber.");
@@ -310,9 +309,10 @@ public class GameState {
         if (playerMap.size() > 0) {
             gameController.showDiscard(playerMap);
         } else {
-            log("No players have more than 7 resources.");
+            log("No players have more than 7 resources. No one discards.");
             gameController.showAvailableRobberTiles();
         }
+        gameController.updatePlayerStats();
     }
 
     public void stealFromPlayer(Player player) {
@@ -345,36 +345,51 @@ public class GameState {
         currentPlayer.addDevelopmentCard(card);
         boughtDevelopmentCard = card;
 
+        log(currentPlayer + " obtain a " + card.getType() + " card.");
+
+        if (card.getType() != DevelopmentCardType.VICTORY_POINT) {
+            log(card.getName() + " card will only be playable on the next turn.");
+        }
+
         updatePlayerStats();
         gameController.updatePlayerCards();
         GameState.checkWin();
     }
 
     public void buyRoad() {
+        log("Hover over an available edge and place a road.");
+
         Stockpile playerStockpile = currentPlayer.getStockpile();
 
         board.transferResources(playerStockpile, Board.getStockpile(), ResourceType.BRICK, 1);
         board.transferResources(playerStockpile, Board.getStockpile(), ResourceType.WOOD, 1);
+        gameController.updatePlayerStats();
 
         showRoads();
     }
 
     public void buySettlement() {
+        log("Hover over an available vertex and place a settlement.");
+
         Stockpile playerStockpile = currentPlayer.getStockpile();
 
         board.transferResources(playerStockpile, Board.getStockpile(), ResourceType.BRICK, 1);
         board.transferResources(playerStockpile, Board.getStockpile(), ResourceType.WOOL, 1);
         board.transferResources(playerStockpile, Board.getStockpile(), ResourceType.WOOD, 1);
         board.transferResources(playerStockpile, Board.getStockpile(), ResourceType.WHEAT, 1);
+        gameController.updatePlayerStats();
 
         showSettlements();
     }
 
     public void buyCity() {
+        log("Hover over an existing settlement to upgrade to a city.");
+
         Stockpile playerStockpile = currentPlayer.getStockpile();
 
         board.transferResources(playerStockpile, Board.getStockpile(), ResourceType.ORE, 3);
         board.transferResources(playerStockpile, Board.getStockpile(), ResourceType.WHEAT, 2);
+        gameController.updatePlayerStats();
 
         showSettlementToCityUpgrades();
     }
@@ -391,6 +406,7 @@ public class GameState {
         }
 
         log(currentPlayer + " played a Road Building card.");
+        log("Place two roads.");
         showRoads(true);
     }
 
@@ -401,6 +417,7 @@ public class GameState {
         }
 
         log(currentPlayer + " played a Year of Plenty card.");
+        log("Choose two resources to obtain.");
         HelloApplication.showYearOfPlentyMenu();
     }
 
@@ -411,6 +428,7 @@ public class GameState {
         }
 
         log(currentPlayer + " played a Monopoly card.");
+        log("Choose a resource to steal from all players.");
         HelloApplication.showMonopolyMenu();
     }
 

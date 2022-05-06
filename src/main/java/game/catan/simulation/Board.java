@@ -69,7 +69,6 @@ public class Board {
         for (Structure s: playerStructures) {
             Vertex vertex = s.getVertex();
             Edge[] adjacentEdges = vertex.getAdjacentEdges();
-            System.out.println(Arrays.toString(adjacentEdges));
 
             for (Edge e: adjacentEdges) {
                 if (e == null) continue;
@@ -156,7 +155,6 @@ public class Board {
         }
 
         // includes all vertices that are unoccupied and do not violate the distance rule
-        System.out.println("Excluded vertices: " + excludedVertices);
         if (startOfGame) {
             for (Vertex v: allVertices) {
                 if (excludedVertices.contains(v)) continue;
@@ -403,6 +401,8 @@ public class Board {
 
         for (Player player: GameState.getPlayers()) {
             int roadLength = player.longestRoad();
+            GameState.log(player + " has a longest road of " + roadLength + ".");
+
             if (roadLength < 5) continue;
 
             if (longestRoadHolder == null) {
@@ -413,6 +413,16 @@ public class Board {
             if (roadLength > longestRoadHolder.longestRoad()) {
                 longestRoadHolder = player;
             }
+        }
+
+        // if the longest road holder no longer has a road length of 5
+        if (previousPlayer != null && previousPlayer.equals(longestRoadHolder) && longestRoadHolder.getLengthOfLongestRoad() < 5) {
+            GameState.log(longestRoadHolder + " no longer has a road length of 5. Longest road card has been removed.");
+            longestRoadHolder.removeLongestRoad();
+            GameState.getGameController().updatePlayerStats();
+            GameState.updatePlayerStats();
+            longestRoadHolder = null;
+            return;
         }
 
         if (longestRoadHolder == null || (previousPlayer != null && previousPlayer.equals(longestRoadHolder))) return;
