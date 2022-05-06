@@ -638,8 +638,8 @@ public class GameController {
             imageView.setX(2+(150*count.get()));
             imageView.setY(3);
             cardsPane.getChildren().add(imageView);
+            Tooltip.install(imageView, new Tooltip("You are the largest army! \nThis card is worth 2 victory points."));
             count.getAndIncrement();
-            System.out.println("Big");
         }
 
         if (GameState.getCurrentPlayer().equals(Board.getLongestRoadHolder())) {
@@ -650,6 +650,7 @@ public class GameController {
             imageView.setX(2+(150*count.get()));
             imageView.setY(3);
             cardsPane.getChildren().add(imageView);
+            Tooltip.install(imageView, new Tooltip("You have the longest road! \nThis card is worth 2 victory points."));
             count.getAndIncrement();
         }
 
@@ -659,7 +660,9 @@ public class GameController {
             switch (card.getType()) {
                 case KNIGHT -> {
                     imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/KnightCard/KNIGHT.png")));
-
+                    Tooltip.install(imageView, new Tooltip("Knight Card: Play this card to move the robber \n" +
+                            "and steal one resource from the owner of \n" +
+                            "the settlement adjacent to the robber's new hex."));
                     if (GameState.usedDevelopmentCard || card.equals(GameState.boughtDevelopmentCard)) break;
 
                     imageView.getStyleClass().add("hover");
@@ -679,7 +682,8 @@ public class GameController {
                     switch (card.getName()) {
                         case "Monopoly" -> {
                             imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/MONOPOLY.png")));
-
+                            Tooltip.install(imageView, new Tooltip("Monopoly Card: Play this card to \n" +
+                                    "steal all of one type of resource from every player \n"));
                             if (GameState.usedDevelopmentCard || card.equals(GameState.boughtDevelopmentCard)) break;
 
                             imageView.getStyleClass().add("hover");
@@ -695,7 +699,8 @@ public class GameController {
                         }
                         case "Road Building" -> {
                             imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/ROAD_BUILDING.png")));
-
+                            Tooltip.install(imageView, new Tooltip("Road Building Card: Play this card to \n" +
+                                    "build two roads for free."));
                             if (GameState.usedDevelopmentCard || card.equals(GameState.boughtDevelopmentCard)) break;
 
                             imageView.getStyleClass().add("hover");
@@ -711,7 +716,8 @@ public class GameController {
                         }
                         case "Year of Plenty" -> {
                             imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/YEAR_OF_PLENTY.png")));
-
+                            Tooltip.install(imageView, new Tooltip("Year of Plenty Card: Play this card to \n" +
+                                    "gain two resources of your choice."));
                             if (GameState.usedDevelopmentCard || card.equals(GameState.boughtDevelopmentCard)) break;
 
                             imageView.getStyleClass().add("hover");
@@ -731,6 +737,7 @@ public class GameController {
                 case VICTORY_POINT -> {
                     String name = card.getName().toUpperCase().replaceAll(" ", "_");
                     imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/VictoryPointCards/" + name + ".png")));
+                    Tooltip.install(imageView, new Tooltip("Victory Point Card: This card is worth 1 victory point."));
                 }
             }
 
