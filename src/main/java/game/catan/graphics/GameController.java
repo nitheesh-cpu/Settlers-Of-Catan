@@ -456,19 +456,7 @@ public class GameController {
     public void disableSteal(){
         GameState.isStealing = false;
 
-        if (GameState.getPhase() == Phase.TRADE) {
-            showTrade();
-        } else {
-            enableButtons();
-
-            playerButton1.getStyleClass().remove("hover");
-            playerButton2.getStyleClass().remove("hover");
-            playerButton3.getStyleClass().remove("hover");
-
-            playerButton1.setVisible(false);
-            playerButton2.setVisible(false);
-            playerButton3.setVisible(false);
-        }
+        enableButtons();
     }
 
     public void disableButtons() {
