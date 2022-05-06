@@ -58,7 +58,7 @@ public class HelloApplication extends Application {
         stage.show();
 
         FXMLLoader fxmlLoader2 = new FXMLLoader(HelloApplication.class.getResource("buildMenu.fxml"));
-        Scene scene2 = new Scene(fxmlLoader2.load(), 500, 300);
+        Scene scene2 = new Scene(fxmlLoader2.load(), 500, 271);
         Stage buildStage = new Stage();
         scene2.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
         buildStage.initStyle(StageStyle.TRANSPARENT);
@@ -82,7 +82,7 @@ public class HelloApplication extends Application {
         domesticTradeStage = tradeStage;
 
         FXMLLoader fxmlLoader4 = new FXMLLoader(HelloApplication.class.getResource("maritimeTradeMenu.fxml"));
-        Scene scene4 = new Scene(fxmlLoader4.load(), 635, 340);
+        Scene scene4 = new Scene(fxmlLoader4.load(), 582, 305);
         Stage maritimeStage = new Stage();
         scene4.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
         maritimeStage.initStyle(StageStyle.TRANSPARENT);
@@ -94,7 +94,7 @@ public class HelloApplication extends Application {
         maritimeTradeStage = maritimeStage;
 
         FXMLLoader fxmlLoader5 = new FXMLLoader(HelloApplication.class.getResource("maritimeTradeMenu2.fxml"));
-        Scene scene5 = new Scene(fxmlLoader5.load(), 635, 340);
+        Scene scene5 = new Scene(fxmlLoader5.load(), 582, 305);
         Stage maritimeStage2 = new Stage();
         scene5.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
         maritimeStage2.initStyle(StageStyle.TRANSPARENT);
@@ -106,7 +106,7 @@ public class HelloApplication extends Application {
         maritimeTradeStage2 = maritimeStage2;
 
         FXMLLoader fxmlLoader6 = new FXMLLoader(HelloApplication.class.getResource("confirmTrade.fxml"));
-        Scene scene6 = new Scene(fxmlLoader6.load(), 624, 475);
+        Scene scene6 = new Scene(fxmlLoader6.load(), 624, 429);
         Stage confirmStage = new Stage();
         scene6.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
         confirmStage.initStyle(StageStyle.TRANSPARENT);

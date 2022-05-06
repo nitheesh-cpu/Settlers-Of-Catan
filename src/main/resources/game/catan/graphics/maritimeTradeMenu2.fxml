@@ -8,68 +8,68 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="641.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.maritimeTradeController2">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="582.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.maritimeTradeController2">
     <children>
-        <HBox prefHeight="409.0" prefWidth="600.0" style="-fx-background-color: FFFFFF; -fx-border-style: solid; -fx-border-width: 3; -fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;">
+        <HBox prefHeight="347.0" prefWidth="618.0" style="-fx-background-color: FFFFFF; -fx-border-style: solid; -fx-border-width: 3; -fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;">
             <children>
                 <Pane fx:id="root" onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="340.0" prefWidth="635.0">
                     <children>
-                        <Text layoutX="166.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Resource to Obtain" textAlignment="CENTER" wrappingWidth="302.96875">
+                        <Text layoutX="136.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Resource to Obtain" textAlignment="CENTER" wrappingWidth="302.96875">
                             <font>
                                 <Font name="System Bold" size="40.0" />
                             </font>
                         </Text>
-                        <ImageView fitHeight="210.0" fitWidth="75.0" layoutX="57.0" layoutY="209.0" onMouseClicked="#brickClicked" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                        <ImageView fitHeight="210.0" fitWidth="75.0" layoutX="31.0" layoutY="189.0" onMouseClicked="#brickClicked" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                             <image>
                                 <Image url="@../ButtonResources/Bricks.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="210.0" fitWidth="75.0" layoutX="170.0" layoutY="209.0" onMouseClicked="#woolClicked" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                        <ImageView fitHeight="210.0" fitWidth="75.0" layoutX="140.5" layoutY="189.0" onMouseClicked="#woolClicked" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                             <image>
                                 <Image url="@../ButtonResources/Wool.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="210.0" fitWidth="75.0" layoutX="280.0" layoutY="209.0" onMouseClicked="#oreClicked" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                        <ImageView fitHeight="210.0" fitWidth="75.0" layoutX="250.0" layoutY="189.0" onMouseClicked="#oreClicked" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                             <image>
                                 <Image url="@../ButtonResources/Ore.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="210.0" fitWidth="75.0" layoutX="390.0" layoutY="209.0" onMouseClicked="#wheatClicked" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                        <ImageView fitHeight="210.0" fitWidth="75.0" layoutX="359.5" layoutY="189.0" onMouseClicked="#wheatClicked" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                             <image>
                                 <Image url="@../ButtonResources/Wheat.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="210.0" fitWidth="75.0" layoutX="500.0" layoutY="209.0" onMouseClicked="#lumberClicked" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                        <ImageView fitHeight="210.0" fitWidth="75.0" layoutX="469.0" layoutY="189.0" onMouseClicked="#lumberClicked" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                             <image>
                                 <Image url="@../ButtonResources/Lumber.jpg" />
                             </image>
                         </ImageView>
-                        <Text id="text" layoutX="72.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bricks" textAlignment="CENTER">
+                        <Text id="text" layoutX="43.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bricks" textAlignment="CENTER">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Text>
-                        <Text id="text" layoutX="184.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wool" textAlignment="CENTER">
+                        <Text id="text" layoutX="155.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wool" textAlignment="CENTER">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Text>
-                        <Text id="text" layoutX="301.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ore" textAlignment="CENTER">
+                        <Text id="text" layoutX="271.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ore" textAlignment="CENTER">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Text>
-                        <Text id="text" layoutX="399.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wheat" textAlignment="CENTER">
+                        <Text id="text" layoutX="368.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wheat" textAlignment="CENTER">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Text>
-                        <Text id="text" layoutX="501.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lumber" textAlignment="CENTER" wrappingWidth="73.412109375">
+                        <Text id="text" layoutX="470.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lumber" textAlignment="CENTER" wrappingWidth="73.412109375">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Text>
-                  <ImageView fx:id="close" fitHeight="27.0" fitWidth="32.0" layoutX="575.0" layoutY="21.0" onMouseClicked="#menuCloseClick" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                  <ImageView fx:id="close" fitHeight="27.0" fitWidth="32.0" layoutX="532.0" layoutY="15.0" onMouseClicked="#menuCloseClick" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                      <image>
                         <Image url="@../ButtonResources/close-black.png" />
                      </image>

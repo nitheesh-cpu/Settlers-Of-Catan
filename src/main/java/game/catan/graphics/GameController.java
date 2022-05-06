@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -305,6 +306,14 @@ public class GameController {
 
         actionButton.setDisable(true);
         endButton.setDisable(true);
+
+        Tooltip.install(playerButton1, new Tooltip("Initiate a domestic trade with this player"));
+        Tooltip.install(playerButton2, new Tooltip("Initiate a domestic trade with this player"));
+        Tooltip.install(playerButton3, new Tooltip("Initiate a domestic trade with this player"));
+        Tooltip.install(help, new Tooltip("View the rules"));
+        Tooltip.install(actionButton, new Tooltip("Perform an action"));
+        Tooltip.install(endButton, new Tooltip("End your turn"));
+        Tooltip.install(rollDiceButton, new Tooltip("Roll the dice"));
     }
 
     public void log(String message){

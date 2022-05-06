@@ -8,33 +8,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.buildMenuController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="500.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.buildMenuController">
    <children>
       <HBox style="-fx-background-color: FFFFFF; -fx-background-radius: 18 18 18 18; -fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 18 18 18 18;">
          <children>
             <Pane fx:id="root" onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="310.0" prefWidth="513.0">
                <children>
-                  <Text id="bold" fx:id="title" layoutX="140.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Item To Buy" textAlignment="CENTER" wrappingWidth="217.96875">
+                  <Text id="bold" fx:id="title" layoutX="138.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Item To Buy" textAlignment="CENTER" wrappingWidth="217.96875">
                      <font>
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="roadButton" fitHeight="120.0" fitWidth="83.0" layoutX="25.0" layoutY="167.0" onMouseClicked="#buyRoad" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                  <ImageView fx:id="roadButton" fitHeight="99.0" fitWidth="72.0" layoutX="53.0" layoutY="156.0" onMouseClicked="#buyRoad" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                      <image>
                         <Image url="@../ButtonResources/Road.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="settlementButton" fitHeight="113.0" fitWidth="111.0" layoutX="140.0" layoutY="167.0" onMouseClicked="#buySettlement" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                  <ImageView fx:id="settlementButton" fitHeight="98.0" fitWidth="92.0" layoutX="147.0" layoutY="156.0" onMouseClicked="#buySettlement" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                      <image>
                         <Image url="@../ButtonResources/Settlement.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="cityButton" fitHeight="123.0" fitWidth="83.0" layoutX="273.0" layoutY="167.0" onMouseClicked="#buyCity" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                  <ImageView fx:id="cityButton" fitHeight="98.0" fitWidth="79.0" layoutX="263.0" layoutY="156.0" onMouseClicked="#buyCity" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                      <image>
                         <Image url="@../ButtonResources/City.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="devCardButton" fitHeight="113.0" fitWidth="121.0" layoutX="374.0" layoutY="167.0" onMouseClicked="#buyDevelopmentCard" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                  <ImageView fx:id="devCardButton" fitHeight="106.0" fitWidth="102.0" layoutX="352.0" layoutY="155.0" onMouseClicked="#buyDevelopmentCard" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                      <image>
                         <Image url="@../ButtonResources/DevCard.png" />
                      </image>
