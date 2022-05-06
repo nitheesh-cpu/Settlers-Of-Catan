@@ -193,7 +193,6 @@ public class GameController {
 
     @FXML
     public void initialize() throws IOException, InterruptedException {
-        System.out.println("CALLED");
         Initialize.init(); //Initialize images
 
         Node[][] nodes = {{playerIcon1, inventoryTitle1, settlementCount1, cityCount1, roadCount1, stockpileCount1, inventoryFrame1, playerButton1, victoryPointCount1}, {playerIcon2, inventoryTitle2, settlementCount2, cityCount2, roadCount2, stockpileCount2, inventoryFrame2, playerButton2, victoryPointCount2}, {playerIcon3, inventoryTitle3, settlementCount3, cityCount3, roadCount3, stockpileCount3, inventoryFrame3, victoryPointCount3}};
@@ -371,7 +370,7 @@ public class GameController {
     }
 
     public void showAvailableRobberTiles() {
-        log("Move robber to a new tile.");
+        log("Move robber to a new tile. Hover over a tile and click to move.");
 
         disableButtons();
 
@@ -457,6 +456,7 @@ public class GameController {
         GameState.isStealing = false;
 
         enableButtons();
+
     }
 
     public void disableButtons() {
@@ -473,6 +473,7 @@ public class GameController {
             showTrade();
         } else if (GameState.getPhase() == Phase.RESOURCE_PRODUCTION) {
             rollDiceButton.setVisible(true);
+            disableTrade();
         }
 
         enablePlayerCards();
@@ -511,6 +512,8 @@ public class GameController {
             disableSteal();
             return;
         }
+
+        log("Select a player to steal from.");
 
         for (int i = 1; i <= 3; i++) {
             Player correspondingPlayer = getCorrespondingPlayer(i);

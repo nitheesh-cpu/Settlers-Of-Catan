@@ -106,6 +106,7 @@ public class Player implements Comparable<Player>{
     public void addRoad(Road road) {
         roads.add(road);
         Board.updateLongestRoad();
+        System.out.println(this + "'s road length: " + lengthOfLongestRoad);
     }
 
     public void upgradeToCity() {
@@ -147,15 +148,13 @@ public class Player implements Comparable<Player>{
             }
         }
 
-        if (longestRoad > lengthOfLongestRoad) {
-            lengthOfLongestRoad = longestRoad;
-        }
+        lengthOfLongestRoad = longestRoad;
 
         return longestRoad;
     }
 
     private int longestRoad(Vertex startingVertex, Edge edge, HashSet<Road> roadsVisited) {
-        if (edge == null || edge.getRoad() == null || roadsVisited.contains(edge.getRoad()) || !edge.getRoad().getOwner().equals(this)) return 0;
+        if (edge == null || edge.getRoad() == null || roadsVisited.contains(edge.getRoad()) || !edge.getRoad().getOwner().equals(this) || (startingVertex.getStructure() != null && !startingVertex.getStructure().getOwner().equals(this))) return 0;
 
         roadsVisited.add(edge.getRoad());
 

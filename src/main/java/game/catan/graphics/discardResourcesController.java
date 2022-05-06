@@ -179,6 +179,8 @@ public class discardResourcesController implements Initializable {
         Trade.discardResource(player, ResourceType.WHEAT, wheatAmt);
         Trade.discardResource(player, ResourceType.WOOL, woolAmt);
 
+        GameState.updatePlayerStats();
+
         String message = "";
 
         if (brickAmt > 0) {
@@ -267,6 +269,7 @@ public class discardResourcesController implements Initializable {
         wheatAmt = 0;
 
         titleText.setText("Player "+ player.getId() +",\ndiscard " + amountToDiscard + " resources");
+        GameState.log(player + ", discard " + amountToDiscard + " resources.");
     }
 
     public void setup(TreeMap<Player, Integer> playersToDiscard) {
