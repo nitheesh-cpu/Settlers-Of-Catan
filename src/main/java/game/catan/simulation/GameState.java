@@ -60,12 +60,6 @@ public class GameState {
         currentPlayer = players[currentPlayerIndex];
 
         Trade.initialize(this);
-
-        currentPlayer.addDevelopmentCard(new DevelopmentCard("Knight", DevelopmentCardType.KNIGHT));
-        currentPlayer.addDevelopmentCard(new DevelopmentCard("Road Building", DevelopmentCardType.PROGRESS));
-        currentPlayer.addDevelopmentCard(new DevelopmentCard("Monopoly", DevelopmentCardType.PROGRESS));
-        currentPlayer.addDevelopmentCard(new DevelopmentCard("Year of Plenty", DevelopmentCardType.PROGRESS));
-
     }
 
     // region Switching Turns/Rolling Dice
