@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="620.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.HelpController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="620.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.HelpController">
    <children>
       <HBox prefHeight="654.0" prefWidth="620.0" style="-fx-background-color: transparent;">
          <children>
@@ -27,7 +27,7 @@
                         <content>
                               <ScrollPane prefHeight="568.0" prefWidth="608.0">
                                  <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="861.0" prefWidth="606.0" style="-fx-background-color: FFFFFF;">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1522.0" prefWidth="606.0" style="-fx-background-color: FFFFFF;">
                                        <children>
                                           <ImageView fitHeight="92.0" fitWidth="246.0" layoutX="25.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -44,7 +44,12 @@
                                                 <Image url="@../HelpMenu/SYMBOLS.png" />
                                              </image>
                                           </ImageView>
-                                          <ScrollPane layoutX="25.0" layoutY="369.0" prefHeight="194.0" prefWidth="566.0" style="-fx-border-style: solid; -fx-border-width: 3;">
+                                          <ImageView fitHeight="35.0" fitWidth="260.0" layoutX="25.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../HelpMenu/CARDS.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ScrollPane layoutX="25.0" layoutY="434.0" prefHeight="194.0" prefWidth="566.0" style="-fx-border-style: solid; -fx-border-width: 3;">
                                              <content>
                                                 <Pane prefHeight="172.0" prefWidth="1093.0" style="-fx-background-color: FFFFFF;">
                                                    <children>
@@ -107,54 +112,69 @@
                                                 </Pane>
                                              </content>
                                           </ScrollPane>
-                                          <ImageView fitHeight="35.0" fitWidth="260.0" layoutX="25.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="17.0" fitWidth="570.0" layoutX="25.0" layoutY="638.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../HelpMenu/Hover%20over%20and%20click%20a%20card%20in%20your%20card%20inventory%20to%20activate%20it..png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="35.0" fitWidth="260.0" layoutX="26.0" layoutY="701.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../HelpMenu/HOW%20TO%20TRADE.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="16.0" fitWidth="198.0" layoutX="30.0" layoutY="623.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="16.0" fitWidth="198.0" layoutX="26.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../HelpMenu/Maritime%20Trade.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="43.0" fitWidth="330.0" layoutX="30.0" layoutY="653.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../HelpMenu/PORT_%20Select%20the%20corresponding%20port%20tile.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="32.0" fitWidth="417.0" layoutX="30.0" layoutY="679.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../HelpMenu/STOCKPILE_%20Select%20the%20button%20on%20the%20bottom-right.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="21.0" fitWidth="40.0" layoutX="205.0" layoutY="678.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="21.0" fitWidth="40.0" layoutX="419.0" layoutY="765.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../HelpMenu/Frame%20135.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="33.0" fitWidth="176.0" layoutX="30.0" layoutY="707.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="30.0" fitWidth="490.0" layoutX="26.0" layoutY="769.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../HelpMenu/PORT_%20Hover%20and%20click%20on%20the%20corresponding%20port%20tile.%20A%20icon%20will%20appear%20on%20an%20available%20port%20when%20hovered%20over..png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="32.0" fitWidth="417.0" layoutX="26.0" layoutY="810.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../HelpMenu/STOCKPILE_%20Select%20the%20button%20on%20the%20bottom-right.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="21.0" fitWidth="40.0" layoutX="200.0" layoutY="807.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../HelpMenu/Frame%20135.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="33.0" fitWidth="176.0" layoutX="26.0" layoutY="846.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../HelpMenu/Domestic%20Trade.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="50.0" fitWidth="466.0" layoutX="30.0" layoutY="743.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="50.0" fitWidth="466.0" layoutX="26.0" layoutY="877.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../HelpMenu/Select%20the%20Trade%20button%20of%20the%20player%20you’re%20trading%20with%20and%20input%20the%20correct%20number%20of%20resources%20in%20the%20prompted%20modals..png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="53.0" fitWidth="277.0" layoutX="25.0" layoutY="789.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="53.0" fitWidth="277.0" layoutX="27.0" layoutY="930.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../HelpMenu/BUY.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="67.0" fitWidth="429.0" layoutX="30.0" layoutY="835.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="67.0" fitWidth="429.0" layoutX="28.0" layoutY="967.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../HelpMenu/Select%20the%20button%20to%20be%20prompted%20with%20the%20items%20to%20buy..png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="21.0" fitWidth="40.0" layoutX="108.0" layoutY="831.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="21.0" fitWidth="40.0" layoutX="107.0" layoutY="963.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../HelpMenu/Frame%20136.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="501.0" fitWidth="544.0" layoutX="25.0" layoutY="998.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../HelpMenu/Group%20163.png" />
                                              </image>
                                           </ImageView>
                                        </children>
