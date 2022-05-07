@@ -345,10 +345,10 @@ public class GameState {
         currentPlayer.addDevelopmentCard(card);
         boughtDevelopmentCard = card;
 
-        log(currentPlayer + " obtain a " + card.getType() + " card.");
+        // log(currentPlayer + " obtain a " + card.getType().name().replaceAll("_", " ") + " card.");
 
         if (card.getType() != DevelopmentCardType.VICTORY_POINT) {
-            log(card.getName() + " card will only be playable on the next turn.");
+            log("Bought card cannot be played on this turn.");
         }
 
         updatePlayerStats();
