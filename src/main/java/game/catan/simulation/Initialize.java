@@ -1,5 +1,6 @@
 package game.catan.simulation;
 
+import game.catan.graphics.HelloApplication;
 import game.catan.simulation.enums.ResourceType;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -33,13 +34,23 @@ public class Initialize {
         settlementHover = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/hover2.png"));
         settlementBlank = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/blank.png"));
         robber = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/Tile/robber.png"));
-        buildButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png"));
-        tradeIcon = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/TradeButton.png"));
-        tradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Trade.png"));
-        stealButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Steal.png"));
-        tradeHands = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/TradeHands.png"));
-        endTradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/EndTrade.png"));
-        endTurnButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/EndTurn.png"));
+        if(HelloApplication.isDarkTheme) {
+            buildButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Build.png"));
+            tradeIcon = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/TradeButton.png"));
+            tradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Trade.png"));
+            stealButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Steal.png"));
+            tradeHands = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/TradeHands.png"));
+            endTradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/EndTrade.png"));
+            endTurnButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/EndTurn.png"));
+        }else{
+            buildButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png"));
+            tradeIcon = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/TradeButton.png"));
+            tradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Trade.png"));
+            stealButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/Steal.png"));
+            tradeHands = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/TradeHands.png"));
+            endTradeButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/EndTrade.png"));
+            endTurnButton = new Image(Initialize.class.getClassLoader().getResourceAsStream("game/catan/ButtonResources/EndTurn.png"));
+        }
         // robber = new ImagePattern(robberTemp);
 
         //hexagon tile patterns
@@ -104,13 +115,25 @@ public class Initialize {
         );
 
         //dice Images
-        diceImages = new Image[]{
-                new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/1.png"))),
-                new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/2.png"))),
-                new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/3.png"))),
-                new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/4.png"))),
-                new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/5.png"))),
-                new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/6.png"))),
-        };
+        if(HelloApplication.isDarkTheme) {
+            System.out.println("dark theme");
+            diceImages = new Image[]{
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DiceResources/1.png"))),
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DiceResources/2.png"))),
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DiceResources/3.png"))),
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DiceResources/4.png"))),
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DiceResources/5.png"))),
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DiceResources/6.png"))),
+            };
+        }
+        else
+            diceImages = new Image[]{
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/1.png"))),
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/2.png"))),
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/3.png"))),
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/4.png"))),
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/5.png"))),
+                    new Image(Objects.requireNonNull(Initialize.class.getClassLoader().getResourceAsStream("game/catan/DiceResources/6.png"))),
+            };
     }
 }

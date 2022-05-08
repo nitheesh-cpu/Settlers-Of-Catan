@@ -1,5 +1,6 @@
 package game.catan.simulation;
 
+import game.catan.graphics.HelloApplication;
 import game.catan.simulation.buildings.Road;
 import game.catan.simulation.buildings.Structure;
 import game.catan.simulation.cards.DevelopmentCard;
@@ -341,11 +342,18 @@ public class Player implements Comparable<Player>{
         }
 
 
-
-        images.put("City", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player"+ imageId +"City.png")));
-        images.put("Settlement", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player"+ imageId +"Settlement.png")));
-        images.put("Road", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player"+ imageId +"Road.png")));
-        images.put("Icon", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player"+ imageId +"Icon.png")));
+        if(HelloApplication.isDarkTheme) {
+            images.put("City", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/PlayerResources/player"+ imageId +"City.png")));
+            images.put("Settlement", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/PlayerResources/player"+ imageId +"Settlement.png")));
+            images.put("Road", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/PlayerResources/player"+ imageId +"Road.png")));
+            images.put("Icon", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/PlayerResources/player"+ imageId +"Icon.png")));
+        }
+        else {
+            images.put("City", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player" + imageId + "City.png")));
+            images.put("Settlement", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player" + imageId + "Settlement.png")));
+            images.put("Road", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player" + imageId + "Road.png")));
+            images.put("Icon", new Image(Player.class.getClassLoader().getResourceAsStream("game/catan/PlayerResources/player" + imageId + "Icon.png")));
+        }
 
     }
 

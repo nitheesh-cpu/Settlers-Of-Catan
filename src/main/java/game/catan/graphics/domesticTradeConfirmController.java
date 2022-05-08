@@ -5,6 +5,8 @@ import game.catan.simulation.Player;
 import game.catan.simulation.Trade;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
@@ -40,6 +42,20 @@ public class domesticTradeConfirmController implements Initializable {
     @FXML
     private Text playerTwoWheat;
 
+    public ImageView arrow;
+    public ImageView bricks;
+    public ImageView ore;
+    public ImageView wool;
+    public ImageView lumber;
+    public ImageView wheat;
+    public ImageView bricks2;
+    public ImageView ore2;
+    public ImageView wool2;
+    public ImageView lumber2;
+    public ImageView wheat2;
+    public ImageView confirm;
+    public ImageView cancel;
+
     private double xoffSet;
     private double yoffSet;
 
@@ -58,6 +74,22 @@ public class domesticTradeConfirmController implements Initializable {
         playerTwoWool.setText(Trade.getTradeTwo().getWool() + "");
         playerTwoWood.setText(Trade.getTradeTwo().getWood() + "");
         playerTwoWheat.setText(Trade.getTradeTwo().getWheat() + "");
+    }
+
+    public void dark(){
+        arrow.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/arrow.png")));
+        bricks.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/bricks.png")));
+        ore.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/ore.png")));
+        wool.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/wool.png")));
+        lumber.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/lumber.png")));
+        wheat.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/wheat.png")));
+        bricks2.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/bricks.png")));
+        ore2.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/ore.png")));
+        wool2.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/wool.png")));
+        lumber2.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/lumber.png")));
+        wheat2.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/wheat.png")));
+        confirm.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/confirm.png")));
+        cancel.setImage(new Image(domesticTradeConfirmController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/cancel.png")));
     }
 
     @FXML

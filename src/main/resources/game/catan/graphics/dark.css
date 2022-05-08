@@ -1,0 +1,74 @@
+#root {
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
+    -fx-background-color: #434C5E;
+}
+
+#root2 {
+    -fx-background-color: #434C5E;
+}
+
+#title {
+    -fx-fill: white;
+}
+
+.scroll-pane {
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-color: #D8DEE9;
+    -fx-background-color: #3B4252;
+}
+
+.border {
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-color: #D8DEE9;
+    -fx-background-color: #434C5E;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
+}
+
+#actionLogText{
+    -fx-background-color: #3B4252;
+}
+
+#cardsScrollPanel {
+    -fx-background-color: #3B4252;
+}
+
+#cardsPanel {
+    -fx-background-color: #3B4252;
+}
+
+#border {
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-color: #D8DEE9;
+}
+
+#rollDiceButton {
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+}
+
+.hover {
+    -fx-cursor: hand;
+}
+
+.textt {
+    -fx-fill: #D8DEE9;
+}
+
+.darker {
+    -fx-fill: #3B4252;
+}
+
+.text-area {
+    text-area-background: #3B4252 ;
+    -fx-text-fill: #D8DEE9;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+    -fx-text-fill: #D8DEE9;
+}

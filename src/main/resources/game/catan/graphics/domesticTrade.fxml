@@ -10,31 +10,31 @@
 
 <VBox style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.domesticTradeController">
    <children>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 18 18 18 18; -fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 18 18 18 18;">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="border">
          <children>
             <Pane fx:id="root" onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="400.0" prefWidth="602.0">
                <children>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="100.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="brick" fitHeight="34.0" fitWidth="36.0" layoutX="100.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../DomesticTrade/Bricks.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="284.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="lumber" fitHeight="34.0" fitWidth="36.0" layoutX="284.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../DomesticTrade/Lumber.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="465.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="ore" fitHeight="34.0" fitWidth="36.0" layoutX="465.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../DomesticTrade/Ore.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="191.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="wheat" fitHeight="34.0" fitWidth="36.0" layoutX="191.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../DomesticTrade/Wheat.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="379.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="wool" fitHeight="34.0" fitWidth="36.0" layoutX="379.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../DomesticTrade/Wool.png" />
                      </image>
@@ -99,32 +99,32 @@
                         <Image url="@../DomesticTrade/cancel.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="titleText" layoutX="53.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player #, enter # of resources you're trading" textAlignment="CENTER" wrappingWidth="495.79248046875">
+                  <Text fx:id="titleText" layoutX="53.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="Player #, enter # of resources you're trading" textAlignment="CENTER" wrappingWidth="495.79248046875">
                      <font>
                         <Font name="System Bold" size="43.0" />
                      </font>
                   </Text>
-                  <Text fx:id="amtWheat" layoutX="186.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="45.3994140625">
+                  <Text fx:id="amtWheat" layoutX="186.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="45.3994140625">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Text>
-                  <Text fx:id="amtWool" layoutX="377.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="45.3994140625">
+                  <Text fx:id="amtWool" layoutX="377.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="45.3994140625">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Text>
-                  <Text fx:id="amtLumber" layoutX="280.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="45.3994140625">
+                  <Text fx:id="amtLumber" layoutX="280.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="45.3994140625">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Text>
-                  <Text fx:id="amtBricks" layoutX="95.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="45.3994140625">
+                  <Text fx:id="amtBricks" layoutX="95.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="45.3994140625">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Text>
-                  <Text fx:id="amtOres" layoutX="461.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="45.3994140625">
+                  <Text fx:id="amtOres" layoutX="461.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="45.3994140625">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>

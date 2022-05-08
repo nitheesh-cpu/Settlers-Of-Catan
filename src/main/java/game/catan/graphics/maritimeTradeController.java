@@ -8,6 +8,8 @@ import game.catan.simulation.enums.TradeType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -20,6 +22,21 @@ public class maritimeTradeController implements Initializable {
     public Pane root;
     public static TradeType tradeType;
     public static Harbor harbor;
+
+    public ImageView brick;
+    public ImageView ore;
+    public ImageView wool;
+    public ImageView wheat;
+    public ImageView lumber;
+
+    public void dark(){
+        brick.setImage(new Image(maritimeTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Bricks.png")));
+        ore.setImage(new Image(maritimeTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Ore.png")));
+        wool.setImage(new Image(maritimeTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Wool.png")));
+        wheat.setImage(new Image(maritimeTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Wheat.png")));
+        lumber.setImage(new Image(maritimeTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Lumber.png")));
+    }
+
 
     public void brickClicked(MouseEvent event) {
         handleTrade(ResourceType.BRICK);

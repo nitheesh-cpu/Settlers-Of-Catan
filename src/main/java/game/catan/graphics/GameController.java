@@ -261,7 +261,13 @@ public class GameController {
         endButton.setPickOnBounds(true);
 
         // Initialize build button
-        Image img = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png")));
+        Image img;
+        if(HelloApplication.isDarkTheme) {
+//            actionLogText.setStyle("text-area-background: green;");
+            img = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Build.png")));
+        }
+        else
+            img = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("game/catan/ButtonResources/Build.png")));
         ImageView view = new ImageView(img);
         view.setFitHeight(80);
         view.setPreserveRatio(true);
@@ -269,12 +275,8 @@ public class GameController {
         // Initialize road and settlement buttons
         gameState.createRoads(tileObjs, settlementPane);
         gameState.createSettlements(tileObjs, settlementPane);
-        BackgroundFill background_fill = new BackgroundFill(Color.WHITE,
-                CornerRadii.EMPTY, Insets.EMPTY);
 
 //        root.setBackground(new Background(background_fill));
-        actionLogText.setBackground(new Background(background_fill));
-        cardsPane.setBackground(new Background(background_fill));
 
         //structures[0] == top left then go clockwise
         //roads[0] == top left then go clockwise
@@ -313,6 +315,7 @@ public class GameController {
         Tooltip.install(actionButton, new Tooltip("Perform an action"));
         Tooltip.install(endButton, new Tooltip("End your turn"));
         Tooltip.install(rollDiceButton, new Tooltip("Roll the dice"));
+
     }
 
     public void log(String message){
@@ -631,8 +634,12 @@ public class GameController {
         AtomicInteger count = new AtomicInteger();
 
         if (GameState.getCurrentPlayer().equals(Board.getLargestArmyHolder())) {
-            ImageView imageView = new ImageView(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/SpecialCards/LARGEST_ARMY.png")));
-
+            ImageView imageView;
+            if(HelloApplication.isDarkTheme)
+                imageView = new ImageView(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/Cards/SpecialCards/LARGEST_ARMY.png")));
+            else{
+                imageView = new ImageView(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/SpecialCards/LARGEST_ARMY.png")));
+            }
             imageView.setPreserveRatio(true);
             imageView.setFitHeight(260);
             imageView.setX(2+(150*count.get()));
@@ -643,7 +650,11 @@ public class GameController {
         }
 
         if (GameState.getCurrentPlayer().equals(Board.getLongestRoadHolder())) {
-            ImageView imageView = new ImageView(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/SpecialCards/LONGEST_ROAD.png")));
+            ImageView imageView;
+            if(HelloApplication.isDarkTheme)
+                imageView = new ImageView(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/Cards/SpecialCards/LONGEST_ROAD.png")));
+            else
+                imageView = new ImageView(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/SpecialCards/LONGEST_ROAD.png")));
 
             imageView.setPreserveRatio(true);
             imageView.setFitHeight(260);
@@ -659,7 +670,10 @@ public class GameController {
 
             switch (card.getType()) {
                 case KNIGHT -> {
-                    imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/KnightCard/KNIGHT.png")));
+                    if(HelloApplication.isDarkTheme)
+                        imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/Cards/KnightCard/KNIGHT.png")));
+                    else
+                        imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/KnightCard/KNIGHT.png")));
                     Tooltip.install(imageView, new Tooltip("Knight Card: Play this card to move the robber \n" +
                             "and steal one resource from the owner of \n" +
                             "the settlement adjacent to the robber's new hex."));
@@ -681,7 +695,10 @@ public class GameController {
                 case PROGRESS -> {
                     switch (card.getName()) {
                         case "Monopoly" -> {
-                            imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/MONOPOLY.png")));
+                            if(HelloApplication.isDarkTheme)
+                                imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/Cards/ProgressCards/MONOPOLY.png")));
+                            else
+                                imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/MONOPOLY.png")));
                             Tooltip.install(imageView, new Tooltip("Monopoly Card: Play this card to \n" +
                                     "steal all of one type of resource from every player \n"));
                             if (GameState.usedDevelopmentCard || card.equals(GameState.boughtDevelopmentCard)) break;
@@ -698,7 +715,10 @@ public class GameController {
                             });
                         }
                         case "Road Building" -> {
-                            imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/ROAD_BUILDING.png")));
+                            if(HelloApplication.isDarkTheme)
+                                imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/Cards/ProgressCards/ROAD_BUILDING.png")));
+                            else
+                                imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/ROAD_BUILDING.png")));
                             Tooltip.install(imageView, new Tooltip("Road Building Card: Play this card to \n" +
                                     "build two roads for free."));
                             if (GameState.usedDevelopmentCard || card.equals(GameState.boughtDevelopmentCard)) break;
@@ -715,7 +735,10 @@ public class GameController {
                             });
                         }
                         case "Year of Plenty" -> {
-                            imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/YEAR_OF_PLENTY.png")));
+                            if(HelloApplication.isDarkTheme)
+                                imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/Cards/ProgressCards/YEAR_OF_PLENTY.png")));
+                            else
+                                imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/ProgressCards/YEAR_OF_PLENTY.png")));
                             Tooltip.install(imageView, new Tooltip("Year of Plenty Card: Play this card to \n" +
                                     "gain two resources of your choice."));
                             if (GameState.usedDevelopmentCard || card.equals(GameState.boughtDevelopmentCard)) break;
@@ -736,7 +759,10 @@ public class GameController {
                 }
                 case VICTORY_POINT -> {
                     String name = card.getName().toUpperCase().replaceAll(" ", "_");
-                    imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/VictoryPointCards/" + name + ".png")));
+                    if (HelloApplication.isDarkTheme)
+                        imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/Cards/VictoryPointCards/" + name + ".png")));
+                    else
+                        imageView.setImage(new Image(GameController.class.getClassLoader().getResourceAsStream("game/catan/Cards/VictoryPointCards/" + name + ".png")));
                     Tooltip.install(imageView, new Tooltip("Victory Point Card: This card is worth 1 victory point."));
                 }
             }

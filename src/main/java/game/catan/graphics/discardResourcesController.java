@@ -8,6 +8,7 @@ import game.catan.simulation.enums.ResourceType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -79,6 +80,12 @@ public class discardResourcesController implements Initializable {
 
     @FXML
     private Text titleText;
+
+    public ImageView bricks;
+    public ImageView lumber;
+    public ImageView ore;
+    public ImageView wheat;
+    public ImageView wool;
 
     private int brickAmt = 0;
     private int lumberAmt = 0;
@@ -270,6 +277,15 @@ public class discardResourcesController implements Initializable {
 
         titleText.setText("Player "+ player.getId() +",\ndiscard " + amountToDiscard + " resources");
         GameState.log(player + ", discard " + amountToDiscard + " resources.");
+    }
+
+    public void dark(){
+        confirm.setImage(new Image(discardResourcesController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/confirm.png")));
+        bricks.setImage(new Image(discardResourcesController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/bricks.png")));
+        lumber.setImage(new Image(discardResourcesController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/lumber.png")));
+        ore.setImage(new Image(discardResourcesController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/ore.png")));
+        wool.setImage(new Image(discardResourcesController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/wool.png")));
+        wheat.setImage(new Image(discardResourcesController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/wheat.png")));
     }
 
     public void setup(TreeMap<Player, Integer> playersToDiscard) {

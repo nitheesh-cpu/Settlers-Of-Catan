@@ -50,7 +50,14 @@ public class HelloApplication extends Application {
     public static buildMenuController buildMenuController;
 
     public static discardResourcesController discardResourcesController;
+    public static boolean isDarkTheme = false;
 
+    public static Scene buildScene;
+    public static Scene domesticTradeScene;
+    public static Scene maritimeTradeScene;
+    public static Scene maritimeTradeScene2;
+    public static Scene confirmTradeScene;
+    public static Scene discardResourcesScene;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -68,7 +75,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader2 = new FXMLLoader(HelloApplication.class.getResource("buildMenu.fxml"));
         Scene scene2 = new Scene(fxmlLoader2.load(), 500, 271);
         Stage buildStage = new Stage();
-        scene2.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        buildScene = scene2;
         buildStage.initStyle(StageStyle.TRANSPARENT);
         this.buildStage = buildStage;
         buildStage.setResizable(true);
@@ -80,7 +87,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader3 = new FXMLLoader(HelloApplication.class.getResource("domesticTrade.fxml"));
         Scene scene3 = new Scene(fxmlLoader3.load(), 600, 400);
         Stage tradeStage = new Stage();
-        scene3.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        domesticTradeScene = scene3;
         tradeStage.setResizable(true);
         scene3.setFill(Color.TRANSPARENT);
         tradeStage.setAlwaysOnTop(true);
@@ -92,7 +99,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader4 = new FXMLLoader(HelloApplication.class.getResource("maritimeTradeMenu.fxml"));
         Scene scene4 = new Scene(fxmlLoader4.load(), 582, 305);
         Stage maritimeStage = new Stage();
-        scene4.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        maritimeTradeScene = scene4;
         maritimeStage.initStyle(StageStyle.TRANSPARENT);
         maritimeStage.setResizable(true);
         scene4.setFill(Color.TRANSPARENT);
@@ -104,7 +111,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader5 = new FXMLLoader(HelloApplication.class.getResource("maritimeTradeMenu2.fxml"));
         Scene scene5 = new Scene(fxmlLoader5.load(), 582, 305);
         Stage maritimeStage2 = new Stage();
-        scene5.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        maritimeTradeScene2 = scene5;
         maritimeStage2.initStyle(StageStyle.TRANSPARENT);
         maritimeStage2.setResizable(true);
         scene4.setFill(Color.TRANSPARENT);
@@ -116,7 +123,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader6 = new FXMLLoader(HelloApplication.class.getResource("confirmTrade.fxml"));
         Scene scene6 = new Scene(fxmlLoader6.load(), 624, 429);
         Stage confirmStage = new Stage();
-        scene6.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        confirmTradeScene = scene6;
         confirmStage.initStyle(StageStyle.TRANSPARENT);
         confirmStage.setResizable(true);
         scene6.setFill(Color.TRANSPARENT);
@@ -128,7 +135,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader7 = new FXMLLoader(HelloApplication.class.getResource("discardResources.fxml"));
         Scene scene7 = new Scene(fxmlLoader7.load(), 600, 400);
         Stage discardStage = new Stage();
-        scene7.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        discardResourcesScene = scene7;
         discardStage.initStyle(StageStyle.TRANSPARENT);
         discardStage.setResizable(true);
         scene7.setFill(Color.TRANSPARENT);
@@ -140,13 +147,37 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader8 = new FXMLLoader(HelloApplication.class.getResource("helpMenu.fxml"));
         Scene scene8 = new Scene(fxmlLoader8.load(), 620, 654);
         Stage helpStage = new Stage();
-        scene8.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
         helpStage.initStyle(StageStyle.TRANSPARENT);
         helpStage.setResizable(true);
         scene8.setFill(Color.TRANSPARENT);
         helpStage.setTitle("Help");
         helpStage.setScene(scene8);
         this.helpStage = helpStage;
+    }
+
+    public static void makeDark(){
+        buildScene.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/dark.css").toExternalForm());
+        domesticTradeScene.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/dark.css").toExternalForm());
+        maritimeTradeScene.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/dark.css").toExternalForm());
+        maritimeTradeScene2.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/dark.css").toExternalForm());
+        confirmTradeScene.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/dark.css").toExternalForm());
+        discardResourcesScene.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/dark.css").toExternalForm());
+
+        buildMenuController.dark();
+        discardResourcesController.dark();
+        domesticTradeConfirmController.dark();
+        domesticTradeController.dark();
+        maritimeTradeController.dark();
+        maritimeTradeController2.dark();
+    }
+
+    public static void makeLight(){
+        buildScene.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/gamemenu.css").toExternalForm());
+        domesticTradeScene.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/gamemenu.css").toExternalForm());
+        maritimeTradeScene.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/gamemenu.css").toExternalForm());
+        maritimeTradeScene2.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/gamemenu.css").toExternalForm());
+        confirmTradeScene.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/gamemenu.css").toExternalForm());
+        discardResourcesScene.getStylesheets().add(HelloApplication.class.getClassLoader().getResource("game/catan/graphics/gamemenu.css").toExternalForm());
     }
 
     public static void toggleBuildMenu(){
@@ -258,6 +289,7 @@ public class HelloApplication extends Application {
     }
 
     public static void showSmall() throws IOException {
+        makeLight();
         stage.hide();
         Stage game = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catanS2.fxml"));
@@ -276,8 +308,28 @@ public class HelloApplication extends Application {
         // game.setFullScreen(true);
     }
 
+    public static void showSmallDark() throws IOException {
+        isDarkTheme = true;
+        makeDark();
+        stage.hide();
+        Stage game = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catanS2 - Dark.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1250, 811);
+        scene.getStylesheets().add(HelloApplication.class.getResource("dark.css").toExternalForm());
+//        game.setResizable(false);
+        scene.setFill(Color.TRANSPARENT);
+        game.setTitle("Settlers of Catan");
+        game.setScene(scene);
+        game.show();
+        gameStage = game;
+        VBox root = fxmlLoader.getRoot();
+        letterbox(scene, root);
+        // game.setFullScreen(true);
+    }
+
 
     public static void showLarge() throws IOException {
+        makeLight();
         stage.hide();
         Stage game = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catanL.fxml"));
@@ -286,6 +338,23 @@ public class HelloApplication extends Application {
         JMetro jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
         scene.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+        game.setResizable(false);
+        scene.setFill(Color.TRANSPARENT);
+        game.setTitle("Settlers of Catan");
+        game.setScene(scene);
+        game.show();
+        gameStage = game;
+    }
+
+    public static void showLargeDark() throws IOException {
+        isDarkTheme = true;
+        makeDark();
+        stage.hide();
+        Stage game = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("catanL - Dark.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1250, 962);
+        game.initStyle(StageStyle.TRANSPARENT);
+        scene.getStylesheets().add(HelloApplication.class.getResource("dark.css").toExternalForm());
         game.setResizable(false);
         scene.setFill(Color.TRANSPARENT);
         game.setTitle("Settlers of Catan");

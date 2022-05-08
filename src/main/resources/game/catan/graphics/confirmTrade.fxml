@@ -8,133 +8,133 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="429.0" prefWidth="624.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.domesticTradeConfirmController">
+<VBox prefHeight="429.0" prefWidth="624.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.domesticTradeConfirmController">
     <children>
-        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="624.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 18 18 18 18; -fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 18 18 18 18;">
+        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="624.0" styleClass="border">
             <children>
                 <Pane fx:id="root" onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="534.0" prefWidth="619.0">
                     <children>
-                        <Text fx:id="playerOneTitle" layoutX="70.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player #'s Trade" textAlignment="CENTER" wrappingWidth="139.408203125">
+                        <Text fx:id="playerOneTitle" layoutX="70.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="Player #'s Trade" textAlignment="CENTER" wrappingWidth="139.408203125">
                             <font>
                                 <Font name="System Bold" size="24.0" />
                             </font>
                         </Text>
-                        <Text fx:id="playerTwoTitle" layoutX="411.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player #'s Trade" textAlignment="CENTER" wrappingWidth="139.408203125">
+                        <Text fx:id="playerTwoTitle" layoutX="411.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="Player #'s Trade" textAlignment="CENTER" wrappingWidth="139.408203125">
                             <font>
                                 <Font name="System Bold" size="24.0" />
                             </font>
                         </Text>
-                        <ImageView fitHeight="383.0" fitWidth="139.0" layoutX="240.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="arrow" fitHeight="383.0" fitWidth="139.0" layoutX="240.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../DomesticTrade/arrow.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="66.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bricks" fitHeight="37.0" fitWidth="38.0" layoutX="66.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../DomesticTrade/Bricks.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="66.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ore" fitHeight="37.0" fitWidth="38.0" layoutX="66.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../DomesticTrade/Ore.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="66.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="wool" fitHeight="37.0" fitWidth="38.0" layoutX="66.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../DomesticTrade/Wool.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="166.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="lumber" fitHeight="37.0" fitWidth="38.0" layoutX="166.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../DomesticTrade/Lumber.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="166.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="wheat" fitHeight="37.0" fitWidth="38.0" layoutX="166.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../DomesticTrade/Wheat.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="37.0" fitWidth="180.0" layoutX="56.0" layoutY="363.0" onMouseClicked="#confirmTrade" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                        <ImageView fx:id="confirm" fitHeight="37.0" fitWidth="180.0" layoutX="56.0" layoutY="363.0" onMouseClicked="#confirmTrade" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                             <image>
                                 <Image url="@../DomesticTrade/confirm.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="37.0" fitWidth="180.0" layoutX="397.0" layoutY="363.0" onMouseClicked="#cancelTrade" pickOnBounds="true" preserveRatio="true" styleClass="hover">
+                        <ImageView fx:id="cancel" fitHeight="37.0" fitWidth="180.0" layoutX="397.0" layoutY="363.0" onMouseClicked="#cancelTrade" pickOnBounds="true" preserveRatio="true" styleClass="hover">
                             <image>
                                 <Image url="@../DomesticTrade/cancel.png" />
                             </image>
                         </ImageView>
-                        <Text fx:id="playerOneBrick" layoutX="59.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="51.0">
+                        <Text fx:id="playerOneBrick" layoutX="59.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="51.0">
                             <font>
                                 <Font name="System Bold" size="21.0" />
                             </font>
                         </Text>
-                        <Text fx:id="playerOneWood" layoutX="159.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="51.0">
+                        <Text fx:id="playerOneWood" layoutX="159.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="51.0">
                             <font>
                                 <Font name="System Bold" size="21.0" />
                             </font>
                         </Text>
-                        <Text fx:id="playerOneOre" layoutX="59.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="51.0">
+                        <Text fx:id="playerOneOre" layoutX="59.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="51.0">
                             <font>
                                 <Font name="System Bold" size="21.0" />
                             </font>
                         </Text>
-                        <Text fx:id="playerOneWool" layoutX="59.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="51.0">
+                        <Text fx:id="playerOneWool" layoutX="59.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="51.0">
                             <font>
                                 <Font name="System Bold" size="21.0" />
                             </font>
                         </Text>
-                        <Text fx:id="playerOneWheat" layoutX="159.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="51.0">
+                        <Text fx:id="playerOneWheat" layoutX="159.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="51.0">
                             <font>
                                 <Font name="System Bold" size="21.0" />
                             </font>
                         </Text>
-                        <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="406.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bricks2" fitHeight="37.0" fitWidth="38.0" layoutX="406.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../DomesticTrade/Bricks.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="406.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ore2" fitHeight="37.0" fitWidth="38.0" layoutX="406.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../DomesticTrade/Ore.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="406.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="wool2" fitHeight="37.0" fitWidth="38.0" layoutX="406.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../DomesticTrade/Wool.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="506.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="lumber2" fitHeight="37.0" fitWidth="38.0" layoutX="506.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../DomesticTrade/Lumber.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="37.0" fitWidth="38.0" layoutX="506.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="wheat2" fitHeight="37.0" fitWidth="38.0" layoutX="506.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../DomesticTrade/Wheat.png" />
                             </image>
                         </ImageView>
-                        <Text fx:id="playerTwoBrick" layoutX="399.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="51.0">
+                        <Text fx:id="playerTwoBrick" layoutX="399.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="51.0">
                             <font>
                                 <Font name="System Bold" size="21.0" />
                             </font>
                         </Text>
-                        <Text fx:id="playerTwoWood" layoutX="499.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="51.0">
+                        <Text fx:id="playerTwoWood" layoutX="499.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="51.0">
                             <font>
                                 <Font name="System Bold" size="21.0" />
                             </font>
                         </Text>
-                        <Text fx:id="playerTwoOre" layoutX="399.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="51.0">
+                        <Text fx:id="playerTwoOre" layoutX="399.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="51.0">
                             <font>
                                 <Font name="System Bold" size="21.0" />
                             </font>
                         </Text>
-                        <Text fx:id="playerTwoWool" layoutX="399.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="51.0">
+                        <Text fx:id="playerTwoWool" layoutX="399.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="51.0">
                             <font>
                                 <Font name="System Bold" size="21.0" />
                             </font>
                         </Text>
-                        <Text fx:id="playerTwoWheat" layoutX="499.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="51.0">
+                        <Text fx:id="playerTwoWheat" layoutX="499.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="#" textAlignment="CENTER" wrappingWidth="51.0">
                             <font>
                                 <Font name="System Bold" size="21.0" />
                             </font>

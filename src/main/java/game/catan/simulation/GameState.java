@@ -487,6 +487,10 @@ public class GameState {
         board.upgradeSettlementToCity(vertex);
         gameController.updatePlayerStats();
         image.setImage(currentPlayer.getImages().get("City"));
+        image.setFitHeight(38);
+        image.setFitWidth(26);
+        image.setX(image.getX() + 3);
+        image.setY(image.getY() - 3);
         disableVertices();
 
         gameController.enableButtons();
@@ -500,6 +504,8 @@ public class GameState {
         gameController.updatePlayerStats();
 
         image.setImage(currentPlayer.getImages().get("Settlement"));
+        image.setFitHeight(32);
+        image.setFitWidth(32);
         disableVertices();
 
         if (phase == Phase.SETUP) {
@@ -694,7 +700,7 @@ public class GameState {
         settl.setX(loc.getX());
         settl.setY(loc.getY());
         settl.maxHeight(32);
-        settl.maxWidth(31);
+        settl.maxWidth(32);
         settlementPane.getChildren().add(settl);
         settl.setOpacity(0);
 

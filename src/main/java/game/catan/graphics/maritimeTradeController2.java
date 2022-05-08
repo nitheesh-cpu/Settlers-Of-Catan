@@ -8,6 +8,7 @@ import game.catan.simulation.enums.ResourceType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -21,6 +22,20 @@ public class maritimeTradeController2 implements Initializable {
     public Pane root;
     @FXML
     private ImageView close;
+
+    public ImageView bricks;
+    public ImageView ore;
+    public ImageView wool;
+    public ImageView wheat;
+    public ImageView lumber;
+
+    public void dark(){
+        bricks.setImage(new Image(maritimeTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Bricks.png")));
+        ore.setImage(new Image(maritimeTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Ore.png")));
+        wool.setImage(new Image(maritimeTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Wool.png")));
+        wheat.setImage(new Image(maritimeTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Wheat.png")));
+        lumber.setImage(new Image(maritimeTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Lumber.png")));
+    }
 
     private static String type = null; // year of plenty or road building
     private static int timesBought = 0; // FOR YEAR OF PLENTY

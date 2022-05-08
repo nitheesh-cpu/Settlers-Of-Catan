@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
-
+import org.controlsfx.control.ToggleSwitch;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -43,6 +43,7 @@ public class MenuController implements Initializable {
 
     @FXML
     private Text text1;
+    public ToggleSwitch darkMode;
 
     public static int size = -1;
     public static int players = -1;
@@ -112,9 +113,11 @@ public class MenuController implements Initializable {
             GameController.seed = seed;
 
             if(size == 0) {
-                HelloApplication.showSmall();
+                if(darkMode.isSelected()) HelloApplication.showSmallDark();
+                else HelloApplication.showSmallDark();
             }else if(size == 1) {
-                HelloApplication.showLarge();
+                if (darkMode.isSelected()) HelloApplication.showLargeDark();
+                else HelloApplication.showLarge();
             }
         }
     }

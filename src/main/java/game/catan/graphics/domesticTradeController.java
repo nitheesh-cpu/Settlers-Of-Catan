@@ -8,6 +8,7 @@ import game.catan.simulation.enums.ResourceType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -76,12 +77,29 @@ public class domesticTradeController implements Initializable {
     @FXML
     private Text titleText;
 
+    public ImageView brick;
+    public ImageView lumber;
+    public ImageView ore;
+    public ImageView wheat;
+    public ImageView wool;
+
+
     private int brickAmt = 0;
     private int lumberAmt = 0;
     private int oreAmt = 0;
     private int wheatAmt = 0;
     private int woolAmt = 0;
     public Player player;
+
+    public void dark(){
+        brick.setImage(new Image(domesticTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/bricks.png")));
+        lumber.setImage(new Image(domesticTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/lumber.png")));
+        ore.setImage(new Image(domesticTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/ore.png")));
+        wheat.setImage(new Image(domesticTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/wheat.png")));
+        wool.setImage(new Image(domesticTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/wool.png")));
+        confirm.setImage(new Image(domesticTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/confirm.png")));
+        cancel.setImage(new Image(domesticTradeController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/DomesticTrade/cancel.png")));
+    }
 
     public void increaseLumber(MouseEvent event) {
         if(lumberAmt < player.getResource(ResourceType.WOOD)) {

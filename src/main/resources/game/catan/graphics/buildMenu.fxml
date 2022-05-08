@@ -8,13 +8,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="500.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.buildMenuController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="500.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.buildMenuController">
    <children>
-      <HBox style="-fx-background-color: FFFFFF; -fx-background-radius: 18 18 18 18; -fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 18 18 18 18;">
+      <HBox style="-fx-background-color: FFFFFF; -fx-background-radius: 18 18 18 18; -fx-border-style: solid; -fx-border-width: 3; -fx-border-radius: 18 18 18 18;" styleClass="border">
          <children>
             <Pane fx:id="root" onDragDone="#onDragDone" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="310.0" prefWidth="513.0">
                <children>
-                  <Text id="bold" fx:id="title" layoutX="138.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Item To Buy" textAlignment="CENTER" wrappingWidth="217.96875">
+                  <Text id="bold" fx:id="title" layoutX="138.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="Select Item To Buy" textAlignment="CENTER" wrappingWidth="217.96875">
                      <font>
                         <Font name="System Bold" size="40.0" />
                      </font>

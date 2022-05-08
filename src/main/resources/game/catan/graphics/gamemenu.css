@@ -1,16 +1,11 @@
-@font-face {
-    font-family: 'Montserrat';
-    src: url('../Fonts/Montserrat-Light.ttf');
-}
-
-@font-face {
-    font-family: 'Montserrat Bold';
-    src: url('../Fonts/Montserrat-SemiBold.ttf');
-}
-
 #root {
     -fx-background-radius: 18 18 18 18;
     -fx-border-radius: 18 18 18 18;
+    -fx-background-color: #434C5E;
+}
+
+#root2 {
+    -fx-background-color: #434C5E;
 }
 
 #title {
@@ -20,13 +15,35 @@
 .scroll-pane {
     -fx-border-width: 3px;
     -fx-border-style: solid;
+    -fx-border-color: #000000;
     -fx-background-color: FFFFFF;
+}
+
+.border {
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-color: #000000;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
+}
+
+#actionLogText{
+    -fx-background-color: #FFFFFF;
+}
+
+#cardsScrollPanel {
+    -fx-background-color: #FFFFFF;
+}
+
+#cardsPanel {
+    -fx-background-color: #FFFFFF;
 }
 
 #border {
     -fx-border-width: 3px;
     -fx-border-style: solid;
-    -fx-background-color: FFFFFF;
+    -fx-border-color: #000000;
 }
 
 #rollDiceButton {
@@ -35,14 +52,24 @@
     -fx-background-color: FFFFFF;
 }
 
-#bold {
-    -fx-font-family: "Montserrat Bold";
-}
-
-#text {
-    -fx-font-family: "Montserrat";
-}
-
 .hover {
     -fx-cursor: hand;
+}
+
+.textt {
+    -fx-fill: #000000;
+}
+
+.darker {
+    -fx-fill: #FFFFFF;
+}
+
+.text-area {
+    text-area-background: #FFFFFF ;
+    -fx-text-fill: #000000;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+    -fx-text-fill: #000000;
 }

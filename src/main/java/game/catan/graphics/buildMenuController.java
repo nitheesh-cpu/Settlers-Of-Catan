@@ -8,6 +8,7 @@ import game.catan.simulation.enums.ResourceType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -85,6 +86,14 @@ public class buildMenuController implements Initializable {
         } else {
             errorModal("You do not have enough resources to build a settlement\n(must have 1x BRICK, 1x WOOD, 1x WOOL, and 1x WHEAT)", "Not enough resources");
         }
+    }
+
+    public void dark(){
+        cityButton.setImage(new Image(buildMenuController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/City.png")));
+        roadButton.setImage(new Image(buildMenuController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Road.png")));
+        devCardButton.setImage(new Image(buildMenuController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/DevCard.png")));
+        settlementButton.setImage(new Image(buildMenuController.class.getClassLoader().getResourceAsStream("game/catan/DarkResources/ButtonResources/Settlement.png")));
+
     }
 
     // 3 ore and 2 wheat need to implement
