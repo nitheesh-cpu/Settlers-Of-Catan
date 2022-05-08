@@ -114,7 +114,7 @@ public class MenuController implements Initializable {
 
             if(size == 0) {
                 if(darkMode.isSelected()) HelloApplication.showSmallDark();
-                else HelloApplication.showSmallDark();
+                else HelloApplication.showSmall();
             }else if(size == 1) {
                 if (darkMode.isSelected()) HelloApplication.showLargeDark();
                 else HelloApplication.showLarge();

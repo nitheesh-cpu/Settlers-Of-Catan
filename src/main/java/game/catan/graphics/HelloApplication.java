@@ -321,6 +321,7 @@ public class HelloApplication extends Application {
         game.setTitle("Settlers of Catan");
         game.setScene(scene);
         game.show();
+        scene.setFill(Color.web("#434C5E"));
         gameStage = game;
         VBox root = fxmlLoader.getRoot();
         letterbox(scene, root);
