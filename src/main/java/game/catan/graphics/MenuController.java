@@ -132,7 +132,8 @@ public class MenuController implements Initializable {
             large.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
         }
         else large.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
-        large.setTextFill(Color.WHITE);
+        if(darkMode.isSelected())large.setTextFill(Color.WHITE);
+        else large.setTextFill(Color.BLACK);
         small.setTextFill(Color.BLACK);
     }
 
@@ -143,7 +144,8 @@ public class MenuController implements Initializable {
         if (darkMode.isSelected()) small.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
         else small.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
         large.setTextFill(Color.BLACK);
-        small.setTextFill(Color.WHITE);
+        if(darkMode.isSelected())small.setTextFill(Color.WHITE);
+        else small.setTextFill(Color.BLACK);
     }
 
     @FXML
@@ -152,7 +154,8 @@ public class MenuController implements Initializable {
         if (darkMode.isSelected()) four.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
         else four.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
         three.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
-        four.setTextFill(Color.WHITE);
+        if(darkMode.isSelected()) four.setTextFill(Color.WHITE);
+        else four.setTextFill(Color.BLACK);
         three.setTextFill(Color.BLACK);
     }
 
@@ -163,7 +166,8 @@ public class MenuController implements Initializable {
         if (darkMode.isSelected()) three.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
         else three.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
         four.setTextFill(Color.BLACK);
-        three.setTextFill(Color.WHITE);
+        if(darkMode.isSelected()) three.setTextFill(Color.WHITE);
+        else three.setTextFill(Color.BLACK);
     }
 
     @FXML
