@@ -19,10 +19,10 @@ public class SplashScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Application started");
-        FadeTransition.applyFadeTransition(parent, Duration.seconds(6), (e) ->{
+        FadeTransition.applyFadeTransition(parent, Duration.seconds(7), (e) ->{
             try {
-                Parent fxml = FXMLLoader.load(getClass().getResource("menu.fxml"));
-                fxml.getStylesheets().add(HelloApplication.class.getResource("gamemenu.css").toExternalForm());
+                Parent fxml = FXMLLoader.load(SplashScreenController.class.getClassLoader().getResource("game/catan/graphics/menu.fxml"));
+//                fxml.getStylesheets().add(SplashScreenController.class.getClassLoader().getResource("game/catan/graphics/gamemenu.css").toExternalForm());
                 parent.getChildren().removeAll();
                 parent.getChildren().setAll(fxml);
             } catch (IOException ex) {
