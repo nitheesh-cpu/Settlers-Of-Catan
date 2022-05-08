@@ -401,7 +401,6 @@ public class Board {
 
         for (Player player: GameState.getPlayers()) {
             int roadLength = player.longestRoad();
-            GameState.log(player + " has a longest road of " + roadLength + ".");
 
             if (roadLength < 5) continue;
 
