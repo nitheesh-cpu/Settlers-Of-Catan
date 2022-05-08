@@ -289,6 +289,7 @@ public class HelloApplication extends Application {
     }
 
     public static void showSmall() throws IOException {
+        isDarkTheme = false;
         makeLight();
         stage.hide();
         Stage game = new Stage();
@@ -330,6 +331,7 @@ public class HelloApplication extends Application {
 
 
     public static void showLarge() throws IOException {
+        isDarkTheme = false;
         makeLight();
         stage.hide();
         Stage game = new Stage();
