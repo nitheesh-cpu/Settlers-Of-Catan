@@ -64,7 +64,7 @@
                                 <Font size="20.0" />
                             </font>
                         </Text>
-                        <Text id="text" layoutX="470.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textt" text="Lumber" textAlignment="CENTER" wrappingWidth="73.412109375">
+                        <Text id="text" layoutX="470.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wood" textAlignment="CENTER" wrappingWidth="73.412109375">
                             <font>
                                 <Font size="20.0" />
                             </font>
