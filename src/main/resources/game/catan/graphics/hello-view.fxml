@@ -8,7 +8,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="970.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="game.catan.graphics.SplashScreenController">
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.catan.graphics.SplashScreenController">
     <children>
       <AnchorPane fx:id="parent">
          <children>
@@ -16,21 +17,21 @@
                   <children>
                       <ImageView fitHeight="690.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../MenuResources/menu_bg.png" />
+                              <Image url="@Intro proto 2.gif" />
                           </image>
                       </ImageView>
-                      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="105.0" layoutY="329.0" opacity="0.31" stroke="WHITE" strokeType="INSIDE" width="971.0" />
-                      <Text fx:id="text1" fill="WHITE" layoutX="247.0" layoutY="119.0" stroke="BLACK" strokeType="OUTSIDE" text="Settlers of Catan" textAlignment="CENTER" wrappingWidth="477.13671875">
+                      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="105.0" layoutY="329.0" opacity="0.31" stroke="WHITE" strokeType="INSIDE" visible="false" width="971.0" />
+                      <Text fx:id="text1" fill="WHITE" layoutX="247.0" layoutY="119.0" stroke="BLACK" strokeType="OUTSIDE" text="Settlers of Catan" textAlignment="CENTER" visible="false" wrappingWidth="477.13671875">
                           <font>
                               <Font name="System Bold" size="57.0" />
                           </font>
                       </Text>
-                  <Text fx:id="text11" fill="WHITE" layoutX="246.0" layoutY="396.0" stroke="BLACK" strokeType="OUTSIDE" text="Loading..." textAlignment="CENTER" wrappingWidth="477.13671875">
+                  <Text fx:id="text11" fill="WHITE" layoutX="246.0" layoutY="396.0" stroke="BLACK" strokeType="OUTSIDE" text="Loading..." textAlignment="CENTER" visible="false" wrappingWidth="477.13671875">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="93.0" fitWidth="93.0" layoutX="876.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="93.0" fitWidth="93.0" layoutX="876.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../MenuResources/loading.gif" />
                      </image>
