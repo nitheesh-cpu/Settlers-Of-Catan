@@ -6,6 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -14,7 +17,6 @@ import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import org.controlsfx.control.ToggleSwitch;
 import javax.swing.*;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -44,7 +46,7 @@ public class MenuController implements Initializable {
     @FXML
     private Text text1;
     public ToggleSwitch darkMode;
-
+    public Rectangle block;
     public static int size = -1;
     public static int players = -1;
 
@@ -126,27 +128,95 @@ public class MenuController implements Initializable {
     void smallPressed(ActionEvent event) {
         size = 0;
         small.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
-        large.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        if (darkMode.isSelected()){
+            large.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        }
+        else large.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        large.setTextFill(Color.WHITE);
+        small.setTextFill(Color.BLACK);
     }
 
     @FXML
     void largePressed(ActionEvent event) {
         size = 1;
         large.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
-        small.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        if (darkMode.isSelected()) small.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        else small.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        large.setTextFill(Color.BLACK);
+        small.setTextFill(Color.WHITE);
     }
 
     @FXML
     void threePressed(ActionEvent event) {
         players = 3;
-        four.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        if (darkMode.isSelected()) four.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        else four.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
         three.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        four.setTextFill(Color.WHITE);
+        three.setTextFill(Color.BLACK);
     }
 
     @FXML
     void fourPressed(ActionEvent event) {
         players = 4;
         four.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
-        three.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        if (darkMode.isSelected()) three.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        else three.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        four.setTextFill(Color.BLACK);
+        three.setTextFill(Color.WHITE);
+    }
+
+    @FXML
+    void toggleChanged(MouseEvent event) {
+        if(darkMode.isSelected()) {
+            block.setFill(Color.web("#434C5E"));
+            playButton.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 15;-fx-cursor: hand;");
+            playButton.setTextFill(Color.web("#FFFFFF"));
+            helpButton.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 15;-fx-cursor: hand;");
+            helpButton.setTextFill(Color.web("#FFFFFF"));
+            four.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            three.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            four.setTextFill(Color.web("#FFFFFF"));
+            three.setTextFill(Color.web("#FFFFFF"));
+            small.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            large.setStyle("-fx-background-color: #434C5E;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            small.setTextFill(Color.web("#FFFFFF"));
+            large.setTextFill(Color.web("#FFFFFF"));
+            if(size == 0){
+                small.setTextFill(Color.web("#000000"));
+                small.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            }
+            else if(size == 1){
+                large.setTextFill(Color.web("#000000"));
+                large.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            }
+            if(players == 3){
+                three.setTextFill(Color.web("#000000"));
+                three.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            }
+            else if(players == 4){
+                four.setTextFill(Color.web("#000000"));
+                four.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            }
+        }
+        else {
+            block.setFill(Color.web("#FFFFFF"));
+            playButton.setStyle("-fx-background-color: #FFFFFF;-fx-background-radius: 15;-fx-cursor: hand;");
+            playButton.setTextFill(Color.web("#000000"));
+            helpButton.setStyle("-fx-background-color: #FFFFFF;-fx-background-radius: 15;-fx-cursor: hand;");
+            helpButton.setTextFill(Color.web("#000000"));
+            four.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            three.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            four.setTextFill(Color.web("#000000"));
+            three.setTextFill(Color.web("#000000"));
+            small.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            large.setStyle("-fx-background-color: #ffffff;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            small.setTextFill(Color.web("#000000"));
+            large.setTextFill(Color.web("#000000"));
+            if(size == 0) small.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            else if(size == 1) large.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            if(players == 3) three.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+            else if(players == 4) four.setStyle("-fx-background-color: #00ff00;-fx-background-radius: 25;-fx-border-style: solid;-fx-border-width: 1;-fx-border-radius: 25;-fx-border-insets: -1;");
+        }
     }
 }

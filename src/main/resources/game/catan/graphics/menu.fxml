@@ -21,7 +21,7 @@
                   <Image url="@../MenuResources/menu_bg.png" />
                </image>
             </ImageView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="245.0" layoutY="269.0" opacity="0.31" stroke="WHITE" strokeType="INSIDE" width="971.0" />
+            <Rectangle fx:id="block" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="245.0" layoutY="269.0" opacity="0.31" stroke="WHITE" strokeType="INSIDE" width="971.0" />
             <Button fx:id="playButton" layoutX="338.0" layoutY="456.0" mnemonicParsing="false" onAction="#playPressed" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 15; -fx-cursor: hand;" styleClass="hover" text="Play">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -79,7 +79,7 @@
                   <Font name="System Bold" size="57.0" />
                </font>
             </Text>
-            <ToggleSwitch fx:id="darkMode" layoutX="905.0" layoutY="488.0" />
+            <ToggleSwitch fx:id="darkMode" layoutX="905.0" layoutY="488.0" onMouseClicked="#toggleChanged" />
             <Text fx:id="text21" fill="WHITE" layoutX="815.0" layoutY="502.0" stroke="BLACK" strokeType="OUTSIDE" text="Dark Mode:" textAlignment="CENTER" wrappingWidth="110.13671875">
                <font>
                   <Font name="System Bold" size="17.0" />

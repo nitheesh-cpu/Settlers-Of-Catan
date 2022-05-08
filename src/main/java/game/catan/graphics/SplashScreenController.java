@@ -22,7 +22,7 @@ public class SplashScreenController implements Initializable {
         FadeTransition.applyFadeTransition(parent, Duration.seconds(7), (e) ->{
             try {
                 Parent fxml = FXMLLoader.load(SplashScreenController.class.getClassLoader().getResource("game/catan/graphics/menu.fxml"));
-//                fxml.getStylesheets().add(SplashScreenController.class.getClassLoader().getResource("game/catan/graphics/gamemenu.css").toExternalForm());
+                fxml.getStylesheets().add(SplashScreenController.class.getClassLoader().getResource("game/catan/graphics/gamemenu.css").toExternalForm());
                 parent.getChildren().removeAll();
                 parent.getChildren().setAll(fxml);
             } catch (IOException ex) {
