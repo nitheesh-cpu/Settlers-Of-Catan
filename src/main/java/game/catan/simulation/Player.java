@@ -41,7 +41,7 @@ public class Player implements Comparable<Player>{
     public Player(Color color) {
         this.id = number++;
         this.color = color;
-        stockpile = new Stockpile(5, 5, 5, 5, 5);
+        stockpile = new Stockpile();
 
         developmentCards = new ArrayList<>();
         structures = new ArrayList<>();

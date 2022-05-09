@@ -72,8 +72,8 @@ public class GameState {
         if (currentPlayer.getTotalVictoryPoints() >= 10) {
             gameController.disableButtons();
             gameController.log(currentPlayer + " has won the game!");
-//            gameController.showWinner(currentPlayer);
-//            gameController.disableButtons();
+            gameController.showWinner(currentPlayer);
+            gameController.disableButtons();
             return true;
         }
 
