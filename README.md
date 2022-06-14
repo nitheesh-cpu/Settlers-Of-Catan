@@ -4,12 +4,12 @@ This project is a recreation of the board game _Settlers of Catan_ in Java. The 
 
 ### How to Play
 
-[View the official rules](https://www.catan.com/sites/prod/files/2021-06/catan_base_rules_2020_200707.pdf)
+[View the official rules](https://www.catan.com/sites/prod/files/2021-06/catan_base_rules_2020_200707.pdf){:target="_blank"}
 
 To view the instructions in the application, press the "Help" button or the "?" button in game to view them.
 
 ### Instructions
 
-1. [Download](https://www.oracle.com/java/technologies/downloads/) the latest JRE to be able to open the .jar file
-2. [Download](https://github.com/nitheesh-cpu/SettlersOfCatan/releases/download/Download/Catan.jar) the project .jar file from the GitHub
+1. [Download](https://www.oracle.com/java/technologies/downloads/){:target="_blank"} the latest JRE to be able to open the .jar file
+2. [Download](https://github.com/nitheesh-cpu/SettlersOfCatan/releases/download/Download/Catan.jar){:target="_blank"} the project .jar file from the GitHub
 3. Run the file
