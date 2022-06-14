@@ -6,7 +6,7 @@ This project is a recreation of the board game _Settlers of Catan_ in Java. The 
 
 [View the official rules](https://www.catan.com/sites/prod/files/2021-06/catan_base_rules_2020_200707.pdf)
 
-To view the instructions in the application, press the "Help" button or the "?" button in game to view them.
+To view the instructions while using the application, press the "Help" button or the "?" button in game to view them.
 
 ### Instructions
 
