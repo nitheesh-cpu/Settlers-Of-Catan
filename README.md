@@ -11,5 +11,5 @@ To view the instructions while using the application, press the "Help" button or
 ### Instructions
 
 1. [Download](https://www.oracle.com/java/technologies/downloads/) the latest JRE to be able to open the .jar file
-2. [Download](https://github.com/nitheesh-cpu/LoveLetter/releases/download/Download/LoveLetter,jar) the project .jar file from the GitHub
+2. [Download](https://github.com/nitheesh-cpu/LoveLetter/releases/download/Download/LoveLetter.jar) the project .jar file from the GitHub
 3. Run the file
