@@ -1,0 +1,45 @@
+title: "Nitheesh"
+description: "Settlers of Catan - JavaFX Board Game Recreation"
+url: "https://nitheesh-cpu.github.io/"
+baseurl: "/Settlers-Of-Catan/"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+
+# Navigation - Links back to main portfolio site
+navigation:
+  - name: "Home"
+    link: "https://nitheesh-cpu.github.io/"
+  - name: "Projects"
+    link: "https://nitheesh-cpu.github.io/projects.html"
+  - name: "Resume"
+    link: "https://nitheesh-cpu.github.io/resume.html"
+  - name: "Contact"
+    link: "https://nitheesh-cpu.github.io/contact.html"
+
+# Social links
+social:
+  github: "https://github.com/nitheesh-cpu"
+  linkedin: "https://www.linkedin.com/in/nitheesh-kodarapu-7529b1272"
+  instagram: "https://www.instagram.com/nitheeesh_/"
+
+# Exclude from processing
+exclude:
+  - "*.java"
+  - "*.class"
+  - "*.iml"
+  - "target/"
+  - ".idea/"
+  - "lib/"
+  - "javafx-sdk-17.0.1/"
+  - "*.jar"
+  - "pom.xml"
+  - ".git/"
+  - ".gitignore"
+  - "cards.png"
+  - "build.png"
+  - "help.png"
+  - "Recording #11.gif"
