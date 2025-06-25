@@ -65,42 +65,46 @@ subheading: "A JavaFX recreation of the classic strategy board game where resour
         <div class="mt-8">
             <h4 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Game Features</h4>
 
-                        <!-- Main Screenshots Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <img class="w-full h-48 object-cover"
+                                    <!-- Main Screenshots Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <img class="w-full h-64 md:h-72 lg:h-64 object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
                          src="{{ site.baseurl }}/assets/img/build.png"
-                         alt="Building Interface - Roads, Settlements, and Cities">
+                         alt="Building Interface - Roads, Settlements, and Cities"
+                         onclick="openImageModal(this)">
                     <div class="p-4">
                         <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Strategic Building</h5>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Build roads, settlements, and cities to expand your territory and gain victory points.</p>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <img class="w-full h-48 object-cover"
+                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <img class="w-full h-64 md:h-72 lg:h-64 object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
                          src="{{ site.baseurl }}/assets/img/cards.png"
-                         alt="Development Cards and Trading System">
+                         alt="Development Cards and Trading System"
+                         onclick="openImageModal(this)">
                     <div class="p-4">
                         <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Cards & Trading</h5>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Collect development cards and engage in strategic trading with other players.</p>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <img class="w-full h-48 object-cover"
+                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <img class="w-full h-64 md:h-72 lg:h-64 object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
                          src="{{ site.baseurl }}/assets/img/help.png"
-                         alt="Game Rules and Help System">
+                         alt="Game Rules and Help System"
+                         onclick="openImageModal(this)">
                     <div class="p-4">
                         <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Comprehensive Help</h5>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Built-in help system with complete game rules and strategy tips.</p>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <img class="w-full h-48 object-cover"
+                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <img class="w-full h-64 md:h-72 lg:h-64 object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
                          src="{{ site.baseurl }}/assets/img/darkmode.png"
-                         alt="Dark Mode Interface - Modern UI Theme">
+                         alt="Dark Mode Interface - Modern UI Theme"
+                         onclick="openImageModal(this)">
                     <div class="p-4">
                         <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Dark Mode Theme</h5>
                         <p class="text-sm text-gray-600 dark:text-gray-400">Modern dark theme interface for enhanced gaming experience during extended play sessions.</p>
@@ -281,3 +285,35 @@ subheading: "A JavaFX recreation of the classic strategy board game where resour
     </div>
 
 </div>
+
+<!-- Image Modal -->
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden" onclick="closeImageModal()">
+    <div class="max-w-4xl max-h-full p-4 relative">
+        <img id="modalImage" class="max-w-full max-h-full rounded-lg shadow-2xl" src="" alt="">
+        <button class="absolute top-4 right-4 text-white text-3xl hover:text-gray-300 transition-colors duration-300" onclick="closeImageModal()">&times;</button>
+    </div>
+</div>
+
+<script>
+    function openImageModal(imgElement) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.classList.remove('hidden');
+        modalImg.src = imgElement.src;
+        modalImg.alt = imgElement.alt;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeImageModal();
+        }
+    });
+</script>
